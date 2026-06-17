@@ -379,16 +379,14 @@ function initSimilarCarousel() {
   function goTo(page) {
     current = Math.max(0, Math.min(page, pages - 1))
     
-    // 1. 偵測目前是不是手機直式螢幕
     const isMobile = window.innerWidth <= 768;
-    
-    // 2. 聰明設定：手機版一頁 2 筆，桌機版一頁 3 筆
     const perPageNum = isMobile ? 2 : perPage; 
     
     const cardW = cards[0].offsetWidth
-    const gap = parseInt(getComputedStyle(grid).columnGap) || 16
     
-    // 3. 計算精準滑動距離：目前頁數 * 每頁幾筆 * (卡片寬 + 間距)
+    // ── ✨ 強制給予手機版精準的 16px gap 數值，避免 getComputedStyle 抓到其他擠壓值 ──
+    const gap = isMobile ? 16 : (parseInt(getComputedStyle(grid).columnGap) || 40)
+    
     const moveDistance = current * perPageNum * (cardW + gap);
       
     grid.style.transform = `translateX(-${moveDistance}px)`
