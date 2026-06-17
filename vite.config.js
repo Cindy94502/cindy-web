@@ -1,8 +1,22 @@
 import { defineConfig } from 'vite'
 import { resolve } from 'path'
 
+// 自動為所有 HTML 注入 favicon
+function injectFavicon() {
+  return {
+    name: 'inject-favicon',
+    transformIndexHtml(html) {
+      return html.replace(
+        /<\/head>/,
+        `  <link rel="icon" href="/cindy-web/favicon.ico">\n  </head>`
+      )
+    }
+  }
+}
+
 export default defineConfig(({ command }) => ({
   base: command === 'build' ? '/cindy-web/' : '/',
+  plugins: [injectFavicon()],
   build: {
     rollupOptions: {
       input: {
