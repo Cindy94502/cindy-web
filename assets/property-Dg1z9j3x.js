@@ -1,4 +1,4 @@
-import{r as w,a as C,i as L,b as o}from"./shared-NCdILNy4.js";import{G as x,f as v}from"./data-DQaSi1fH.js";const I=new URLSearchParams(location.search),k=I.get("id");document.getElementById("app").innerHTML=`
+import{r as w,a as C,i as L,b as o}from"./shared-Zy1XvVyR.js";/* empty css               */import{G as x,f as v}from"./data-DQaSi1fH.js";const I=new URLSearchParams(location.search),k=I.get("id");document.getElementById("app").innerHTML=`
   ${w()}
   <div class="property-page">
     <div class="property-loading">載入中...</div>
@@ -123,7 +123,7 @@ import{r as w,a as C,i as L,b as o}from"./shared-NCdILNy4.js";import{G as x,f as
       <div class="property-sidebar">
         <div class="contact-card-sticky">
           <div class="sidebar-agent">
-            <div class="sidebar-agent-avatar">${o("User",28,1.5)}</div>
+            <div class="sidebar-agent-avatar"><img src="images/Cindy.png" alt="Cindy" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div>
             <div>
               <div class="sidebar-agent-name">王瑋薰 Cindy</div>
               <div class="sidebar-agent-title">中信房屋南崁一極</div>

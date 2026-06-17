@@ -1,15 +1,15 @@
-import{r as d,b as a,a as l,i as v}from"./shared-NCdILNy4.js";import{G as p,f as m}from"./data-DQaSi1fH.js";function c(s,i){return`<div class="torn-divider" style="background:${i}">
+import{r as l,b as a,a as v,i as p}from"./shared-Zy1XvVyR.js";/* empty css               */import{G as m,f as g}from"./data-DQaSi1fH.js";function c(s,t){return`<div class="torn-divider" style="background:${t}">
     <svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M0,0 L0,20 C80,35 160,8 240,22 C320,36 400,10 480,24 C560,38 640,12 720,26 C800,40 880,8 960,22 C1040,36 1120,14 1200,28 C1280,42 1360,16 1440,20 L1440,0 Z" fill="${s}"/>
     </svg>
-  </div>`}function g(s,i){const t=s.ogImageUrl||(s.cloudinaryFolder?`https://res.cloudinary.com/ddzync8km/image/upload/${s.cloudinaryFolder}_0.jpg`:""),n=s.buildingCategory==="透天"?"House":"Building2";return`
-  <a href="property.html?id=${s.nodeId}" class="prop-card reveal reveal-d${i+1}">
+  </div>`}function b(s,t){const o=s.ogImageUrl||"",e=s.buildingCategory==="透天"?"House":"Building2";return`
+  <a href="property.html?id=${s.nodeId}" class="prop-card reveal reveal-d${t+1}">
     <div class="prop-card-img">
-      ${t?`<img src="${t}" alt="${s.title}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" onerror="this.style.objectFit='contain';this.style.opacity='0.4';this.style.padding='20px';this.src='images/house_small.png'">`:`<div class="prop-card-img-icon">${a(n,48,1,"prop-placeholder-icon")}</div>`}
+      ${o?`<img src="${o}" alt="${s.title}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" onerror="this.style.objectFit='contain';this.style.opacity='0.4';this.style.padding='20px';this.src='images/house_small.png'">`:`<div class="prop-card-img-icon">${a(e,48,1,"prop-placeholder-icon")}</div>`}
       <div class="prop-card-category">${s.buildingCategory||"住宅"}</div>
     </div>
     <div class="prop-card-body">
-      <div class="prop-price">${m(s.price)}</div>
+      <div class="prop-price">${g(s.price)}</div>
       <div class="prop-name">${s.title}</div>
       <div class="prop-info">
         <span class="prop-tag">${s.layout||""}</span>
@@ -21,7 +21,7 @@ import{r as d,b as a,a as l,i as v}from"./shared-NCdILNy4.js";import{G as p,f as
       </div>
     </div>
   </a>`}document.getElementById("app").innerHTML=`
-  ${d()}
+  ${l()}
 
   <!-- ── HERO ── -->
   <section id="hero">
@@ -187,5 +187,5 @@ import{r as d,b as a,a as l,i as v}from"./shared-NCdILNy4.js";import{G as p,f as
     </div>
   </section>
 
-  ${l()}
-`;v();setTimeout(()=>{var s;(s=document.getElementById("heroStrong"))==null||s.classList.add("hero-title-line-animate")},1400);var r;(r=document.getElementById("scrollHint"))==null||r.addEventListener("click",s=>{s.preventDefault();const i=document.getElementById("about");i&&window.scrollTo({top:i.offsetTop-64,behavior:"smooth"})});async function b(){try{const i=await(await fetch(p)).json(),t=i.filter(o=>o.title&&o.nodeId).slice(0,3);document.getElementById("homePropsGrid").innerHTML=t.map((o,e)=>g(o,e)).join(""),document.getElementById("propsMoreBtn").innerHTML=`查看全部 ${i.length} 筆物件 ${a("ArrowRight",16,2)}`;const n=new IntersectionObserver(o=>{o.forEach(e=>{e.isIntersecting&&e.target.classList.add("visible")})},{threshold:.1});document.querySelectorAll("#homePropsGrid .reveal").forEach(o=>n.observe(o))}catch{document.getElementById("homePropsGrid").innerHTML='<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--brown-mid)">暫時無法載入物件</div>'}}b();
+  ${v()}
+`;p();setTimeout(()=>{var s;(s=document.getElementById("heroStrong"))==null||s.classList.add("hero-title-line-animate")},1400);var d;(d=document.getElementById("scrollHint"))==null||d.addEventListener("click",s=>{s.preventDefault();const t=document.getElementById("about");t&&window.scrollTo({top:t.offsetTop-64,behavior:"smooth"})});const r=document.getElementById("about");r&&new IntersectionObserver(t=>{t.forEach(o=>{var e;o.isIntersecting&&((e=document.querySelector(".about-dad-wrap"))==null||e.classList.add("visible"))})},{threshold:.1}).observe(r);async function h(){try{const t=await(await fetch(m)).json(),o=t.filter(i=>i.title&&i.nodeId).slice(0,3);document.getElementById("homePropsGrid").innerHTML=o.map((i,n)=>b(i,n)).join(""),document.getElementById("propsMoreBtn").innerHTML=`查看全部 ${t.length} 筆物件 ${a("ArrowRight",16,2)}`;const e=new IntersectionObserver(i=>{i.forEach(n=>{n.isIntersecting&&n.target.classList.add("visible")})},{threshold:.1});document.querySelectorAll("#homePropsGrid .reveal").forEach(i=>e.observe(i))}catch{document.getElementById("homePropsGrid").innerHTML='<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--brown-mid)">暫時無法載入物件</div>'}}h();
