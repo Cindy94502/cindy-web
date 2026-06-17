@@ -20,8 +20,7 @@ export function renderNav() {
     <button class="menu-overlay-close" id="menuClose" aria-label="關閉">✕</button>
     <div class="menu-overlay-logo">
       <div class="menu-overlay-logo-circle">
-        <!-- 這裡將原本的 span 替換成你的圖片 -->
-        <img src="images/Cindy.png" alt="Cindy 大頭貼" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+        <img src="images/Cindy.png?v=2" alt="Cindy 王瑋薰" style="width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 50%;">
       </div>
     </div>
     <ul class="menu-overlay-links">
@@ -62,14 +61,6 @@ export function renderNav() {
         </a>
       </li>
     </ul>
-    <div class="menu-overlay-contact">
-      <a href="tel:0963585690" class="menu-overlay-contact-item">
-        ${icon('Phone', 14, 2)} 0963-585-690
-      </a>
-      <a href="https://line.me/ti/p/@019nrmqw" target="_blank" class="menu-overlay-contact-item">
-        ${icon('MessageCircle', 14, 2)} LINE @019nrmqw
-      </a>
-    </div>
   </div>
   <div class="menu-backdrop" id="menuBackdrop"></div>
   `

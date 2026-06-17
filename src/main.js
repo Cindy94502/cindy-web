@@ -13,7 +13,7 @@ function tornDivider(fromColor, toColor) {
 
 function propPreviewCard(p, index) {
   const tapeColors = ['var(--yellow)', 'var(--pink)', 'var(--teal-light)']
-  const imgUrl = p.ogImageUrl || (p.cloudinaryFolder ? `https://res.cloudinary.com/ddzync8km/image/upload/${p.cloudinaryFolder}_0.jpg` : '')
+  const imgUrl = p.ogImageUrl || ''
   const iconName = p.buildingCategory === '透天' ? 'House' : 'Building2'
   return `
   <a href="property.html?id=${p.nodeId}" class="prop-card reveal reveal-d${index + 1}">
@@ -220,6 +220,19 @@ document.getElementById('scrollHint')?.addEventListener('click', e => {
   const target = document.getElementById('about')
   if (target) window.scrollTo({ top: target.offsetTop - 64, behavior: 'smooth' })
 })
+
+// 父女圖 scroll reveal - 監聽 about 區塊
+const aboutSection = document.getElementById('about')
+if (aboutSection) {
+  const dadObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        document.querySelector('.about-dad-wrap')?.classList.add('visible')
+      }
+    })
+  }, { threshold: 0.1 })
+  dadObs.observe(aboutSection)
+}
 
 async function loadHomeProps() {
   try {
