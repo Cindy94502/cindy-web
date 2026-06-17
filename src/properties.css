@@ -184,6 +184,13 @@
 .props-empty.show { display: flex; }
 .props-empty p { font-size: 14px; letter-spacing: 2px; line-height: 2; }
 
+@media (max-width: 768px) {
+  .props-filter-section { padding: 16px 20px !important; }
+  .props-filter-inner { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+  .props-filter-inner .filter-group:first-child { grid-column: 1 / -1 !important; }
+  .filter-deco { display: none !important; }
+}
+
 /* ── 搜尋框 ── */
 .filter-group-search { min-width: 220px; flex: 1; }
 .filter-search-wrap {
