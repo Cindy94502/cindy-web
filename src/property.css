@@ -270,11 +270,8 @@
 .similar-card:hover { transform: translateY(-6px); }
 .similar-img-wrap {
   width: 180px; height: 180px; border-radius: 50%; overflow: hidden;
-  box-shadow: 0 8px 28px rgba(61,43,31,0.12);
   margin-bottom: 20px; background: var(--sage-light);
-  transition: box-shadow 0.3s;
 }
-.similar-card:hover .similar-img-wrap { box-shadow: 0 12px 36px rgba(61,43,31,0.18); }
 .similar-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
 .similar-img-placeholder {
   width: 100%; height: 100%; display: flex;
