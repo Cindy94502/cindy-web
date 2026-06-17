@@ -76,6 +76,9 @@ import{r as w,a as C,i as L,b as c}from"./shared-Zy1XvVyR.js";/* empty css      
             <span class="spec-label">房數</span>
             <span class="spec-value">${e.roomCount||"—"}</span>
           </div>
+          <div class="spec-item spec-item-deco">
+            <img src="images/house_small.png" alt="" style="height:52px;opacity:0.5">
+          </div>
         </div>
 
         ${e.mapAddress||e.wixLocation?`
@@ -125,8 +128,8 @@ import{r as w,a as C,i as L,b as c}from"./shared-Zy1XvVyR.js";/* empty css      
           <div class="sidebar-agent">
             <div class="sidebar-agent-avatar"><img src="images/Cindy.png" alt="Cindy" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div>
             <div>
-              <div class="sidebar-agent-name">王瑋薰 Cindy</div>
-              <div class="sidebar-agent-title">中信房屋南崁一極</div>
+              <div class="sidebar-agent-name">Cindy</div>
+              <div class="sidebar-agent-title">王小姐｜中信房屋南崁一極</div>
             </div>
           </div>
           <div class="sidebar-price">${v(e.price)}</div>
@@ -178,5 +181,5 @@ import{r as w,a as C,i as L,b as c}from"./shared-Zy1XvVyR.js";/* empty css      
       </div>
     </div>`:""}
 
-  `,q(e,a),T(a),B(e),R(e,s),p()}function p(){const e=document.getElementById("similarGrid"),a=document.getElementById("similarPrev"),s=document.getElementById("similarNext"),r=document.querySelectorAll(".similar-dot");if(!e||!a||!s)return;const n=e.querySelectorAll(".similar-card"),l=n.length,t=3,i=Math.ceil(l/t);let o=0;function d(m){o=Math.max(0,Math.min(m,i-1));const g=parseInt(getComputedStyle(e).columnGap)||40,b=n[0].offsetWidth,h=t*(b+g);e.style.transform=`translateX(-${o*h}px)`,r.forEach(($,f)=>$.classList.toggle("active",f===o)),a.style.opacity=o===0?"0.3":"1",s.style.opacity=o===i-1?"0.3":"1"}a.addEventListener("click",()=>{o>0&&d(o-1)}),s.addEventListener("click",()=>{o<i-1&&d(o+1)}),r.forEach((m,g)=>m.addEventListener("click",()=>d(g))),d(0)}function q(e,a){const s=location.href,r=e.ogImageUrl||a[0]||"",n=(l,t)=>{let i=document.querySelector(`meta[property="${l}"]`);i||(i=document.createElement("meta"),i.setAttribute("property",l),document.head.appendChild(i)),i.setAttribute("content",t)};n("og:title",`${e.title} | Cindy 王瑋薰`),n("og:description",`💰 售價與詳情請點擊查閱。格局：${e.layout||"—"}，${e.wixLocation||""}精選房源推薦。`),n("og:image",r),n("og:url",s),n("og:type","website")}function B(e){var r,n,l;const a=location.href,s=`${e.title}｜NT${e.price?(e.price/1e4).toFixed(0)+"萬":"洽談"}｜Cindy 王瑋薰`;(r=document.getElementById("btnCopyLink"))==null||r.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(a);const t=document.getElementById("btnCopyLink");t.textContent="✓ 已複製！",setTimeout(()=>t.textContent="複製連結",2e3)}catch{alert("請手動複製網址")}}),(n=document.getElementById("btnShareLine"))==null||n.addEventListener("click",()=>{window.open(`https://line.me/R/msg/text/?${encodeURIComponent(s+`
+  `,q(e,a),T(a),B(e),R(e,s),p()}function p(){const e=document.getElementById("similarGrid"),a=document.getElementById("similarPrev"),s=document.getElementById("similarNext"),r=document.querySelectorAll(".similar-dot");if(!e||!a||!s)return;const n=e.querySelectorAll(".similar-card"),l=n.length,t=3,i=Math.ceil(l/t);let o=0;function d(m){o=Math.max(0,Math.min(m,i-1));const g=parseInt(getComputedStyle(e).columnGap)||40,h=n[0].offsetWidth,b=t*(h+g);e.style.transform=`translateX(-${o*b}px)`,r.forEach(($,f)=>$.classList.toggle("active",f===o)),a.style.opacity=o===0?"0.3":"1",s.style.opacity=o===i-1?"0.3":"1"}a.addEventListener("click",()=>{o>0&&d(o-1)}),s.addEventListener("click",()=>{o<i-1&&d(o+1)}),r.forEach((m,g)=>m.addEventListener("click",()=>d(g))),d(0)}function q(e,a){const s=location.href,r=e.ogImageUrl||a[0]||"",n=(l,t)=>{let i=document.querySelector(`meta[property="${l}"]`);i||(i=document.createElement("meta"),i.setAttribute("property",l),document.head.appendChild(i)),i.setAttribute("content",t)};n("og:title",`${e.title} | Cindy 王瑋薰`),n("og:description",`💰 售價與詳情請點擊查閱。格局：${e.layout||"—"}，${e.wixLocation||""}精選房源推薦。`),n("og:image",r),n("og:url",s),n("og:type","website")}function B(e){var r,n,l;const a=location.href,s=`${e.title}｜NT${e.price?(e.price/1e4).toFixed(0)+"萬":"洽談"}｜Cindy 王瑋薰`;(r=document.getElementById("btnCopyLink"))==null||r.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(a);const t=document.getElementById("btnCopyLink");t.textContent="✓ 已複製！",setTimeout(()=>t.textContent="複製連結",2e3)}catch{alert("請手動複製網址")}}),(n=document.getElementById("btnShareLine"))==null||n.addEventListener("click",()=>{window.open(`https://line.me/R/msg/text/?${encodeURIComponent(s+`
 `+a)}`,"_blank")}),(l=document.getElementById("btnShareFb"))==null||l.addEventListener("click",()=>{const t=`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(a)}`;window.open(t,"_blank")})}M();
