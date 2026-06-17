@@ -372,7 +372,7 @@ function initSimilarCarousel() {
 
   const cards = grid.querySelectorAll('.similar-card')
   const total = cards.length
-  const perPage = 3
+  const perPage = window.innerWidth <= 768 ? 2 : 3
   const pages = Math.ceil(total / perPage)
   let current = 0
 
