@@ -311,6 +311,7 @@
   font-family: 'Zen Maru Gothic', sans-serif;
   font-size: 15px; font-weight: 600; letter-spacing: 1px;
   padding: 8px 24px; border-radius: 24px;
+  margin-top: auto;
 }
 
 @media (max-width: 900px) {

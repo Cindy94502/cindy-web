@@ -70,7 +70,7 @@ async function loadPost() {
           <div class="post-meta">
             ${icon('Calendar', 14, 1.5)} ${dateStr}
             &nbsp;·&nbsp;
-            ${icon('User', 14, 1.5)} Cindy 王瑋薰
+            ${icon('User', 14, 1.5)} 王小姐 Cindy
           </div>
         </div>
       </div>
