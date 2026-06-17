@@ -378,30 +378,14 @@ function initSimilarCarousel() {
 
   function goTo(page) {
     current = Math.max(0, Math.min(page, pages - 1))
-    
-    const isMobile = window.innerWidth <= 768;
-    const perPageNum = isMobile ? 2 : perPage; 
-    
+    const gap = parseInt(getComputedStyle(grid).columnGap) || 40
     const cardW = cards[0].offsetWidth
-    const gap = isMobile ? 12 : (parseInt(getComputedStyle(grid).columnGap) || 40)
-    
-    const moveDistance = current * perPageNum * (cardW + gap);
-    grid.style.transform = `translateX(-${moveDistance}px)`
-    
+    const pageWidth = perPage * (cardW + gap)
+    grid.style.transform = `translateX(-${current * pageWidth}px)`
     dots.forEach((d, i) => d.classList.toggle('active', i === current))
-    
-    // ── ✨ 修正：手機版時，如果到頭或到尾，直接控制 display 隱藏，不改 opacity ──
-    if (isMobile) {
-      prev.style.display = current === 0 ? 'none' : 'flex'
-      next.style.display = current === pages - 1 ? 'none' : 'flex'
-    } else {
-      // 桌機版維持原本的輕微透明度
-      prev.style.display = 'flex'
-      next.style.display = 'flex'
-      prev.style.opacity = current === 0 ? '0.3' : '1'
-      next.style.opacity = current === pages - 1 ? '0.3' : '1'
-    }
-  }
+    prev.style.opacity = current === 0 ? '0.3' : '1'
+    next.style.opacity = current === pages - 1 ? '0.3' : '1'
+  } 
 
   prev.addEventListener('click', () => { if (current > 0) goTo(current - 1) })
   next.addEventListener('click', () => { if (current < pages - 1) goTo(current + 1) })
