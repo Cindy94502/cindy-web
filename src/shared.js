@@ -100,6 +100,11 @@ export function renderFooter() {
 }
 
 export function initCommon() {
+  // 動態設定 favicon，確保每頁都正確
+  const favicon = document.querySelector("link[rel='icon']") || document.createElement('link')
+  favicon.rel = 'icon'
+  favicon.href = import.meta.env.BASE_URL + 'favicon.ico'
+  if (!favicon.parentNode) document.head.appendChild(favicon)
   const nav = document.getElementById('nav')
   const goTop = document.getElementById('goTop')
   const menuBtn = document.getElementById('menuBtn')
