@@ -69,7 +69,7 @@ export function renderNav() {
 export function renderFooter() {
   return `
   <footer>
-    <div class="footer-brand">Cindy <span>王瑋薰</span></div>
+    <div class="footer-brand">Cindy <span>王小姐</span></div>
     <div class="footer-copy">© 2025 中信房屋南崁一極 · 營業員證號 (112)登字第445910號</div>
     <div class="footer-copy">經紀人：黃惠蓉 · (110)桃市經字第001835號</div>
     <div class="footer-links">
