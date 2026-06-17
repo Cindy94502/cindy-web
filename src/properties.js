@@ -12,8 +12,7 @@ const houseSvg = `<img src="images/house_small.png" alt="" class="filter-deco-im
 function propCard(p, index) {
   const tape = tapeColors[index % tapeColors.length]
   // 組 Cloudinary 圖片 URL
-  const imgUrl = p.ogImageUrl ||
-    (p.cloudinaryFolder ? `https://res.cloudinary.com/ddzync8km/image/upload/${p.cloudinaryFolder}_0.jpg` : '')
+  const imgUrl = p.ogImageUrl || ''
   const iconName = p.buildingCategory === '透天' ? 'House' : 'Building2'
 
   return `
@@ -24,8 +23,8 @@ function propCard(p, index) {
      data-search="${(p.title + ' ' + (p.tags || '') + ' ' + (p.wixLocation || '') + ' ' + (p.roomCount || '') + ' ' + (p.layout || '')).toLowerCase()}">
     <div class="prop-card-img">
       ${imgUrl
-        ? `<img src="${imgUrl}" alt="${p.title}" loading="lazy" onerror="this.src='images/house_small.png';this.style.objectFit='contain';this.style.opacity='0.5';this.style.padding='20px'">`
-        : `<div class="prop-card-img-icon"><img src="images/house_small.png" alt="" style="height:80px;opacity:0.5"></div>`
+        ? `<img src="${imgUrl}" alt="${p.title}" loading="lazy" onerror="this.parentElement.classList.add('prop-card-img-empty');this.remove()">`
+        : ''
       }
       <div class="prop-card-category">${p.buildingCategory || p.category || '住宅'}</div>
     </div>
