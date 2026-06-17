@@ -107,8 +107,9 @@
   .similar-inner { padding: 0 20px; }
   .similar-carousel-wrap { gap: 8px; }
   .similar-nav { width: 36px; height: 36px; }
-  .similar-img-wrap { width: 120px; height: 120px; border-radius: 50%; flex-shrink: 0; }
-  .similar-card { width: 140px; flex-shrink: 0; }
+  .similar-img-wrap { width: 90px; height: 90px; border-radius: 50%; flex-shrink: 0; }
+  .similar-card { width: 110px; flex-shrink: 0; }
+  .similar-grid { gap: 16px; }
 
   /* ── 房產筆記 ── */
   .blog-header { padding: 80px 20px 40px; }
