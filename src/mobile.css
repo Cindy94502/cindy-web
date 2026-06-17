@@ -97,32 +97,35 @@
   .property-body { grid-template-columns: 1fr; padding: 0 20px 60px; gap: 0; }
   .property-sidebar { position: static !important; }
   .contact-card-sticky { position: static !important; top: auto !important; }
-  .property-gallery { padding: 0; }
+  .property-gallery {
+    padding: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    max-width: 100% !important;
+  }
   .gallery-main { height: 240px; }
   .gallery-thumbs { gap: 6px; padding: 8px 0; }
   .gallery-thumb { width: 56px; height: 42px; }
   .property-map { height: 220px; }
   .property-tags { flex-wrap: wrap; gap: 6px; }
+
+  /* ── 相似物件輪播 ── */
   .similar-section { padding: 40px 0; }
-  .similar-inner { padding: 0 20px; }
-  .similar-carousel-wrap {
-    position: relative;
-    padding: 0;
-    gap: 0;
-  }
+  .similar-inner { padding: 0 36px; }
+  .similar-carousel-wrap { position: relative; padding: 0; gap: 0; }
   .similar-nav {
     position: absolute;
-    top: 40%;
+    top: 38%;
     transform: translateY(-50%);
     z-index: 5;
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
   }
-  .similar-prev { left: -20px; }
-  .similar-next { right: -20px; }
+  .similar-prev { left: -32px; }
+  .similar-next { right: -32px; }
   .similar-overflow { width: 100%; }
-  .similar-img-wrap { width: 130px; height: 130px; border-radius: 50%; flex-shrink: 0; }
-  .similar-card { flex: 0 0 150px; width: 150px; }
+  .similar-img-wrap { width: 120px; height: 120px; border-radius: 50%; flex-shrink: 0; }
+  .similar-card { flex: 0 0 140px; width: 140px; }
   .similar-grid { gap: 16px; }
 
   /* ── 房產筆記 ── */
