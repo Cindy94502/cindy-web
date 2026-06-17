@@ -108,74 +108,24 @@
   .property-map { height: 220px; }
   .property-tags { flex-wrap: wrap; gap: 6px; }
 
-  /* ── 相似物件輪播（手機直式：完美還原 2 筆、不貼牆、絕對不抖動版） ── */
+  /* ── 相似物件輪播 ── */
   .similar-section { padding: 40px 0; }
-  
-  /* 外層左右內距固定為 36px，當作兩側的絕對基準線 */
-  .similar-inner { padding: 0 36px !important; position: relative; }
-  
-  .similar-title-row { text-align: center; margin-bottom: 24px; }
-
-  /* 輪播最外框 */
-  .similar-carousel-wrap { 
-    position: relative; 
-    width: 100%; 
-    display: flex;
-    align-items: center;
-    padding: 0;
-  }
-  
-  /* ── 導覽按鈕：往內縮進，不貼牆壁 ── */
+  .similar-inner { padding: 0 36px; }
+  .similar-carousel-wrap { position: relative; padding: 0; gap: 0; }
   .similar-nav {
     position: absolute;
-    top: 55px; /* 110px 圓圈的正中央高度 */
+    top: 38%;
     transform: translateY(-50%);
-    z-index: 10;
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    background: white !important;
-    border: 1px solid rgba(61,43,31,0.15) !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    /* 核心強迫設定：不管 JS 怎麼改，手機版絕對維持 flex 顯示且透明度為 1 */
-    display: flex !important;
-    opacity: 1 !important; 
+    z-index: 5;
+    width: 30px;
+    height: 30px;
   }
-  
-  /* 往內稍微移進來一點點（-20px），這樣就不會死貼在最外面的牆壁上，位置超完美 */
-  .similar-prev { left: -20px !important; }
-  .similar-next { right: -20px !important; }
-  
-  /* 裁切視窗：跟外層 36px 完美貼合 */
-  .similar-overflow { 
-    width: 100%; 
-    padding: 0;
-    overflow: hidden; 
-  }
-  
-  /* 網格容器 */
-  .similar-grid { 
-    display: flex;
-    gap: 16px !important; /* 兩台卡片中間最舒適的固定間距 */
-    width: 100%; 
-  }
-  
-  /* 核心對稱公式：完全遵循妳原來的設計，扣除 16px 間距後平分 2 筆物件 */
-  .similar-card { 
-    flex: 0 0 calc((100% - 16px) / 2) !important; 
-    width: calc((100% - 16px) / 2) !important; 
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-shrink: 0;
-  }
-  
-  /* 圓形相框尺寸 */
+  .similar-prev { left: -32px; }
+  .similar-next { right: -32px; }
+  .similar-overflow { width: 100%; padding: 0; margin: 0; overflow-x: hidden; }
   .similar-img-wrap { width: 110px; height: 110px; border-radius: 50%; flex-shrink: 0; }
+  .similar-card { flex: 0 0 calc((100vw - 88px) / 2); width: calc((100vw - 88px) / 2); }
+  .similar-grid { gap: 16px; }
 
   /* ── 房產筆記 ── */
   .blog-header { padding: 80px 20px 40px; }
