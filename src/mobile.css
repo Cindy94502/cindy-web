@@ -39,7 +39,7 @@
   .about-title { font-size: 20px; }
   .about-desc { font-size: 14px; }
 
-  /* ── 精選物件預覽 ── */
+  /* ── 精選物件預覽（首頁） ── */
   .properties-inner { padding: 0 20px; }
   .props-grid { grid-template-columns: 1fr; gap: 20px; }
 
@@ -56,7 +56,7 @@
   .contact-action-line .contact-action-img { height: 84px; }
 
   /* ── FOOTER ── */
-  footer { padding: 32px 20px; gap: 8px; }
+  footer { padding: 32px 20px 100px; gap: 8px; }
   .footer-links { flex-wrap: wrap; justify-content: center; gap: 12px; }
 
   /* ── 浮動按鈕 ── */
@@ -68,24 +68,23 @@
   .go-top { width: 52px; height: 52px; bottom: 20px; right: 16px; }
   .go-top-main { font-size: 12px; }
 
-  /* footer 底部加空間，避免被浮動按鈕蓋住 */
-  footer { padding-bottom: 100px; }
-
   /* ── MENU ── */
   .menu-overlay { width: 100%; padding: 72px 32px 40px; }
   .menu-overlay-links li a { font-size: 18px; padding: 14px 0; }
 
-  /* ── 精選物件頁 ── */
+  /* ── 精選物件頁 Header ── */
   .props-page-header { padding: 80px 20px 40px; }
-  .props-page-header-inner { flex-direction: column; gap: 20px; align-items: center; text-align: center; }
-  .props-page-header-right { width: 100%; }
+  .props-page-header-inner { flex-direction: column; gap: 16px; align-items: stretch; }
+  .props-page-header-left { width: 100%; text-align: center; display: flex; flex-direction: column; align-items: center; }
+  .props-page-header-right { width: 100% !important; flex-shrink: unset; }
   .props-page-title { text-align: center; }
   .props-page-eyebrow { justify-content: center; }
-  .filter-search-wrap { width: 100%; }
+  .filter-search-wrap { width: 100% !important; }
   .filter-quick-tags { gap: 6px; justify-content: flex-start; }
   .quick-tag { font-size: 10px; padding: 5px 10px; }
 
   /* ── 精選物件篩選 ── */
+  .props-filter-section { padding: 16px 20px; top: 56px; }
   .props-filter-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .props-filter-inner .filter-group:first-child { grid-column: 1 / -1; }
   .filter-deco { display: none; }
