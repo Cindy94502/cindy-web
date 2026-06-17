@@ -105,10 +105,25 @@
   .property-tags { flex-wrap: wrap; gap: 6px; }
   .similar-section { padding: 40px 0; }
   .similar-inner { padding: 0 20px; }
-  .similar-carousel-wrap { gap: 8px; }
-  .similar-nav { width: 36px; height: 36px; }
-  .similar-img-wrap { width: 140px; height: 140px; border-radius: 50%; flex-shrink: 0; }
-  .similar-card { width: 160px; flex-shrink: 0; }
+  .similar-carousel-wrap {
+    position: relative;
+    padding: 0;
+    gap: 0;
+  }
+  .similar-nav {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    z-index: 5;
+    width: 32px;
+    height: 32px;
+  }
+  .similar-prev { left: -16px; }
+  .similar-next { right: -16px; }
+  .similar-overflow { width: 100%; }
+  .similar-img-wrap { width: 130px; height: 130px; border-radius: 50%; flex-shrink: 0; }
+  .similar-card { width: 150px; flex-shrink: 0; }
+  .similar-grid { gap: 20px; }
 
   /* ── 房產筆記 ── */
   .blog-header { padding: 80px 20px 40px; }
