@@ -20,7 +20,7 @@ export function renderNav() {
     <button class="menu-overlay-close" id="menuClose" aria-label="關閉">✕</button>
     <div class="menu-overlay-logo">
       <div class="menu-overlay-logo-circle">
-        <img src="images/Cindy.png?v=2" alt="Cindy 王瑋薰" style="width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 50%;">
+        <img src="images/Cindy.png?v=2" alt="Cindy 王小姐" style="width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 50%;">
       </div>
     </div>
     <ul class="menu-overlay-links">

@@ -140,7 +140,7 @@ async function loadProperty() {
         `<p>找不到這個物件，<a href="properties.html" style="color:var(--teal-dark)">回到物件列表</a></p>`
       return
     }
-    document.title = `${prop.title} | Cindy 王瑋薰`
+    document.title = `${prop.title} | Cindy 王小姐`
 
     // 同步抓 Cloudinary 所有圖
     const images = await fetchCloudinaryImages(prop.cloudinaryFolder)
@@ -401,7 +401,7 @@ function setOgMeta(prop, images) {
     if (!el) { el = document.createElement('meta'); el.setAttribute('property', property); document.head.appendChild(el) }
     el.setAttribute('content', content)
   }
-  setMeta('og:title', `${prop.title} | Cindy 王瑋薰`)
+  setMeta('og:title', `${prop.title} | Cindy 王小姐`)
   // 這樣 LINE 預覽卡片長相會是：
   // 【大圖】：超可愛的 Cindy 形象名片圖
   // 【大標題】：觀音工業區鼎藏大觀透天 | Cindy 王瑋薰
@@ -414,7 +414,7 @@ function setOgMeta(prop, images) {
 
 function initShare(prop) {
   const url = location.href
-  const title = `${prop.title}｜NT${prop.price ? (prop.price/10000).toFixed(0) + '萬' : '洽談'}｜Cindy 王瑋薰`
+  const title = `${prop.title}｜NT${prop.price ? (prop.price/10000).toFixed(0) + '萬' : '洽談'}｜Cindy 王小姐`
 
   document.getElementById('btnCopyLink')?.addEventListener('click', async () => {
     try {

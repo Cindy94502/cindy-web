@@ -51,7 +51,7 @@ async function loadPost() {
       : ''
 
     // 更新頁面標題
-    document.title = `${post.title}｜Cindy 王瑋薰`
+    document.title = `${post.title}｜Cindy 王小姐`
 
     // 段落處理：把換行符轉成 <p>
     const bodyHtml = (post.content || post.excerpt || '')
