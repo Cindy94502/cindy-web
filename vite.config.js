@@ -1,12 +1,16 @@
 import { defineConfig } from 'vite'
 import { resolve } from 'path'
 
-// 自動為所有 HTML 注入 favicon
+// 自動為所有 HTML 注入 favicon（enforce: post 確保在 Vite 處理後才注入）
 function injectFavicon() {
   return {
     name: 'inject-favicon',
+    enforce: 'post',
+    apply: 'build',
     transformIndexHtml(html) {
-      return html.replace(
+      // 先移除任何現有的 favicon link，再統一注入正確的
+      const cleaned = html.replace(/<link[^>]*rel=["']icon["'][^>]*>/gi, '')
+      return cleaned.replace(
         /<\/head>/,
         `  <link rel="icon" href="/cindy-web/favicon.ico">\n  </head>`
       )
