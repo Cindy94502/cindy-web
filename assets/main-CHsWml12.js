@@ -73,9 +73,9 @@ import{r as l,b as a,a as v,i as p}from"./shared-Zy1XvVyR.js";/* empty css      
       <!-- 右側文字 -->
       <div class="about-text reveal reveal-d2">
         <div class="about-section-label">About Me</div>
-        <h2 class="about-title">HI，我是<strong>王瑋薰</strong><br>大家可以叫我 Cindy~</h2>
+        <h2 class="about-title">HI，我是<strong>Cindy</strong><br>大家可以叫我王小姐~</h2>
         <div class="about-divider"></div>
-        <p class="about-desc">土生土長的南崁人，從小在這裡長大，對這裡的<strong>每條街道、每個生活圈</strong>都很熟悉。是經由爸爸王俊棋帶領，踏入了房介這行，此後我們父女便攜手並進。</p>
+        <p class="about-desc">土生土長的南崁人，從小在這裡長大，對這裡的<strong>每條街道、每個生活圈</strong>都很熟悉。是經由爸爸帶領，踏入了房介這行，此後我們父女便攜手並進。</p>
         <p class="about-desc">我有點慢熱，第一次見面可能會有點拘謹，但熱絡了之後就像<strong>朋友一樣相處</strong>，有什麼問題都可以直接問我。</p>
         <div class="about-tags">
           <span class="about-tag tag-sage">${a("MapPin",13,2)} 住南崁將近20 年</span>
@@ -164,7 +164,7 @@ import{r as l,b as a,a as v,i as p}from"./shared-Zy1XvVyR.js";/* empty css      
         </div>
         <div class="contact-info-row">
           <span class="contact-info-icon">${a("Phone",18,1.5)}</span>
-          <span class="contact-info-label">王俊棋</span>
+          <span class="contact-info-label">王先生</span>
           <span class="contact-info-divider">|</span>
           <a href="tel:0968731280" class="contact-info-value">0968-731-280</a>
         </div>

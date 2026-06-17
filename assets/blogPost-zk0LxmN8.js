@@ -22,7 +22,7 @@ import{r as l,a as c,i as r,b as e}from"./shared-Zy1XvVyR.js";/* empty css      
           <div class="post-meta">
             ${e("Calendar",14,1.5)} ${i}
             &nbsp;·&nbsp;
-            ${e("User",14,1.5)} Cindy 王瑋薰
+            ${e("User",14,1.5)} 王小姐 Cindy
           </div>
         </div>
       </div>

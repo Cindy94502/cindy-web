@@ -4,7 +4,7 @@ import{r as w,a as C,i as L,b as c}from"./shared-Zy1XvVyR.js";/* empty css      
     <div class="property-loading">載入中...</div>
   </div>
   ${C()}
-`;L();async function E(e){if(!e)return[];try{const s=await(await fetch(`https://res.cloudinary.com/ddzync8km/image/list/${e}.json`)).json();return!s.resources||s.resources.length===0?[]:s.resources.sort((n,r)=>(n.display_name||n.public_id).localeCompare(r.display_name||r.public_id,void 0,{numeric:!0})).map(n=>`https://res.cloudinary.com/ddzync8km/image/upload/${n.public_id}.${n.format||"jpg"}`)}catch{return[]}}function S(e){return e?(e.match(/<li>(.*?)<\/li>/g)||[]).map(a=>a.replace(/<\/?li>/g,"").trim()):[]}function y(e){const a=e.ogImageUrl||"";return`
+`;L();async function E(e){if(!e)return[];try{const s=await(await fetch(`https://res.cloudinary.com/ddzync8km/image/list/${e}.json`)).json();return!s.resources||s.resources.length===0?[]:s.resources.sort((r,n)=>(r.display_name||r.public_id).localeCompare(n.display_name||n.public_id,void 0,{numeric:!0})).map(r=>`https://res.cloudinary.com/ddzync8km/image/upload/${r.public_id}.${r.format||"jpg"}`)}catch{return[]}}function S(e){return e?(e.match(/<li>(.*?)<\/li>/g)||[]).map(a=>a.replace(/<\/?li>/g,"").trim()):[]}function y(e){const a=e.ogImageUrl||"";return`
   <a href="property.html?id=${e.nodeId}" class="similar-card">
     <div class="similar-img-wrap">
       ${a?`<img src="${a}" alt="${e.title}" loading="lazy">`:`<div class="similar-img-placeholder">${c("Home",40,1)}</div>`}
@@ -12,7 +12,7 @@ import{r as w,a as C,i as L,b as c}from"./shared-Zy1XvVyR.js";/* empty css      
     <div class="similar-name">${e.title}</div>
     <div class="similar-reason">${e.reason||""}</div>
     <div class="similar-price">${v(e.price)}</div>
-  </a>`}function u(e,a,s){const n=document.querySelector(".similar-section");if(!n)return;const r=n.querySelector(".similar-inner"),l=Math.ceil(e.length/3);r.innerHTML=`
+  </a>`}function u(e,a,s){const r=document.querySelector(".similar-section");if(!r)return;const n=r.querySelector(".similar-inner"),l=Math.ceil(e.length/3);n.innerHTML=`
     <div class="similar-title-row">
       <div class="section-eyebrow" id="similarEyebrow">${a}</div>
       <h2 class="similar-heading" id="similarHeading">${s}</h2>
@@ -34,7 +34,7 @@ import{r as w,a as C,i as L,b as c}from"./shared-Zy1XvVyR.js";/* empty css      
       ${Array.from({length:l}).map((t,i)=>`<span class="similar-dot ${i===0?"active":""}" data-index="${i}"></span>`).join("")}
     </div>`:""}
     `}
-  `,n.style.display="",e.length>3&&p()}function R(e,a){document.querySelector(".similar-section")&&document.querySelectorAll(".clickable-tag").forEach(n=>{n.addEventListener("click",()=>{const r=n.dataset.tag,l=n.classList.contains("tag-active");if(document.querySelectorAll(".clickable-tag").forEach(t=>t.classList.remove("tag-active")),l){const t=a.filter(i=>i.nodeId!==e.nodeId&&i.title&&(i.buildingCategory===e.buildingCategory||i.priceRange===e.priceRange)).slice(0,9).map(i=>({...i,reason:i.buildingCategory===e.buildingCategory&&i.priceRange===e.priceRange?`同為${i.buildingCategory}・${i.priceRange}`:i.buildingCategory===e.buildingCategory?`同為${i.buildingCategory}`:`同價格區間・${i.priceRange}`}));u(t,"也許你也會喜歡","相似物件")}else{n.classList.add("tag-active");const t=a.filter(i=>i.nodeId!==e.nodeId&&i.title&&((i.tags||"").split(",").map(o=>o.trim()).includes(r)||(i.wixParking||"").trim()===r||(i.wixLocation||"").includes(r)||r.includes(i.wixLocation||""))).slice(0,9).map(i=>({...i,reason:`同樣有「${r}」`}));u(t,`選擇了「${r}」`,"相似物件")}})})}async function M(){try{const a=await(await fetch(x)).json(),s=a.find(r=>r.nodeId===k);if(!s){document.querySelector(".property-loading").innerHTML='<p>找不到這個物件，<a href="properties.html" style="color:var(--teal-dark)">回到物件列表</a></p>';return}document.title=`${s.title} | Cindy 王瑋薰`;const n=await E(s.cloudinaryFolder);s.ogImageUrl&&!n.includes(s.ogImageUrl)&&n.unshift(s.ogImageUrl),A(s,n,a)}catch{document.querySelector(".property-loading").innerHTML="<p>載入失敗，請稍後再試</p>"}}function P(e){return e.length===0?`<div class="gallery-placeholder">${c("Home",80,1,"","var(--sage-dark)")}</div>`:`
+  `,r.style.display="",e.length>3&&p()}function R(e,a){document.querySelector(".similar-section")&&document.querySelectorAll(".clickable-tag").forEach(r=>{r.addEventListener("click",()=>{const n=r.dataset.tag,l=r.classList.contains("tag-active");if(document.querySelectorAll(".clickable-tag").forEach(t=>t.classList.remove("tag-active")),l){const t=a.filter(i=>i.nodeId!==e.nodeId&&i.title&&(i.buildingCategory===e.buildingCategory||i.priceRange===e.priceRange)).slice(0,9).map(i=>({...i,reason:i.buildingCategory===e.buildingCategory&&i.priceRange===e.priceRange?`同為${i.buildingCategory}・${i.priceRange}`:i.buildingCategory===e.buildingCategory?`同為${i.buildingCategory}`:`同價格區間・${i.priceRange}`}));u(t,"也許你也會喜歡","相似物件")}else{r.classList.add("tag-active");const t=a.filter(i=>i.nodeId!==e.nodeId&&i.title&&((i.tags||"").split(",").map(o=>o.trim()).includes(n)||(i.wixParking||"").trim()===n||(i.wixLocation||"").includes(n)||n.includes(i.wixLocation||""))).slice(0,9).map(i=>({...i,reason:`同樣有「${n}」`}));u(t,`選擇了「${n}」`,"相似物件")}})})}async function M(){try{const a=await(await fetch(x)).json(),s=a.find(n=>n.nodeId===k);if(!s){document.querySelector(".property-loading").innerHTML='<p>找不到這個物件，<a href="properties.html" style="color:var(--teal-dark)">回到物件列表</a></p>';return}document.title=`${s.title} | Cindy 王瑋薰`;const r=await E(s.cloudinaryFolder);s.ogImageUrl&&!r.includes(s.ogImageUrl)&&r.unshift(s.ogImageUrl),A(s,r,a)}catch{document.querySelector(".property-loading").innerHTML="<p>載入失敗，請稍後再試</p>"}}function P(e){return e.length===0?`<div class="gallery-placeholder">${c("Home",80,1,"","var(--sage-dark)")}</div>`:`
     <img class="gallery-main-img" id="galleryMain" src="${e[0]}" alt="物件照片">
     <button class="gallery-arrow prev" id="galleryPrev">${c("ChevronLeft",22,2)}</button>
     <button class="gallery-arrow next" id="galleryNext">${c("ChevronRight",22,2)}</button>
@@ -45,7 +45,7 @@ import{r as w,a as C,i as L,b as c}from"./shared-Zy1XvVyR.js";/* empty css      
              data-index="${s}" loading="lazy">
       `).join("")}
     </div>
-  `}function T(e){var l,t;if(e.length===0)return;let a=0;const s=document.getElementById("galleryMain"),n=document.querySelectorAll(".gallery-thumb");function r(i){var o;a=(i+e.length)%e.length,s.style.opacity="0",setTimeout(()=>{s.src=e[a],s.style.opacity="1"},150),n.forEach((d,m)=>d.classList.toggle("active",m===a)),(o=n[a])==null||o.scrollIntoView({behavior:"smooth",block:"nearest",inline:"center"})}(l=document.getElementById("galleryPrev"))==null||l.addEventListener("click",()=>r(a-1)),(t=document.getElementById("galleryNext"))==null||t.addEventListener("click",()=>r(a+1)),n.forEach((i,o)=>i.addEventListener("click",()=>r(o))),document.addEventListener("keydown",i=>{i.key==="ArrowLeft"&&r(a-1),i.key==="ArrowRight"&&r(a+1)})}function A(e,a,s=[]){const n=S(e.wixFeatures),r=(e.tags||"").split(",").filter(Boolean),l=s.filter(t=>t.nodeId!==e.nodeId&&t.title&&(t.buildingCategory===e.buildingCategory||t.priceRange===e.priceRange)).slice(0,9).map(t=>({...t,reason:t.buildingCategory===e.buildingCategory&&t.priceRange===e.priceRange?`同為${t.buildingCategory}・${t.priceRange}`:t.buildingCategory===e.buildingCategory?`同為${t.buildingCategory}`:`同價格區間・${t.priceRange}`}));document.querySelector(".property-page").innerHTML=`
+  `}function T(e){var l,t;if(e.length===0)return;let a=0;const s=document.getElementById("galleryMain"),r=document.querySelectorAll(".gallery-thumb");function n(i){var o;a=(i+e.length)%e.length,s.style.opacity="0",setTimeout(()=>{s.src=e[a],s.style.opacity="1"},150),r.forEach((d,m)=>d.classList.toggle("active",m===a)),(o=r[a])==null||o.scrollIntoView({behavior:"smooth",block:"nearest",inline:"center"})}(l=document.getElementById("galleryPrev"))==null||l.addEventListener("click",()=>n(a-1)),(t=document.getElementById("galleryNext"))==null||t.addEventListener("click",()=>n(a+1)),r.forEach((i,o)=>i.addEventListener("click",()=>n(o))),document.addEventListener("keydown",i=>{i.key==="ArrowLeft"&&n(a-1),i.key==="ArrowRight"&&n(a+1)})}function A(e,a,s=[]){const r=S(e.wixFeatures),n=(e.tags||"").split(",").filter(Boolean),l=s.filter(t=>t.nodeId!==e.nodeId&&t.title&&(t.buildingCategory===e.buildingCategory||t.priceRange===e.priceRange)).slice(0,9).map(t=>({...t,reason:t.buildingCategory===e.buildingCategory&&t.priceRange===e.priceRange?`同為${t.buildingCategory}・${t.priceRange}`:t.buildingCategory===e.buildingCategory?`同為${t.buildingCategory}`:`同價格區間・${t.priceRange}`}));document.querySelector(".property-page").innerHTML=`
     <div class="property-gallery">
       ${P(a)}
     </div>
@@ -58,7 +58,7 @@ import{r as w,a as C,i as L,b as c}from"./shared-Zy1XvVyR.js";/* empty css      
           ${e.priceRange?`<div class="property-price-range">（${e.priceRange}）</div>`:""}
         </div>
         <div class="property-tags">
-          ${r.map((t,i)=>`<span class="property-tag clickable-tag tag-color-${i%5}" data-tag="${t}">${t}</span>`).join("")}
+          ${n.map((t,i)=>`<span class="property-tag clickable-tag tag-color-${i%5}" data-tag="${t}">${t}</span>`).join("")}
           ${e.wixLocation?`<span class="property-tag tag-location">${c("MapPin",12,2)} ${e.wixLocation}</span>`:""}
           ${e.wixParking?`<span class="property-tag tag-location">${e.wixParking}</span>`:""}
         </div>
@@ -104,10 +104,10 @@ import{r as w,a as C,i as L,b as c}from"./shared-Zy1XvVyR.js";/* empty css      
           </div>
         </div>`:""}
 
-        ${n.length>0?`
+        ${r.length>0?`
         <div class="property-features">
           <div class="property-section-title">${c("Star",16,2)} 物件特色</div>
-          <ul>${n.map(t=>`<li>${t}</li>`).join("")}</ul>
+          <ul>${r.map(t=>`<li>${t}</li>`).join("")}</ul>
         </div>`:""}
 
         ${e.webDescription?`
@@ -125,7 +125,7 @@ import{r as w,a as C,i as L,b as c}from"./shared-Zy1XvVyR.js";/* empty css      
           <div class="sidebar-agent">
             <div class="sidebar-agent-avatar"><img src="images/Cindy.png" alt="Cindy" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div>
             <div>
-              <div class="sidebar-agent-name">王瑋薰 Cindy</div>
+              <div class="sidebar-agent-name">王小姐</div>
               <div class="sidebar-agent-title">中信房屋南崁一極</div>
             </div>
           </div>
@@ -135,10 +135,10 @@ import{r as w,a as C,i as L,b as c}from"./shared-Zy1XvVyR.js";/* empty css      
               ${c("MessageCircle",16,2)} LINE 我詢問
             </a>
             <a href="tel:0963585690" class="sidebar-btn-tel">
-              ${c("Phone",16,2)} Cindy 0963-585-690
+              ${c("Phone",16,2)} 王小姐 0963-585-690
             </a>
             <a href="tel:0968731280" class="sidebar-btn-tel">
-              ${c("Phone",16,2)} 王俊棋 0968-731-280
+              ${c("Phone",16,2)} 王先生 0968-731-280
             </a>
           </div>
           <div class="sidebar-note">不管是問行情還是想看房<br>隨時都可以找我</div>
@@ -178,5 +178,5 @@ import{r as w,a as C,i as L,b as c}from"./shared-Zy1XvVyR.js";/* empty css      
       </div>
     </div>`:""}
 
-  `,q(e,a),T(a),B(e),R(e,s),p()}function p(){const e=document.getElementById("similarGrid"),a=document.getElementById("similarPrev"),s=document.getElementById("similarNext"),n=document.querySelectorAll(".similar-dot");if(!e||!a||!s)return;const r=e.querySelectorAll(".similar-card"),l=r.length,t=window.innerWidth<=768?2:3,i=Math.ceil(l/t);let o=0;function d(m){o=Math.max(0,Math.min(m,i-1));const g=parseInt(getComputedStyle(e).columnGap)||40,b=r[0].offsetWidth,h=t*(b+g);e.style.transform=`translateX(-${o*h}px)`,n.forEach(($,f)=>$.classList.toggle("active",f===o)),a.style.opacity=o===0?"0.3":"1",s.style.opacity=o===i-1?"0.3":"1"}a.addEventListener("click",()=>{o>0&&d(o-1)}),s.addEventListener("click",()=>{o<i-1&&d(o+1)}),n.forEach((m,g)=>m.addEventListener("click",()=>d(g))),d(0)}function q(e,a){const s=location.href,n=e.ogImageUrl||a[0]||"",r=(l,t)=>{let i=document.querySelector(`meta[property="${l}"]`);i||(i=document.createElement("meta"),i.setAttribute("property",l),document.head.appendChild(i)),i.setAttribute("content",t)};r("og:title",`${e.title} | Cindy 王瑋薰`),r("og:description",`💰 售價與詳情請點擊查閱。格局：${e.layout||"—"}，${e.wixLocation||""}精選房源推薦。`),r("og:image",n),r("og:url",s),r("og:type","website")}function B(e){var n,r,l;const a=location.href,s=`${e.title}｜NT${e.price?(e.price/1e4).toFixed(0)+"萬":"洽談"}｜Cindy 王瑋薰`;(n=document.getElementById("btnCopyLink"))==null||n.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(a);const t=document.getElementById("btnCopyLink");t.textContent="✓ 已複製！",setTimeout(()=>t.textContent="複製連結",2e3)}catch{alert("請手動複製網址")}}),(r=document.getElementById("btnShareLine"))==null||r.addEventListener("click",()=>{window.open(`https://line.me/R/msg/text/?${encodeURIComponent(s+`
+  `,q(e,a),T(a),B(e),R(e,s),p()}function p(){const e=document.getElementById("similarGrid"),a=document.getElementById("similarPrev"),s=document.getElementById("similarNext"),r=document.querySelectorAll(".similar-dot");if(!e||!a||!s)return;const n=e.querySelectorAll(".similar-card"),l=n.length,t=window.innerWidth<=768?2:3,i=Math.ceil(l/t);let o=0;function d(m){o=Math.max(0,Math.min(m,i-1));const g=parseInt(getComputedStyle(e).columnGap)||40,b=n[0].offsetWidth,h=t*(b+g);e.style.transform=`translateX(-${o*h}px)`,r.forEach(($,f)=>$.classList.toggle("active",f===o)),a.style.opacity=o===0?"0.3":"1",s.style.opacity=o===i-1?"0.3":"1"}a.addEventListener("click",()=>{o>0&&d(o-1)}),s.addEventListener("click",()=>{o<i-1&&d(o+1)}),r.forEach((m,g)=>m.addEventListener("click",()=>d(g))),d(0)}function q(e,a){const s=location.href,r=e.ogImageUrl||a[0]||"",n=(l,t)=>{let i=document.querySelector(`meta[property="${l}"]`);i||(i=document.createElement("meta"),i.setAttribute("property",l),document.head.appendChild(i)),i.setAttribute("content",t)};n("og:title",`${e.title} | Cindy 王瑋薰`),n("og:description",`💰 售價與詳情請點擊查閱。格局：${e.layout||"—"}，${e.wixLocation||""}精選房源推薦。`),n("og:image",r),n("og:url",s),n("og:type","website")}function B(e){var r,n,l;const a=location.href,s=`${e.title}｜NT${e.price?(e.price/1e4).toFixed(0)+"萬":"洽談"}｜Cindy 王瑋薰`;(r=document.getElementById("btnCopyLink"))==null||r.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(a);const t=document.getElementById("btnCopyLink");t.textContent="✓ 已複製！",setTimeout(()=>t.textContent="複製連結",2e3)}catch{alert("請手動複製網址")}}),(n=document.getElementById("btnShareLine"))==null||n.addEventListener("click",()=>{window.open(`https://line.me/R/msg/text/?${encodeURIComponent(s+`
 `+a)}`,"_blank")}),(l=document.getElementById("btnShareFb"))==null||l.addEventListener("click",()=>{const t=`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(a)}`;window.open(t,"_blank")})}M();
