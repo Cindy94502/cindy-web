@@ -79,6 +79,8 @@
   .props-page-header { padding: 80px 20px 40px; }
   .props-page-header-inner { flex-direction: column; gap: 20px; align-items: center; text-align: center; }
   .props-page-header-right { width: 100%; }
+  .props-page-title { text-align: center; }
+  .props-page-eyebrow { justify-content: center; }
   .filter-search-wrap { width: 100%; }
   .filter-quick-tags { gap: 6px; }
   .quick-tag { font-size: 10px; padding: 5px 10px; }
