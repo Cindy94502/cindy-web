@@ -402,7 +402,11 @@ function setOgMeta(prop, images) {
     el.setAttribute('content', content)
   }
   setMeta('og:title', `${prop.title} | Cindy 王瑋薰`)
-  setMeta('og:description', prop.webDescription?.replace(/<[^>]*>/g,'').slice(0,100) || '南崁在地房產諮詢')
+  // 這樣 LINE 預覽卡片長相會是：
+  // 【大圖】：超可愛的 Cindy 形象名片圖
+  // 【大標題】：觀音工業區鼎藏大觀透天 | Cindy 王瑋薰
+  // 【下方小字描述】：💰 售價與詳情請點擊查閱。南崁在地房產諮詢，陪你找到最適合的家！
+  setMeta('og:description', `💰 售價與詳情請點擊查閱。格局：${prop.layout || '—'}，${prop.wixLocation || ''}精選房源推薦。`)
   setMeta('og:image', img)
   setMeta('og:url', url)
   setMeta('og:type', 'website')
