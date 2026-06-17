@@ -426,7 +426,8 @@ function initShare(prop) {
   })
 
   document.getElementById('btnShareFb')?.addEventListener('click', () => {
-    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank', 'width=600,height=400')
+    const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`
+    window.open(fbUrl, '_blank')
   })
 }
 

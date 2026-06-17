@@ -68,6 +68,9 @@
   .go-top { width: 52px; height: 52px; bottom: 20px; right: 16px; }
   .go-top-main { font-size: 12px; }
 
+  /* footer 底部加空間，避免被浮動按鈕蓋住 */
+  footer { padding-bottom: 100px; }
+
   /* ── MENU ── */
   .menu-overlay { width: 100%; padding: 72px 32px 40px; }
   .menu-overlay-links li a { font-size: 18px; padding: 14px 0; }
