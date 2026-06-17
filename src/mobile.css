@@ -108,66 +108,66 @@
   .property-map { height: 220px; }
   .property-tags { flex-wrap: wrap; gap: 6px; }
 
-  /* ── 相似物件輪播（手機直式：標題並排終極對稱版） ── */
+  /* ── 相似物件輪播（手機直式：絕對對稱、不靠牆、不黏貼完美版） ── */
   .similar-section { padding: 40px 0; }
   
-  /* 1. 外層內距，確保整體畫面跟上面的區塊一樣寬 */
-  .similar-inner { padding: 0 24px; position: relative; }
+  /* 外層不加留白，全靠內部容器計算 */
+  .similar-inner { padding: 0 !important; position: relative; width: 100%; }
   
-  /* 2. 標題列：設定為定位點，讓按鈕可以掛在標題兩側 */
-  .similar-title-row {
-    position: relative;
-    text-align: center;
-    margin-bottom: 24px;
-    width: 100%;
-  }
+  .similar-title-row { text-align: center; margin-bottom: 24px; }
 
-  .similar-heading {
-    font-size: 24px;
-    margin: 0;
+  /* 輪播最外框 */
+  .similar-carousel-wrap { 
+    position: relative; 
+    width: 100%; 
+    display: flex;
+    align-items: center;
+    padding: 0;
   }
-
-  /* 3. 導覽按鈕：直接從下方卡片抽離！改放到上方大標題的左右兩邊 */
+  
+  /* ── 導覽按鈕：往內縮進 12px，絕對不貼牆壁 ── */
   .similar-nav {
     position: absolute;
-    top: 50%;
+    top: 55px; /* 110px 圓圈的正中央高度 */
     transform: translateY(-50%);
     z-index: 10;
-    width: 32px;
-    height: 32px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     background: white !important;
     border: 1px solid rgba(61,43,31,0.15) !important;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: all 0.2s ease;
+    opacity: 1 !important; /* 強制維持 100% 透明度，防止裡面的箭頭不見 */
   }
   
-  /* 按鈕乖乖待在標題列的左右最邊緣，絕對物理對稱 */
-  .similar-prev { left: 0px !important; }
-  .similar-next { right: 0px !important; }
+  /* 往內縮進 12px，不貼牆壁 */
+  .similar-prev { left: 12px !important; }
+  .similar-next { right: 12px !important; }
   
-  /* 4. 下方輪播包裝層：按鈕被移走後，這裡變得超級乾淨 */
-  .similar-carousel-wrap { 
+  /* ── 核心安全視窗：左右留出 58px（按鈕 34px + 牆壁 12px + 舒適間距 12px） ──
+     這樣卡片在裡面怎麼跑，都絕對不可能去撞到按鈕或貼牆，左右留白絕對完全物理對稱！ */
+  .similar-overflow { 
     width: 100%; 
-    padding: 0; 
-    margin: 0; 
+    padding: 0 58px !important; 
+    box-sizing: border-box;
+    overflow: hidden; 
   }
   
-  .similar-overflow { width: 100%; overflow: hidden; }
-  
-  /* 5. 網格容器：卡片中間維持精緻的 16px 間距 */
+  /* 網格容器 */
   .similar-grid { 
     display: flex;
-    gap: 16px !important; 
+    gap: 12px !important; 
     width: 100%; 
   }
   
-  /* 6. 卡片計算公式：直接平分外層容器（扣掉中間 16px 間距）
-     因為旁邊沒有按鈕在擠壓，這兩個大圓圈絕對會超級對稱、寬度剛剛好！ */
+  /* 卡片計算公式：在 58px 的安全視窗內完美平分 2 筆物件 */
   .similar-card { 
-    flex: 0 0 calc((100% - 16px) / 2) !important; 
-    width: calc((100% - 16px) / 2) !important; 
+    flex: 0 0 calc((100% - 12px) / 2) !important; 
+    width: calc((100% - 12px) / 2) !important; 
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -175,7 +175,6 @@
     flex-shrink: 0;
   }
   
-  /* 圓形相框尺寸維持最完美的 110px */
   .similar-img-wrap { width: 110px; height: 110px; border-radius: 50%; flex-shrink: 0; }
 
   /* ── 房產筆記 ── */
