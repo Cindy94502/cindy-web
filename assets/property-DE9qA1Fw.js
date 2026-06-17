@@ -1,4 +1,4 @@
-import{r as L,a as I,i as k,b as c}from"./shared-D_mUsIW0.js";import{G as x,f as g}from"./data-DQaSi1fH.js";const E=new URLSearchParams(location.search),R=E.get("id");document.getElementById("app").innerHTML=`
+import{r as L,a as I,i as k,b as c}from"./shared-D_mUsIW0.js";import{G as x,f as v}from"./data-DQaSi1fH.js";const E=new URLSearchParams(location.search),R=E.get("id");document.getElementById("app").innerHTML=`
   ${L()}
   <div class="property-page">
     <div class="property-loading">載入中...</div>
@@ -11,7 +11,7 @@ import{r as L,a as I,i as k,b as c}from"./shared-D_mUsIW0.js";import{G as x,f as
     </div>
     <div class="similar-name">${e.title}</div>
     <div class="similar-reason">${e.reason||""}</div>
-    <div class="similar-price">${g(e.price)}</div>
+    <div class="similar-price">${v(e.price)}</div>
   </a>`}function u(e,a,s){const n=document.querySelector(".similar-section");if(!n)return;const r=n.querySelector(".similar-inner"),l=Math.ceil(e.length/3);r.innerHTML=`
     <div class="similar-title-row">
       <div class="section-eyebrow" id="similarEyebrow">${a}</div>
@@ -54,7 +54,7 @@ import{r as L,a as I,i as k,b as c}from"./shared-D_mUsIW0.js";import{G as x,f as
       <div class="property-main">
         <h1 class="property-title">${e.title}</h1>
         <div class="property-price-row">
-          <div class="property-price">${g(e.price)}</div>
+          <div class="property-price">${v(e.price)}</div>
           ${e.priceRange?`<div class="property-price-range">（${e.priceRange}）</div>`:""}
         </div>
         <div class="property-tags">
@@ -129,7 +129,7 @@ import{r as L,a as I,i as k,b as c}from"./shared-D_mUsIW0.js";import{G as x,f as
               <div class="sidebar-agent-title">中信房屋南崁一極</div>
             </div>
           </div>
-          <div class="sidebar-price">${g(e.price)}</div>
+          <div class="sidebar-price">${v(e.price)}</div>
           <div class="sidebar-btns">
             <a href="https://line.me/ti/p/@019nrmqw" target="_blank" class="sidebar-btn-line">
               ${c("MessageCircle",16,2)} LINE 我詢問
@@ -178,5 +178,5 @@ import{r as L,a as I,i as k,b as c}from"./shared-D_mUsIW0.js";import{G as x,f as
       </div>
     </div>`:""}
 
-  `,_(e,a),U(a),B(e),P(e,s),p()}function p(){const e=document.getElementById("similarGrid"),a=document.getElementById("similarPrev"),s=document.getElementById("similarNext"),n=document.querySelectorAll(".similar-dot");if(!e||!a||!s)return;const r=e.querySelectorAll(".similar-card"),l=r.length,t=window.innerWidth<=768?2:3,i=Math.ceil(l/t);let o=0;function d(m){o=Math.max(0,Math.min(m,i-1));const b=window.innerWidth<=768?2:t,h=r[0].offsetWidth,$=parseInt(getComputedStyle(e).columnGap)||16,f=o*b*(h+$);e.style.transform=`translateX(-${f}px)`,n.forEach((w,C)=>w.classList.toggle("active",C===o)),a.style.opacity=o===0?"0.3":"1",s.style.opacity=o===i-1?"0.3":"1"}a.addEventListener("click",()=>{o>0&&d(o-1)}),s.addEventListener("click",()=>{o<i-1&&d(o+1)}),n.forEach((m,v)=>m.addEventListener("click",()=>d(v))),d(0)}function _(e,a){const s=location.href,n=e.ogImageUrl||a[0]||"",r=(l,t)=>{let i=document.querySelector(`meta[property="${l}"]`);i||(i=document.createElement("meta"),i.setAttribute("property",l),document.head.appendChild(i)),i.setAttribute("content",t)};r("og:title",`${e.title} | Cindy 王小姐`),r("og:description",`💰 售價與詳情請點擊查閱。格局：${e.layout||"—"}，${e.wixLocation||""}精選房源推薦。`),r("og:image",n),r("og:url",s),r("og:type","website")}function B(e){var n,r,l;const a=location.href,s=`${e.title}｜NT${e.price?(e.price/1e4).toFixed(0)+"萬":"洽談"}｜Cindy 王小姐`;(n=document.getElementById("btnCopyLink"))==null||n.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(a);const t=document.getElementById("btnCopyLink");t.textContent="✓ 已複製！",setTimeout(()=>t.textContent="複製連結",2e3)}catch{alert("請手動複製網址")}}),(r=document.getElementById("btnShareLine"))==null||r.addEventListener("click",()=>{window.open(`https://line.me/R/msg/text/?${encodeURIComponent(s+`
+  `,_(e,a),U(a),B(e),P(e,s),p()}function p(){const e=document.getElementById("similarGrid"),a=document.getElementById("similarPrev"),s=document.getElementById("similarNext"),n=document.querySelectorAll(".similar-dot");if(!e||!a||!s)return;const r=e.querySelectorAll(".similar-card"),l=r.length,t=window.innerWidth<=768?2:3,i=Math.ceil(l/t);let o=0;function d(m){o=Math.max(0,Math.min(m,i-1));const g=window.innerWidth<=768,b=g?2:t,h=r[0].offsetWidth,$=g?16:parseInt(getComputedStyle(e).columnGap)||40,f=o*b*(h+$);e.style.transform=`translateX(-${f}px)`,n.forEach((w,C)=>w.classList.toggle("active",C===o)),a.style.opacity=o===0?"0.3":"1",s.style.opacity=o===i-1?"0.3":"1"}a.addEventListener("click",()=>{o>0&&d(o-1)}),s.addEventListener("click",()=>{o<i-1&&d(o+1)}),n.forEach((m,g)=>m.addEventListener("click",()=>d(g))),d(0)}function _(e,a){const s=location.href,n=e.ogImageUrl||a[0]||"",r=(l,t)=>{let i=document.querySelector(`meta[property="${l}"]`);i||(i=document.createElement("meta"),i.setAttribute("property",l),document.head.appendChild(i)),i.setAttribute("content",t)};r("og:title",`${e.title} | Cindy 王小姐`),r("og:description",`💰 售價與詳情請點擊查閱。格局：${e.layout||"—"}，${e.wixLocation||""}精選房源推薦。`),r("og:image",n),r("og:url",s),r("og:type","website")}function B(e){var n,r,l;const a=location.href,s=`${e.title}｜NT${e.price?(e.price/1e4).toFixed(0)+"萬":"洽談"}｜Cindy 王小姐`;(n=document.getElementById("btnCopyLink"))==null||n.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(a);const t=document.getElementById("btnCopyLink");t.textContent="✓ 已複製！",setTimeout(()=>t.textContent="複製連結",2e3)}catch{alert("請手動複製網址")}}),(r=document.getElementById("btnShareLine"))==null||r.addEventListener("click",()=>{window.open(`https://line.me/R/msg/text/?${encodeURIComponent(s+`
 `+a)}`,"_blank")}),(l=document.getElementById("btnShareFb"))==null||l.addEventListener("click",()=>{const t=`fb-messenger://share?link=${encodeURIComponent(a)}`;window.location.href=t,setTimeout(()=>{window.open(`https://www.facebook.com/dialog/send?link=${encodeURIComponent(a)}&app_id=291494419107518&redirect_uri=${encodeURIComponent(a)}`,"_blank")},1500)})}T();
