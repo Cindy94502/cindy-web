@@ -84,7 +84,8 @@
   .quick-tag { font-size: 10px; padding: 5px 10px; }
 
   /* ── 精選物件篩選 ── */
-  .props-filter-inner { flex-direction: column; gap: 16px; }
+  .props-filter-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .props-filter-inner .filter-group:first-child { grid-column: 1 / -1; }
   .filter-deco { display: none; }
   .filter-radio-row { flex-wrap: wrap; gap: 6px; }
   .props-full-grid { grid-template-columns: 1fr; }
