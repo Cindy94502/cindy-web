@@ -60,12 +60,12 @@
   .footer-links { flex-wrap: wrap; justify-content: center; gap: 12px; }
 
   /* ── 浮動按鈕 ── */
-  .float-contact { left: 12px; bottom: 80px; gap: 6px; }
+  .float-contact { left: 12px; bottom: 20px; gap: 6px; }
   .float-contact-btn img { height: 56px; }
   .float-contact-btn:last-child img { height: 68px; }
 
   /* ── GO TOP ── */
-  .go-top { width: 52px; height: 52px; bottom: 80px; right: 16px; }
+  .go-top { width: 52px; height: 52px; bottom: 20px; right: 16px; }
   .go-top-main { font-size: 12px; }
 
   /* footer 底部加空間，避免被浮動按鈕蓋住 */
@@ -84,8 +84,7 @@
   .quick-tag { font-size: 10px; padding: 5px 10px; }
 
   /* ── 精選物件篩選 ── */
-  .props-filter-inner { flex-direction: row; flex-wrap: wrap; gap: 12px; }
-  .filter-group { flex: 1; min-width: 120px; }
+  .props-filter-inner { flex-direction: column; gap: 16px; }
   .filter-deco { display: none; }
   .filter-radio-row { flex-wrap: wrap; gap: 6px; }
   .props-full-grid { grid-template-columns: 1fr; }
@@ -93,7 +92,6 @@
 
   /* ── 物件詳細頁 ── */
   .property-body { grid-template-columns: 1fr; padding: 0 20px 60px; gap: 0; }
-  .property-title { font-size: 20px; letter-spacing: 1px; }
   .property-sidebar { position: static !important; }
   .contact-card-sticky { position: static !important; top: auto !important; }
   .property-gallery { padding: 0; }
@@ -102,15 +100,12 @@
   .gallery-thumb { width: 56px; height: 42px; }
   .property-map { height: 220px; }
   .property-tags { flex-wrap: wrap; gap: 6px; }
-  .property-specs { grid-template-columns: 1fr 1fr; gap: 12px; }
   .similar-section { padding: 40px 0; }
   .similar-inner { padding: 0 20px; }
   .similar-carousel-wrap { gap: 8px; }
   .similar-nav { width: 36px; height: 36px; }
-  .similar-grid { gap: 16px; }
-  .similar-card { width: 100%; min-width: unset; }
-  .similar-img-wrap { width: 100%; height: 160px; }
-  .similar-overflow { overflow: hidden; }
+  .similar-img-wrap { width: 140px; height: 140px; }
+  .similar-card { width: 160px; }
 
   /* ── 房產筆記 ── */
   .blog-header { padding: 80px 20px 40px; }

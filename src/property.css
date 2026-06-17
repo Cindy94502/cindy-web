@@ -91,7 +91,6 @@
   margin-bottom: 36px;
   border: 1px solid rgba(205,214,174,0.3);
 }
-.spec-item-deco { display: flex; align-items: center; justify-content: center; background: transparent; border: 1.5px dashed rgba(205,214,174,0.5); }
 .spec-item { background: white; padding: 18px 14px; text-align: center; }
 .spec-label {
   font-size: 10px; letter-spacing: 3px; color: var(--teal-dark);

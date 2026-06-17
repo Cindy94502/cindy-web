@@ -250,9 +250,6 @@ function renderProperty(prop, images, allProps = []) {
             <span class="spec-label">房數</span>
             <span class="spec-value">${prop.roomCount || '—'}</span>
           </div>
-          <div class="spec-item spec-item-deco">
-            <img src="images/house_small.png" alt="" style="height:52px;opacity:0.5">
-          </div>
         </div>
 
         ${(prop.mapAddress || prop.wixLocation) ? `
@@ -302,8 +299,8 @@ function renderProperty(prop, images, allProps = []) {
           <div class="sidebar-agent">
             <div class="sidebar-agent-avatar"><img src="images/Cindy.png" alt="Cindy" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div>
             <div>
-              <div class="sidebar-agent-name">Cindy</div>
-              <div class="sidebar-agent-title">王小姐｜中信房屋南崁一極</div>
+              <div class="sidebar-agent-name">王瑋薰 Cindy</div>
+              <div class="sidebar-agent-title">中信房屋南崁一極</div>
             </div>
           </div>
           <div class="sidebar-price">${formatPrice(prop.price)}</div>
