@@ -287,7 +287,6 @@
   background: white; cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   color: var(--brown); transition: all 0.2s;
-  box-shadow: 0 2px 8px rgba(61,43,31,0.08);
 }
 .similar-nav:hover { background: var(--teal); color: white; border-color: var(--teal); }
 .similar-dots { display: flex; justify-content: center; gap: 8px; margin-top: 24px; }
