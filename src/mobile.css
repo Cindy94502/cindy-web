@@ -108,46 +108,63 @@
   .property-map { height: 220px; }
   .property-tags { flex-wrap: wrap; gap: 6px; }
 
-  /* =============================================
-   mobile.css ── 專屬手機直式：2筆物件完美對稱輪播
-   ============================================= */
-  
+  /* ── 相似物件輪播（手機直式：標題並排終極對稱版） ── */
   .similar-section { padding: 40px 0; }
   
-  /* 1. 外層左右內距固定為 36px，當作兩側的絕對基準線 */
-  .similar-inner { padding: 0 36px; position: relative; }
+  /* 1. 外層內距，確保整體畫面跟上面的區塊一樣寬 */
+  .similar-inner { padding: 0 24px; position: relative; }
   
-  /* 2. 讓外框成為滿寬的定位點，移除多餘的 gap 擠壓 */
-  .similar-carousel-wrap { position: relative; padding: 0; gap: 0; width: 100%; }
-  
-  /* 3. 調整手機版左右導覽按鈕的位置與大小，垂直置中於 110px 圓圈的中線 */
+  /* 2. 標題列：設定為定位點，讓按鈕可以掛在標題兩側 */
+  .similar-title-row {
+    position: relative;
+    text-align: center;
+    margin-bottom: 24px;
+    width: 100%;
+  }
+
+  .similar-heading {
+    font-size: 24px;
+    margin: 0;
+  }
+
+  /* 3. 導覽按鈕：直接從下方卡片抽離！改放到上方大標題的左右兩邊 */
   .similar-nav {
     position: absolute;
-    top: 55px; /* 110px 的一半，剛好在圓相框的正中央 */
+    top: 50%;
     transform: translateY(-50%);
-    z-index: 5;
+    z-index: 10;
     width: 32px;
     height: 32px;
+    border-radius: 50%;
+    background: white !important;
+    border: 1px solid rgba(61,43,31,0.15) !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
-  /* 讓按鈕對稱頂出 */
-  .similar-prev { left: -24px; }
-  .similar-next { right: -24px; }
+  /* 按鈕乖乖待在標題列的左右最邊緣，絕對物理對稱 */
+  .similar-prev { left: 0px !important; }
+  .similar-next { right: 0px !important; }
   
-  /* 4. 裁切視窗滿寬，隱藏超出的第三、四個物件 */
-  .similar-overflow { width: 100%; padding: 0; margin: 0; overflow: hidden; }
+  /* 4. 下方輪播包裝層：按鈕被移走後，這裡變得超級乾淨 */
+  .similar-carousel-wrap { 
+    width: 100%; 
+    padding: 0; 
+    margin: 0; 
+  }
   
-  /* 5. 網格容器設定 */
+  .similar-overflow { width: 100%; overflow: hidden; }
+  
+  /* 5. 網格容器：卡片中間維持精緻的 16px 間距 */
   .similar-grid { 
     display: flex;
-    gap: 16px !important; /* 手機版兩台卡片中間的固定間距 */
+    gap: 16px !important; 
     width: 100%; 
   }
   
-  /* 6. ✨ 核心置中對稱公式 ✨
-     算法：(總寬度 100% - 中間那根 16px 的 gap) / 2
-     這樣兩台卡片在扣除中間間距後，會實打實地「把左右兩端貼滿」，
-     左邊緣到左按鈕、右邊緣到右按鈕的空隙就會完全物理性地一模一樣，達成絕對對稱！ */
+  /* 6. 卡片計算公式：直接平分外層容器（扣掉中間 16px 間距）
+     因為旁邊沒有按鈕在擠壓，這兩個大圓圈絕對會超級對稱、寬度剛剛好！ */
   .similar-card { 
     flex: 0 0 calc((100% - 16px) / 2) !important; 
     width: calc((100% - 16px) / 2) !important; 
@@ -158,7 +175,7 @@
     flex-shrink: 0;
   }
   
-  /* 圓形相框尺寸維持妳最滿意的 110px 不動 */
+  /* 圓形相框尺寸維持最完美的 110px */
   .similar-img-wrap { width: 110px; height: 110px; border-radius: 50%; flex-shrink: 0; }
 
   /* ── 房產筆記 ── */
