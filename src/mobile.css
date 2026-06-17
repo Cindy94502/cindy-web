@@ -120,7 +120,7 @@
     width: 30px;
     height: 30px;
   }
-  .similar-prev { left: -46x; }
+  .similar-prev { left: -28x; }
   .similar-next { right: -36px; }
   .similar-overflow { width: 100%; padding: 0; margin: 0; overflow-x: hidden; }
   .similar-img-wrap { width: 110px; height: 110px; border-radius: 50%; flex-shrink: 0; }
