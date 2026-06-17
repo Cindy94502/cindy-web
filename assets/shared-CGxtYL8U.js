@@ -3,12 +3,12 @@
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */const m=[["path",{d:"m12 19-7-7 7-7"}],["path",{d:"M19 12H5"}]];/**
+ */const v=[["path",{d:"m12 19-7-7 7-7"}],["path",{d:"M19 12H5"}]];/**
  * @license lucide v1.18.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */const v=[["path",{d:"M5 12h14"}],["path",{d:"m12 5 7 7-7 7"}]];/**
+ */const m=[["path",{d:"M5 12h14"}],["path",{d:"m12 5 7 7-7 7"}]];/**
  * @license lucide v1.18.0 - ISC
  *
  * This source code is licensed under the ISC license.
@@ -28,12 +28,12 @@
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */const x=[["path",{d:"m6 9 6 6 6-6"}]];/**
+ */const M=[["path",{d:"m6 9 6 6 6-6"}]];/**
  * @license lucide v1.18.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */const M=[["path",{d:"m15 18-6-6 6-6"}]];/**
+ */const x=[["path",{d:"m15 18-6-6 6-6"}]];/**
  * @license lucide v1.18.0 - ISC
  *
  * This source code is licensed under the ISC license.
@@ -133,7 +133,7 @@
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */const z=[["path",{d:"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"}],["path",{d:"M16 3.128a4 4 0 0 1 0 7.744"}],["path",{d:"M22 21v-2a4 4 0 0 0-3-3.87"}],["circle",{cx:"9",cy:"7",r:"4"}]],q={Home:p,Building2:y,House:p,MapPin:$,Phone:I,MessageCircle:k,User:N,UserCircle:C,Users:z,Monitor:O,ArrowRight:v,ArrowLeft:m,ChevronUp:w,ChevronDown:x,ChevronLeft:M,ChevronRight:b,Search:S,AlertCircle:L,Car:g,Star:j,FileText:E,KeyRound:H,Banknote:f,Share2:U,Link:B,Play:P,ShoppingBag:V,Heart:A};function u(l,a=20,o=1.5,n="",e="currentColor"){const t=q[l];if(!t)return"";const s=t.map(([r,d])=>{const h=Object.entries(d).map(([c,i])=>`${c}="${i}"`).join(" ");return`<${r} ${h}/>`}).join("");return`<svg xmlns="http://www.w3.org/2000/svg" width="${a}" height="${a}" viewBox="0 0 24 24" fill="none" stroke="${e}" stroke-width="${o}" stroke-linecap="round" stroke-linejoin="round" class="lucide ${n}" aria-hidden="true">${s}</svg>`}function F(){return`
+ */const z=[["path",{d:"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"}],["path",{d:"M16 3.128a4 4 0 0 1 0 7.744"}],["path",{d:"M22 21v-2a4 4 0 0 0-3-3.87"}],["circle",{cx:"9",cy:"7",r:"4"}]],q={Home:p,Building2:y,House:p,MapPin:$,Phone:I,MessageCircle:k,User:N,UserCircle:C,Users:z,Monitor:O,ArrowRight:m,ArrowLeft:v,ChevronUp:w,ChevronDown:M,ChevronLeft:x,ChevronRight:b,Search:S,AlertCircle:L,Car:g,Star:j,FileText:E,KeyRound:H,Banknote:f,Share2:U,Link:B,Play:P,ShoppingBag:V,Heart:A};function u(l,a=20,o=1.5,n="",e="currentColor"){const t=q[l];if(!t)return"";const s=t.map(([r,d])=>{const h=Object.entries(d).map(([c,i])=>`${c}="${i}"`).join(" ");return`<${r} ${h}/>`}).join("");return`<svg xmlns="http://www.w3.org/2000/svg" width="${a}" height="${a}" viewBox="0 0 24 24" fill="none" stroke="${e}" stroke-width="${o}" stroke-linecap="round" stroke-linejoin="round" class="lucide ${n}" aria-hidden="true">${s}</svg>`}function F(){return`
   <nav id="nav">
     <a href="index.html" class="nav-logo">
       <span class="nav-logo-dot"></span>
@@ -201,12 +201,12 @@
     <div class="footer-copy">© 2025 中信房屋南崁一極 · 營業員證號 (112)登字第445910號</div>
     <div class="footer-copy">經紀人：黃惠蓉 · (110)桃市經字第001835號</div>
     <div class="footer-links">
-      <a href="index.html">首頁</a>
-      <a href="index.html#about">關於我</a>
-      <a href="properties.html">精選物件</a>
-      <a href="blog.html">房產筆記</a>
-      <a href="index.html#forms">快速諮詢</a>
-      <a href="index.html#contact">聯絡我</a>
+      <a href="/">首頁</a>
+      <a href="/#about">關於我</a>
+      <a href="/properties.html">精選物件</a>
+      <a href="/blog.html">房產筆記</a>
+      <a href="/#forms">快速諮詢</a>
+      <a href="/#contact">聯絡我</a>
     </div>
   </footer>
   <button class="go-top" id="goTop" aria-label="回到頂部">
