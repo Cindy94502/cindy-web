@@ -1,4 +1,4 @@
-import{r as $,b as t,a as k,i as b}from"./shared-KbGT8ODV.js";import{C as w,L as E,P as L,G as S,f as C}from"./data-DQaSi1fH.js";const q='<img src="images/house_small.png" alt="" class="filter-deco-img" aria-hidden="true">';function I(e,r){const a=e.ogImageUrl||"";return e.buildingCategory,`
+import{r as $,b as t,a as k,i as b}from"./shared-Dgv3Tapy.js";import{C as w,L as E,P as L,G as S,f as C}from"./data-DQaSi1fH.js";const q='<img src="images/house_small.png" alt="" class="filter-deco-img" aria-hidden="true">';function I(e,r){const a=e.ogImageUrl||"";return e.buildingCategory,`
   <a href="property.html?id=${e.nodeId}" class="prop-card-full" 
      data-category="${e.buildingCategory||""}"
      data-room="${e.roomCount||""}"
