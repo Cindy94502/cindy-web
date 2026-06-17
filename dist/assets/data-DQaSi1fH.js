@@ -1,0 +1,1 @@
+const s="https://raw.githubusercontent.com/Cindy94502/cindy-data/refs/heads/main/properties.json",n=["1,000萬以下","1,000－1,500萬","1,500－2,000萬","2,000萬以上","洽談"],o=["套房","2房","3房","4房以上"],a=["電梯大樓","透天","店面"];function r(t){return!t||t===0?"NT$ 洽談":`NT$ ${(t/1e4).toFixed(0)} 萬`}export{a as C,s as G,o as L,n as P,r as f};

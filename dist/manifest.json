@@ -1,0 +1,18 @@
+{
+  "name": "Cindy 王小姐｜南崁在地房產",
+  "short_name": "Cindy 房產",
+  "description": "南崁在地房仲 Cindy，陪你找到家",
+  "start_url": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#CDD6AE",
+  "theme_color": "#7CBBC3",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
