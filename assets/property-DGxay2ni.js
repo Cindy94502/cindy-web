@@ -24,17 +24,17 @@ import{r as w,a as C,i as L,b as o}from"./shared-Zy1XvVyR.js";/* empty css      
       ${e.length>3?`<button class="similar-nav similar-prev" id="similarPrev">${o("ChevronLeft",26,2)}</button>`:""}
       <div class="similar-overflow">
         <div class="similar-grid" id="similarGrid">
-          ${e.map(t=>y(t)).join("")}
+          ${e.map(i=>y(i)).join("")}
         </div>
       </div>
       ${e.length>3?`<button class="similar-nav similar-next" id="similarNext">${o("ChevronRight",26,2)}</button>`:""}
     </div>
     ${e.length>3?`
     <div class="similar-dots" id="similarDots">
-      ${Array.from({length:c}).map((t,i)=>`<span class="similar-dot ${i===0?"active":""}" data-index="${i}"></span>`).join("")}
+      ${Array.from({length:c}).map((i,t)=>`<span class="similar-dot ${t===0?"active":""}" data-index="${t}"></span>`).join("")}
     </div>`:""}
     `}
-  `,r.style.display="",e.length>3&&p()}function R(e,a){document.querySelector(".similar-section")&&document.querySelectorAll(".clickable-tag").forEach(r=>{r.addEventListener("click",()=>{const n=r.dataset.tag,c=r.classList.contains("tag-active");if(document.querySelectorAll(".clickable-tag").forEach(t=>t.classList.remove("tag-active")),c){const t=a.filter(i=>i.nodeId!==e.nodeId&&i.title&&(i.buildingCategory===e.buildingCategory||i.priceRange===e.priceRange)).slice(0,9).map(i=>({...i,reason:i.buildingCategory===e.buildingCategory&&i.priceRange===e.priceRange?`同為${i.buildingCategory}・${i.priceRange}`:i.buildingCategory===e.buildingCategory?`同為${i.buildingCategory}`:`同價格區間・${i.priceRange}`}));u(t,"也許你也會喜歡","相似物件")}else{r.classList.add("tag-active");const t=a.filter(i=>i.nodeId!==e.nodeId&&i.title&&((i.tags||"").split(",").map(l=>l.trim()).includes(n)||(i.wixParking||"").trim()===n||(i.wixLocation||"").includes(n)||n.includes(i.wixLocation||""))).slice(0,9).map(i=>({...i,reason:`同樣有「${n}」`}));u(t,`選擇了「${n}」`,"相似物件")}})})}async function M(){try{const a=await(await fetch(x)).json(),s=a.find(n=>n.nodeId===k);if(!s){document.querySelector(".property-loading").innerHTML='<p>找不到這個物件，<a href="properties.html" style="color:var(--teal-dark)">回到物件列表</a></p>';return}document.title=`${s.title} | Cindy 王瑋薰`;const r=await E(s.cloudinaryFolder);s.ogImageUrl&&!r.includes(s.ogImageUrl)&&r.unshift(s.ogImageUrl),A(s,r,a)}catch{document.querySelector(".property-loading").innerHTML="<p>載入失敗，請稍後再試</p>"}}function P(e){return e.length===0?`<div class="gallery-placeholder">${o("Home",80,1,"","var(--sage-dark)")}</div>`:`
+  `,r.style.display="",e.length>3&&p()}function R(e,a){document.querySelector(".similar-section")&&document.querySelectorAll(".clickable-tag").forEach(r=>{r.addEventListener("click",()=>{const n=r.dataset.tag,c=r.classList.contains("tag-active");if(document.querySelectorAll(".clickable-tag").forEach(i=>i.classList.remove("tag-active")),c){const i=a.filter(t=>t.nodeId!==e.nodeId&&t.title&&(t.buildingCategory===e.buildingCategory||t.priceRange===e.priceRange)).slice(0,9).map(t=>({...t,reason:t.buildingCategory===e.buildingCategory&&t.priceRange===e.priceRange?`同為${t.buildingCategory}・${t.priceRange}`:t.buildingCategory===e.buildingCategory?`同為${t.buildingCategory}`:`同價格區間・${t.priceRange}`}));u(i,"也許你也會喜歡","相似物件")}else{r.classList.add("tag-active");const i=a.filter(t=>t.nodeId!==e.nodeId&&t.title&&((t.tags||"").split(",").map(l=>l.trim()).includes(n)||(t.wixParking||"").trim()===n||(t.wixLocation||"").includes(n)||n.includes(t.wixLocation||""))).slice(0,9).map(t=>({...t,reason:`同樣有「${n}」`}));u(i,`選擇了「${n}」`,"相似物件")}})})}async function M(){try{const a=await(await fetch(x)).json(),s=a.find(n=>n.nodeId===k);if(!s){document.querySelector(".property-loading").innerHTML='<p>找不到這個物件，<a href="properties.html" style="color:var(--teal-dark)">回到物件列表</a></p>';return}document.title=`${s.title} | Cindy 王瑋薰`;const r=await E(s.cloudinaryFolder);s.ogImageUrl&&!r.includes(s.ogImageUrl)&&r.unshift(s.ogImageUrl),A(s,r,a)}catch{document.querySelector(".property-loading").innerHTML="<p>載入失敗，請稍後再試</p>"}}function P(e){return e.length===0?`<div class="gallery-placeholder">${o("Home",80,1,"","var(--sage-dark)")}</div>`:`
     <img class="gallery-main-img" id="galleryMain" src="${e[0]}" alt="物件照片">
     <button class="gallery-arrow prev" id="galleryPrev">${o("ChevronLeft",22,2)}</button>
     <button class="gallery-arrow next" id="galleryNext">${o("ChevronRight",22,2)}</button>
@@ -45,7 +45,7 @@ import{r as w,a as C,i as L,b as o}from"./shared-Zy1XvVyR.js";/* empty css      
              data-index="${s}" loading="lazy">
       `).join("")}
     </div>
-  `}function T(e){var c,t;if(e.length===0)return;let a=0;const s=document.getElementById("galleryMain"),r=document.querySelectorAll(".gallery-thumb");function n(i){var l;a=(i+e.length)%e.length,s.style.opacity="0",setTimeout(()=>{s.src=e[a],s.style.opacity="1"},150),r.forEach((d,m)=>d.classList.toggle("active",m===a)),(l=r[a])==null||l.scrollIntoView({behavior:"smooth",block:"nearest",inline:"center"})}(c=document.getElementById("galleryPrev"))==null||c.addEventListener("click",()=>n(a-1)),(t=document.getElementById("galleryNext"))==null||t.addEventListener("click",()=>n(a+1)),r.forEach((i,l)=>i.addEventListener("click",()=>n(l))),document.addEventListener("keydown",i=>{i.key==="ArrowLeft"&&n(a-1),i.key==="ArrowRight"&&n(a+1)})}function A(e,a,s=[]){const r=S(e.wixFeatures),n=(e.tags||"").split(",").filter(Boolean),c=s.filter(t=>t.nodeId!==e.nodeId&&t.title&&(t.buildingCategory===e.buildingCategory||t.priceRange===e.priceRange)).slice(0,9).map(t=>({...t,reason:t.buildingCategory===e.buildingCategory&&t.priceRange===e.priceRange?`同為${t.buildingCategory}・${t.priceRange}`:t.buildingCategory===e.buildingCategory?`同為${t.buildingCategory}`:`同價格區間・${t.priceRange}`}));document.querySelector(".property-page").innerHTML=`
+  `}function T(e){var c,i;if(e.length===0)return;let a=0;const s=document.getElementById("galleryMain"),r=document.querySelectorAll(".gallery-thumb");function n(t){var l;a=(t+e.length)%e.length,s.style.opacity="0",setTimeout(()=>{s.src=e[a],s.style.opacity="1"},150),r.forEach((d,m)=>d.classList.toggle("active",m===a)),(l=r[a])==null||l.scrollIntoView({behavior:"smooth",block:"nearest",inline:"center"})}(c=document.getElementById("galleryPrev"))==null||c.addEventListener("click",()=>n(a-1)),(i=document.getElementById("galleryNext"))==null||i.addEventListener("click",()=>n(a+1)),r.forEach((t,l)=>t.addEventListener("click",()=>n(l))),document.addEventListener("keydown",t=>{t.key==="ArrowLeft"&&n(a-1),t.key==="ArrowRight"&&n(a+1)})}function A(e,a,s=[]){const r=S(e.wixFeatures),n=(e.tags||"").split(",").filter(Boolean),c=s.filter(i=>i.nodeId!==e.nodeId&&i.title&&(i.buildingCategory===e.buildingCategory||i.priceRange===e.priceRange)).slice(0,9).map(i=>({...i,reason:i.buildingCategory===e.buildingCategory&&i.priceRange===e.priceRange?`同為${i.buildingCategory}・${i.priceRange}`:i.buildingCategory===e.buildingCategory?`同為${i.buildingCategory}`:`同價格區間・${i.priceRange}`}));document.querySelector(".property-page").innerHTML=`
     <div class="property-gallery">
       ${P(a)}
     </div>
@@ -58,7 +58,7 @@ import{r as w,a as C,i as L,b as o}from"./shared-Zy1XvVyR.js";/* empty css      
           ${e.priceRange?`<div class="property-price-range">（${e.priceRange}）</div>`:""}
         </div>
         <div class="property-tags">
-          ${n.map((t,i)=>`<span class="property-tag clickable-tag tag-color-${i%5}" data-tag="${t}">${t}</span>`).join("")}
+          ${n.map((i,t)=>`<span class="property-tag clickable-tag tag-color-${t%5}" data-tag="${i}">${i}</span>`).join("")}
           ${e.wixLocation?`<span class="property-tag tag-location">${o("MapPin",12,2)} ${e.wixLocation}</span>`:""}
           ${e.wixParking?`<span class="property-tag tag-location">${e.wixParking}</span>`:""}
         </div>
@@ -107,7 +107,7 @@ import{r as w,a as C,i as L,b as o}from"./shared-Zy1XvVyR.js";/* empty css      
         ${r.length>0?`
         <div class="property-features">
           <div class="property-section-title">${o("Star",16,2)} 物件特色</div>
-          <ul>${r.map(t=>`<li>${t}</li>`).join("")}</ul>
+          <ul>${r.map(i=>`<li>${i}</li>`).join("")}</ul>
         </div>`:""}
 
         ${e.webDescription?`
@@ -166,17 +166,17 @@ import{r as w,a as C,i as L,b as o}from"./shared-Zy1XvVyR.js";/* empty css      
           ${c.length>3?`<button class="similar-nav similar-prev" id="similarPrev">${o("ChevronLeft",26,2)}</button>`:""}
           <div class="similar-overflow">
             <div class="similar-grid" id="similarGrid">
-              ${c.map(t=>y(t)).join("")}
+              ${c.map(i=>y(i)).join("")}
             </div>
           </div>
           ${c.length>3?`<button class="similar-nav similar-next" id="similarNext">${o("ChevronRight",26,2)}</button>`:""}
         </div>
         ${c.length>3?`
         <div class="similar-dots" id="similarDots">
-          ${Array.from({length:Math.ceil(c.length/3)}).map((t,i)=>`<span class="similar-dot ${i===0?"active":""}" data-index="${i}"></span>`).join("")}
+          ${Array.from({length:Math.ceil(c.length/3)}).map((i,t)=>`<span class="similar-dot ${t===0?"active":""}" data-index="${t}"></span>`).join("")}
         </div>`:""}
       </div>
     </div>`:""}
 
-  `,q(e,a),T(a),B(e),R(e,s),p()}function p(){const e=document.getElementById("similarGrid"),a=document.getElementById("similarPrev"),s=document.getElementById("similarNext"),r=document.querySelectorAll(".similar-dot");if(!e||!a||!s)return;const n=e.querySelectorAll(".similar-card"),c=n.length,t=3,i=Math.ceil(c/t);let l=0;function d(m){l=Math.max(0,Math.min(m,i-1));const g=parseInt(getComputedStyle(e).columnGap)||40,h=n[0].offsetWidth,b=t*(h+g);e.style.transform=`translateX(-${l*b}px)`,r.forEach(($,f)=>$.classList.toggle("active",f===l)),a.style.opacity=l===0?"0.3":"1",s.style.opacity=l===i-1?"0.3":"1"}a.addEventListener("click",()=>{l>0&&d(l-1)}),s.addEventListener("click",()=>{l<i-1&&d(l+1)}),r.forEach((m,g)=>m.addEventListener("click",()=>d(g))),d(0)}function q(e,a){var c;const s=location.href,r=e.ogImageUrl||a[0]||"",n=(t,i)=>{let l=document.querySelector(`meta[property="${t}"]`);l||(l=document.createElement("meta"),l.setAttribute("property",t),document.head.appendChild(l)),l.setAttribute("content",i)};n("og:title",`${e.title} | Cindy 王瑋薰`),n("og:description",((c=e.webDescription)==null?void 0:c.replace(/<[^>]*>/g,"").slice(0,100))||"南崁在地房產諮詢"),n("og:image",r),n("og:url",s),n("og:type","website")}function B(e){var r,n,c;const a=location.href,s=`${e.title}｜NT${e.price?(e.price/1e4).toFixed(0)+"萬":"洽談"}｜Cindy 王瑋薰`;(r=document.getElementById("btnCopyLink"))==null||r.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(a);const t=document.getElementById("btnCopyLink");t.textContent="✓ 已複製！",setTimeout(()=>t.textContent="複製連結",2e3)}catch{alert("請手動複製網址")}}),(n=document.getElementById("btnShareLine"))==null||n.addEventListener("click",()=>{window.open(`https://line.me/R/msg/text/?${encodeURIComponent(s+`
-`+a)}`,"_blank")}),(c=document.getElementById("btnShareFb"))==null||c.addEventListener("click",()=>{window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(a)}`,"_blank","width=600,height=400")})}M();
+  `,q(e,a),T(a),B(e),R(e,s),p()}function p(){const e=document.getElementById("similarGrid"),a=document.getElementById("similarPrev"),s=document.getElementById("similarNext"),r=document.querySelectorAll(".similar-dot");if(!e||!a||!s)return;const n=e.querySelectorAll(".similar-card"),c=n.length,i=3,t=Math.ceil(c/i);let l=0;function d(m){l=Math.max(0,Math.min(m,t-1));const g=parseInt(getComputedStyle(e).columnGap)||40,b=n[0].offsetWidth,h=i*(b+g);e.style.transform=`translateX(-${l*h}px)`,r.forEach(($,f)=>$.classList.toggle("active",f===l)),a.style.opacity=l===0?"0.3":"1",s.style.opacity=l===t-1?"0.3":"1"}a.addEventListener("click",()=>{l>0&&d(l-1)}),s.addEventListener("click",()=>{l<t-1&&d(l+1)}),r.forEach((m,g)=>m.addEventListener("click",()=>d(g))),d(0)}function q(e,a){var c;const s=location.href,r=e.ogImageUrl||a[0]||"",n=(i,t)=>{let l=document.querySelector(`meta[property="${i}"]`);l||(l=document.createElement("meta"),l.setAttribute("property",i),document.head.appendChild(l)),l.setAttribute("content",t)};n("og:title",`${e.title} | Cindy 王瑋薰`),n("og:description",((c=e.webDescription)==null?void 0:c.replace(/<[^>]*>/g,"").slice(0,100))||"南崁在地房產諮詢"),n("og:image",r),n("og:url",s),n("og:type","website")}function B(e){var r,n,c;const a=location.href,s=`${e.title}｜NT${e.price?(e.price/1e4).toFixed(0)+"萬":"洽談"}｜Cindy 王瑋薰`;(r=document.getElementById("btnCopyLink"))==null||r.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(a);const i=document.getElementById("btnCopyLink");i.textContent="✓ 已複製！",setTimeout(()=>i.textContent="複製連結",2e3)}catch{alert("請手動複製網址")}}),(n=document.getElementById("btnShareLine"))==null||n.addEventListener("click",()=>{window.open(`https://line.me/R/msg/text/?${encodeURIComponent(s+`
+`+a)}`,"_blank")}),(c=document.getElementById("btnShareFb"))==null||c.addEventListener("click",()=>{const i=`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(a)}`;window.open(i,"_blank")})}M();
