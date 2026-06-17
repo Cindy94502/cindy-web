@@ -321,7 +321,7 @@ function renderProperty(prop, images, allProps = []) {
             <div class="sidebar-share-label">分享此物件</div>
             <div class="sidebar-share-btns">
               <button id="btnShareLine" class="share-btn share-btn-line">${icon('MessageCircle', 14, 2)} LINE</button>
-              <button id="btnShareFb" class="share-btn share-btn-fb">${icon('Share2', 14, 2)} 分享</button>
+              <button id="btnShareFb" class="share-btn share-btn-fb">${icon('MessageCircle', 14, 2)} Messenger</button>
               <button id="btnCopyLink" class="share-btn share-btn-copy">${icon('Link', 14, 2)} 複製連結</button>
             </div>
           </div>
@@ -430,13 +430,11 @@ function initShare(prop) {
   })
 
   document.getElementById('btnShareFb')?.addEventListener('click', () => {
-    if (navigator.share) {
-      // 手機用原生分享
-      navigator.share({ title: title, url: url }).catch(() => {})
-    } else {
-      // 桶機用 FB Sharer
-      window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank')
-    }
+    const messengerUrl = `fb-messenger://share?link=${encodeURIComponent(url)}`
+    window.location.href = messengerUrl
+    setTimeout(() => {
+      window.open(`https://www.facebook.com/dialog/send?link=${encodeURIComponent(url)}&app_id=291494419107518&redirect_uri=${encodeURIComponent(url)}`, '_blank')
+    }, 1500)
   })
 }
 
