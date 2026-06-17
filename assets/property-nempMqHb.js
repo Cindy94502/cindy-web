@@ -1,4 +1,4 @@
-import{r as L,a as I,i as k,b as c}from"./shared-CjdsYFwj.js";import{G as x,f as g}from"./data-DQaSi1fH.js";const E=new URLSearchParams(location.search),R=E.get("id");document.getElementById("app").innerHTML=`
+import{r as L,a as I,i as k,b as c}from"./shared-D_mUsIW0.js";import{G as x,f as g}from"./data-DQaSi1fH.js";const E=new URLSearchParams(location.search),R=E.get("id");document.getElementById("app").innerHTML=`
   ${L()}
   <div class="property-page">
     <div class="property-loading">載入中...</div>
