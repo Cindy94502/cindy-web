@@ -299,7 +299,7 @@ function renderProperty(prop, images, allProps = []) {
           <div class="sidebar-agent">
             <div class="sidebar-agent-avatar"><img src="images/Cindy.png" alt="Cindy" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div>
             <div>
-              <div class="sidebar-agent-name">王瑋薰 Cindy</div>
+              <div class="sidebar-agent-name">王小姐</div>
               <div class="sidebar-agent-title">中信房屋南崁一極</div>
             </div>
           </div>
@@ -309,10 +309,10 @@ function renderProperty(prop, images, allProps = []) {
               ${icon('MessageCircle', 16, 2)} LINE 我詢問
             </a>
             <a href="tel:0963585690" class="sidebar-btn-tel">
-              ${icon('Phone', 16, 2)} Cindy 0963-585-690
+              ${icon('Phone', 16, 2)} 王小姐 0963-585-690
             </a>
             <a href="tel:0968731280" class="sidebar-btn-tel">
-              ${icon('Phone', 16, 2)} 王俊棋 0968-731-280
+              ${icon('Phone', 16, 2)} 王先生 0968-731-280
             </a>
           </div>
           <div class="sidebar-note">不管是問行情還是想看房<br>隨時都可以找我</div>
