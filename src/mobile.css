@@ -124,7 +124,7 @@
   .similar-next { right: -32px; }
   .similar-overflow { width: 100%; }
   .similar-img-wrap { width: 120px; height: 120px; border-radius: 50%; flex-shrink: 0; }
-  .similar-card { flex: 0 0 140px; width: 140px; }
+  .similar-card { flex: 0 0 calc(50% - 8px); width: calc(50% - 8px); }
   .similar-grid { gap: 16px; }
 
   /* ── 房產筆記 ── */
