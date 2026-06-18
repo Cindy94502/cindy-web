@@ -141,6 +141,17 @@
   .post-content p { font-size: 15px; }
   .post-contact-card { padding: 24px 20px; }
   .post-contact-btns { flex-direction: column; align-items: center; }
+  /* 表格橫向捲動 */
+  .post-content table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+  .post-content td, .post-content th {
+    white-space: normal;
+    min-width: 80px;
+  }
 }
 
 /* iPhone SE / 小螢幕 */
