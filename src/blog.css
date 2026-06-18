@@ -119,13 +119,13 @@
 .blog-card:hover .blog-card-more { gap: 8px; }
 
 /* ── 單篇文章頁 ── */
-.post-loading { max-width: 720px; margin: 120px auto 80px; padding: 0 60px; }
+.post-loading { max-width: 900px; margin: 120px auto 80px; padding: 0 60px; }
 .post-page { }
 .post-header {
   background: var(--cream2); padding: 110px 60px 60px;
   border-bottom: 1.5px dashed rgba(205,214,174,0.5);
 }
-.post-header-inner { max-width: 720px; margin: 0 auto; }
+.post-header-inner { max-width: 900px; margin: 0 auto; }
 .post-back {
   display: inline-flex; align-items: center; gap: 6px;
   font-size: 12px; color: var(--brown-mid); letter-spacing: 2px;
@@ -142,9 +142,9 @@
   display: flex; align-items: center; gap: 4px;
   font-size: 12px; color: var(--brown-light); letter-spacing: 1px;
 }
-.post-cover { max-width: 720px; margin: 0 auto; padding: 0 60px; }
+.post-cover { max-width: 900px; margin: 0 auto; padding: 0 60px; }
 .post-cover img { width: 100%; border-radius: 4px; margin-top: 40px; }
-.post-body { max-width: 720px; margin: 0 auto; padding: 48px 60px 100px; }
+.post-body { max-width: 900px; margin: 0 auto; padding: 48px 60px 100px; }
 .post-content p {
   font-size: 16px; line-height: 2.2; color: var(--brown-mid);
   font-weight: 300; margin-bottom: 20px; letter-spacing: 0.5px;
