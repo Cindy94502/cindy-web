@@ -11,7 +11,7 @@ import{r as l,a as c,i as r,b as e}from"./shared-CtfFsN1e.js";/* empty css      
 `;r();async function h(){try{const o=await fetch(d);if(!o.ok)throw new Error("fetch failed");const t=(await o.json()).find(s=>s.id===v);if(!t){document.querySelector(".post-loading").innerHTML=`<div style="text-align:center;padding:80px 0;color:var(--brown-mid)">
           <p style="letter-spacing:2px;margin-bottom:24px">找不到這篇文章</p>
           <a href="blog.html" style="color:var(--teal-dark);letter-spacing:2px">← 回到筆記列表</a>
-        </div>`;return}const a=m[t.category]||"cat-teal",i=t.date?new Date(t.date).toLocaleDateString("zh-TW",{year:"numeric",month:"long",day:"numeric"}):"";document.title=`${t.title}｜Cindy 王小姐`;const n=(t.content||t.excerpt||"").split(`
+        </div>`;return}const a=m[t.category]||"cat-teal",i=t.date?new Date(t.date).toLocaleDateString("zh-TW",{year:"numeric",month:"long",day:"numeric"}):"";document.title=`${t.title}｜Cindy 王小姐`;const n=t.content?t.content:(t.excerpt||"").split(`
 `).filter(s=>s.trim()).map(s=>`<p>${s}</p>`).join("");document.querySelector(".post-loading").outerHTML=`
     <div class="post-page">
       <div class="post-header">
