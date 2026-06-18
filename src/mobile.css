@@ -146,11 +146,13 @@
     display: block;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    white-space: nowrap;
   }
-  .post-content td, .post-content th {
-    white-space: normal;
-    min-width: 80px;
+  .post-content th {
+    white-space: nowrap;
+    min-width: 90px;
+  }
+  .post-content td {
+    min-width: 90px;
   }
 }
 
