@@ -147,6 +147,15 @@
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
+  .post-content table::after {
+    content: '← 左右滑動 →';
+    display: block;
+    text-align: center;
+    font-size: 11px;
+    color: var(--brown-light);
+    letter-spacing: 2px;
+    padding: 8px 0 4px;
+  }
   .post-content th {
     white-space: nowrap;
     min-width: 90px;
