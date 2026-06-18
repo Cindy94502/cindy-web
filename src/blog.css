@@ -146,8 +146,15 @@
 .post-cover img { width: 100%; border-radius: 4px; margin-top: 40px; }
 .post-body { max-width: 900px; margin: 0 auto; padding: 48px 60px 100px; }
 .post-content p {
-  font-size: 16px; line-height: 2.2; color: var(--brown-mid);
-  font-weight: 300; margin-bottom: 20px; letter-spacing: 0.5px;
+  font-size: 16px; line-height: 1.8; color: var(--brown-mid);
+  font-weight: 400; margin-bottom: 12px; letter-spacing: 0.5px;
+}
+.post-content ul {
+  padding-left: 24px; margin-bottom: 12px;
+}
+.post-content li {
+  font-size: 16px; line-height: 1.8; color: var(--brown-mid);
+  font-weight: 400; margin-bottom: 6px; letter-spacing: 0.5px;
 }
 
 /* ── 文章內表格 ── */
