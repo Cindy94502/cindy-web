@@ -12,7 +12,7 @@ function injectFavicon() {
       const cleaned = html.replace(/<link[^>]*rel=["']icon["'][^>]*>/gi, '')
       return cleaned.replace(
         /<\/head>/,
-        `  <link rel="icon" href="/cindy-web/favicon.ico">\n  </head>`
+        `  <link rel="icon" type="image/png" href="/cindy-web/images/my-logo.png">\n  </head>`
       )
     }
   }
