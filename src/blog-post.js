@@ -53,12 +53,10 @@ async function loadPost() {
     // 更新頁面標題
     document.title = `${post.title}｜Cindy 王小姐`
 
-    // 段落處理：把換行符轉成 <p>
-    const bodyHtml = (post.content || post.excerpt || '')
-      .split('\n')
-      .filter(line => line.trim())
-      .map(line => `<p>${line}</p>`)
-      .join('')
+    // 內容：優先用 HTML content，沒有才 fallback 到 excerpt
+    const bodyHtml = post.content
+      ? post.content
+      : (post.excerpt || '').split('\n').filter(line => line.trim()).map(line => `<p>${line}</p>`).join('')
 
     document.querySelector('.post-loading').outerHTML = `
     <div class="post-page">
