@@ -155,7 +155,6 @@
   width: 100%; border-collapse: collapse;
   margin: 24px 0; font-size: 14px;
   border: 1.5px solid rgba(205,214,174,0.6);
-  border-radius: 8px; overflow: hidden;
 }
 .post-content th {
   background: var(--sage-light); color: var(--brown);
@@ -170,10 +169,6 @@
 }
 .post-content tr:last-child td { border-bottom: none; }
 .post-content tr:nth-child(even) td { background: rgba(205,214,174,0.08); }
-
-/* 手機橫向捲動 */
-.post-content figure,
-.post-content table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
 .post-footer-nav { margin: 48px 0 40px; }
 .post-back-btn {
   display: inline-flex; align-items: center; gap: 8px;
