@@ -101,6 +101,43 @@ async function loadPost() {
       </div>
     </div>`
 
+    // ── 👇✨ 告訴妳，我只在這邊添加了這段表格內容補丁 ✨👇 ──
+    const tableContainer = document.querySelector('.post-content table');
+    if (tableContainer && tableContainer.innerHTML === '') {
+      tableContainer.innerHTML = `
+        <thead>
+          <tr style="background-color: #f8f9fa; border-bottom: 2px solid #dee2e6;">
+            <th style="padding: 12px; text-align: left; font-weight: bold; border: 1px solid #dee2e6; color: var(--brown);">售屋原因</th>
+            <th style="padding: 12px; text-align: left; font-weight: bold; border: 1px solid #dee2e6; color: var(--brown);">急迫程度</th>
+            <th style="padding: 12px; text-align: left; font-weight: bold; border: 1px solid #dee2e6; color: var(--brown);">議價方向</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid #dee2e6;">
+            <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">換屋</td>
+            <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">高</td>
+            <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">強調能快速成交、配合交屋時程</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #dee2e6; background-color: #fdfdfd;">
+            <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">投資／資產配置</td>
+            <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">低</td>
+            <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">貼近行情，別一次壓太多</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #dee2e6;">
+            <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">繼承／需要資金</td>
+            <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">中高</td>
+            <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">注意多人繼承要確認全數同意</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #dee2e6; background-color: #fdfdfd;">
+            <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">隨便賣看看</td>
+            <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">無</td>
+            <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">先觀察，不用急著出價</td>
+          </tr>
+        </tbody>
+      `;
+    }
+    // ── 👆✨ 添加結束 ──
+
   } catch (e) {
     document.querySelector('.post-loading').innerHTML =
       `<div style="text-align:center;padding:80px 0;color:var(--brown-mid)">
