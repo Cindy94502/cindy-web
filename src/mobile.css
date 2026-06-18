@@ -153,6 +153,7 @@
   }
   .post-content td {
     min-width: 90px;
+    word-break: keep-all;
   }
 }
 
