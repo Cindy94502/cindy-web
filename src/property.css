@@ -127,6 +127,7 @@
 .property-desc {
   font-size: 14px; color: var(--brown-mid); line-height: 2.4;
   font-weight: 300; margin-bottom: 36px;
+  text-align: justify; text-justify: inter-character; word-break: break-all;
 }
 
 /* ── 右側聯絡卡 ── */
