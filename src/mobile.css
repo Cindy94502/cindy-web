@@ -143,9 +143,9 @@
   .post-contact-btns { flex-direction: column; align-items: center; }
   /* 表格橫向捲動 */
   .post-content table {
-    display: block;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    width: 100%;
   }
   .post-content table::after {
     content: '← 左右滑動 →';
