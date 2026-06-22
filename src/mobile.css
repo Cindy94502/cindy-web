@@ -21,28 +21,23 @@
     box-sizing: border-box !important;
   }
 
-  /* ── 🌟 表格橫向滾動：iPhone 專屬順暢防漏設定 ── */
-  .post-content .table-wrap {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 16px 0 4px;
-    overflow: visible !important; /* 允許內部內容完全展開不被切斷 */
-  }
-  
-  .post-content .table-wrap .table-scroll {
+  /* ── 🌟 終極修正：直接對準所有文章內的表格外殼，強制啟用 iPhone 左右滑動 ── */
+  .post-content div:has(table) {
     display: block !important;
     width: 100% !important;
-    overflow-x: auto !important; /* 讓這層肚子可以左右滑動 */
+    max-width: 100% !important;
+    overflow-x: auto !important; /* 讓這層肚子在 iPhone 上可以左右滑動 */
     overflow-y: hidden !important;
-    -webkit-overflow-scrolling: touch; /* 啟用 iOS 專屬五星級硬體加速流暢滑動 */
-    touch-action: pan-x; /* 限制手指只允許水平划動，防止干涉上下滾動 */
-    scrollbar-width: thin;
-    scrollbar-color: var(--teal) var(--cream2);
+    -webkit-overflow-scrolling: touch !important; /* 🌟 啟用 iOS 專屬頂級流暢滑動 */
+    touch-action: pan-x !important;
+    margin: 20px 0 !important;
   }
 
-  .post-content .table-wrap table {
+  /* ── 🌟 強制讓表格的寬度撐開，內容絕不允許被切斷、擠壓 ── */
+  .post-content table {
     width: max-content !important;
     min-width: 100% !important;
+    table-layout: auto !important;
   }
 
   /* ── NAV ── */
@@ -182,21 +177,21 @@
   .post-contact-card { padding: 24px 20px; }
   .post-contact-btns { flex-direction: column; align-items: center; }
   
-  /* 表格拉桿樣式自訂 */
-  .post-content .table-wrap .table-scroll::-webkit-scrollbar {
+  /* 表格拉桿與文字防擠壓機制 */
+  .post-content div:has(table)::-webkit-scrollbar {
     height: 6px;
     -webkit-appearance: none;
   }
-  .post-content .table-wrap .table-scroll::-webkit-scrollbar-track {
+  .post-content div:has(table)::-webkit-scrollbar-track {
     background: var(--cream2);
     border-radius: 3px;
   }
-  .post-content .table-wrap .table-scroll::-webkit-scrollbar-thumb {
+  .post-content div:has(table)::-webkit-scrollbar-thumb {
     background: var(--teal);
     border-radius: 3px;
   }
   
-  .post-content .table-wrap::after {
+  .post-content div:has(table)::after {
     content: '← 左右滑動 →';
     display: block;
     text-align: center;
@@ -206,37 +201,14 @@
     padding: 14px 0 16px;
   }
   
-  /* 自訂輔助軌道 */
-  .post-content .custom-scrollbar-track {
-    position: relative;
-    width: 100%;
-    height: 6px;
-    background: var(--cream2, rgba(205,214,174,0.25));
-    border-radius: 3px;
-    margin-top: 8px;
-  }
-  .post-content .custom-scrollbar-thumb {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    background: var(--teal, #6ba6a6);
-    border-radius: 3px;
-    cursor: grab;
-    touch-action: none;
-  }
-  .post-content .custom-scrollbar-thumb:active {
-    cursor: grabbing;
-    background: var(--teal-dark, #4a8585);
-  }
   .post-content th {
-    white-space: nowrap;
-    min-width: 130px;
+    white-space: nowrap !important;
+    min-width: 120px !important;
     padding: 10px 14px;
   }
   .post-content td {
-    min-width: 130px;
-    word-break: keep-all;
+    min-width: 120px !important;
+    word-break: keep-all !important;
     padding: 10px 14px;
   }
 }
