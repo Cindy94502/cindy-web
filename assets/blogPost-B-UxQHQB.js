@@ -1,4 +1,4 @@
-import{r as L,a as k,i as $,b as a}from"./shared-Cw5G1Ixq.js";/* empty css             */const E="https://raw.githubusercontent.com/Cindy94502/cindy-data/main/posts.json",S=new URLSearchParams(location.search),C=S.get("id"),T={買房筆記:"cat-teal",南崁生活:"cat-sage","Q&A":"cat-yellow",物件介紹:"cat-peach"};document.getElementById("app").innerHTML=`
+import{r as L,a as k,i as $,b as a}from"./shared-C_8b4sww.js";/* empty css             */const E="https://raw.githubusercontent.com/Cindy94502/cindy-data/main/posts.json",S=new URLSearchParams(location.search),C=S.get("id"),T={買房筆記:"cat-teal",南崁生活:"cat-sage","Q&A":"cat-yellow",物件介紹:"cat-peach"};document.getElementById("app").innerHTML=`
   ${L()}
   <div class="post-loading">
     <div class="skeleton-line skeleton-pulse" style="width:60%;height:36px;margin-bottom:16px"></div>
