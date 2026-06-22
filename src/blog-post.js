@@ -101,19 +101,24 @@ async function loadPost() {
       </div>
     </div>`
 
-    // ── 表格拉桿：iPhone / Android 都能看到 ──
+    // ── 表格拉桿：使用 transform 滾動，不影響任何頁面滾動 ──
     document.querySelectorAll('.post-content .table-wrap').forEach(wrap => {
       const scroll = wrap.querySelector('.table-scroll')
       if (!scroll) return
-
-      // 強制讓 table 寬度大於螢幕（手機才滑得動）
       const table = scroll.querySelector('table')
-      if (table && window.innerWidth <= 768) {
-        table.style.minWidth = '560px'
-        table.style.width = 'max-content'
-      }
+      if (!table) return
 
-      // 設定 wrap 為 relative，以便拉桿絕對定位
+      // 手機才啟用這個拉桿機制
+      if (window.innerWidth > 768) return
+
+      // 設定：scroll 是視窗，table 可以超出但用 transform 控制位置
+      scroll.style.overflow = 'hidden'
+      scroll.style.position = 'relative'
+      table.style.minWidth = '560px'
+      table.style.width = 'max-content'
+      table.style.willChange = 'transform'
+      table.style.transition = 'none'
+
       wrap.style.position = 'relative'
 
       // 建拉桿軌道
@@ -122,40 +127,68 @@ async function loadPost() {
       const thumb = document.createElement('div')
       thumb.className = 'custom-scrollbar-thumb'
       track.appendChild(thumb)
-      wrap.insertBefore(track, scroll.nextSibling)
+      wrap.appendChild(track)
+
+      let translateX = 0
+      const getMaxTranslate = () => Math.max(0, table.offsetWidth - scroll.clientWidth)
 
       const update = () => {
-        const ratio = scroll.clientWidth / scroll.scrollWidth
-        if (ratio >= 1) {
+        const maxTranslate = getMaxTranslate()
+        if (maxTranslate <= 0) {
           track.style.display = 'none'
           return
         }
         track.style.display = 'block'
+        const ratio = scroll.clientWidth / table.offsetWidth
         thumb.style.width = (ratio * 100) + '%'
-        const left = (scroll.scrollLeft / scroll.scrollWidth) * 100
-        thumb.style.left = left + '%'
+        const percent = (translateX / maxTranslate) * (100 - ratio * 100)
+        thumb.style.left = percent + '%'
       }
 
-      scroll.addEventListener('scroll', update)
-      window.addEventListener('resize', update)
-      setTimeout(update, 100)
+      const moveTable = (x) => {
+        const maxTranslate = getMaxTranslate()
+        translateX = Math.max(0, Math.min(maxTranslate, x))
+        table.style.transform = 'translateX(-' + translateX + 'px)'
+        update()
+      }
 
-      // 拉拉桿來滾動
+      // 表格上手指滑動
+      let touchStartX = 0
+      let touchStartTranslate = 0
+      let touchActive = false
+      scroll.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX
+        touchStartTranslate = translateX
+        touchActive = true
+      }, { passive: true })
+      scroll.addEventListener('touchmove', (e) => {
+        if (!touchActive) return
+        const dx = e.touches[0].clientX - touchStartX
+        // 只有水平滾動才阻止預設，避免卡住連直滾動
+        if (Math.abs(dx) > 8) {
+          e.preventDefault()
+          moveTable(touchStartTranslate - dx)
+        }
+      }, { passive: false })
+      scroll.addEventListener('touchend', () => { touchActive = false })
+
+      // 拉拉桿
       let dragging = false
       let startX = 0
-      let startScroll = 0
+      let startTranslate = 0
       const onDown = (e) => {
         dragging = true
         startX = (e.touches ? e.touches[0].clientX : e.clientX)
-        startScroll = scroll.scrollLeft
+        startTranslate = translateX
         e.preventDefault()
       }
       const onMove = (e) => {
         if (!dragging) return
         const x = (e.touches ? e.touches[0].clientX : e.clientX)
         const delta = x - startX
-        const ratio = scroll.scrollWidth / track.clientWidth
-        scroll.scrollLeft = startScroll + delta * ratio
+        const maxTranslate = getMaxTranslate()
+        const ratio = maxTranslate / (track.clientWidth - thumb.offsetWidth)
+        moveTable(startTranslate + delta * ratio)
       }
       const onUp = () => { dragging = false }
       thumb.addEventListener('mousedown', onDown)
@@ -164,6 +197,9 @@ async function loadPost() {
       window.addEventListener('touchmove', onMove, { passive: false })
       window.addEventListener('mouseup', onUp)
       window.addEventListener('touchend', onUp)
+
+      setTimeout(update, 100)
+      window.addEventListener('resize', update)
     })
 
   } catch (e) {
