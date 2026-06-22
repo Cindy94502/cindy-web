@@ -23,16 +23,18 @@
     box-sizing: border-box !important;
   }
 
-  /* ── 🌟 確保只有表格包裝盒自己可以橫向滾動 ── */
+  /* ── 🌟 修正：解開表格被切掉的封印，允許內層滑動 ── */
   .post-content .table-wrap {
+    width: 100% !important;
     max-width: 100% !important;
-    overflow: hidden !important; /* 防止外殼也撐開 */
+    overflow: visible !important; /* 👈 改成 visible，裡面的內容才不會被物理切斷！ */
   }
   
   .post-content .table-wrap .table-scroll {
-    overflow-x: auto !important; /* 只有這層肚子能左右滾 */
-    -webkit-overflow-scrolling: touch;
+    display: block !important;
     width: 100% !important;
+    overflow-x: auto !important; /* 👈 讓這層肚子可以名正言順地左右滾動 */
+    -webkit-overflow-scrolling: touch;
   }
 
   /* ── NAV ── */
