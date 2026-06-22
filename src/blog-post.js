@@ -106,6 +106,13 @@ async function loadPost() {
       const scroll = wrap.querySelector('.table-scroll')
       if (!scroll) return
 
+      // 強制讓 table 寬度大於螢幕（手機才滑得動）
+      const table = scroll.querySelector('table')
+      if (table && window.innerWidth <= 768) {
+        table.style.minWidth = '560px'
+        table.style.width = 'max-content'
+      }
+
       // 設定 wrap 為 relative，以便拉桿絕對定位
       wrap.style.position = 'relative'
 
