@@ -5,8 +5,41 @@
 
 @media (max-width: 768px) {
 
-  /* 防止任何內容撐寬整頁 */
-  body { overflow-x: clip; }
+  /* ── 🌟 終極修正：移除壞事的 body overflow-x: clip，全由下方 html, body 統一鎖死 ── */
+  html, body {
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important; /* 鎖死外殼，禁止網頁左右晃動 */
+    position: relative;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* ── 🌟 保障文章主體與 Footer 各自獨立，絕對不超標 ── */
+  .post-page, .post-body, footer {
+    width: 100% !important;
+    max-width: 100vw !important;
+    box-sizing: border-box !important;
+  }
+
+  /* ── 🌟 表格橫向滾動：iPhone 專屬順暢防漏設定 ── */
+  .post-content .table-wrap {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important; /* 允許內部內容展開 */
+  }
+  
+  .post-content .table-wrap .table-scroll {
+    display: block !important;
+    width: 100% !important;
+    overflow-x: auto !important; /* 讓這層肚子在 iPhone 上可以左右滑動 */
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch; /* 🌟 啟用 iOS 專屬五星級硬體加速流暢滑動 */
+  }
+
+  .post-content .table-wrap table {
+    width: max-content !important;
+    min-width: 100% !important;
+  }
 
   /* ── NAV ── */
   nav { padding: 0 16px; height: 56px; }
@@ -144,6 +177,7 @@
   .post-content p { font-size: 15px; }
   .post-contact-card { padding: 24px 20px; }
   .post-contact-btns { flex-direction: column; align-items: center; }
+  
   /* 表格 ─ 外層放提示文字（跨欄置中），內層負責滾動 */
   .post-content .table-wrap {
     width: 100%;
