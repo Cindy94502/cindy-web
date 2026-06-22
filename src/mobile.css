@@ -141,12 +141,15 @@
   .post-content p { font-size: 15px; }
   .post-contact-card { padding: 24px 20px; }
   .post-contact-btns { flex-direction: column; align-items: center; }
-  /* 表格 ─ 全寬且不震牆 */
+  /* 表格 ─ 外層放提示文字（跨欄置中），內層負責滾動 */
   .post-content .table-wrap {
+    width: 100%;
+    margin: 16px 0 4px;
+  }
+  .post-content .table-wrap .table-scroll {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     width: 100%;
-    margin: 16px 0 4px;
   }
   .post-content .table-wrap table {
     width: 100%;
