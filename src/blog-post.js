@@ -15,14 +15,17 @@ const CATEGORY_COLORS = {
   '物件介紹': 'cat-peach'
 }
 
+// ── 🌟 核心改動 1：給文章主體一個獨立的容器 #post-container，與 Footer 劃清界線 ──
 document.getElementById('app').innerHTML = `
   ${renderNav('blog')}
-  <div class="post-loading">
-    <div class="skeleton-line skeleton-pulse" style="width:60%;height:36px;margin-bottom:16px"></div>
-    <div class="skeleton-line skeleton-pulse" style="width:40%;height:14px;margin-bottom:40px"></div>
-    <div class="skeleton-line skeleton-pulse" style="width:100%;height:14px;margin-bottom:10px"></div>
-    <div class="skeleton-line skeleton-pulse" style="width:95%;height:14px;margin-bottom:10px"></div>
-    <div class="skeleton-line skeleton-pulse" style="width:88%;height:14px}</div>
+  <div id="post-container">
+    <div class="post-loading">
+      <div class="skeleton-line skeleton-pulse" style="width:60%;height:36px;margin-bottom:16px"></div>
+      <div class="skeleton-line skeleton-pulse" style="width:40%;height:14px;margin-bottom:40px"></div>
+      <div class="skeleton-line skeleton-pulse" style="width:100%;height:14px;margin-bottom:10px"></div>
+      <div class="skeleton-line skeleton-pulse" style="width:95%;height:14px;margin-bottom:10px"></div>
+      <div class="skeleton-line skeleton-pulse" style="width:88%;height:14px"></div>
+    </div>
   </div>
   ${renderFooter()}
 `
@@ -37,7 +40,8 @@ async function loadPost() {
     const post = posts.find(p => p.id === postId)
 
     if (!post) {
-      document.querySelector('.post-loading').innerHTML =
+      // ── 🌟 核心改動 2：直接安全塞入獨立容器，絕對不改動或影響外面的 Footer ──
+      document.getElementById('post-container').innerHTML =
         `<div style="text-align:center;padding:80px 0;color:var(--brown-mid)">
           <p style="letter-spacing:2px;margin-bottom:24px">找不到這篇文章</p>
           <a href="blog.html" style="color:var(--teal-dark);letter-spacing:2px">← 回到筆記列表</a>
@@ -50,15 +54,14 @@ async function loadPost() {
       ? new Date(post.date).toLocaleDateString('zh-TW', { year: 'numeric', month: 'long', day: 'numeric' })
       : ''
 
-    // 更新頁面標題
     document.title = `${post.title}｜Cindy 王小姐`
 
-    // 內容：優先用 HTML content，沒有才 fallback 到 excerpt
     const bodyHtml = post.content
       ? post.content
       : (post.excerpt || '').split('\n').filter(line => line.trim()).map(line => `<p>${line}</p>`).join('')
 
-    document.querySelector('.post-loading').outerHTML = `
+    // ── 🌟 核心改動 3：精準將文章內容塞進 container，讓外面的 Footer 毫手無損 ──
+    document.getElementById('post-container').innerHTML = `
     <div class="post-page">
       <div class="post-header">
         <div class="post-header-inner">
@@ -101,9 +104,8 @@ async function loadPost() {
       </div>
     </div>`
 
-    // ── 👇✨ 告訴妳，我把補丁加在這邊，同時清洗了原本綁架滑動的繁瑣 JS ✨👇 ──
+    // ── 📊 表格內容自動填入補丁（不動裡面的格式） ──
     setTimeout(() => {
-      // 1. 自動填入精華表格內容（這段沒動它）
       const tableContainer = document.querySelector('.post-content table');
       if (tableContainer && tableContainer.innerHTML === '') {
         tableContainer.innerHTML = `
@@ -139,24 +141,19 @@ async function loadPost() {
         `;
       }
 
-      // 2. 讓 Notion 表格在手機版啟用流暢的原生 CSS 滾動，絕不干涉或拉扯網頁其他元件
       document.querySelectorAll('.post-content .table-wrap').forEach(wrap => {
         const scroll = wrap.querySelector('.table-scroll')
         if (!scroll) return
-        
-        // 釋放瀏覽器控制權，允許原生流暢滑動，並移除所有阻礙網頁直向滾動的 JS 事件
         scroll.style.overflowX = 'auto'
         scroll.style.overflowY = 'hidden'
         scroll.style.position = 'relative'
-        
-        // 移除可能存在的舊自訂軌道，避免視覺重複
         wrap.querySelectorAll('.custom-scrollbar-track').forEach(t => t.remove())
       })
     }, 100);
-    // ── 👆✨ 添加與清洗結束 ──
 
   } catch (e) {
-    document.querySelector('.post-loading').innerHTML =
+    // ── 🌟 核心改動 4 ──
+    document.getElementById('post-container').innerHTML =
       `<div style="text-align:center;padding:80px 0;color:var(--brown-mid)">
         <p style="letter-spacing:2px;margin-bottom:24px">載入失敗，請稍後再試</p>
         <a href="blog.html" style="color:var(--teal-dark);letter-spacing:2px">← 回到筆記列表</a>
