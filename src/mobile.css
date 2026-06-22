@@ -191,14 +191,15 @@
     border-radius: 3px;
   }
   
-  .post-content div:has(table)::after {
-    content: '← 左右滑動 →';
-    display: block;
-    text-align: center;
-    font-size: 11px;
-    color: var(--brown-light);
-    letter-spacing: 2px;
-    padding: 14px 0 16px;
+  /* ── 👇✨ 這裡已經幫妳換成全新的 .table-wrap::after 唯一渲染設定囉！ ✨👇 ── */
+  .post-content .table-wrap::after {
+    content: '← 左右滑動 →' !important;
+    display: block !important;
+    text-align: center !important;
+    font-size: 11px !important;
+    color: var(--brown-light) !important;
+    letter-spacing: 2px !important;
+    padding: 14px 0 16px !important;
   }
   
   .post-content th {
