@@ -5,9 +5,8 @@
 
 @media (max-width: 768px) {
 
-  /* 防止任何內容撐寬整頁（表格除外）*/
+  /* 防止任何內容撐寬整頁 */
   body { overflow-x: clip; }
-  footer, .post-page, .post-body { max-width: 100vw; overflow-x: hidden; }
 
   /* ── NAV ── */
   nav { padding: 0 16px; height: 56px; }
@@ -209,11 +208,13 @@
   }
   .post-content th {
     white-space: nowrap;
-    min-width: 90px;
+    min-width: 130px;
+    padding: 10px 14px;
   }
   .post-content td {
-    min-width: 90px;
+    min-width: 130px;
     word-break: keep-all;
+    padding: 10px 14px;
   }
 }
 
