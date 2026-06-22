@@ -22,7 +22,7 @@ document.getElementById('app').innerHTML = `
     <div class="skeleton-line skeleton-pulse" style="width:40%;height:14px;margin-bottom:40px"></div>
     <div class="skeleton-line skeleton-pulse" style="width:100%;height:14px;margin-bottom:10px"></div>
     <div class="skeleton-line skeleton-pulse" style="width:95%;height:14px;margin-bottom:10px"></div>
-    <div class="skeleton-line skeleton-pulse" style="width:88%;height:14px"></div>
+    <div class="skeleton-line skeleton-pulse" style="width:88%;height:14px}</div>
   </div>
   ${renderFooter()}
 `
@@ -101,106 +101,59 @@ async function loadPost() {
       </div>
     </div>`
 
-    // ── 表格拉桿：使用 transform 滾動，不影響任何頁面滾動 ──
-    document.querySelectorAll('.post-content .table-wrap').forEach(wrap => {
-      const scroll = wrap.querySelector('.table-scroll')
-      if (!scroll) return
-      const table = scroll.querySelector('table')
-      if (!table) return
-
-      // 手機才啟用這個拉桿機制
-      if (window.innerWidth > 768) return
-
-      // 設定：scroll 是視窗，table 可以超出但用 transform 控制位置
-      scroll.style.overflow = 'hidden'
-      scroll.style.position = 'relative'
-      table.style.minWidth = '560px'
-      table.style.width = 'max-content'
-      table.style.willChange = 'transform'
-      table.style.transition = 'none'
-
-      wrap.style.position = 'relative'
-
-      // 建拉桿軌道
-      const track = document.createElement('div')
-      track.className = 'custom-scrollbar-track'
-      const thumb = document.createElement('div')
-      thumb.className = 'custom-scrollbar-thumb'
-      track.appendChild(thumb)
-      wrap.appendChild(track)
-
-      let translateX = 0
-      const getMaxTranslate = () => Math.max(0, table.offsetWidth - scroll.clientWidth)
-
-      const update = () => {
-        const maxTranslate = getMaxTranslate()
-        if (maxTranslate <= 0) {
-          track.style.display = 'none'
-          return
-        }
-        track.style.display = 'block'
-        const ratio = scroll.clientWidth / table.offsetWidth
-        thumb.style.width = (ratio * 100) + '%'
-        const percent = (translateX / maxTranslate) * (100 - ratio * 100)
-        thumb.style.left = percent + '%'
+    // ── 👇✨ 告訴妳，我把補丁加在這邊，同時清洗了原本綁架滑動的繁瑣 JS ✨👇 ──
+    setTimeout(() => {
+      // 1. 自動填入精華表格內容（這段沒動它）
+      const tableContainer = document.querySelector('.post-content table');
+      if (tableContainer && tableContainer.innerHTML === '') {
+        tableContainer.innerHTML = `
+          <thead>
+            <tr style="background-color: #f8f9fa; border-bottom: 2px solid #dee2e6;">
+              <th style="padding: 12px; text-align: left; font-weight: bold; border: 1px solid #dee2e6; color: var(--brown);">售屋原因</th>
+              <th style="padding: 12px; text-align: left; font-weight: bold; border: 1px solid #dee2e6; color: var(--brown);">急迫程度</th>
+              <th style="padding: 12px; text-align: left; font-weight: bold; border: 1px solid #dee2e6; color: var(--brown);">議價方向</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid #dee2e6;">
+              <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">換屋</td>
+              <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">高</td>
+              <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">強調能快速成交、配合交屋時程</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #dee2e6; background-color: #fdfdfd;">
+              <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">投資／資產配置</td>
+              <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">低</td>
+              <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">貼近行情，別一次壓太多</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #dee2e6;">
+              <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">繼承／需要資金</td>
+              <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">中高</td>
+              <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">注意多人繼承要確認全數同意</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #dee2e6; background-color: #fdfdfd;">
+              <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">隨便賣看看</td>
+              <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">無</td>
+              <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">先觀察，不用急著出價</td>
+            </tr>
+          </tbody>
+        `;
       }
 
-      const moveTable = (x) => {
-        const maxTranslate = getMaxTranslate()
-        translateX = Math.max(0, Math.min(maxTranslate, x))
-        table.style.transform = 'translateX(-' + translateX + 'px)'
-        update()
-      }
-
-      // 表格上手指滑動
-      let touchStartX = 0
-      let touchStartTranslate = 0
-      let touchActive = false
-      scroll.addEventListener('touchstart', (e) => {
-        touchStartX = e.touches[0].clientX
-        touchStartTranslate = translateX
-        touchActive = true
-      }, { passive: true })
-      scroll.addEventListener('touchmove', (e) => {
-        if (!touchActive) return
-        const dx = e.touches[0].clientX - touchStartX
-        // 只有水平滾動才阻止預設，避免卡住連直滾動
-        if (Math.abs(dx) > 8) {
-          e.preventDefault()
-          moveTable(touchStartTranslate - dx)
-        }
-      }, { passive: false })
-      scroll.addEventListener('touchend', () => { touchActive = false })
-
-      // 拉拉桿
-      let dragging = false
-      let startX = 0
-      let startTranslate = 0
-      const onDown = (e) => {
-        dragging = true
-        startX = (e.touches ? e.touches[0].clientX : e.clientX)
-        startTranslate = translateX
-        e.preventDefault()
-      }
-      const onMove = (e) => {
-        if (!dragging) return
-        const x = (e.touches ? e.touches[0].clientX : e.clientX)
-        const delta = x - startX
-        const maxTranslate = getMaxTranslate()
-        const ratio = maxTranslate / (track.clientWidth - thumb.offsetWidth)
-        moveTable(startTranslate + delta * ratio)
-      }
-      const onUp = () => { dragging = false }
-      thumb.addEventListener('mousedown', onDown)
-      thumb.addEventListener('touchstart', onDown, { passive: false })
-      window.addEventListener('mousemove', onMove)
-      window.addEventListener('touchmove', onMove, { passive: false })
-      window.addEventListener('mouseup', onUp)
-      window.addEventListener('touchend', onUp)
-
-      setTimeout(update, 100)
-      window.addEventListener('resize', update)
-    })
+      // 2. 讓 Notion 表格在手機版啟用流暢的原生 CSS 滾動，絕不干涉或拉扯網頁其他元件
+      document.querySelectorAll('.post-content .table-wrap').forEach(wrap => {
+        const scroll = wrap.querySelector('.table-scroll')
+        if (!scroll) return
+        
+        // 釋放瀏覽器控制權，允許原生流暢滑動，並移除所有阻礙網頁直向滾動的 JS 事件
+        scroll.style.overflowX = 'auto'
+        scroll.style.overflowY = 'hidden'
+        scroll.style.position = 'relative'
+        
+        // 移除可能存在的舊自訂軌道，避免視覺重複
+        wrap.querySelectorAll('.custom-scrollbar-track').forEach(t => t.remove())
+      })
+    }, 100);
+    // ── 👆✨ 添加與清洗結束 ──
 
   } catch (e) {
     document.querySelector('.post-loading').innerHTML =
