@@ -5,11 +5,11 @@
 
 @media (max-width: 768px) {
 
-  /* ── 🌟 終極修正：移除壞事的 body overflow-x: clip，全由下方 html, body 統一鎖死 ── */
+  /* ── 🌟 網頁大外殼絕對鎖死，禁止任何左右晃動 ── */
   html, body {
     width: 100% !important;
     max-width: 100vw !important;
-    overflow-x: hidden !important; /* 鎖死外殼，禁止網頁左右晃動 */
+    overflow-x: hidden !important; /* 鎖死外殼 */
     position: relative;
     -webkit-text-size-adjust: 100%;
   }
@@ -25,15 +25,19 @@
   .post-content .table-wrap {
     width: 100% !important;
     max-width: 100% !important;
-    overflow: visible !important; /* 允許內部內容展開 */
+    margin: 16px 0 4px;
+    overflow: visible !important; /* 允許內部內容完全展開不被切斷 */
   }
   
   .post-content .table-wrap .table-scroll {
     display: block !important;
     width: 100% !important;
-    overflow-x: auto !important; /* 讓這層肚子在 iPhone 上可以左右滑動 */
+    overflow-x: auto !important; /* 讓這層肚子可以左右滑動 */
     overflow-y: hidden !important;
-    -webkit-overflow-scrolling: touch; /* 🌟 啟用 iOS 專屬五星級硬體加速流暢滑動 */
+    -webkit-overflow-scrolling: touch; /* 啟用 iOS 專屬五星級硬體加速流暢滑動 */
+    touch-action: pan-x; /* 限制手指只允許水平划動，防止干涉上下滾動 */
+    scrollbar-width: thin;
+    scrollbar-color: var(--teal) var(--cream2);
   }
 
   .post-content .table-wrap table {
@@ -178,20 +182,7 @@
   .post-contact-card { padding: 24px 20px; }
   .post-contact-btns { flex-direction: column; align-items: center; }
   
-  /* 表格 ─ 外層放提示文字（跨欄置中），內層負責滾動 */
-  .post-content .table-wrap {
-    width: 100%;
-    margin: 16px 0 4px;
-  }
-  .post-content .table-wrap .table-scroll {
-    overflow-x: scroll;
-    -webkit-overflow-scrolling: touch;
-    touch-action: pan-x;
-    width: 100%;
-    /* 拉桿樣式 */
-    scrollbar-width: thin;
-    scrollbar-color: var(--teal) var(--cream2);
-  }
+  /* 表格拉桿樣式自訂 */
   .post-content .table-wrap .table-scroll::-webkit-scrollbar {
     height: 6px;
     -webkit-appearance: none;
@@ -204,10 +195,7 @@
     background: var(--teal);
     border-radius: 3px;
   }
-  .post-content .table-wrap table {
-    width: max-content;
-    min-width: 100%;
-  }
+  
   .post-content .table-wrap::after {
     content: '← 左右滑動 →';
     display: block;
@@ -217,7 +205,8 @@
     letter-spacing: 2px;
     padding: 14px 0 16px;
   }
-  /* 自訂拉桿 */
+  
+  /* 自訂輔助軌道 */
   .post-content .custom-scrollbar-track {
     position: relative;
     width: 100%;
