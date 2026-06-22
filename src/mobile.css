@@ -5,8 +5,9 @@
 
 @media (max-width: 768px) {
 
-  /* 防止表格或任何內容撐寬整頁（只限制 body，不影響子層滑動）*/
+  /* 防止表格或任何內容撐寬整頁 */
   body { overflow-x: clip; }
+  .post-content { overflow-x: hidden; max-width: 100%; }
 
   /* ── NAV ── */
   nav { padding: 0 16px; height: 56px; }
