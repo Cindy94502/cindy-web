@@ -172,7 +172,8 @@
     border-radius: 3px;
   }
   .post-content .table-wrap table {
-    width: 100%;
+    width: max-content;
+    min-width: 100%;
   }
   .post-content .table-wrap::after {
     content: '← 左右滑動 →';
