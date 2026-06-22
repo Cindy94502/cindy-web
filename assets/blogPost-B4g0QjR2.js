@@ -1,23 +1,25 @@
 import{r as c,a as p,i as b,b as o}from"./shared-C_8b4sww.js";/* empty css             */const v="https://raw.githubusercontent.com/Cindy94502/cindy-data/main/posts.json",m=new URLSearchParams(location.search),g=m.get("id"),x={買房筆記:"cat-teal",南崁生活:"cat-sage","Q&A":"cat-yellow",物件介紹:"cat-peach"};document.getElementById("app").innerHTML=`
   ${c()}
-  <div class="post-loading">
-    <div class="skeleton-line skeleton-pulse" style="width:60%;height:36px;margin-bottom:16px"></div>
-    <div class="skeleton-line skeleton-pulse" style="width:40%;height:14px;margin-bottom:40px"></div>
-    <div class="skeleton-line skeleton-pulse" style="width:100%;height:14px;margin-bottom:10px"></div>
-    <div class="skeleton-line skeleton-pulse" style="width:95%;height:14px;margin-bottom:10px"></div>
-    <div class="skeleton-line skeleton-pulse" style="width:88%;height:14px}</div>
+  <div id="post-container">
+    <div class="post-loading">
+      <div class="skeleton-line skeleton-pulse" style="width:60%;height:36px;margin-bottom:16px"></div>
+      <div class="skeleton-line skeleton-pulse" style="width:40%;height:14px;margin-bottom:40px"></div>
+      <div class="skeleton-line skeleton-pulse" style="width:100%;height:14px;margin-bottom:10px"></div>
+      <div class="skeleton-line skeleton-pulse" style="width:95%;height:14px;margin-bottom:10px"></div>
+      <div class="skeleton-line skeleton-pulse" style="width:88%;height:14px"></div>
+    </div>
   </div>
   ${p()}
-`;b();async function y(){try{const r=await fetch(v);if(!r.ok)throw new Error("fetch failed");const t=(await r.json()).find(e=>e.id===g);if(!t){document.querySelector(".post-loading").innerHTML=`<div style="text-align:center;padding:80px 0;color:var(--brown-mid)">
+`;b();async function y(){try{const r=await fetch(v);if(!r.ok)throw new Error("fetch failed");const t=(await r.json()).find(e=>e.id===g);if(!t){document.getElementById("post-container").innerHTML=`<div style="text-align:center;padding:80px 0;color:var(--brown-mid)">
           <p style="letter-spacing:2px;margin-bottom:24px">找不到這篇文章</p>
           <a href="blog.html" style="color:var(--teal-dark);letter-spacing:2px">← 回到筆記列表</a>
-        </div>`;return}const s=x[t.category]||"cat-teal",i=t.date?new Date(t.date).toLocaleDateString("zh-TW",{year:"numeric",month:"long",day:"numeric"}):"";document.title=`${t.title}｜Cindy 王小姐`;const a=t.content?t.content:(t.excerpt||"").split(`
-`).filter(e=>e.trim()).map(e=>`<p>${e}</p>`).join("");document.querySelector(".post-loading").outerHTML=`
+        </div>`;return}const l=x[t.category]||"cat-teal",i=t.date?new Date(t.date).toLocaleDateString("zh-TW",{year:"numeric",month:"long",day:"numeric"}):"";document.title=`${t.title}｜Cindy 王小姐`;const n=t.content?t.content:(t.excerpt||"").split(`
+`).filter(e=>e.trim()).map(e=>`<p>${e}</p>`).join("");document.getElementById("post-container").innerHTML=`
     <div class="post-page">
       <div class="post-header">
         <div class="post-header-inner">
           <a href="blog.html" class="post-back">${o("ArrowLeft",14,2)} 回到筆記</a>
-          <span class="blog-card-cat ${s}" style="position:static;box-shadow:none">${t.category}</span>
+          <span class="blog-card-cat ${l}" style="position:static;box-shadow:none">${t.category}</span>
           <h1 class="post-title">${t.title}</h1>
           <div class="post-meta">
             ${o("Calendar",14,1.5)} ${i}
@@ -31,7 +33,7 @@ import{r as c,a as p,i as b,b as o}from"./shared-C_8b4sww.js";/* empty css      
 
       <div class="post-body">
         <div class="post-content">
-          ${a||'<p style="color:var(--brown-mid)">文章內容準備中…</p>'}
+          ${n||'<p style="color:var(--brown-mid)">文章內容準備中…</p>'}
         </div>
 
         <div class="post-footer-nav">
@@ -83,7 +85,7 @@ import{r as c,a as p,i as b,b as o}from"./shared-C_8b4sww.js";/* empty css      
               <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">先觀察，不用急著出價</td>
             </tr>
           </tbody>
-        `),document.querySelectorAll(".post-content .table-wrap").forEach(l=>{const d=l.querySelector(".table-scroll");d&&(d.style.overflowX="auto",d.style.overflowY="hidden",d.style.position="relative",l.querySelectorAll(".custom-scrollbar-track").forEach(n=>n.remove()))})},100)}catch{document.querySelector(".post-loading").innerHTML=`<div style="text-align:center;padding:80px 0;color:var(--brown-mid)">
+        `),document.querySelectorAll(".post-content .table-wrap").forEach(s=>{const d=s.querySelector(".table-scroll");d&&(d.style.overflowX="auto",d.style.overflowY="hidden",d.style.position="relative",s.querySelectorAll(".custom-scrollbar-track").forEach(a=>a.remove()))})},100)}catch{document.getElementById("post-container").innerHTML=`<div style="text-align:center;padding:80px 0;color:var(--brown-mid)">
         <p style="letter-spacing:2px;margin-bottom:24px">載入失敗，請稍後再試</p>
         <a href="blog.html" style="color:var(--teal-dark);letter-spacing:2px">← 回到筆記列表</a>
       </div>`}}y();
