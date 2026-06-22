@@ -101,42 +101,63 @@ async function loadPost() {
       </div>
     </div>`
 
-    // ── 👇✨ 告訴妳，我只在這邊添加了這段表格內容補丁 ✨👇 ──
-    const tableContainer = document.querySelector('.post-content table');
-    if (tableContainer && tableContainer.innerHTML === '') {
-      tableContainer.innerHTML = `
-        <thead>
-          <tr style="background-color: #f8f9fa; border-bottom: 2px solid #dee2e6;">
-            <th style="padding: 12px; text-align: left; font-weight: bold; border: 1px solid #dee2e6; color: var(--brown);">售屋原因</th>
-            <th style="padding: 12px; text-align: left; font-weight: bold; border: 1px solid #dee2e6; color: var(--brown);">急迫程度</th>
-            <th style="padding: 12px; text-align: left; font-weight: bold; border: 1px solid #dee2e6; color: var(--brown);">議價方向</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr style="border-bottom: 1px solid #dee2e6;">
-            <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">換屋</td>
-            <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">高</td>
-            <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">強調能快速成交、配合交屋時程</td>
-          </tr>
-          <tr style="border-bottom: 1px solid #dee2e6; background-color: #fdfdfd;">
-            <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">投資／資產配置</td>
-            <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">低</td>
-            <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">貼近行情，別一次壓太多</td>
-          </tr>
-          <tr style="border-bottom: 1px solid #dee2e6;">
-            <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">繼承／需要資金</td>
-            <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">中高</td>
-            <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">注意多人繼承要確認全數同意</td>
-          </tr>
-          <tr style="border-bottom: 1px solid #dee2e6; background-color: #fdfdfd;">
-            <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">隨便賣看看</td>
-            <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">無</td>
-            <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">先觀察，不用急著出價</td>
-          </tr>
-        </tbody>
-      `;
-    }
-    // ── 👆✨ 添加結束 ──
+    // ── 表格拉桿：iPhone / Android 都能看到 ──
+    document.querySelectorAll('.post-content .table-wrap').forEach(wrap => {
+      const scroll = wrap.querySelector('.table-scroll')
+      if (!scroll) return
+
+      // 設定 wrap 為 relative，以便拉桿絕對定位
+      wrap.style.position = 'relative'
+
+      // 建拉桿軌道
+      const track = document.createElement('div')
+      track.className = 'custom-scrollbar-track'
+      const thumb = document.createElement('div')
+      thumb.className = 'custom-scrollbar-thumb'
+      track.appendChild(thumb)
+      wrap.insertBefore(track, scroll.nextSibling)
+
+      const update = () => {
+        const ratio = scroll.clientWidth / scroll.scrollWidth
+        if (ratio >= 1) {
+          track.style.display = 'none'
+          return
+        }
+        track.style.display = 'block'
+        thumb.style.width = (ratio * 100) + '%'
+        const left = (scroll.scrollLeft / scroll.scrollWidth) * 100
+        thumb.style.left = left + '%'
+      }
+
+      scroll.addEventListener('scroll', update)
+      window.addEventListener('resize', update)
+      setTimeout(update, 100)
+
+      // 拉拉桿來滾動
+      let dragging = false
+      let startX = 0
+      let startScroll = 0
+      const onDown = (e) => {
+        dragging = true
+        startX = (e.touches ? e.touches[0].clientX : e.clientX)
+        startScroll = scroll.scrollLeft
+        e.preventDefault()
+      }
+      const onMove = (e) => {
+        if (!dragging) return
+        const x = (e.touches ? e.touches[0].clientX : e.clientX)
+        const delta = x - startX
+        const ratio = scroll.scrollWidth / track.clientWidth
+        scroll.scrollLeft = startScroll + delta * ratio
+      }
+      const onUp = () => { dragging = false }
+      thumb.addEventListener('mousedown', onDown)
+      thumb.addEventListener('touchstart', onDown, { passive: false })
+      window.addEventListener('mousemove', onMove)
+      window.addEventListener('touchmove', onMove, { passive: false })
+      window.addEventListener('mouseup', onUp)
+      window.addEventListener('touchend', onUp)
+    })
 
   } catch (e) {
     document.querySelector('.post-loading').innerHTML =
