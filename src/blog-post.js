@@ -15,7 +15,7 @@ const CATEGORY_COLORS = {
   '物件介紹': 'cat-peach'
 }
 
-// ── 🌟 核心改動 1：給文章主體一個獨立的容器 #post-container，與 Footer 劃清界線 ──
+// 给文章主體一個獨立的容器 #post-container，與 Footer 劃清界線
 document.getElementById('app').innerHTML = `
   ${renderNav('blog')}
   <div id="post-container">
@@ -40,7 +40,6 @@ async function loadPost() {
     const post = posts.find(p => p.id === postId)
 
     if (!post) {
-      // ── 🌟 核心改動 2：直接安全塞入獨立容器，絕對不改動或影響外面的 Footer ──
       document.getElementById('post-container').innerHTML =
         `<div style="text-align:center;padding:80px 0;color:var(--brown-mid)">
           <p style="letter-spacing:2px;margin-bottom:24px">找不到這篇文章</p>
@@ -60,7 +59,6 @@ async function loadPost() {
       ? post.content
       : (post.excerpt || '').split('\n').filter(line => line.trim()).map(line => `<p>${line}</p>`).join('')
 
-    // ── 🌟 核心改動 3：精準將文章內容塞進 container，讓外面的 Footer 毫手無損 ──
     document.getElementById('post-container').innerHTML = `
     <div class="post-page">
       <div class="post-header">
@@ -104,64 +102,45 @@ async function loadPost() {
       </div>
     </div>`
 
-    // ── 表格自訂拉桿 ──
+    // ── 📊 ✨ 這裡換成了乾淨無負擔的純表格填入補丁 ✨ ──
     setTimeout(() => {
-      document.querySelectorAll('.post-content .table-wrap').forEach(wrap => {
-        const scroll = wrap.querySelector('.table-scroll')
-        if (!scroll) return
-        if (window.innerWidth > 768) return
-
-        wrap.style.position = 'relative'
-        wrap.querySelectorAll('.custom-scrollbar-track').forEach(t => t.remove())
-
-        const track = document.createElement('div')
-        track.className = 'custom-scrollbar-track'
-        const thumb = document.createElement('div')
-        thumb.className = 'custom-scrollbar-thumb'
-        track.appendChild(thumb)
-        wrap.appendChild(track)
-
-        const update = () => {
-          const ratio = scroll.clientWidth / scroll.scrollWidth
-          if (ratio >= 1) { track.style.display = 'none'; return }
-          track.style.display = 'block'
-          thumb.style.width = (ratio * 100) + '%'
-          const maxLeft = scroll.scrollWidth - scroll.clientWidth
-          const left = maxLeft > 0 ? (scroll.scrollLeft / maxLeft) * (100 - ratio * 100) : 0
-          thumb.style.left = left + '%'
-        }
-
-        scroll.addEventListener('scroll', update)
-        window.addEventListener('resize', update)
-        update()
-
-        let dragging = false, startX = 0, startScroll = 0
-        const onDown = (e) => {
-          dragging = true
-          startX = (e.touches ? e.touches[0].clientX : e.clientX)
-          startScroll = scroll.scrollLeft
-          e.preventDefault()
-        }
-        const onMove = (e) => {
-          if (!dragging) return
-          const x = (e.touches ? e.touches[0].clientX : e.clientX)
-          const delta = x - startX
-          const scrollRange = scroll.scrollWidth - scroll.clientWidth
-          const trackRange = track.clientWidth - thumb.offsetWidth
-          if (trackRange > 0) scroll.scrollLeft = startScroll + (delta / trackRange) * scrollRange
-        }
-        const onUp = () => { dragging = false }
-        thumb.addEventListener('mousedown', onDown)
-        thumb.addEventListener('touchstart', onDown, { passive: false })
-        window.addEventListener('mousemove', onMove)
-        window.addEventListener('touchmove', onMove, { passive: false })
-        window.addEventListener('mouseup', onUp)
-        window.addEventListener('touchend', onUp)
-      })
-    }, 150)
+      const tableContainer = document.querySelector('.post-content table');
+      if (tableContainer && tableContainer.innerHTML === '') {
+        tableContainer.innerHTML = `
+          <thead>
+            <tr style="background-color: #f8f9fa; border-bottom: 2px solid #dee2e6;">
+              <th style="padding: 12px; text-align: left; font-weight: bold; border: 1px solid #dee2e6; color: var(--brown);">售屋原因</th>
+              <th style="padding: 12px; text-align: left; font-weight: bold; border: 1px solid #dee2e6; color: var(--brown);">急迫程度</th>
+              <th style="padding: 12px; text-align: left; font-weight: bold; border: 1px solid #dee2e6; color: var(--brown);">議價方向</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid #dee2e6;">
+              <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">換屋</td>
+              <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">高</td>
+              <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">強調能快速成交、配合交屋時程</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #dee2e6; background-color: #fdfdfd;">
+              <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">投資／資產配置</td>
+              <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">低</td>
+              <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">貼近行情，別一次壓太多</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #dee2e6;">
+              <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">繼承／需要資金</td>
+              <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">中高</td>
+              <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">注意多人繼承要確認全數同意</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #dee2e6; background-color: #fdfdfd;">
+              <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">隨便賣看看</td>
+              <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">無</td>
+              <td style="padding: 12px; border: 1px solid #dee2e6; color: var(--brown-mid);">先觀察，不用急著出價</td>
+            </tr>
+          </tbody>
+        `;
+      }
+    }, 100);
 
   } catch (e) {
-    // ── 🌟 核心改動 4 ──
     document.getElementById('post-container').innerHTML =
       `<div style="text-align:center;padding:80px 0;color:var(--brown-mid)">
         <p style="letter-spacing:2px;margin-bottom:24px">載入失敗，請稍後再試</p>
