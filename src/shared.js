@@ -73,12 +73,12 @@ export function renderFooter() {
     <div class="footer-copy">© 2025 中信房屋南崁一極 · 營業員證號 (112)登字第445910號</div>
     <div class="footer-copy">經紀人：黃惠蓉 · (110)桃市經字第001835號</div>
     <div class="footer-links">
-      <a href="/">首頁</a>
-      <a href="/#about">關於我</a>
-      <a href="/properties.html">精選物件</a>
-      <a href="/blog.html">房產筆記</a>
-      <a href="/#forms">快速諮詢</a>
-      <a href="/#contact">聯絡我</a>
+      <a href="/cindy-web/">首頁</a>
+      <a href="/cindy-web/#about">關於我</a>
+      <a href="/cindy-web/properties.html">精選物件</a>
+      <a href="/cindy-web/blog.html">房產筆記</a>
+      <a href="/cindy-web/#forms">快速諮詢</a>
+      <a href="/cindy-web/#contact">聯絡我</a>
     </div>
   </footer>
   <button class="go-top" id="goTop" aria-label="回到頂部">
