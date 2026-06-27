@@ -8,12 +8,12 @@
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */const f=[["path",{d:"M5 12h14"}],["path",{d:"m12 5 7 7-7 7"}]];/**
+ */const y=[["path",{d:"M5 12h14"}],["path",{d:"m12 5 7 7-7 7"}]];/**
  * @license lucide v1.18.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */const y=[["rect",{width:"20",height:"12",x:"2",y:"6",rx:"2"}],["circle",{cx:"12",cy:"12",r:"2"}],["path",{d:"M6 12h.01M18 12h.01"}]];/**
+ */const f=[["rect",{width:"20",height:"12",x:"2",y:"6",rx:"2"}],["circle",{cx:"12",cy:"12",r:"2"}],["path",{d:"M6 12h.01M18 12h.01"}]];/**
  * @license lucide v1.18.0 - ISC
  *
  * This source code is licensed under the ISC license.
@@ -23,12 +23,12 @@
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */const M=[["path",{d:"M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"}],["circle",{cx:"7",cy:"17",r:"2"}],["path",{d:"M9 17h6"}],["circle",{cx:"17",cy:"17",r:"2"}]];/**
+ */const b=[["path",{d:"M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"}],["circle",{cx:"7",cy:"17",r:"2"}],["path",{d:"M9 17h6"}],["circle",{cx:"17",cy:"17",r:"2"}]];/**
  * @license lucide v1.18.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */const b=[["path",{d:"m6 9 6 6 6-6"}]];/**
+ */const M=[["path",{d:"m6 9 6 6 6-6"}]];/**
  * @license lucide v1.18.0 - ISC
  *
  * This source code is licensed under the ISC license.
@@ -133,7 +133,7 @@
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */const z=[["path",{d:"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"}],["path",{d:"M16 3.128a4 4 0 0 1 0 7.744"}],["path",{d:"M22 21v-2a4 4 0 0 0-3-3.87"}],["circle",{cx:"9",cy:"7",r:"4"}]],F={Home:u,Building2:g,House:u,MapPin:$,Phone:P,MessageCircle:O,User:q,UserCircle:E,Users:z,Monitor:I,ArrowRight:f,ArrowLeft:v,ChevronUp:L,ChevronDown:b,ChevronLeft:x,ChevronRight:w,Search:N,AlertCircle:C,Car:M,Star:j,FileText:A,KeyRound:k,Banknote:y,Share2:U,Link:B,Play:S,ShoppingBag:V,Heart:H};function m(c,s=20,a=1.5,n="",e="currentColor"){const t=F[c];if(!t)return"";const o=t.map(([i,l])=>{const d=Object.entries(l).map(([h,r])=>`${h}="${r}"`).join(" ");return`<${i} ${d}/>`}).join("");return`<svg xmlns="http://www.w3.org/2000/svg" width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${e}" stroke-width="${a}" stroke-linecap="round" stroke-linejoin="round" class="lucide ${n}" aria-hidden="true">${o}</svg>`}function R(){return`
+ */const z=[["path",{d:"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"}],["path",{d:"M16 3.128a4 4 0 0 1 0 7.744"}],["path",{d:"M22 21v-2a4 4 0 0 0-3-3.87"}],["circle",{cx:"9",cy:"7",r:"4"}]],F={Home:u,Building2:g,House:u,MapPin:$,Phone:P,MessageCircle:O,User:q,UserCircle:E,Users:z,Monitor:I,ArrowRight:y,ArrowLeft:v,ChevronUp:L,ChevronDown:M,ChevronLeft:x,ChevronRight:w,Search:N,AlertCircle:C,Car:b,Star:j,FileText:A,KeyRound:k,Banknote:f,Share2:U,Link:B,Play:S,ShoppingBag:V,Heart:H};function m(c,s=20,a=1.5,n="",e="currentColor"){const t=F[c];if(!t)return"";const o=t.map(([i,l])=>{const d=Object.entries(l).map(([h,r])=>`${h}="${r}"`).join(" ");return`<${i} ${d}/>`}).join("");return`<svg xmlns="http://www.w3.org/2000/svg" width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${e}" stroke-width="${a}" stroke-linecap="round" stroke-linejoin="round" class="lucide ${n}" aria-hidden="true">${o}</svg>`}function R(){return`
   <nav id="nav">
     <a href="index.html" class="nav-logo">
       <span class="nav-logo-dot"></span>
@@ -201,12 +201,12 @@
     <div class="footer-copy">© 2025 中信房屋南崁一極 · 營業員證號 (112)登字第445910號</div>
     <div class="footer-copy">經紀人：黃惠蓉 · (110)桃市經字第001835號</div>
     <div class="footer-links">
-      <a href="/">首頁</a>
-      <a href="/#about">關於我</a>
-      <a href="/properties.html">精選物件</a>
-      <a href="/blog.html">房產筆記</a>
-      <a href="/#forms">快速諮詢</a>
-      <a href="/#contact">聯絡我</a>
+      <a href="/cindy-web/">首頁</a>
+      <a href="/cindy-web/#about">關於我</a>
+      <a href="/cindy-web/properties.html">精選物件</a>
+      <a href="/cindy-web/blog.html">房產筆記</a>
+      <a href="/cindy-web/#forms">快速諮詢</a>
+      <a href="/cindy-web/#contact">聯絡我</a>
     </div>
   </footer>
   <button class="go-top" id="goTop" aria-label="回到頂部">
