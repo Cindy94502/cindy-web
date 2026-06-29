@@ -70,8 +70,9 @@ export function renderFooter() {
   return `
   <footer>
     <div class="footer-brand">Cindy <span>王小姐</span></div>
-    <div class="footer-copy">欣益不動產開發有限公司 · 中信房屋 南崁一極加盟店</div>
-    <div class="footer-copy">© 2025 · 營業員證號：王瑋薰(Cindy) · (112)登字第445910號</div>
+    <div class="footer-copy">欣益不動產開發有限公司 | 中信房屋 南崁一極加盟店</div>
+    <div class="footer-copy">© 2026 欣益不動產開發有限公司</div>
+    <div class="footer-copy">營業員：王瑋薰(Cindy) · (112)登字第445910號</div>
     <div class="footer-copy">經紀人：黃惠蓉 · (110)桃市經字第001835號</div>
     <div class="footer-links">
       <a href="/cindy-web/">首頁</a>
