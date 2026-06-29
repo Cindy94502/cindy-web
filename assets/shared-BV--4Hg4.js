@@ -3,7 +3,7 @@
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */const v=[["path",{d:"m12 19-7-7 7-7"}],["path",{d:"M19 12H5"}]];/**
+ */const m=[["path",{d:"m12 19-7-7 7-7"}],["path",{d:"M19 12H5"}]];/**
  * @license lucide v1.18.0 - ISC
  *
  * This source code is licensed under the ISC license.
@@ -133,11 +133,11 @@
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */const z=[["path",{d:"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"}],["path",{d:"M16 3.128a4 4 0 0 1 0 7.744"}],["path",{d:"M22 21v-2a4 4 0 0 0-3-3.87"}],["circle",{cx:"9",cy:"7",r:"4"}]],F={Home:u,Building2:g,House:u,MapPin:$,Phone:P,MessageCircle:O,User:q,UserCircle:E,Users:z,Monitor:I,ArrowRight:y,ArrowLeft:v,ChevronUp:L,ChevronDown:M,ChevronLeft:x,ChevronRight:w,Search:N,AlertCircle:C,Car:b,Star:j,FileText:A,KeyRound:k,Banknote:f,Share2:U,Link:B,Play:S,ShoppingBag:V,Heart:H};function m(c,s=20,a=1.5,n="",e="currentColor"){const t=F[c];if(!t)return"";const o=t.map(([i,l])=>{const d=Object.entries(l).map(([h,r])=>`${h}="${r}"`).join(" ");return`<${i} ${d}/>`}).join("");return`<svg xmlns="http://www.w3.org/2000/svg" width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${e}" stroke-width="${a}" stroke-linecap="round" stroke-linejoin="round" class="lucide ${n}" aria-hidden="true">${o}</svg>`}function R(){return`
+ */const z=[["path",{d:"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"}],["path",{d:"M16 3.128a4 4 0 0 1 0 7.744"}],["path",{d:"M22 21v-2a4 4 0 0 0-3-3.87"}],["circle",{cx:"9",cy:"7",r:"4"}]],F={Home:u,Building2:g,House:u,MapPin:$,Phone:P,MessageCircle:O,User:q,UserCircle:E,Users:z,Monitor:I,ArrowRight:y,ArrowLeft:m,ChevronUp:L,ChevronDown:M,ChevronLeft:x,ChevronRight:w,Search:N,AlertCircle:C,Car:b,Star:j,FileText:A,KeyRound:k,Banknote:f,Share2:U,Link:B,Play:S,ShoppingBag:V,Heart:H};function v(c,s=20,a=1.5,n="",e="currentColor"){const t=F[c];if(!t)return"";const o=t.map(([i,l])=>{const d=Object.entries(l).map(([h,r])=>`${h}="${r}"`).join(" ");return`<${i} ${d}/>`}).join("");return`<svg xmlns="http://www.w3.org/2000/svg" width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${e}" stroke-width="${a}" stroke-linecap="round" stroke-linejoin="round" class="lucide ${n}" aria-hidden="true">${o}</svg>`}function R(){return`
   <nav id="nav">
     <a href="index.html" class="nav-logo">
       <span class="nav-logo-dot"></span>
-      Cindy ${m("Heart",16,2,"nav-logo-heart")}
+      Cindy ${v("Heart",16,2,"nav-logo-heart")}
     </a>
     <button class="menu-btn" id="menuBtn" aria-label="選單">
       <span class="menu-btn-text">MENU</span>
@@ -198,8 +198,9 @@
   `}function _(){return`
   <footer>
     <div class="footer-brand">Cindy <span>王小姐</span></div>
-    <div class="footer-copy">欣益不動產開發有限公司 · 中信房屋 南崁一極加盟店</div>
-    <div class="footer-copy">© 2025 · 營業員證號：王瑋薰(Cindy) · (112)登字第445910號</div>
+    <div class="footer-copy">欣益不動產開發有限公司 | 中信房屋 南崁一極加盟店</div>
+    <div class="footer-copy">© 2026 欣益不動產開發有限公司</div>
+    <div class="footer-copy">營業員：王瑋薰(Cindy) · (112)登字第445910號</div>
     <div class="footer-copy">經紀人：黃惠蓉 · (110)桃市經字第001835號</div>
     <div class="footer-links">
       <a href="/cindy-web/">首頁</a>
@@ -211,7 +212,7 @@
     </div>
   </footer>
   <button class="go-top" id="goTop" aria-label="回到頂部">
-    <span class="go-top-arrow">${m("ChevronUp",16,2.5)}</span>
+    <span class="go-top-arrow">${v("ChevronUp",16,2.5)}</span>
     <span class="go-top-sub">Go to</span>
     <span class="go-top-main">TOP</span>
   </button>
@@ -225,4 +226,4 @@
       <img src="images/btn_line.png" alt="LINE 加入好友">
     </a>
   </div>
-  `}function D(){const c=document.querySelector("link[rel='icon']")||document.createElement("link");c.rel="icon",c.type="image/png",c.href="/cindy-web/images/my-logo.png",c.parentNode||document.head.appendChild(c);const s=document.getElementById("nav"),a=document.getElementById("goTop"),n=document.getElementById("menuBtn"),e=document.getElementById("menuOverlay"),t=document.getElementById("menuBackdrop"),o=document.getElementById("menuClose");window.addEventListener("scroll",()=>{s.classList.toggle("scrolled",window.scrollY>80),a==null||a.classList.toggle("show",window.scrollY>400)}),a==null||a.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));function i(){e.classList.add("open"),t.classList.add("open"),n.classList.add("open"),document.body.style.overflow="hidden"}function l(){e.classList.remove("open"),t.classList.remove("open"),n.classList.remove("open"),document.body.style.overflow=""}n==null||n.addEventListener("click",i),o==null||o.addEventListener("click",l),t==null||t.addEventListener("click",l),e==null||e.querySelectorAll("a").forEach(r=>r.addEventListener("click",l));const d=document.querySelectorAll(".reveal"),h=new IntersectionObserver(r=>{r.forEach(p=>{p.isIntersecting&&p.target.classList.add("visible")})},{threshold:.1});d.forEach(r=>h.observe(r))}export{_ as a,m as b,D as i,R as r};
+  `}function D(){const c=document.querySelector("link[rel='icon']")||document.createElement("link");c.rel="icon",c.type="image/png",c.href="/cindy-web/images/my-logo.png",c.parentNode||document.head.appendChild(c);const s=document.getElementById("nav"),a=document.getElementById("goTop"),n=document.getElementById("menuBtn"),e=document.getElementById("menuOverlay"),t=document.getElementById("menuBackdrop"),o=document.getElementById("menuClose");window.addEventListener("scroll",()=>{s.classList.toggle("scrolled",window.scrollY>80),a==null||a.classList.toggle("show",window.scrollY>400)}),a==null||a.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));function i(){e.classList.add("open"),t.classList.add("open"),n.classList.add("open"),document.body.style.overflow="hidden"}function l(){e.classList.remove("open"),t.classList.remove("open"),n.classList.remove("open"),document.body.style.overflow=""}n==null||n.addEventListener("click",i),o==null||o.addEventListener("click",l),t==null||t.addEventListener("click",l),e==null||e.querySelectorAll("a").forEach(r=>r.addEventListener("click",l));const d=document.querySelectorAll(".reveal"),h=new IntersectionObserver(r=>{r.forEach(p=>{p.isIntersecting&&p.target.classList.add("visible")})},{threshold:.1});d.forEach(r=>h.observe(r))}export{_ as a,v as b,D as i,R as r};
