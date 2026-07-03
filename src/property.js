@@ -35,6 +35,7 @@ async function fetchCloudinaryImages(folder) {
 
 function parseFeatures(wixFeatures) {
   if (!wixFeatures) return []
+  if (Array.isArray(wixFeatures)) return wixFeatures
   return (wixFeatures.match(/<li>(.*?)<\/li>/g) || [])
     .map(s => s.replace(/<\/?li>/g, '').trim())
 }
