@@ -3,6 +3,9 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: '0 21 * * *'  # 每天台灣早上5點重新產生分享頁
 
 jobs:
   deploy:
@@ -19,6 +22,9 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: Generate OG share pages
+        run: node scripts/generate-og-pages.mjs
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
