@@ -424,7 +424,7 @@ function initShare(prop) {
 
   document.getElementById('btnCopyLink')?.addEventListener('click', async () => {
     try {
-      await navigator.clipboard.writeText(url)
+      await navigator.clipboard.writeText(title + '\n' + url)
       const btn = document.getElementById('btnCopyLink')
       btn.textContent = '✓ 已複製！'
       setTimeout(() => btn.textContent = '複製連結', 2000)
