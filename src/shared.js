@@ -106,7 +106,7 @@ export function initCommon() {
   const favicon = document.querySelector("link[rel='icon']") || document.createElement('link')
   favicon.rel = 'icon'
   favicon.type = 'image/png'
-  favicon.href = import.meta.env.BASE_URL + 'images/my-logo.png'
+  favicon.href = import.meta.env.BASE_URL + 'images/favicon-round.png'
   if (!favicon.parentNode) document.head.appendChild(favicon)
   const nav = document.getElementById('nav')
   const goTop = document.getElementById('goTop')
