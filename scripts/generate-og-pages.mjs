@@ -19,7 +19,9 @@ mkdirSync(outDir, { recursive: true })
 let count = 0
 for (const p of props) {
   if (!p.nodeId) continue
-  const title = p.title || 'Cindy 王小姐｜南崁在地房產'
+  const price = p.price || p.totalPrice
+  const priceText = price ? `｜NT${Math.round(price / 10000)}萬` : ''
+  const title = p.title ? `${p.title}${priceText}｜Cindy 王小姐` : 'Cindy 王小姐｜南崁在地房產'
   const desc = (p.highlights || p.features || '南崁在地房仲，陪你找到對的家。').slice(0, 100)
   const img = p.ogImageUrl || p.imageUrl || FALLBACK_IMG
   const target = `${SITE_BASE}/property.html?id=${encodeURIComponent(p.nodeId)}`
@@ -27,7 +29,7 @@ for (const p of props) {
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
-<title>${esc(title)} | Cindy 王小姐</title>
+<title>${esc(title)}</title>
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:image" content="${esc(img)}">
