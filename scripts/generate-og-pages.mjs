@@ -21,7 +21,13 @@ for (const p of props) {
   if (!p.nodeId) continue
   const title = 'Cindy 王小姐｜南崁在地房產'
   const desc = (p.highlights || p.features || '南崁在地房仲，陪你找到對的家。').slice(0, 100)
-  const img = p.ogImageUrl || p.imageUrl || FALLBACK_IMG
+  let img = p.ogImageUrl || p.imageUrl || FALLBACK_IMG
+  let imgW = 1024, imgH = 768
+  if (img.includes('res.cloudinary.com') && img.includes('/upload/')) {
+    // 轉成 FB 建議尺寸，抓取更快、卡片比例一致
+    img = img.replace('/upload/', '/upload/w_1200,h_630,c_fill,f_jpg,q_auto/')
+    imgW = 1200; imgH = 630
+  }
   const target = `${SITE_BASE}/property.html?id=${encodeURIComponent(p.nodeId)}`
   const selfUrl = `${SITE_BASE}/p/${encodeURIComponent(p.nodeId)}.html`
   const html = `<!DOCTYPE html>
@@ -32,6 +38,9 @@ for (const p of props) {
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:image" content="${esc(img)}">
+<meta property="og:image:width" content="${imgW}">
+<meta property="og:image:height" content="${imgH}">
+<meta property="og:image:type" content="image/jpeg">
 <meta property="og:url" content="${esc(selfUrl)}">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
