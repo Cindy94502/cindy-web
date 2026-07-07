@@ -414,7 +414,7 @@ function setOgMeta(prop, images) {
 }
 
 function initShare(prop) {
-  const url = location.href
+  const url = `https://cindy94502.github.io/cindy-web/p/${encodeURIComponent(prop.nodeId)}.html`
   const title = `${prop.title}｜NT${prop.price ? (prop.price/10000).toFixed(0) + '萬' : '洽談'}｜Cindy 王小姐`
 
   document.getElementById('btnCopyLink')?.addEventListener('click', async () => {
