@@ -415,7 +415,12 @@ function setOgMeta(prop, images) {
 
 function initShare(prop) {
   const url = `https://cindy94502.github.io/cindy-web/p/${encodeURIComponent(prop.nodeId)}.html`
-  const title = `${prop.title}｜NT${prop.price ? (prop.price/10000).toFixed(0) + '萬' : '洽談'}｜Cindy 王小姐`
+  const details = [
+    prop.layout ? `格局：${prop.layout}` : '',
+    prop.buildingSize ? `建坪：${prop.buildingSize}坪` : '',
+    prop.landSize ? `土坪：${prop.landSize}坪` : '',
+  ].filter(Boolean).join('\n')
+  const title = `${prop.title}｜NT${prop.price ? (prop.price/10000).toFixed(0) + '萬' : '洽談'}｜Cindy 王小姐` + (details ? '\n' + details : '')
 
   document.getElementById('btnCopyLink')?.addEventListener('click', async () => {
     try {
