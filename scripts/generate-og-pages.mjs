@@ -23,6 +23,7 @@ for (const p of props) {
   const desc = (p.highlights || p.features || '南崁在地房仲，陪你找到對的家。').slice(0, 100)
   const img = p.ogImageUrl || p.imageUrl || FALLBACK_IMG
   const target = `${SITE_BASE}/property.html?id=${encodeURIComponent(p.nodeId)}`
+  const selfUrl = `${SITE_BASE}/p/${encodeURIComponent(p.nodeId)}.html`
   const html = `<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
@@ -31,11 +32,10 @@ for (const p of props) {
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:image" content="${esc(img)}">
-<meta property="og:url" content="${esc(target)}">
+<meta property="og:url" content="${esc(selfUrl)}">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="${esc(img)}">
-<meta http-equiv="refresh" content="0;url=${esc(target)}">
 <script>location.replace(${JSON.stringify(target)})</script>
 </head>
 <body><p>跳轉中… <a href="${esc(target)}">${esc(title)}</a></p></body>
