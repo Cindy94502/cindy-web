@@ -26,6 +26,9 @@ jobs:
       - name: Generate OG share pages
         run: node scripts/generate-og-pages.mjs
 
+      - name: Generate sitemap
+        run: node scripts/generate-sitemap.mjs
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
