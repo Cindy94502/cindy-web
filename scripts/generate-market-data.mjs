@@ -112,6 +112,7 @@ for (const p of props) {
       totalWan: Math.round(r.total / 10000),
       unitWan: !noUnit && netPing > 0 ? Math.round(netPrice / netPing / 10000 * 10) / 10 : null,
       hasPark,
+      parkWan: splitPark ? Math.round(r.parkPrice / 10000) : 0,
       note: /增建/.test(r.note) ? '含增建' : '',
     }
   }).sort((a, b) => b.dateRaw.localeCompare(a.dateRaw)).slice(0, 12)
