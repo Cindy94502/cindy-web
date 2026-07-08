@@ -396,6 +396,21 @@
   font-size: 11.5px; color: rgba(61,43,31,0.55); margin-top: 8px; line-height: 1.6;
 }
 
+.market-cta {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 14px; flex-wrap: wrap;
+  margin-top: 14px; padding: 14px 16px;
+  background: #fff; border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(61,43,31,0.08);
+}
+.market-cta-text { font-size: 14px; line-height: 1.7; color: var(--brown-dark, #3D2B1F); }
+.market-cta-btn {
+  flex-shrink: 0; background: #06C755; color: #fff;
+  text-decoration: none; font-size: 14px; letter-spacing: 1px;
+  padding: 9px 18px; border-radius: 6px;
+}
+.market-cta-btn:hover { opacity: 0.88; }
+
 /* ── 地圖 ── */
 .property-map-wrap { margin-bottom: 36px; }
 .property-map-label {

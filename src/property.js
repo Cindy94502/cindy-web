@@ -192,6 +192,10 @@ function renderMarketBlock(prop) {
         <button class="market-pager-btn" id="marketNext">下一頁 ${icon('ChevronRight', 14, 2)}</button>
       </div>` : ''}
       <div class="market-source">資料來源：內政部實價登錄（已排除親友間等特殊交易；車位有標價者已拆算）${myRooms ? '，底色列為同房型成交' : ''}</div>
+      <div class="market-cta">
+        <div class="market-cta-text">📬 還在觀望？加 Cindy 的 LINE，<strong>每月送你南崁實價登錄整理</strong>，行情變化不漏接</div>
+        <a class="market-cta-btn" href="https://line.me/ti/p/@019nrmqw" target="_blank">加 LINE 領行情</a>
+      </div>
     </div>`
 }
 

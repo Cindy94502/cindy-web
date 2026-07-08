@@ -20,7 +20,7 @@ for (const p of props) {
 try {
   const posts = await (await fetch(POSTS_URL)).json()
   for (const post of posts) {
-    if (post.id && post.published !== false) urls.push(`${SITE_BASE}/blog-post.html?id=${encodeURIComponent(post.id)}`)
+    if (post.id && post.published !== false) urls.push(`${SITE_BASE}/blog/${encodeURIComponent(post.id)}.html`)
   }
 } catch { console.warn('posts.json 抓取失敗，sitemap 不含部落格文章') }
 

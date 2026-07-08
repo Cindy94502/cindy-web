@@ -29,6 +29,9 @@ jobs:
       - name: Generate OG share pages
         run: node scripts/generate-og-pages.mjs
 
+      - name: Generate blog pages
+        run: node scripts/generate-blog-pages.mjs
+
       - name: Generate sitemap
         run: node scripts/generate-sitemap.mjs
 
