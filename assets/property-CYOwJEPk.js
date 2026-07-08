@@ -1,4 +1,4 @@
-import{r as k,a as C,i as I,b as c}from"./shared-B4N8x-DF.js";import{G as L,f as v}from"./data-DQaSi1fH.js";const E=new URLSearchParams(location.search),x=E.get("id");document.getElementById("app").innerHTML=`
+import{r as k,a as C,i as I,b as c}from"./shared-B4N8x-DF.js";import{G as L,f as v}from"./data-DQaSi1fH.js";const x=new URLSearchParams(location.search),E=x.get("id");document.getElementById("app").innerHTML=`
   ${k()}
   <div class="property-page">
     <div class="property-loading">載入中...</div>
@@ -34,7 +34,7 @@ import{r as k,a as C,i as I,b as c}from"./shared-B4N8x-DF.js";import{G as L,f as
       ${Array.from({length:l}).map((a,t)=>`<span class="similar-dot ${t===0?"active":""}" data-index="${t}"></span>`).join("")}
     </div>`:""}
     `}
-  `,n.style.display="",e.length>3&&p()}function M(e,i){document.querySelector(".similar-section")&&document.querySelectorAll(".clickable-tag").forEach(n=>{n.addEventListener("click",()=>{const s=n.dataset.tag,l=n.classList.contains("tag-active");if(document.querySelectorAll(".clickable-tag").forEach(a=>a.classList.remove("tag-active")),l){const a=i.filter(t=>t.nodeId!==e.nodeId&&t.title&&(t.buildingCategory===e.buildingCategory||t.priceRange===e.priceRange)).slice(0,9).map(t=>({...t,reason:t.buildingCategory===e.buildingCategory&&t.priceRange===e.priceRange?`同為${t.buildingCategory}・${t.priceRange}`:t.buildingCategory===e.buildingCategory?`同為${t.buildingCategory}`:`同價格區間・${t.priceRange}`}));y(a,"也許你也會喜歡","相似物件")}else{n.classList.add("tag-active");const a=i.filter(t=>t.nodeId!==e.nodeId&&t.title&&((t.tags||"").split(",").map(o=>o.trim()).includes(s)||(t.wixParking||"").trim()===s||(t.wixLocation||"").includes(s)||s.includes(t.wixLocation||""))).slice(0,9).map(t=>({...t,reason:`同樣有「${s}」`}));y(a,`選擇了「${s}」`,"相似物件")}})})}async function P(){try{const i=await(await fetch(L)).json(),r=i.find(s=>s.nodeId===x);if(!r){document.querySelector(".property-loading").innerHTML='<p>找不到這個物件，<a href="properties.html" style="color:var(--teal-dark)">回到物件列表</a></p>';return}document.title=`${r.title} | Cindy 王小姐`;const n=await R(r.cloudinaryFolder);r.ogImageUrl&&!n.includes(r.ogImageUrl)&&n.unshift(r.ogImageUrl);try{const s=await fetch("/cindy-web/market-data.json");s.ok&&(d=(await s.json())[r.nodeId]||null)}catch{d=null}j(r,n,i)}catch{document.querySelector(".property-loading").innerHTML="<p>載入失敗，請稍後再試</p>"}}let d=null;function B(e){var s;if(!d||!((s=d.deals)!=null&&s.length))return"";const i=parseInt(e.roomCount)||0,r=d.deals.map((l,a)=>`
+  `,n.style.display="",e.length>3&&p()}function M(e,i){document.querySelector(".similar-section")&&document.querySelectorAll(".clickable-tag").forEach(n=>{n.addEventListener("click",()=>{const s=n.dataset.tag,l=n.classList.contains("tag-active");if(document.querySelectorAll(".clickable-tag").forEach(a=>a.classList.remove("tag-active")),l){const a=i.filter(t=>t.nodeId!==e.nodeId&&t.title&&(t.buildingCategory===e.buildingCategory||t.priceRange===e.priceRange)).slice(0,9).map(t=>({...t,reason:t.buildingCategory===e.buildingCategory&&t.priceRange===e.priceRange?`同為${t.buildingCategory}・${t.priceRange}`:t.buildingCategory===e.buildingCategory?`同為${t.buildingCategory}`:`同價格區間・${t.priceRange}`}));y(a,"也許你也會喜歡","相似物件")}else{n.classList.add("tag-active");const a=i.filter(t=>t.nodeId!==e.nodeId&&t.title&&((t.tags||"").split(",").map(o=>o.trim()).includes(s)||(t.wixParking||"").trim()===s||(t.wixLocation||"").includes(s)||s.includes(t.wixLocation||""))).slice(0,9).map(t=>({...t,reason:`同樣有「${s}」`}));y(a,`選擇了「${s}」`,"相似物件")}})})}async function P(){try{const i=await(await fetch(L)).json(),r=i.find(s=>s.nodeId===E);if(!r){document.querySelector(".property-loading").innerHTML='<p>找不到這個物件，<a href="properties.html" style="color:var(--teal-dark)">回到物件列表</a></p>';return}document.title=`${r.title} | Cindy 王小姐`;const n=await R(r.cloudinaryFolder);r.ogImageUrl&&!n.includes(r.ogImageUrl)&&n.unshift(r.ogImageUrl);try{const s=await fetch("/cindy-web/market-data.json");s.ok&&(d=(await s.json())[r.nodeId]||null)}catch{d=null}j(r,n,i)}catch{document.querySelector(".property-loading").innerHTML="<p>載入失敗，請稍後再試</p>"}}let d=null;function B(e){var s;if(!d||!((s=d.deals)!=null&&s.length))return"";const i=parseInt(e.roomCount)||0,r=d.deals.map((l,a)=>`
     <tr class="${i&&l.rooms===i?"market-row-match":""}" data-mpage="${Math.floor(a/5)}">
       <td>${l.date}</td>
       <td>${l.floor}</td>
@@ -47,7 +47,7 @@ import{r as k,a as C,i as I,b as c}from"./shared-B4N8x-DF.js";import{G as L,f as
       <div class="property-section-title">${c("TrendingUp",16,2)} ${d.community}近期實價登錄</div>
       <div class="market-table-scroll">
         <table class="market-table">
-          <thead><tr><th>成交</th><th>樓層</th><th>格局</th><th>總面積</th><th>總價</th><th>單價/坪</th></tr></thead>
+          <thead><tr><th>成交</th><th>樓層</th><th>格局</th><th>總面積</th><th>總價</th><th>單價/坪<span class="market-help" tabindex="0">?<span class="market-tip">依是否有申報車位價格及面積，分為 2 種公式：<br>公式一：總價 ÷ 總面積（單價旁標「車」者含車位）<br>公式二：（總價 − 車位價格）÷（總面積 − 車位面積）</span></span></th></tr></thead>
           <tbody id="marketBody">${r}</tbody>
         </table>
       </div>
@@ -57,7 +57,7 @@ import{r as k,a as C,i as I,b as c}from"./shared-B4N8x-DF.js";import{G as L,f as
         <span class="market-pager-info" id="marketPageInfo"></span>
         <button class="market-pager-btn" id="marketNext">下一頁 ${c("ChevronRight",14,2)}</button>
       </div>`:""}
-      <div class="market-source">資料來源：內政部實價登錄，已排除親友間等特殊交易。單價比照內政部公式：有申報車位價格及面積者為（總價−車位價）÷（總面積−車位面積），其餘為總價÷總面積；標「車」者含車位${i?"。底色列為同房型成交":""}</div>
+      <div class="market-source">資料來源：內政部實價登錄，已排除親友間等特殊交易；單價計算比照內政部公式，標「車」者含車位${i?"。底色列為同房型成交":""}</div>
     </div>`}function A(){var l,a;const e=document.getElementById("marketBody");if(!e)return;const i=[...e.querySelectorAll("tr")],r=Math.ceil(i.length/5);if(r<=1)return;let n=0;const s=()=>{i.forEach(t=>{t.style.display=t.dataset.mpage==n?"":"none"}),document.getElementById("marketPageInfo").textContent=`${n+1} / ${r}`,document.getElementById("marketPrev").disabled=n===0,document.getElementById("marketNext").disabled=n===r-1};(l=document.getElementById("marketPrev"))==null||l.addEventListener("click",()=>{n>0&&(n--,s())}),(a=document.getElementById("marketNext"))==null||a.addEventListener("click",()=>{n<r-1&&(n++,s())}),s()}function T(e){return e.length===0?`<div class="gallery-placeholder">${c("Home",80,1,"","var(--sage-dark)")}</div>`:`
     <img class="gallery-main-img" id="galleryMain" src="${e[0]}" alt="物件照片">
     <button class="gallery-arrow prev" id="galleryPrev">${c("ChevronLeft",22,2)}</button>
