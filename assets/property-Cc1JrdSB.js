@@ -1,5 +1,5 @@
-import{r as k,a as C,i as I,b as c}from"./shared-B4N8x-DF.js";import{G as L,f as v}from"./data-DQaSi1fH.js";const E=new URLSearchParams(location.search),x=E.get("id");document.getElementById("app").innerHTML=`
-  ${k()}
+import{r as w,a as C,i as I,b as c}from"./shared-B4N8x-DF.js";import{G as L,f as v}from"./data-DQaSi1fH.js";const E=new URLSearchParams(location.search),x=E.get("id");document.getElementById("app").innerHTML=`
+  ${w()}
   <div class="property-page">
     <div class="property-loading">載入中...</div>
   </div>
@@ -40,7 +40,7 @@ import{r as k,a as C,i as I,b as c}from"./shared-B4N8x-DF.js";import{G as L,f as
       <td>${l.floor}</td>
       <td>${l.layout}</td>
       <td>${l.ping}坪</td>
-      <td>${l.totalWan}萬${l.hasPark?'<span class="market-note">含車位</span>':""}${l.note?`<span class="market-note">${l.note}</span>`:""}</td>
+      <td>${l.totalWan}萬${l.parkWan?`<span class="market-note">含車位${l.parkWan}萬</span>`:l.hasPark?'<span class="market-note">含車位</span>':""}${l.note?`<span class="market-note">${l.note}</span>`:""}</td>
       <td>${l.unitWan!=null?l.unitWan+"萬":"—"}</td>
     </tr>`).join(""),n=Math.ceil(d.deals.length/5);return`
     <div class="property-market-wrap">
@@ -208,7 +208,7 @@ import{r as k,a as C,i as I,b as c}from"./shared-B4N8x-DF.js";import{G as L,f as
       </div>
     </div>`:""}
 
-  `,q(e,i),U(i),N(e),A(),M(e,r),p()}function p(){const e=document.getElementById("similarGrid"),i=document.getElementById("similarPrev"),r=document.getElementById("similarNext"),n=document.querySelectorAll(".similar-dot");if(!e||!i||!r)return;const s=e.querySelectorAll(".similar-card"),l=s.length,a=window.innerWidth<=768?2:3,t=Math.ceil(l/a);let o=0;function m(g){o=Math.max(0,Math.min(g,t-1));const u=parseInt(getComputedStyle(e).columnGap)||40,b=s[0].offsetWidth,$=a*(b+u);e.style.transform=`translateX(-${o*$}px)`,n.forEach((f,w)=>f.classList.toggle("active",w===o)),i.style.opacity=o===0?"0.3":"1",r.style.opacity=o===t-1?"0.3":"1"}i.addEventListener("click",()=>{o>0&&m(o-1)}),r.addEventListener("click",()=>{o<t-1&&m(o+1)}),n.forEach((g,u)=>g.addEventListener("click",()=>m(u))),m(0)}function q(e,i){const r=location.href,n=e.ogImageUrl||i[0]||"",s=(l,a)=>{let t=document.querySelector(`meta[property="${l}"]`);t||(t=document.createElement("meta"),t.setAttribute("property",l),document.head.appendChild(t)),t.setAttribute("content",a)};s("og:title",`${e.title} | Cindy 王小姐`),s("og:description",`💰 售價與詳情請點擊查閱。格局：${e.layout||"—"}，${e.wixLocation||""}精選房源推薦。`),s("og:image",n),s("og:url",r),s("og:type","website")}function N(e){var s,l,a;const i=`https://cindy94502.github.io/cindy-web/p/${encodeURIComponent(e.nodeId)}.html`,r=[e.layout?`格局：${e.layout}`:"",e.buildingSize?`建坪：${e.buildingSize}坪`:"",e.landSize?`土坪：${e.landSize}坪`:""].filter(Boolean).join(`
+  `,q(e,i),U(i),N(e),A(),M(e,r),p()}function p(){const e=document.getElementById("similarGrid"),i=document.getElementById("similarPrev"),r=document.getElementById("similarNext"),n=document.querySelectorAll(".similar-dot");if(!e||!i||!r)return;const s=e.querySelectorAll(".similar-card"),l=s.length,a=window.innerWidth<=768?2:3,t=Math.ceil(l/a);let o=0;function m(g){o=Math.max(0,Math.min(g,t-1));const u=parseInt(getComputedStyle(e).columnGap)||40,b=s[0].offsetWidth,$=a*(b+u);e.style.transform=`translateX(-${o*$}px)`,n.forEach((f,k)=>f.classList.toggle("active",k===o)),i.style.opacity=o===0?"0.3":"1",r.style.opacity=o===t-1?"0.3":"1"}i.addEventListener("click",()=>{o>0&&m(o-1)}),r.addEventListener("click",()=>{o<t-1&&m(o+1)}),n.forEach((g,u)=>g.addEventListener("click",()=>m(u))),m(0)}function q(e,i){const r=location.href,n=e.ogImageUrl||i[0]||"",s=(l,a)=>{let t=document.querySelector(`meta[property="${l}"]`);t||(t=document.createElement("meta"),t.setAttribute("property",l),document.head.appendChild(t)),t.setAttribute("content",a)};s("og:title",`${e.title} | Cindy 王小姐`),s("og:description",`💰 售價與詳情請點擊查閱。格局：${e.layout||"—"}，${e.wixLocation||""}精選房源推薦。`),s("og:image",n),s("og:url",r),s("og:type","website")}function N(e){var s,l,a;const i=`https://cindy94502.github.io/cindy-web/p/${encodeURIComponent(e.nodeId)}.html`,r=[e.layout?`格局：${e.layout}`:"",e.buildingSize?`建坪：${e.buildingSize}坪`:"",e.landSize?`土坪：${e.landSize}坪`:""].filter(Boolean).join(`
 `),n=`${e.title}｜NT${e.price?(e.price/1e4).toFixed(0)+"萬":"洽談"}｜Cindy 王小姐`+(r?`
 `+r:"");(s=document.getElementById("btnCopyLink"))==null||s.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(n+`
 `+i);const t=document.getElementById("btnCopyLink");t.textContent="✓ 已複製！",setTimeout(()=>t.textContent="複製連結",2e3)}catch{alert("請手動複製網址")}}),(l=document.getElementById("btnShareLine"))==null||l.addEventListener("click",()=>{window.open(`https://line.me/R/msg/text/?${encodeURIComponent(n+`
