@@ -172,7 +172,7 @@ function renderMarketBlock(prop) {
       <td>${d.floor}</td>
       <td>${d.layout}</td>
       <td>${d.ping}坪</td>
-      <td>${d.totalWan}萬${d.parkWan ? `<span class="market-note">含車位${d.parkWan}萬</span>` : d.hasPark ? '<span class="market-note">含車位</span>' : ''}${d.note ? `<span class="market-note">${d.note}</span>` : ''}</td>
+      <td>${d.totalWan}萬${d.parkWan ? `<span class="market-note">${d.parkEst ? '車位估' : '含車位'}${d.parkWan}萬</span>` : d.hasPark ? '<span class="market-note">含車位</span>' : ''}${d.note ? `<span class="market-note">${d.note}</span>` : ''}</td>
       <td>${d.unitWan != null ? d.unitWan + '萬' : '—'}</td>
     </tr>`).join('')
   const pages = Math.ceil(marketData.deals.length / 5)
@@ -181,7 +181,7 @@ function renderMarketBlock(prop) {
       <div class="property-section-title">${icon('TrendingUp', 16, 2)} ${marketData.community}近期實價登錄</div>
       <div class="market-table-scroll">
         <table class="market-table">
-          <thead><tr><th>成交</th><th>樓層</th><th>格局</th><th>坪數</th><th>總價</th><th>單價/坪</th></tr></thead>
+          <thead><tr><th>成交</th><th>樓層</th><th>格局</th><th>房屋坪</th><th>總價</th><th>單價/坪</th></tr></thead>
           <tbody id="marketBody">${rows}</tbody>
         </table>
       </div>

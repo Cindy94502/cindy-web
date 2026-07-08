@@ -13,6 +13,8 @@
     "unitWan": 20,
     "hasPark": true,
     "parkWan": 165,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -26,6 +28,8 @@
     "unitWan": 20.2,
     "hasPark": true,
     "parkWan": 165,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -39,6 +43,8 @@
     "unitWan": 20.4,
     "hasPark": true,
     "parkWan": 180,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -52,6 +58,8 @@
     "unitWan": 20.1,
     "hasPark": true,
     "parkWan": 170,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -65,6 +73,8 @@
     "unitWan": 23.2,
     "hasPark": true,
     "parkWan": 162,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -78,6 +88,8 @@
     "unitWan": 19.6,
     "hasPark": true,
     "parkWan": 160,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -91,6 +103,8 @@
     "unitWan": 19.7,
     "hasPark": true,
     "parkWan": 155,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -104,6 +118,8 @@
     "unitWan": 20,
     "hasPark": true,
     "parkWan": 165,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -117,6 +133,8 @@
     "unitWan": 23.9,
     "hasPark": true,
     "parkWan": 170,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -130,6 +148,8 @@
     "unitWan": 21.8,
     "hasPark": true,
     "parkWan": 182,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -138,11 +158,13 @@
     "floor": "七樓",
     "layout": "2房2廳2衛",
     "rooms": 2,
-    "ping": 38.3,
+    "ping": 30.6,
     "totalWan": 910,
     "unitWan": 24.5,
     "hasPark": true,
     "parkWan": 162,
+    "parkPing": 7.7,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -156,6 +178,8 @@
     "unitWan": 22,
     "hasPark": true,
     "parkWan": 165,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    }
   ]
@@ -169,11 +193,13 @@
     "floor": "十樓",
     "layout": "3房2廳2衛",
     "rooms": 3,
-    "ping": 47.4,
+    "ping": 41.4,
     "totalWan": 1500,
-    "unitWan": 31.6,
-    "hasPark": false,
-    "parkWan": 0,
+    "unitWan": 31.9,
+    "hasPark": true,
+    "parkWan": 180,
+    "parkPing": 6.1,
+    "parkEst": true,
     "note": ""
    },
    {
@@ -182,11 +208,13 @@
     "floor": "十三樓",
     "layout": "2房2廳1衛",
     "rooms": 2,
-    "ping": 34.1,
+    "ping": 28.1,
     "totalWan": 1250,
-    "unitWan": 36.6,
-    "hasPark": false,
-    "parkWan": 0,
+    "unitWan": 38.1,
+    "hasPark": true,
+    "parkWan": 180,
+    "parkPing": 6.1,
+    "parkEst": true,
     "note": ""
    },
    {
@@ -200,6 +228,8 @@
     "unitWan": 39.5,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -213,6 +243,8 @@
     "unitWan": 34,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -226,6 +258,8 @@
     "unitWan": 30.5,
     "hasPark": true,
     "parkWan": 180,
+    "parkPing": 0,
+    "parkEst": false,
     "note": "含增建"
    },
    {
@@ -239,6 +273,8 @@
     "unitWan": 39.4,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": "含增建"
    },
    {
@@ -247,11 +283,13 @@
     "floor": "五樓",
     "layout": "3房2廳2衛",
     "rooms": 3,
-    "ping": 41.8,
+    "ping": 35.7,
     "totalWan": 1399,
-    "unitWan": 33.5,
-    "hasPark": false,
-    "parkWan": 0,
+    "unitWan": 34.1,
+    "hasPark": true,
+    "parkWan": 180,
+    "parkPing": 6.1,
+    "parkEst": true,
     "note": ""
    },
    {
@@ -265,6 +303,8 @@
     "unitWan": 39.7,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": "含增建"
    },
    {
@@ -278,6 +318,8 @@
     "unitWan": 31.2,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -286,11 +328,13 @@
     "floor": "八樓",
     "layout": "4房2廳2衛",
     "rooms": 4,
-    "ping": 50.4,
+    "ping": 44.4,
     "totalWan": 1560,
-    "unitWan": 30.9,
-    "hasPark": false,
-    "parkWan": 0,
+    "unitWan": 31.1,
+    "hasPark": true,
+    "parkWan": 180,
+    "parkPing": 6.1,
+    "parkEst": true,
     "note": ""
    },
    {
@@ -304,6 +348,8 @@
     "unitWan": 31.5,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": "含增建"
    },
    {
@@ -312,11 +358,13 @@
     "floor": "三樓",
     "layout": "4房2廳2衛",
     "rooms": 4,
-    "ping": 52.6,
+    "ping": 46.5,
     "totalWan": 1680,
-    "unitWan": 32,
-    "hasPark": false,
-    "parkWan": 0,
+    "unitWan": 32.3,
+    "hasPark": true,
+    "parkWan": 180,
+    "parkPing": 6.1,
+    "parkEst": true,
     "note": ""
    }
   ]
@@ -330,11 +378,13 @@
     "floor": "二樓",
     "layout": "3房2廳2衛",
     "rooms": 3,
-    "ping": 45.5,
+    "ping": 35,
     "totalWan": 1700,
     "unitWan": 43.3,
     "hasPark": true,
     "parkWan": 184,
+    "parkPing": 10.5,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -343,11 +393,13 @@
     "floor": "二樓",
     "layout": "3房2廳2衛",
     "rooms": 3,
-    "ping": 50.7,
+    "ping": 39.4,
     "totalWan": 1813,
     "unitWan": 41,
     "hasPark": true,
     "parkWan": 200,
+    "parkPing": 11.3,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -356,11 +408,13 @@
     "floor": "八樓",
     "layout": "3房2廳2衛",
     "rooms": 3,
-    "ping": 46.3,
+    "ping": 35,
     "totalWan": 1772,
     "unitWan": 44.9,
     "hasPark": true,
     "parkWan": 200,
+    "parkPing": 11.3,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -369,11 +423,13 @@
     "floor": "十樓",
     "layout": "3房2廳2衛",
     "rooms": 3,
-    "ping": 46.5,
+    "ping": 36.1,
     "totalWan": 1805,
     "unitWan": 44.3,
     "hasPark": true,
     "parkWan": 208,
+    "parkPing": 10.5,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -382,11 +438,13 @@
     "floor": "十樓",
     "layout": "3房2廳2衛",
     "rooms": 3,
-    "ping": 45.5,
+    "ping": 35,
     "totalWan": 1772,
     "unitWan": 45.4,
     "hasPark": true,
     "parkWan": 184,
+    "parkPing": 10.5,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -395,11 +453,13 @@
     "floor": "十一樓",
     "layout": "3房2廳2衛",
     "rooms": 3,
-    "ping": 60.3,
+    "ping": 39.4,
     "totalWan": 1960,
     "unitWan": 41,
     "hasPark": true,
     "parkWan": 346,
+    "parkPing": 20.9,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -408,11 +468,13 @@
     "floor": "十二樓",
     "layout": "3房2廳2衛",
     "rooms": 3,
-    "ping": 46.5,
+    "ping": 36.1,
     "totalWan": 1785,
     "unitWan": 43.7,
     "hasPark": true,
     "parkWan": 208,
+    "parkPing": 10.5,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -421,11 +483,13 @@
     "floor": "十二樓",
     "layout": "2房2廳1衛",
     "rooms": 2,
-    "ping": 36.7,
+    "ping": 26.2,
     "totalWan": 1406,
     "unitWan": 45.7,
     "hasPark": true,
     "parkWan": 208,
+    "parkPing": 10.5,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -434,11 +498,13 @@
     "floor": "十五樓",
     "layout": "3房2廳2衛",
     "rooms": 3,
-    "ping": 70.8,
+    "ping": 39.4,
     "totalWan": 2070,
     "unitWan": 39.8,
     "hasPark": true,
     "parkWan": 504,
+    "parkPing": 31.4,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -447,11 +513,13 @@
     "floor": "九樓",
     "layout": "3房2廳2衛",
     "rooms": 3,
-    "ping": 45.5,
+    "ping": 35,
     "totalWan": 1708,
     "unitWan": 43.1,
     "hasPark": true,
     "parkWan": 198,
+    "parkPing": 10.5,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -460,11 +528,13 @@
     "floor": "十樓",
     "layout": "2房2廳1衛",
     "rooms": 2,
-    "ping": 36.7,
+    "ping": 26.2,
     "totalWan": 1408,
     "unitWan": 45.8,
     "hasPark": true,
     "parkWan": 208,
+    "parkPing": 10.5,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -473,11 +543,13 @@
     "floor": "十五樓",
     "layout": "3房2廳2衛",
     "rooms": 3,
-    "ping": 46.5,
+    "ping": 36.1,
     "totalWan": 1697,
     "unitWan": 42,
     "hasPark": true,
     "parkWan": 184,
+    "parkPing": 10.5,
+    "parkEst": false,
     "note": ""
    }
   ]
@@ -491,11 +563,13 @@
     "floor": "三樓",
     "layout": "2房2廳1衛",
     "rooms": 2,
-    "ping": 33.5,
+    "ping": 23.8,
     "totalWan": 1050,
-    "unitWan": null,
+    "unitWan": 36.8,
     "hasPark": true,
-    "parkWan": 0,
+    "parkWan": 175,
+    "parkPing": 9.7,
+    "parkEst": true,
     "note": ""
    },
    {
@@ -504,11 +578,13 @@
     "floor": "七樓",
     "layout": "2房2廳1衛",
     "rooms": 2,
-    "ping": 31.7,
+    "ping": 22.3,
     "totalWan": 1090,
-    "unitWan": null,
+    "unitWan": 41,
     "hasPark": true,
-    "parkWan": 0,
+    "parkWan": 175,
+    "parkPing": 9.3,
+    "parkEst": true,
     "note": ""
    },
    {
@@ -517,11 +593,13 @@
     "floor": "七樓",
     "layout": "3房2廳2衛",
     "rooms": 3,
-    "ping": 45.8,
+    "ping": 36.1,
     "totalWan": 1550,
-    "unitWan": null,
+    "unitWan": 38.1,
     "hasPark": true,
-    "parkWan": 0,
+    "parkWan": 175,
+    "parkPing": 9.7,
+    "parkEst": true,
     "note": ""
    },
    {
@@ -530,11 +608,13 @@
     "floor": "四樓",
     "layout": "2房2廳1衛",
     "rooms": 2,
-    "ping": 32,
+    "ping": 22.3,
     "totalWan": 1020,
-    "unitWan": null,
+    "unitWan": 37.8,
     "hasPark": true,
-    "parkWan": 0,
+    "parkWan": 175,
+    "parkPing": 9.7,
+    "parkEst": true,
     "note": ""
    },
    {
@@ -543,11 +623,13 @@
     "floor": "十樓",
     "layout": "3房2廳2衛",
     "rooms": 3,
-    "ping": 42.9,
+    "ping": 33.5,
     "totalWan": 1375,
-    "unitWan": null,
+    "unitWan": 35.8,
     "hasPark": true,
-    "parkWan": 0,
+    "parkWan": 175,
+    "parkPing": 9.3,
+    "parkEst": true,
     "note": ""
    },
    {
@@ -556,11 +638,13 @@
     "floor": "二樓",
     "layout": "3房2廳2衛",
     "rooms": 3,
-    "ping": 42.8,
+    "ping": 33.1,
     "totalWan": 1368,
-    "unitWan": null,
+    "unitWan": 36,
     "hasPark": true,
-    "parkWan": 0,
+    "parkWan": 175,
+    "parkPing": 9.7,
+    "parkEst": true,
     "note": ""
    },
    {
@@ -569,11 +653,13 @@
     "floor": "一樓",
     "layout": "3房2廳2衛",
     "rooms": 3,
-    "ping": 41.4,
+    "ping": 33.9,
     "totalWan": 1300,
-    "unitWan": null,
+    "unitWan": 33.2,
     "hasPark": true,
-    "parkWan": 0,
+    "parkWan": 175,
+    "parkPing": 7.5,
+    "parkEst": true,
     "note": ""
    },
    {
@@ -582,11 +668,13 @@
     "floor": "六樓",
     "layout": "2房1廳1衛",
     "rooms": 2,
-    "ping": 34.3,
+    "ping": 24.7,
     "totalWan": 1188,
-    "unitWan": null,
+    "unitWan": 41.1,
     "hasPark": true,
-    "parkWan": 0,
+    "parkWan": 175,
+    "parkPing": 9.7,
+    "parkEst": true,
     "note": ""
    },
    {
@@ -595,11 +683,13 @@
     "floor": "一樓",
     "layout": "0房0廳0衛",
     "rooms": 0,
-    "ping": 68.5,
+    "ping": 58.8,
     "totalWan": 2233,
     "unitWan": 35,
     "hasPark": true,
     "parkWan": 175,
+    "parkPing": 9.7,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -608,11 +698,13 @@
     "floor": "一樓",
     "layout": "0房0廳0衛",
     "rooms": 0,
-    "ping": 54.4,
+    "ping": 45.1,
     "totalWan": 1870,
     "unitWan": 37.8,
     "hasPark": true,
     "parkWan": 165,
+    "parkPing": 9.3,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -621,11 +713,13 @@
     "floor": "一樓",
     "layout": "0房0廳0衛",
     "rooms": 0,
-    "ping": 46.2,
+    "ping": 36.6,
     "totalWan": 1557,
     "unitWan": 37.8,
     "hasPark": true,
     "parkWan": 175,
+    "parkPing": 9.7,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -634,11 +728,13 @@
     "floor": "一樓",
     "layout": "0房0廳0衛",
     "rooms": 0,
-    "ping": 56,
+    "ping": 46.3,
     "totalWan": 1913,
     "unitWan": 37.5,
     "hasPark": true,
     "parkWan": 175,
+    "parkPing": 9.7,
+    "parkEst": false,
     "note": ""
    }
   ]
@@ -654,9 +750,11 @@
     "rooms": 4,
     "ping": 81.8,
     "totalWan": 1850,
-    "unitWan": 22.6,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -667,9 +765,11 @@
     "rooms": 5,
     "ping": 71.1,
     "totalWan": 1650,
-    "unitWan": 23.2,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -683,6 +783,8 @@
     "unitWan": 23.2,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": "含增建"
    }
   ]
@@ -696,11 +798,13 @@
     "floor": "十一樓",
     "layout": "3房2廳1衛",
     "rooms": 3,
-    "ping": 44.2,
+    "ping": 30,
     "totalWan": 1225,
     "unitWan": null,
     "hasPark": true,
     "parkWan": 0,
+    "parkPing": 14.3,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -709,11 +813,13 @@
     "floor": "十三樓",
     "layout": "3房2廳2衛",
     "rooms": 3,
-    "ping": 48.8,
+    "ping": 34.6,
     "totalWan": 1388,
     "unitWan": null,
     "hasPark": true,
     "parkWan": 0,
+    "parkPing": 14.3,
+    "parkEst": false,
     "note": ""
    }
   ]
@@ -732,6 +838,8 @@
     "unitWan": 28.5,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -745,6 +853,8 @@
     "unitWan": 31.2,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -755,9 +865,11 @@
     "rooms": 3,
     "ping": 45.1,
     "totalWan": 1042,
-    "unitWan": 23.1,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -771,6 +883,8 @@
     "unitWan": 24.4,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -781,9 +895,11 @@
     "rooms": 3,
     "ping": 44.6,
     "totalWan": 960,
-    "unitWan": 21.5,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -797,6 +913,8 @@
     "unitWan": 32.2,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -807,9 +925,11 @@
     "rooms": 3,
     "ping": 44.6,
     "totalWan": 920,
-    "unitWan": 20.6,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": "含增建"
    },
    {
@@ -820,9 +940,11 @@
     "rooms": 3,
     "ping": 43.9,
     "totalWan": 880,
-    "unitWan": 20.1,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -833,9 +955,11 @@
     "rooms": 3,
     "ping": 43.5,
     "totalWan": 800,
-    "unitWan": 18.4,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    }
   ]
@@ -849,11 +973,13 @@
     "floor": "五樓",
     "layout": "3房2廳2衛",
     "rooms": 3,
-    "ping": 55.9,
+    "ping": 47.4,
     "totalWan": 2098,
-    "unitWan": null,
+    "unitWan": 40.5,
     "hasPark": true,
-    "parkWan": 0,
+    "parkWan": 180,
+    "parkPing": 8.6,
+    "parkEst": true,
     "note": ""
    },
    {
@@ -862,11 +988,13 @@
     "floor": "六樓",
     "layout": "3房2廳2衛",
     "rooms": 3,
-    "ping": 55.6,
+    "ping": 47,
     "totalWan": 1995,
-    "unitWan": null,
+    "unitWan": 38.6,
     "hasPark": true,
-    "parkWan": 0,
+    "parkWan": 180,
+    "parkPing": 8.6,
+    "parkEst": true,
     "note": ""
    },
    {
@@ -875,11 +1003,13 @@
     "floor": "五樓",
     "layout": "2房2廳1衛",
     "rooms": 2,
-    "ping": 35.4,
+    "ping": 26.9,
     "totalWan": 1340,
-    "unitWan": null,
+    "unitWan": 43.2,
     "hasPark": true,
-    "parkWan": 0,
+    "parkWan": 180,
+    "parkPing": 8.6,
+    "parkEst": true,
     "note": ""
    },
    {
@@ -893,6 +1023,8 @@
     "unitWan": 40.8,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -906,6 +1038,8 @@
     "unitWan": 44.6,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -914,11 +1048,13 @@
     "floor": "十樓",
     "layout": "2房2廳1衛",
     "rooms": 2,
-    "ping": 36.3,
+    "ping": 27.7,
     "totalWan": 1395,
-    "unitWan": null,
+    "unitWan": 43.8,
     "hasPark": true,
-    "parkWan": 0,
+    "parkWan": 180,
+    "parkPing": 8.6,
+    "parkEst": true,
     "note": ""
    },
    {
@@ -927,11 +1063,13 @@
     "floor": "十四樓",
     "layout": "3房2廳2衛",
     "rooms": 3,
-    "ping": 55.5,
+    "ping": 47,
     "totalWan": 1980,
-    "unitWan": 35.7,
-    "hasPark": false,
-    "parkWan": 0,
+    "unitWan": 38.3,
+    "hasPark": true,
+    "parkWan": 180,
+    "parkPing": 8.6,
+    "parkEst": true,
     "note": ""
    },
    {
@@ -940,11 +1078,13 @@
     "floor": "十一樓",
     "layout": "3房2廳2衛",
     "rooms": 3,
-    "ping": 54.2,
+    "ping": 44.3,
     "totalWan": 1875,
-    "unitWan": null,
+    "unitWan": 38.3,
     "hasPark": true,
-    "parkWan": 0,
+    "parkWan": 180,
+    "parkPing": 9.9,
+    "parkEst": true,
     "note": ""
    },
    {
@@ -953,11 +1093,13 @@
     "floor": "七樓",
     "layout": "3房2廳2衛",
     "rooms": 3,
-    "ping": 64.8,
+    "ping": 45.1,
     "totalWan": 2016,
-    "unitWan": null,
+    "unitWan": 36.8,
     "hasPark": true,
-    "parkWan": 0,
+    "parkWan": 360,
+    "parkPing": 19.8,
+    "parkEst": true,
     "note": ""
    },
    {
@@ -966,11 +1108,13 @@
     "floor": "三樓",
     "layout": "4房2廳2衛",
     "rooms": 4,
-    "ping": 69.1,
+    "ping": 59.2,
     "totalWan": 2288,
     "unitWan": 35.6,
     "hasPark": true,
     "parkWan": 180,
+    "parkPing": 9.9,
+    "parkEst": false,
     "note": "含增建"
    },
    {
@@ -979,11 +1123,13 @@
     "floor": "七樓",
     "layout": "3房2廳2衛",
     "rooms": 3,
-    "ping": 55,
+    "ping": 45.1,
     "totalWan": 1788,
-    "unitWan": null,
+    "unitWan": 35.7,
     "hasPark": true,
-    "parkWan": 0,
+    "parkWan": 180,
+    "parkPing": 9.9,
+    "parkEst": true,
     "note": ""
    },
    {
@@ -992,11 +1138,13 @@
     "floor": "十五樓",
     "layout": "3房2廳2衛",
     "rooms": 3,
-    "ping": 51.9,
+    "ping": 43.3,
     "totalWan": 1700,
     "unitWan": 35.6,
     "hasPark": true,
     "parkWan": 160,
+    "parkPing": 8.6,
+    "parkEst": false,
     "note": ""
    }
   ]
@@ -1015,6 +1163,8 @@
     "unitWan": 24.1,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1028,6 +1178,8 @@
     "unitWan": 21.8,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1038,9 +1190,11 @@
     "rooms": 3,
     "ping": 43.8,
     "totalWan": 870,
-    "unitWan": 19.8,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1054,6 +1208,8 @@
     "unitWan": 27.7,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1067,6 +1223,8 @@
     "unitWan": 19.1,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    }
   ]
@@ -1080,11 +1238,13 @@
     "floor": "七樓",
     "layout": "3房2廳2衛",
     "rooms": 3,
-    "ping": 62.9,
+    "ping": 52.6,
     "totalWan": 1698,
-    "unitWan": null,
+    "unitWan": 29.4,
     "hasPark": true,
-    "parkWan": 0,
+    "parkWan": 150,
+    "parkPing": 10.3,
+    "parkEst": true,
     "note": "含增建"
    },
    {
@@ -1098,6 +1258,8 @@
     "unitWan": 31.5,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1106,11 +1268,13 @@
     "floor": "十四樓",
     "layout": "2房2廳1衛",
     "rooms": 2,
-    "ping": 43.4,
+    "ping": 33.1,
     "totalWan": 1200,
-    "unitWan": null,
+    "unitWan": 31.7,
     "hasPark": true,
-    "parkWan": 0,
+    "parkWan": 150,
+    "parkPing": 10.3,
+    "parkEst": true,
     "note": ""
    },
    {
@@ -1119,11 +1283,13 @@
     "floor": "十六樓",
     "layout": "3房2廳2衛",
     "rooms": 3,
-    "ping": 56,
+    "ping": 45.7,
     "totalWan": 1525,
-    "unitWan": 27.2,
-    "hasPark": false,
-    "parkWan": 0,
+    "unitWan": 30.1,
+    "hasPark": true,
+    "parkWan": 150,
+    "parkPing": 10.3,
+    "parkEst": true,
     "note": ""
    },
    {
@@ -1137,6 +1303,8 @@
     "unitWan": 31.8,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1150,6 +1318,8 @@
     "unitWan": 30.7,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1158,11 +1328,13 @@
     "floor": "八樓",
     "layout": "2房1廳1衛",
     "rooms": 2,
-    "ping": 36.8,
+    "ping": 26.5,
     "totalWan": 1100,
-    "unitWan": null,
+    "unitWan": 35.8,
     "hasPark": true,
-    "parkWan": 0,
+    "parkWan": 150,
+    "parkPing": 10.3,
+    "parkEst": true,
     "note": ""
    },
    {
@@ -1176,6 +1348,8 @@
     "unitWan": 36.6,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": "含增建"
    },
    {
@@ -1184,11 +1358,13 @@
     "floor": "五樓",
     "layout": "3房2廳2衛",
     "rooms": 3,
-    "ping": 56,
+    "ping": 45.7,
     "totalWan": 1550,
-    "unitWan": null,
+    "unitWan": 30.6,
     "hasPark": true,
-    "parkWan": 0,
+    "parkWan": 150,
+    "parkPing": 10.3,
+    "parkEst": true,
     "note": ""
    },
    {
@@ -1202,6 +1378,8 @@
     "unitWan": 34.8,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1210,11 +1388,13 @@
     "floor": "九樓",
     "layout": "2房1廳1衛",
     "rooms": 2,
-    "ping": 35.7,
+    "ping": 25.4,
     "totalWan": 988,
     "unitWan": 32.9,
     "hasPark": true,
     "parkWan": 150,
+    "parkPing": 10.3,
+    "parkEst": false,
     "note": "含增建"
    },
    {
@@ -1223,11 +1403,13 @@
     "floor": "七樓",
     "layout": "2房2廳1衛",
     "rooms": 2,
-    "ping": 54.3,
+    "ping": 44,
     "totalWan": 1506,
-    "unitWan": null,
+    "unitWan": 30.8,
     "hasPark": true,
-    "parkWan": 0,
+    "parkWan": 150,
+    "parkPing": 10.3,
+    "parkEst": true,
     "note": "含增建"
    }
   ]
@@ -1241,11 +1423,13 @@
     "floor": "十三樓",
     "layout": "4房2廳3衛",
     "rooms": 4,
-    "ping": 107.8,
+    "ping": 90.4,
     "totalWan": 3870,
-    "unitWan": null,
+    "unitWan": 38.4,
     "hasPark": true,
-    "parkWan": 0,
+    "parkWan": 400,
+    "parkPing": 17.4,
+    "parkEst": true,
     "note": ""
    },
    {
@@ -1254,11 +1438,13 @@
     "floor": "十八樓",
     "layout": "4房3廳4衛",
     "rooms": 4,
-    "ping": 132,
+    "ping": 114.6,
     "totalWan": 4218,
-    "unitWan": null,
+    "unitWan": 33.3,
     "hasPark": true,
-    "parkWan": 0,
+    "parkWan": 400,
+    "parkPing": 17.4,
+    "parkEst": true,
     "note": ""
    },
    {
@@ -1267,11 +1453,13 @@
     "floor": "二十樓",
     "layout": "4房2廳3衛",
     "rooms": 4,
-    "ping": 107.7,
+    "ping": 90.3,
     "totalWan": 3850,
-    "unitWan": null,
+    "unitWan": 38.2,
     "hasPark": true,
-    "parkWan": 0,
+    "parkWan": 400,
+    "parkPing": 17.4,
+    "parkEst": true,
     "note": ""
    },
    {
@@ -1280,11 +1468,13 @@
     "floor": "七樓",
     "layout": "3房2廳3衛",
     "rooms": 3,
-    "ping": 108.3,
+    "ping": 90.9,
     "totalWan": 3800,
-    "unitWan": null,
+    "unitWan": 37.4,
     "hasPark": true,
-    "parkWan": 0,
+    "parkWan": 400,
+    "parkPing": 17.4,
+    "parkEst": true,
     "note": ""
    },
    {
@@ -1293,11 +1483,13 @@
     "floor": "二十六樓",
     "layout": "4房2廳3衛",
     "rooms": 4,
-    "ping": 107.7,
+    "ping": 90.3,
     "totalWan": 3770,
     "unitWan": 37.3,
     "hasPark": true,
     "parkWan": 400,
+    "parkPing": 17.4,
+    "parkEst": false,
     "note": "含增建"
    },
    {
@@ -1306,11 +1498,13 @@
     "floor": "三樓",
     "layout": "4房2廳3衛",
     "rooms": 4,
-    "ping": 99.6,
+    "ping": 90.9,
     "totalWan": 3380,
-    "unitWan": null,
+    "unitWan": 35,
     "hasPark": true,
-    "parkWan": 0,
+    "parkWan": 200,
+    "parkPing": 8.7,
+    "parkEst": true,
     "note": "含增建"
    },
    {
@@ -1319,11 +1513,13 @@
     "floor": "十九樓",
     "layout": "3房2廳3衛",
     "rooms": 3,
-    "ping": 107.7,
+    "ping": 90.3,
     "totalWan": 3775,
     "unitWan": 37.8,
     "hasPark": true,
     "parkWan": 360,
+    "parkPing": 17.4,
+    "parkEst": false,
     "note": "含增建"
    },
    {
@@ -1332,11 +1528,13 @@
     "floor": "二十樓",
     "layout": "4房2廳4衛",
     "rooms": 4,
-    "ping": 129.2,
+    "ping": 111.8,
     "totalWan": 4320,
-    "unitWan": null,
+    "unitWan": 35.1,
     "hasPark": true,
-    "parkWan": 0,
+    "parkWan": 400,
+    "parkPing": 17.4,
+    "parkEst": true,
     "note": ""
    },
    {
@@ -1345,11 +1543,13 @@
     "floor": "十六樓",
     "layout": "4房3廳4衛",
     "rooms": 4,
-    "ping": 132,
+    "ping": 114.6,
     "totalWan": 4568,
-    "unitWan": null,
+    "unitWan": 36.4,
     "hasPark": true,
-    "parkWan": 0,
+    "parkWan": 400,
+    "parkPing": 17.4,
+    "parkEst": true,
     "note": "含增建"
    },
    {
@@ -1358,11 +1558,13 @@
     "floor": "十四樓",
     "layout": "3房2廳3衛",
     "rooms": 3,
-    "ping": 106.6,
+    "ping": 90.4,
     "totalWan": 3608,
-    "unitWan": null,
+    "unitWan": 35.5,
     "hasPark": true,
-    "parkWan": 0,
+    "parkWan": 400,
+    "parkPing": 16.2,
+    "parkEst": true,
     "note": ""
    },
    {
@@ -1371,11 +1573,13 @@
     "floor": "九樓",
     "layout": "4房2廳3衛",
     "rooms": 4,
-    "ping": 107.7,
+    "ping": 90.3,
     "totalWan": 3568,
-    "unitWan": null,
+    "unitWan": 35.1,
     "hasPark": true,
-    "parkWan": 0,
+    "parkWan": 400,
+    "parkPing": 17.4,
+    "parkEst": true,
     "note": "含增建"
    },
    {
@@ -1384,11 +1588,13 @@
     "floor": "二十二樓",
     "layout": "4房2廳3衛",
     "rooms": 4,
-    "ping": 108.3,
+    "ping": 90.9,
     "totalWan": 3480,
-    "unitWan": 32.1,
-    "hasPark": false,
-    "parkWan": 0,
+    "unitWan": 33.9,
+    "hasPark": true,
+    "parkWan": 400,
+    "parkPing": 17.4,
+    "parkEst": true,
     "note": ""
    }
   ]
@@ -1407,6 +1613,8 @@
     "unitWan": 29.2,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1420,6 +1628,8 @@
     "unitWan": 27.9,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1433,6 +1643,8 @@
     "unitWan": 27.7,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1446,6 +1658,8 @@
     "unitWan": 25.8,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1459,6 +1673,8 @@
     "unitWan": 29,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1472,6 +1688,8 @@
     "unitWan": 27.6,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1485,6 +1703,8 @@
     "unitWan": 22.9,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": "含增建"
    },
    {
@@ -1498,6 +1718,8 @@
     "unitWan": 27.4,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1511,6 +1733,8 @@
     "unitWan": 27.4,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1524,6 +1748,8 @@
     "unitWan": 30.6,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1537,6 +1763,8 @@
     "unitWan": 20.5,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1550,6 +1778,8 @@
     "unitWan": 29.5,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    }
   ]
@@ -1568,6 +1798,8 @@
     "unitWan": 32.5,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1578,9 +1810,11 @@
     "rooms": 4,
     "ping": 55.3,
     "totalWan": 1650,
-    "unitWan": 29.8,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1591,9 +1825,11 @@
     "rooms": 3,
     "ping": 44.6,
     "totalWan": 1300,
-    "unitWan": 29.2,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1604,9 +1840,11 @@
     "rooms": 3,
     "ping": 55.6,
     "totalWan": 1520,
-    "unitWan": 27.3,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1617,9 +1855,11 @@
     "rooms": 3,
     "ping": 43.5,
     "totalWan": 1355,
-    "unitWan": 31.2,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1630,9 +1870,11 @@
     "rooms": 4,
     "ping": 55.3,
     "totalWan": 1530,
-    "unitWan": 27.7,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": "含增建"
    },
    {
@@ -1643,9 +1885,11 @@
     "rooms": 4,
     "ping": 56.5,
     "totalWan": 1440,
-    "unitWan": 25.5,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    }
   ]
@@ -1659,11 +1903,13 @@
     "floor": "二樓",
     "layout": "2房2廳2衛",
     "rooms": 2,
-    "ping": 33.4,
+    "ping": 26,
     "totalWan": 1215,
     "unitWan": null,
     "hasPark": true,
     "parkWan": 0,
+    "parkPing": 7.4,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1672,11 +1918,13 @@
     "floor": "六樓",
     "layout": "3房2廳2衛",
     "rooms": 3,
-    "ping": 32.5,
+    "ping": 25.2,
     "totalWan": 1290,
     "unitWan": null,
     "hasPark": true,
     "parkWan": 0,
+    "parkPing": 7.4,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1685,11 +1933,13 @@
     "floor": "三樓",
     "layout": "3房2廳2衛",
     "rooms": 3,
-    "ping": 39.9,
+    "ping": 32.5,
     "totalWan": 1415,
     "unitWan": null,
     "hasPark": true,
     "parkWan": 0,
+    "parkPing": 7.4,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1703,6 +1953,8 @@
     "unitWan": 43.2,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1713,9 +1965,11 @@
     "rooms": 3,
     "ping": 39.9,
     "totalWan": 1500,
-    "unitWan": 37.6,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1729,6 +1983,8 @@
     "unitWan": 46.1,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1737,11 +1993,13 @@
     "floor": "三樓",
     "layout": "3房2廳2衛",
     "rooms": 3,
-    "ping": 44.2,
+    "ping": 36.8,
     "totalWan": 1600,
     "unitWan": null,
     "hasPark": true,
     "parkWan": 0,
+    "parkPing": 7.4,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1755,6 +2013,8 @@
     "unitWan": 40.3,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1763,11 +2023,13 @@
     "floor": "八樓",
     "layout": "3房2廳2衛",
     "rooms": 3,
-    "ping": 44.2,
+    "ping": 36.8,
     "totalWan": 1595,
     "unitWan": null,
     "hasPark": true,
     "parkWan": 0,
+    "parkPing": 7.4,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1776,11 +2038,13 @@
     "floor": "六樓",
     "layout": "3房2廳2衛",
     "rooms": 3,
-    "ping": 44.2,
+    "ping": 36.8,
     "totalWan": 1420,
     "unitWan": null,
     "hasPark": true,
     "parkWan": 0,
+    "parkPing": 7.4,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1789,11 +2053,13 @@
     "floor": "六樓",
     "layout": "3房2廳1衛",
     "rooms": 3,
-    "ping": 32.5,
+    "ping": 25.2,
     "totalWan": 1022,
     "unitWan": null,
     "hasPark": true,
     "parkWan": 0,
+    "parkPing": 7.4,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1802,11 +2068,13 @@
     "floor": "六樓",
     "layout": "3房2廳1衛",
     "rooms": 3,
-    "ping": 33.1,
+    "ping": 26,
     "totalWan": 1020,
     "unitWan": null,
     "hasPark": true,
     "parkWan": 0,
+    "parkPing": 7.1,
+    "parkEst": false,
     "note": ""
    }
   ]
@@ -1825,6 +2093,8 @@
     "unitWan": 35.2,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1838,6 +2108,8 @@
     "unitWan": 36.3,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1851,6 +2123,8 @@
     "unitWan": 36.3,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1864,6 +2138,8 @@
     "unitWan": 36.9,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1877,6 +2153,8 @@
     "unitWan": 36.4,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1890,6 +2168,8 @@
     "unitWan": 36.7,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1903,6 +2183,8 @@
     "unitWan": 35.5,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1916,6 +2198,8 @@
     "unitWan": 35.5,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1929,6 +2213,8 @@
     "unitWan": 37.3,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1942,6 +2228,8 @@
     "unitWan": 34.8,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1955,6 +2243,8 @@
     "unitWan": 38.5,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    },
    {
@@ -1968,6 +2258,8 @@
     "unitWan": 41.2,
     "hasPark": false,
     "parkWan": 0,
+    "parkPing": 0,
+    "parkEst": false,
     "note": ""
    }
   ]

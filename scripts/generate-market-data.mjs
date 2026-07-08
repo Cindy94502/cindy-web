@@ -51,16 +51,35 @@ for (const season of seasons) {
   try {
     if (!existsSync(resolve(dir, 'h_lvr_land_a.csv'))) {
       execSync(`curl -sf -o "${zip}" "https://plvr.land.moi.gov.tw/DownloadSeason?season=${season}&type=zip&fileName=lvr_landcsv.zip"`)
-      execSync(`unzip -o -q "${zip}" h_lvr_land_a.csv -d "${dir}"`)
+      execSync(`unzip -o -q "${zip}" h_lvr_land_a.csv h_lvr_land_a_park.csv -d "${dir}"`)
     }
+    if (!existsSync(resolve(dir, 'h_lvr_land_a_park.csv')) && existsSync(zip)) {
+      execSync(`unzip -o -q "${zip}" h_lvr_land_a_park.csv -d "${dir}"`)
+    }
+    // 車位明細檔：主檔車位價常為0，實際車位價/坪要從這裡用編號串接
+    const parkBySerial = {}
+    try {
+      const pRows = parseCSV(readFileSync(resolve(dir, 'h_lvr_land_a_park.csv'), 'utf8').replace(/^﻿/, ''))
+      const ph = pRows[0]
+      const pi = Object.fromEntries(ph.map((h, i) => [h, i]))
+      for (const pr of pRows.slice(2)) {
+        const sn = pr[pi['編號']]
+        if (!sn) continue
+        if (!parkBySerial[sn]) parkBySerial[sn] = { price: 0, sqm: 0 }
+        parkBySerial[sn].price += parseInt(pr[pi['車位價格']]) || 0
+        parkBySerial[sn].sqm += parseFloat(pr[pi['車位面積平方公尺']]) || 0
+      }
+    } catch { /* 舊季檔可能沒有車位明細 */ }
     const rows = parseCSV(readFileSync(resolve(dir, 'h_lvr_land_a.csv'), 'utf8').replace(/^﻿/, ''))
     const header = rows[0]
     const idx = Object.fromEntries(header.map((h, i) => [h, i]))
     for (const r of rows.slice(2)) {
       if (r.length < header.length - 1) continue
+      const park = parkBySerial[r[idx['編號']]] || { price: 0, sqm: 0 }
       allRows.push({
         district: r[idx['鄉鎮市區']],
         target: r[idx['交易標的']] || '',
+        parkCount: parseInt(((r[idx['交易筆棟數']] || '').match(/車位(\d+)/) || [])[1]) || 0,
         addr: r[idx['土地位置建物門牌']] || '',
         date: r[idx['交易年月日']] || '',
         floor: r[idx['移轉層次']] || '',
@@ -71,8 +90,8 @@ for (const season of seasons) {
         halls: r[idx['建物現況格局-廳']] || '',
         baths: r[idx['建物現況格局-衛']] || '',
         total: parseInt(r[idx['總價元']]) || 0,
-        parkPrice: parseInt(r[idx['車位總價元']]) || 0,
-        parkSqm: parseFloat(r[idx['車位移轉總面積(平方公尺)']] ?? r[idx['車位移轉總面積平方公尺']]) || 0,
+        parkPrice: (parseInt(r[idx['車位總價元']]) || 0) || park.price,
+        parkSqm: (parseFloat(r[idx['車位移轉總面積(平方公尺)']] ?? r[idx['車位移轉總面積平方公尺']]) || 0) || park.sqm,
         note: r[idx['備註']] || '',
       })
     }
@@ -94,14 +113,29 @@ for (const p of props) {
     r.done.length >= 5 && parseInt(r.done.slice(0, r.done.length - 4)) === conf.year &&
     !BAD_NOTE.test(r.note) &&
     r.total > 0 && r.sqm > 0
-  ).map(r => {
-    // 車位有標價才拆算單價；有車位但價格登記0元時無法分離，單價不顯示
-    const hasPark = r.parkSqm > 0 || r.parkPrice > 0
-    const splitPark = r.parkPrice > 0
+  )
+  // 社區車位行情：取官方「最近一筆」有拆價的成交回填給沒拆價的案子（同樂居做法）
+  const byDate = [...deals].sort((a, b) => b.date.localeCompare(a.date))
+  const latestPriced = byDate.find(r => r.parkPrice > 0 && r.parkCount > 0)
+  const latestSized = byDate.find(r => r.parkSqm > 0 && r.parkCount > 0)
+  const estPrice = latestPriced ? latestPriced.parkPrice / latestPriced.parkCount : 0
+  const estSqm = latestSized ? latestSized.parkSqm / latestSized.parkCount : 20 // 無資料時以坡道平面約6坪(20m²)估
+
+  const dealRows = deals.map(r => {
+    const hasPark = r.parkCount > 0 || r.parkSqm > 0 || r.parkPrice > 0
+    let parkPrice = r.parkPrice, parkSqm = r.parkSqm, estimated = false
+    if (hasPark && parkPrice === 0 && estPrice > 0) {
+      // 官方沒拆價 → 用社區車位行情估算，標明是估的
+      parkPrice = Math.round(estPrice * Math.max(r.parkCount, 1))
+      if (parkSqm === 0 && estSqm > 0) parkSqm = estSqm * Math.max(r.parkCount, 1)
+      estimated = true
+    }
+    const splitPark = parkPrice > 0
     const noUnit = hasPark && !splitPark
-    const netPrice = splitPark ? r.total - r.parkPrice : r.total
-    const netPing = (splitPark ? r.sqm - r.parkSqm : r.sqm) * 0.3025
-    const ping = r.sqm * 0.3025
+    const netPrice = splitPark ? r.total - parkPrice : r.total
+    const housePing = (r.sqm - parkSqm) * 0.3025  // 房屋坪 = 建物總坪 - 車位坪
+    const netPing = noUnit ? 0 : housePing
+    const ping = housePing
     return {
       date: `${r.date.slice(0, r.date.length - 4)}/${parseInt(r.date.slice(-4, -2))}`,
       dateRaw: r.date,
@@ -112,11 +146,13 @@ for (const p of props) {
       totalWan: Math.round(r.total / 10000),
       unitWan: !noUnit && netPing > 0 ? Math.round(netPrice / netPing / 10000 * 10) / 10 : null,
       hasPark,
-      parkWan: splitPark ? Math.round(r.parkPrice / 10000) : 0,
+      parkWan: splitPark ? Math.round(parkPrice / 10000) : 0,
+      parkPing: parkSqm > 0 ? Math.round(parkSqm * 0.3025 * 10) / 10 : 0,
+      parkEst: estimated,
       note: /增建/.test(r.note) ? '含增建' : '',
     }
   }).sort((a, b) => b.dateRaw.localeCompare(a.dateRaw)).slice(0, 12)
-  if (deals.length) output[p.nodeId] = { community: conf.keyword, deals }
+  if (dealRows.length) output[p.nodeId] = { community: conf.keyword, deals: dealRows }
 }
 
 writeFileSync(resolve('public', 'market-data.json'), JSON.stringify(output, null, 1))
