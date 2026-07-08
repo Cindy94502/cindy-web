@@ -778,35 +778,6 @@
    }
   ]
  },
- "4-9b57f957-47ce-44cb-97c9-5780a2688e73-70": {
-  "community": "藝墅天地",
-  "deals": [
-   {
-    "date": "113/10",
-    "dateRaw": "1131011",
-    "floor": "全",
-    "layout": "4房3廳3衛",
-    "rooms": 4,
-    "ping": 70,
-    "totalWan": 2000,
-    "unitWan": 28.6,
-    "hasPark": false,
-    "note": ""
-   },
-   {
-    "date": "113/4",
-    "dateRaw": "1130425",
-    "floor": "全",
-    "layout": "4房3廳4衛",
-    "rooms": 4,
-    "ping": 70.4,
-    "totalWan": 2100,
-    "unitWan": 29.8,
-    "hasPark": false,
-    "note": "含增建"
-   }
-  ]
- },
  "4-9b57f957-47ce-44cb-97c9-5780a2688e73-102": {
   "community": "香榭堤景",
   "deals": [
