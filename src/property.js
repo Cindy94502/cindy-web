@@ -172,7 +172,7 @@ function renderMarketBlock(prop) {
       <td>${d.floor}</td>
       <td>${d.layout}</td>
       <td>${d.ping}坪</td>
-      <td>${d.totalWan}萬${d.parkWan ? `<span class="market-note">${d.parkEst ? '車位估' : '含車位'}${d.parkWan}萬</span>` : d.hasPark ? '<span class="market-note">含車位</span>' : ''}${d.note ? `<span class="market-note">${d.note}</span>` : ''}</td>
+      <td>${d.totalWan}萬${d.note ? `<span class="market-note">${d.note}</span>` : ''}</td>
       <td>${d.unitWan != null ? d.unitWan + '萬' : '—'}</td>
     </tr>`).join('')
   const pages = Math.ceil(marketData.deals.length / 5)
