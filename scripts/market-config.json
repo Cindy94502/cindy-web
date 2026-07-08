@@ -1,0 +1,15 @@
+{
+  "_說明": "社區比對條件：keyword=物件標題關鍵字, district=行政區, road=路段, year=完工民國年",
+  "communities": [
+    { "keyword": "人文學苑", "district": "蘆竹區", "road": "五福一路", "year": 99 },
+    { "keyword": "佳陞豐川", "district": "蘆竹區", "road": "山鼻路", "year": 95 },
+    { "keyword": "卓悅", "district": "大園區", "road": "聖德北路", "year": 113 },
+    { "keyword": "帝景龍禧", "district": "蘆竹區", "road": "南順一街", "year": 92 },
+    { "keyword": "敦煌大地", "district": "蘆竹區", "road": "五福六路", "year": 81 },
+    { "keyword": "臻愛巴黎", "district": "蘆竹區", "road": "中正路", "year": 93 },
+    { "keyword": "藝墅天地", "district": "蘆竹區", "road": "福祿一街", "year": 93 },
+    { "keyword": "電通市", "district": "蘆竹區", "road": "南山路一段", "year": 84 },
+    { "keyword": "飛飛想", "district": "蘆竹區", "road": "南山路一段", "year": 104 },
+    { "keyword": "麗寶W1", "district": "蘆竹區", "road": "新南路一段", "year": 102 }
+  ]
+}

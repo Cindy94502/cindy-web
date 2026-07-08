@@ -149,10 +149,68 @@ async function loadProperty() {
       images.unshift(prop.ogImageUrl)
     }
 
+    // 同社區實價登錄行情（沒有就不顯示）
+    try {
+      const mkRes = await fetch(import.meta.env.BASE_URL + 'market-data.json')
+      if (mkRes.ok) marketData = (await mkRes.json())[prop.nodeId] || null
+    } catch { marketData = null }
+
     renderProperty(prop, images, allProps)
   } catch (e) {
     document.querySelector('.property-loading').innerHTML = `<p>載入失敗，請稍後再試</p>`
   }
+}
+
+let marketData = null
+
+function renderMarketBlock(prop) {
+  if (!marketData || !marketData.deals?.length) return ''
+  const myRooms = parseInt(prop.roomCount) || 0
+  const rows = marketData.deals.map((d, i) => `
+    <tr class="${myRooms && d.rooms === myRooms ? 'market-row-match' : ''}" data-mpage="${Math.floor(i / 5)}">
+      <td>${d.date}</td>
+      <td>${d.floor}</td>
+      <td>${d.layout}</td>
+      <td>${d.ping}坪</td>
+      <td>${d.totalWan}萬${d.hasPark ? '<span class="market-note">含車位</span>' : ''}${d.note ? `<span class="market-note">${d.note}</span>` : ''}</td>
+      <td>${d.unitWan != null ? d.unitWan + '萬' : '—'}</td>
+    </tr>`).join('')
+  const pages = Math.ceil(marketData.deals.length / 5)
+  return `
+    <div class="property-market-wrap">
+      <div class="property-section-title">${icon('TrendingUp', 16, 2)} ${marketData.community}近期實價登錄</div>
+      <div class="market-table-scroll">
+        <table class="market-table">
+          <thead><tr><th>成交</th><th>樓層</th><th>格局</th><th>坪數</th><th>總價</th><th>單價/坪</th></tr></thead>
+          <tbody id="marketBody">${rows}</tbody>
+        </table>
+      </div>
+      ${pages > 1 ? `
+      <div class="market-pager">
+        <button class="market-pager-btn" id="marketPrev">${icon('ChevronLeft', 14, 2)} 上一頁</button>
+        <span class="market-pager-info" id="marketPageInfo"></span>
+        <button class="market-pager-btn" id="marketNext">下一頁 ${icon('ChevronRight', 14, 2)}</button>
+      </div>` : ''}
+      <div class="market-source">資料來源：內政部實價登錄（已排除親友間等特殊交易；車位有標價者已拆算）${myRooms ? '，底色列為同房型成交' : ''}</div>
+    </div>`
+}
+
+function initMarketPager() {
+  const body = document.getElementById('marketBody')
+  if (!body) return
+  const rows = [...body.querySelectorAll('tr')]
+  const pages = Math.ceil(rows.length / 5)
+  if (pages <= 1) return
+  let page = 0
+  const show = () => {
+    rows.forEach(r => { r.style.display = r.dataset.mpage == page ? '' : 'none' })
+    document.getElementById('marketPageInfo').textContent = `${page + 1} / ${pages}`
+    document.getElementById('marketPrev').disabled = page === 0
+    document.getElementById('marketNext').disabled = page === pages - 1
+  }
+  document.getElementById('marketPrev')?.addEventListener('click', () => { if (page > 0) { page--; show() } })
+  document.getElementById('marketNext')?.addEventListener('click', () => { if (page < pages - 1) { page++; show() } })
+  show()
 }
 
 function renderGallery(images) {
@@ -252,6 +310,8 @@ function renderProperty(prop, images, allProps = []) {
             <span class="spec-value">${prop.roomCount || '—'}</span>
           </div>
         </div>
+
+        ${renderMarketBlock(prop)}
 
         ${(prop.mapAddress || prop.wixLocation) ? `
         <div class="property-map-wrap">
@@ -360,6 +420,7 @@ function renderProperty(prop, images, allProps = []) {
   setOgMeta(prop, images)
   initGallery(images)
   initShare(prop)
+  initMarketPager()
   initTagFilter(prop, allProps)
   initSimilarCarousel()
 }
