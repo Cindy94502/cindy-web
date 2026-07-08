@@ -457,8 +457,8 @@
     "rooms": 2,
     "ping": 33.5,
     "totalWan": 1050,
-    "unitWan": 31.4,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": ""
    },
    {
@@ -469,8 +469,8 @@
     "rooms": 2,
     "ping": 31.7,
     "totalWan": 1090,
-    "unitWan": 34.4,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": ""
    },
    {
@@ -481,8 +481,8 @@
     "rooms": 3,
     "ping": 45.8,
     "totalWan": 1550,
-    "unitWan": 33.9,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": ""
    },
    {
@@ -493,8 +493,8 @@
     "rooms": 2,
     "ping": 32,
     "totalWan": 1020,
-    "unitWan": 31.9,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": ""
    },
    {
@@ -505,8 +505,8 @@
     "rooms": 3,
     "ping": 42.9,
     "totalWan": 1375,
-    "unitWan": 32.1,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": ""
    },
    {
@@ -517,8 +517,8 @@
     "rooms": 3,
     "ping": 42.8,
     "totalWan": 1368,
-    "unitWan": 32,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": ""
    },
    {
@@ -529,8 +529,8 @@
     "rooms": 3,
     "ping": 41.4,
     "totalWan": 1300,
-    "unitWan": 31.4,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": ""
    },
    {
@@ -541,8 +541,8 @@
     "rooms": 2,
     "ping": 34.3,
     "totalWan": 1188,
-    "unitWan": 34.6,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": ""
    },
    {
@@ -647,8 +647,8 @@
     "rooms": 3,
     "ping": 44.2,
     "totalWan": 1225,
-    "unitWan": 27.7,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": ""
    },
    {
@@ -659,8 +659,8 @@
     "rooms": 3,
     "ping": 48.8,
     "totalWan": 1388,
-    "unitWan": 28.4,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": ""
    }
   ]
@@ -789,8 +789,8 @@
     "rooms": 3,
     "ping": 55.9,
     "totalWan": 2098,
-    "unitWan": 37.5,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": ""
    },
    {
@@ -801,8 +801,8 @@
     "rooms": 3,
     "ping": 55.6,
     "totalWan": 1995,
-    "unitWan": 35.9,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": ""
    },
    {
@@ -813,8 +813,8 @@
     "rooms": 2,
     "ping": 35.4,
     "totalWan": 1340,
-    "unitWan": 37.8,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": ""
    },
    {
@@ -849,8 +849,8 @@
     "rooms": 2,
     "ping": 36.3,
     "totalWan": 1395,
-    "unitWan": 38.4,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": ""
    },
    {
@@ -873,8 +873,8 @@
     "rooms": 3,
     "ping": 54.2,
     "totalWan": 1875,
-    "unitWan": 34.6,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": ""
    },
    {
@@ -885,8 +885,8 @@
     "rooms": 3,
     "ping": 64.8,
     "totalWan": 2016,
-    "unitWan": 31.1,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": ""
    },
    {
@@ -909,8 +909,8 @@
     "rooms": 3,
     "ping": 55,
     "totalWan": 1788,
-    "unitWan": 32.5,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": ""
    },
    {
@@ -1003,8 +1003,8 @@
     "rooms": 3,
     "ping": 62.9,
     "totalWan": 1698,
-    "unitWan": 27,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": "含增建"
    },
    {
@@ -1027,8 +1027,8 @@
     "rooms": 2,
     "ping": 43.4,
     "totalWan": 1200,
-    "unitWan": 27.6,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": ""
    },
    {
@@ -1075,8 +1075,8 @@
     "rooms": 2,
     "ping": 36.8,
     "totalWan": 1100,
-    "unitWan": 29.9,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": ""
    },
    {
@@ -1099,8 +1099,8 @@
     "rooms": 3,
     "ping": 56,
     "totalWan": 1550,
-    "unitWan": 27.7,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": ""
    },
    {
@@ -1135,8 +1135,8 @@
     "rooms": 2,
     "ping": 54.3,
     "totalWan": 1506,
-    "unitWan": 27.7,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": "含增建"
    }
   ]
@@ -1152,8 +1152,8 @@
     "rooms": 4,
     "ping": 107.8,
     "totalWan": 3870,
-    "unitWan": 35.9,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": ""
    },
    {
@@ -1164,8 +1164,8 @@
     "rooms": 4,
     "ping": 132,
     "totalWan": 4218,
-    "unitWan": 32,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": ""
    },
    {
@@ -1176,8 +1176,8 @@
     "rooms": 4,
     "ping": 107.7,
     "totalWan": 3850,
-    "unitWan": 35.8,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": ""
    },
    {
@@ -1188,8 +1188,8 @@
     "rooms": 3,
     "ping": 108.3,
     "totalWan": 3800,
-    "unitWan": 35.1,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": ""
    },
    {
@@ -1212,8 +1212,8 @@
     "rooms": 4,
     "ping": 99.6,
     "totalWan": 3380,
-    "unitWan": 33.9,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": "含增建"
    },
    {
@@ -1236,8 +1236,8 @@
     "rooms": 4,
     "ping": 129.2,
     "totalWan": 4320,
-    "unitWan": 33.4,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": ""
    },
    {
@@ -1248,8 +1248,8 @@
     "rooms": 4,
     "ping": 132,
     "totalWan": 4568,
-    "unitWan": 34.6,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": "含增建"
    },
    {
@@ -1260,8 +1260,8 @@
     "rooms": 3,
     "ping": 106.6,
     "totalWan": 3608,
-    "unitWan": 33.9,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": ""
    },
    {
@@ -1272,8 +1272,8 @@
     "rooms": 4,
     "ping": 107.7,
     "totalWan": 3568,
-    "unitWan": 33.1,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": "含增建"
    },
    {
@@ -1539,8 +1539,8 @@
     "rooms": 2,
     "ping": 33.4,
     "totalWan": 1215,
-    "unitWan": 36.4,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": ""
    },
    {
@@ -1551,8 +1551,8 @@
     "rooms": 3,
     "ping": 32.5,
     "totalWan": 1290,
-    "unitWan": 39.6,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": ""
    },
    {
@@ -1563,8 +1563,8 @@
     "rooms": 3,
     "ping": 39.9,
     "totalWan": 1415,
-    "unitWan": 35.5,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": ""
    },
    {
@@ -1611,8 +1611,8 @@
     "rooms": 3,
     "ping": 44.2,
     "totalWan": 1600,
-    "unitWan": 36.2,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": ""
    },
    {
@@ -1635,8 +1635,8 @@
     "rooms": 3,
     "ping": 44.2,
     "totalWan": 1595,
-    "unitWan": 36.1,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": ""
    },
    {
@@ -1647,8 +1647,8 @@
     "rooms": 3,
     "ping": 44.2,
     "totalWan": 1420,
-    "unitWan": 32.1,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": ""
    },
    {
@@ -1659,8 +1659,8 @@
     "rooms": 3,
     "ping": 32.5,
     "totalWan": 1022,
-    "unitWan": 31.4,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": ""
    },
    {
@@ -1671,8 +1671,8 @@
     "rooms": 3,
     "ping": 33.1,
     "totalWan": 1020,
-    "unitWan": 30.8,
-    "hasPark": false,
+    "unitWan": null,
+    "hasPark": true,
     "note": ""
    }
   ]

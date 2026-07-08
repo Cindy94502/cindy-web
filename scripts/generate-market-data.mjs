@@ -95,8 +95,10 @@ for (const p of props) {
     !BAD_NOTE.test(r.note) &&
     r.total > 0 && r.sqm > 0
   ).map(r => {
-    // 車位有標價才拆算；車位價0元時無法分離，用總價/總坪計
+    // 車位有標價才拆算單價；有車位但價格登記0元時無法分離，單價不顯示
+    const hasPark = r.parkSqm > 0 || r.parkPrice > 0
     const splitPark = r.parkPrice > 0
+    const noUnit = hasPark && !splitPark
     const netPrice = splitPark ? r.total - r.parkPrice : r.total
     const netPing = (splitPark ? r.sqm - r.parkSqm : r.sqm) * 0.3025
     const ping = r.sqm * 0.3025
@@ -108,8 +110,8 @@ for (const p of props) {
       rooms: parseInt(r.rooms) || 0,
       ping: Math.round(ping * 10) / 10,
       totalWan: Math.round(r.total / 10000),
-      unitWan: netPing > 0 ? Math.round(netPrice / netPing / 10000 * 10) / 10 : null,
-      hasPark: r.parkPrice > 0,
+      unitWan: !noUnit && netPing > 0 ? Math.round(netPrice / netPing / 10000 * 10) / 10 : null,
+      hasPark,
       note: /增建/.test(r.note) ? '含增建' : '',
     }
   }).sort((a, b) => b.dateRaw.localeCompare(a.dateRaw)).slice(0, 12)
