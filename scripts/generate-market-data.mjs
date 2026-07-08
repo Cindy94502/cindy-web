@@ -121,31 +121,19 @@ for (const p of props) {
   const estPrice = conf.parkWan ? conf.parkWan * 10000 : latestPriced ? latestPriced.parkPrice / latestPriced.parkCount : 0
   const estSqm = latestSized ? latestSized.parkSqm / latestSized.parkCount : 20 // 無資料時以坡道平面約6坪(20m²)估
 
-  const dealRows = deals.map(r => {
+  // 方案A：只上「官方完整登記」的成交——有車位但車位價或車位坪缺登記（需估算）的一律不顯示
+  const dealRows = deals.filter(r => {
     const hasPark = r.parkCount > 0 || r.parkSqm > 0 || r.parkPrice > 0
-    let parkPrice = r.parkPrice, parkSqm = r.parkSqm, estimated = false
-    if (hasPark && parkPrice === 0 && (estPrice > 0 || conf.parkTiers)) {
-      // 官方沒拆價 → 用社區車位行情估算，標明是估的
-      let per = estPrice
-      if (conf.parkTiers) {
-        // 多種車位價：有車位坪就挑最接近的，沒有就用第一種
-        const ping1 = r.parkSqm > 0 ? r.parkSqm * 0.3025 / Math.max(r.parkCount, 1) : 0
-        const tier = ping1 > 0
-          ? [...conf.parkTiers].sort((a, b) => Math.abs(a.ping - ping1) - Math.abs(b.ping - ping1))[0]
-          : conf.parkTiers[0]
-        per = tier.wan * 10000
-      }
-      parkPrice = Math.round(per * Math.max(r.parkCount, 1))
-      if (parkSqm === 0 && estSqm > 0) parkSqm = estSqm * Math.max(r.parkCount, 1)
-      estimated = true
-    }
-    // 車位價已知但車位坪缺登記時，坪數也用社區行情回填，房屋坪才不會被灌大
-    if (hasPark && parkPrice > 0 && parkSqm === 0 && estSqm > 0) parkSqm = estSqm * Math.max(r.parkCount, 1)
+    return !hasPark || (r.parkPrice > 0 && r.parkSqm > 0)
+  }).map(r => {
+    const hasPark = r.parkPrice > 0
+    const parkPrice = r.parkPrice, parkSqm = r.parkSqm
+    const estimated = false
     const splitPark = parkPrice > 0
-    const noUnit = hasPark && !splitPark
-    const netPrice = splitPark ? r.total - parkPrice : r.total
+    const noUnit = false
+    const netPrice = r.total - parkPrice
     const housePing = (r.sqm - parkSqm) * 0.3025  // 房屋坪 = 建物總坪 - 車位坪
-    const netPing = noUnit ? 0 : housePing
+    const netPing = housePing
     const ping = housePing
     return {
       date: `${r.date.slice(0, r.date.length - 4)}/${parseInt(r.date.slice(-4, -2))}`,
