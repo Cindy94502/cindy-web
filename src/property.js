@@ -185,7 +185,7 @@ function renderMarketBlock(prop) {
       <div class="property-section-title">${icon('TrendingUp', 16, 2)} ${marketData.community}近期實價登錄</div>
       <div class="market-table-scroll">
         <table class="market-table">
-          <thead><tr><th>成交</th><th>樓層</th><th>格局</th><th>總面積</th><th>總價</th><th>單價/坪</th></tr></thead>
+          <thead><tr><th>成交</th><th>樓層</th><th>格局</th><th>總面積</th><th>總價</th><th>單價/坪<span class="market-help" tabindex="0">?<span class="market-tip">依是否有申報車位價格及面積，分為 2 種公式：<br>公式一：總價 ÷ 總面積（單價旁標「車」者含車位）<br>公式二：（總價 − 車位價格）÷（總面積 − 車位面積）</span></span></th></tr></thead>
           <tbody id="marketBody">${rows}</tbody>
         </table>
       </div>
@@ -195,7 +195,7 @@ function renderMarketBlock(prop) {
         <span class="market-pager-info" id="marketPageInfo"></span>
         <button class="market-pager-btn" id="marketNext">下一頁 ${icon('ChevronRight', 14, 2)}</button>
       </div>` : ''}
-      <div class="market-source">資料來源：內政部實價登錄，已排除親友間等特殊交易。單價比照內政部公式：有申報車位價格及面積者為（總價−車位價）÷（總面積−車位面積），其餘為總價÷總面積；標「車」者含車位${myRooms ? '。底色列為同房型成交' : ''}</div>
+      <div class="market-source">資料來源：內政部實價登錄，已排除親友間等特殊交易；單價計算比照內政部公式，標「車」者含車位${myRooms ? '。底色列為同房型成交' : ''}</div>
     </div>`
 }
 
