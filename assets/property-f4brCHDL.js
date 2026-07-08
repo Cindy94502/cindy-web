@@ -40,14 +40,14 @@ import{r as w,a as C,i as I,b as c}from"./shared-B4N8x-DF.js";import{G as L,f as
       <td>${l.floor}</td>
       <td>${l.layout}</td>
       <td>${l.ping}坪</td>
-      <td>${l.totalWan}萬${l.parkWan?`<span class="market-note">含車位${l.parkWan}萬</span>`:l.hasPark?'<span class="market-note">含車位</span>':""}${l.note?`<span class="market-note">${l.note}</span>`:""}</td>
+      <td>${l.totalWan}萬${l.parkWan?`<span class="market-note">${l.parkEst?"車位估":"含車位"}${l.parkWan}萬</span>`:l.hasPark?'<span class="market-note">含車位</span>':""}${l.note?`<span class="market-note">${l.note}</span>`:""}</td>
       <td>${l.unitWan!=null?l.unitWan+"萬":"—"}</td>
     </tr>`).join(""),n=Math.ceil(d.deals.length/5);return`
     <div class="property-market-wrap">
       <div class="property-section-title">${c("TrendingUp",16,2)} ${d.community}近期實價登錄</div>
       <div class="market-table-scroll">
         <table class="market-table">
-          <thead><tr><th>成交</th><th>樓層</th><th>格局</th><th>坪數</th><th>總價</th><th>單價/坪</th></tr></thead>
+          <thead><tr><th>成交</th><th>樓層</th><th>格局</th><th>房屋坪</th><th>總價</th><th>單價/坪</th></tr></thead>
           <tbody id="marketBody">${r}</tbody>
         </table>
       </div>
