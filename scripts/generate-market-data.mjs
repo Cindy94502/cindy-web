@@ -114,22 +114,33 @@ for (const p of props) {
     !BAD_NOTE.test(r.note) &&
     r.total > 0 && r.sqm > 0
   )
-  // 社區車位行情：取官方「最近一筆」有拆價的成交回填給沒拆價的案子（同樂居做法）
+  // 社區車位行情回填順序：config 的 parkWan（來自 Cindy 實際物件）> 官方最近一筆有拆價成交
   const byDate = [...deals].sort((a, b) => b.date.localeCompare(a.date))
   const latestPriced = byDate.find(r => r.parkPrice > 0 && r.parkCount > 0)
   const latestSized = byDate.find(r => r.parkSqm > 0 && r.parkCount > 0)
-  const estPrice = latestPriced ? latestPriced.parkPrice / latestPriced.parkCount : 0
+  const estPrice = conf.parkWan ? conf.parkWan * 10000 : latestPriced ? latestPriced.parkPrice / latestPriced.parkCount : 0
   const estSqm = latestSized ? latestSized.parkSqm / latestSized.parkCount : 20 // 無資料時以坡道平面約6坪(20m²)估
 
   const dealRows = deals.map(r => {
     const hasPark = r.parkCount > 0 || r.parkSqm > 0 || r.parkPrice > 0
     let parkPrice = r.parkPrice, parkSqm = r.parkSqm, estimated = false
-    if (hasPark && parkPrice === 0 && estPrice > 0) {
+    if (hasPark && parkPrice === 0 && (estPrice > 0 || conf.parkTiers)) {
       // 官方沒拆價 → 用社區車位行情估算，標明是估的
-      parkPrice = Math.round(estPrice * Math.max(r.parkCount, 1))
+      let per = estPrice
+      if (conf.parkTiers) {
+        // 多種車位價：有車位坪就挑最接近的，沒有就用第一種
+        const ping1 = r.parkSqm > 0 ? r.parkSqm * 0.3025 / Math.max(r.parkCount, 1) : 0
+        const tier = ping1 > 0
+          ? [...conf.parkTiers].sort((a, b) => Math.abs(a.ping - ping1) - Math.abs(b.ping - ping1))[0]
+          : conf.parkTiers[0]
+        per = tier.wan * 10000
+      }
+      parkPrice = Math.round(per * Math.max(r.parkCount, 1))
       if (parkSqm === 0 && estSqm > 0) parkSqm = estSqm * Math.max(r.parkCount, 1)
       estimated = true
     }
+    // 車位價已知但車位坪缺登記時，坪數也用社區行情回填，房屋坪才不會被灌大
+    if (hasPark && parkPrice > 0 && parkSqm === 0 && estSqm > 0) parkSqm = estSqm * Math.max(r.parkCount, 1)
     const splitPark = parkPrice > 0
     const noUnit = hasPark && !splitPark
     const netPrice = splitPark ? r.total - parkPrice : r.total
@@ -140,7 +151,7 @@ for (const p of props) {
       date: `${r.date.slice(0, r.date.length - 4)}/${parseInt(r.date.slice(-4, -2))}`,
       dateRaw: r.date,
       floor: cnFloor(r.floor),
-      layout: r.rooms ? `${r.rooms}房${r.halls}廳${r.baths}衛` : '—',
+      layout: r.rooms !== '' ? `${r.rooms}房${r.halls}廳${r.baths}衛` : '—',
       rooms: parseInt(r.rooms) || 0,
       ping: Math.round(ping * 10) / 10,
       totalWan: Math.round(r.total / 10000),

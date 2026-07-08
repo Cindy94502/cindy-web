@@ -163,7 +163,11 @@ async function loadProperty() {
 
 let marketData = null
 
+// 實價登錄區塊開關：資料仍每日產生，確認無誤後改回 true 即可上線
+const SHOW_MARKET = false
+
 function renderMarketBlock(prop) {
+  if (!SHOW_MARKET) return ''
   if (!marketData || !marketData.deals?.length) return ''
   const myRooms = parseInt(prop.roomCount) || 0
   const rows = marketData.deals.map((d, i) => `
