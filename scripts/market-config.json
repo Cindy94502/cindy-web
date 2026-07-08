@@ -20,7 +20,11 @@
       "district": "蘆竹區",
       "road": "埤腳街",
       "year": 113,
-      "parkWan": 175
+      "parkWan": 175,
+      "numRange": [
+        156,
+        202
+      ]
     },
     {
       "keyword": "總督府",
@@ -60,14 +64,22 @@
       "keyword": "長榮花園",
       "district": "蘆竹區",
       "road": "中山路",
-      "year": 82
+      "year": 82,
+      "numRange": [
+        130,
+        134
+      ]
     },
     {
       "keyword": "A10綻",
       "district": "蘆竹區",
       "road": "機捷路二段",
       "year": 111,
-      "parkWan": 160
+      "parkWan": 160,
+      "numRange": [
+        812,
+        820
+      ]
     },
     {
       "keyword": "佳陞豐川",
@@ -94,7 +106,11 @@
       "keyword": "敦煌大地",
       "district": "蘆竹區",
       "road": "五福六路",
-      "year": 81
+      "year": 81,
+      "exclude": [
+        "２７弄",
+        "２０之２號"
+      ]
     },
     {
       "keyword": "臻愛巴黎",

@@ -101,6 +101,19 @@ for (const season of seasons) {
 
 const BAD_NOTE = /親友|特殊關係|債權|債務|毛胚|急買|急賣|瑕疵|受災/
 
+// 門牌過濾：numRange=[min,max] 比對主門牌號；exclude=門牌關鍵字黑名單
+const toHalf = s => s.replace(/[０-９]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0xFEE0))
+function addrOk(conf, addr) {
+  if (conf.exclude && conf.exclude.some(x => addr.includes(x))) return false
+  if (conf.numRange) {
+    const m = toHalf(addr).match(/(\d+)(?:之\d+)?號/)
+    if (!m) return false
+    const num = parseInt(m[1])
+    if (num < conf.numRange[0] || num > conf.numRange[1]) return false
+  }
+  return true
+}
+
 const props = await (await fetch(PROPS_URL)).json()
 const output = {}
 for (const p of props) {
@@ -110,6 +123,7 @@ for (const p of props) {
     r.district === conf.district &&
     r.target.startsWith('房地') &&
     r.addr.includes(conf.road) &&
+    addrOk(conf, r.addr) &&
     r.done.length >= 5 && parseInt(r.done.slice(0, r.done.length - 4)) === conf.year &&
     !BAD_NOTE.test(r.note) &&
     r.total > 0 && r.sqm > 0

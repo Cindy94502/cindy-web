@@ -26,9 +26,21 @@ hfill = PatternFill('solid', fgColor='E8EDE4'); xfill = PatternFill('solid', fgC
 for c in config:
     ws = wb.create_sheet(c['keyword'][:28]); ws.append(head)
     for cell in ws[1]: cell.font = Font(bold=True); cell.fill = hfill
+    def addr_ok(addr):
+        if c.get('exclude') and any(x in addr for x in c['exclude']): return False
+        if c.get('numRange'):
+            import unicodedata
+            half = ''.join(unicodedata.normalize('NFKC', ch) for ch in addr)
+            import re as _re
+            m = _re.search(r'(\d+)(?:之\d+)?號', half)
+            if not m: return False
+            n = int(m.group(1))
+            if n < c['numRange'][0] or n > c['numRange'][1]: return False
+        return True
     deals = []
     for r in rows:
         if r['鄉鎮市區'] != c['district'] or c['road'] not in r['土地位置建物門牌']: continue
+        if not addr_ok(r['土地位置建物門牌']): continue
         if not (r['交易標的'] or '').startswith('房地'): continue
         done = r['建築完成年月'] or ''
         if len(done) < 5 or int(done[:len(done)-4]) != c['year']: continue
