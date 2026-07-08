@@ -121,20 +121,15 @@ for (const p of props) {
   const estPrice = conf.parkWan ? conf.parkWan * 10000 : latestPriced ? latestPriced.parkPrice / latestPriced.parkCount : 0
   const estSqm = latestSized ? latestSized.parkSqm / latestSized.parkCount : 20 // 無資料時以坡道平面約6坪(20m²)估
 
-  // 方案A：只上「官方完整登記」的成交——有車位但車位價或車位坪缺登記（需估算）的一律不顯示
-  const dealRows = deals.filter(r => {
+  // 單價計算完全比照內政部實價登錄官網的兩種公式：
+  // 公式二（有申報車位價格及面積）：(總價-車位價)/(總面積-車位面積)
+  // 公式一（其餘）：總價/總面積，含車位者單價旁標「車」
+  const dealRows = deals.map(r => {
     const hasPark = r.parkCount > 0 || r.parkSqm > 0 || r.parkPrice > 0
-    return !hasPark || (r.parkPrice > 0 && r.parkSqm > 0)
-  }).map(r => {
-    const hasPark = r.parkPrice > 0
-    const parkPrice = r.parkPrice, parkSqm = r.parkSqm
-    const estimated = false
-    const splitPark = parkPrice > 0
-    const noUnit = false
-    const netPrice = r.total - parkPrice
-    const housePing = (r.sqm - parkSqm) * 0.3025  // 房屋坪 = 建物總坪 - 車位坪
-    const netPing = housePing
-    const ping = housePing
+    const split = r.parkPrice > 0 && r.parkSqm > 0
+    const netPrice = split ? r.total - r.parkPrice : r.total
+    const netPing = (split ? r.sqm - r.parkSqm : r.sqm) * 0.3025
+    const ping = r.sqm * 0.3025  // 總面積（比照官網顯示）
     return {
       date: `${r.date.slice(0, r.date.length - 4)}/${parseInt(r.date.slice(-4, -2))}`,
       dateRaw: r.date,
@@ -143,11 +138,11 @@ for (const p of props) {
       rooms: parseInt(r.rooms) || 0,
       ping: Math.round(ping * 10) / 10,
       totalWan: Math.round(r.total / 10000),
-      unitWan: !noUnit && netPing > 0 ? Math.round(netPrice / netPing / 10000 * 10) / 10 : null,
+      unitWan: netPing > 0 ? Math.round(netPrice / netPing / 10000 * 10) / 10 : null,
+      unitHasPark: hasPark && !split,  // 公式一含車位 → 單價旁標「車」
       hasPark,
-      parkWan: splitPark ? Math.round(parkPrice / 10000) : 0,
-      parkPing: parkSqm > 0 ? Math.round(parkSqm * 0.3025 * 10) / 10 : 0,
-      parkEst: estimated,
+      parkWan: split ? Math.round(r.parkPrice / 10000) : 0,
+      parkPing: split ? Math.round(r.parkSqm * 0.3025 * 10) / 10 : 0,
       note: /增建/.test(r.note) ? '含增建' : '',
     }
   }).sort((a, b) => b.dateRaw.localeCompare(a.dateRaw)).slice(0, 12)

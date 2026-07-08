@@ -176,8 +176,8 @@ function renderMarketBlock(prop) {
       <td>${d.floor}</td>
       <td>${d.layout}</td>
       <td>${d.ping}坪</td>
-      <td>${d.totalWan}萬${d.note ? `<span class="market-note">${d.note}</span>` : ''}</td>
-      <td>${d.unitWan != null ? d.unitWan + '萬' : '—'}</td>
+      <td>${d.totalWan}萬${d.hasPark ? '<span class="market-badge">車</span>' : ''}${d.note ? `<span class="market-note">${d.note}</span>` : ''}</td>
+      <td>${d.unitWan != null ? d.unitWan + '萬' : '—'}${d.unitHasPark ? '<span class="market-badge">車</span>' : ''}</td>
     </tr>`).join('')
   const pages = Math.ceil(marketData.deals.length / 5)
   return `
@@ -185,7 +185,7 @@ function renderMarketBlock(prop) {
       <div class="property-section-title">${icon('TrendingUp', 16, 2)} ${marketData.community}近期實價登錄</div>
       <div class="market-table-scroll">
         <table class="market-table">
-          <thead><tr><th>成交</th><th>樓層</th><th>格局</th><th>房屋坪</th><th>總價</th><th>單價/坪</th></tr></thead>
+          <thead><tr><th>成交</th><th>樓層</th><th>格局</th><th>總面積</th><th>總價</th><th>單價/坪</th></tr></thead>
           <tbody id="marketBody">${rows}</tbody>
         </table>
       </div>
@@ -195,7 +195,7 @@ function renderMarketBlock(prop) {
         <span class="market-pager-info" id="marketPageInfo"></span>
         <button class="market-pager-btn" id="marketNext">下一頁 ${icon('ChevronRight', 14, 2)}</button>
       </div>` : ''}
-      <div class="market-source">資料來源：內政部實價登錄，僅列車位價格完整登記之交易（單價已拆算車位），並排除親友間等特殊交易${myRooms ? '；底色列為同房型成交' : ''}</div>
+      <div class="market-source">資料來源：內政部實價登錄，已排除親友間等特殊交易。單價比照內政部公式：有申報車位價格及面積者為（總價−車位價）÷（總面積−車位面積），其餘為總價÷總面積；標「車」者含車位${myRooms ? '。底色列為同房型成交' : ''}</div>
       <div class="market-cta">
         <div class="market-cta-text">📬 還在觀望？加 Cindy 的 LINE，<strong>每月送你南崁實價登錄整理</strong>，行情變化不漏接</div>
         <a class="market-cta-btn" href="https://line.me/ti/p/@019nrmqw" target="_blank">加 LINE 領行情</a>

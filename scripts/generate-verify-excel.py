@@ -20,7 +20,7 @@ for d in sorted(glob.glob('node_modules/.cache/lvr/*/')):
         if r.get('鄉鎮市區') and '鄉鎮市區' not in r['鄉鎮市區']: rows.append(r)
 
 wb = Workbook(); wb.remove(wb.active)
-head = ['交易年月日','門牌','樓層','格局','房屋坪','車位坪','車位價(萬)','車位來源','總價(萬)','單價(萬/坪)','狀態','備註']
+head = ['交易年月日','門牌','樓層','格局','總面積','車位坪','車位價(萬)','車位來源','總價(萬)','單價(萬/坪)','狀態','備註']
 hfill = PatternFill('solid', fgColor='E8EDE4'); xfill = PatternFill('solid', fgColor='F5D5D5'); efill = PatternFill('solid', fgColor='FFF3D6')
 
 for c in config:
@@ -51,23 +51,16 @@ for c in config:
         note = r['備註'] or ''; bad = bool(BAD.search(note))
         has_park = pc>0 or ps>0 or pp>0
         src = ''
-        if has_park and pp==0 and (est_p>0 or tiers):
-            if tiers:
-                ping1 = ps*0.3025/max(pc,1) if ps>0 else 0
-                tier = min(tiers, key=lambda t: abs(t['ping']-ping1)) if ping1>0 else tiers[0]
-                per = tier['wan']*10000
-            else: per = est_p
-            pp = round(per*max(pc,1)); src = f'估算({src_label})'
-            if ps==0: ps = est_s*max(pc,1)
-        elif pp>0: src = '官方登記'
-        if has_park and pp>0 and ps==0 and est_s>0:
-            ps = est_s*max(pc,1); src = '官方登記(坪估)'
-        hp = round((sqm-ps)*0.3025, 2); pping = round(ps*0.3025, 2)
-        if bad: unit, status = '', '❌已過濾:特殊交易(不上網站)'
-        elif has_park and pp==0: unit, status = '', '含車位無法拆算'
+        split = pp>0 and ps>0
+        if pp>0: src = '官方登記'
+        hp = round(sqm*0.3025, 2); pping = round(ps*0.3025, 2)  # hp=總面積(比照官網)
+        if bad: unit, status = '', '❌特殊交易(不上網站)'
+        elif split:
+            unit = round((total-pp)/((sqm-ps)*0.3025)/10000, 2)
+            status = '✅公式二(已拆車位)'
         else:
-            unit = round((total-pp)/hp/10000, 2) if hp else ''
-            status = '含車位已拆算' if has_park else '正常'
+            unit = round(total/(sqm*0.3025)/10000, 2) if sqm else ''
+            status = '✅公式一' + ('(單價含車位🚗)' if has_park else '')
         layout = f"{r['建物現況格局-房']}房{r['建物現況格局-廳']}廳{r['建物現況格局-衛']}衛"
         dt = r['交易年月日']
         ws.append([f"{dt[:len(dt)-4]}/{int(dt[-4:-2])}/{int(dt[-2:])}", r['土地位置建物門牌'].replace('桃園市',''),
@@ -75,7 +68,7 @@ for c in config:
                    round(total/10000), unit, status, note[:50]])
         if bad:
             for cell in ws[ws.max_row]: cell.fill = xfill
-        elif src.startswith('估'):
+        elif '含車位🚗' in status:
             for cell in ws[ws.max_row]: cell.fill = efill
     for i,w in enumerate([11,32,10,12,9,8,10,18,9,11,20,40],1):
         ws.column_dimensions[ws.cell(1,i).column_letter].width = w

@@ -374,6 +374,11 @@
   color: var(--brown-dark, #3D2B1F); white-space: nowrap;
 }
 .market-row-match td { background: rgba(124,187,195,0.13); }
+.market-badge {
+  display: inline-block; font-size: 10.5px; line-height: 1;
+  color: #fff; background: #8B7BB8; border-radius: 3px;
+  padding: 2px 4px; margin-left: 4px; vertical-align: 1px;
+}
 .market-note {
   font-size: 11px; color: var(--teal-dark); margin-left: 4px;
   background: rgba(124,187,195,0.15); padding: 1px 5px; border-radius: 3px;
