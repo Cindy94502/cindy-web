@@ -358,7 +358,7 @@
 
 /* ── 社區實價登錄 ── */
 .property-market-wrap { margin-bottom: 36px; }
-.market-table-scroll { overflow-x: auto; margin-top: 12px; }
+.market-table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; touch-action: pan-x pan-y; margin-top: 12px; }
 .market-table {
   width: 100%; border-collapse: collapse; font-size: 13.5px;
   background: #fff; border-radius: 4px; overflow: hidden;
@@ -392,6 +392,11 @@
 }
 .market-help:hover .market-tip, .market-help:focus .market-tip { display: block; }
 @media (max-width: 600px) {
+  .market-table { font-size: 11.5px; }
+  .market-table th { padding: 8px 5px; letter-spacing: 0; }
+  .market-table td { padding: 8px 5px; }
+  .market-badge { font-size: 9px; padding: 1px 3px; margin-left: 2px; }
+  .market-note { font-size: 9.5px; padding: 1px 3px; margin-left: 2px; }
   .market-tip {
     position: fixed; left: 20px; right: 20px; top: 38%;
     width: auto; font-size: 13px;

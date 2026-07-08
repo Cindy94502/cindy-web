@@ -195,7 +195,7 @@ function renderMarketBlock(prop) {
         <span class="market-pager-info" id="marketPageInfo"></span>
         <button class="market-pager-btn" id="marketNext">下一頁 ${icon('ChevronRight', 14, 2)}</button>
       </div>` : ''}
-      <div class="market-source">資料來源：內政部實價登錄，已排除親友間等特殊交易；單價計算比照內政部公式，標「車」者含車位${myRooms ? '。底色列為同房型成交' : ''}</div>
+      <div class="market-source">資料來源：內政部實價登錄，已排除親友間等特殊交易；<br>單價計算比照內政部公式，標「車」者含車位。${myRooms ? '<br>底色列為同房型成交資訊' : ''}</div>
     </div>`
 }
 
