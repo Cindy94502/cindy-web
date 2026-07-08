@@ -164,7 +164,7 @@ async function loadProperty() {
 let marketData = null
 
 // 實價登錄區塊開關：資料仍每日產生，確認無誤後改回 true 即可上線
-const SHOW_MARKET = false
+const SHOW_MARKET = true
 
 function renderMarketBlock(prop) {
   if (!SHOW_MARKET) return ''
@@ -196,10 +196,6 @@ function renderMarketBlock(prop) {
         <button class="market-pager-btn" id="marketNext">下一頁 ${icon('ChevronRight', 14, 2)}</button>
       </div>` : ''}
       <div class="market-source">資料來源：內政部實價登錄，已排除親友間等特殊交易。單價比照內政部公式：有申報車位價格及面積者為（總價−車位價）÷（總面積−車位面積），其餘為總價÷總面積；標「車」者含車位${myRooms ? '。底色列為同房型成交' : ''}</div>
-      <div class="market-cta">
-        <div class="market-cta-text">📬 還在觀望？加 Cindy 的 LINE，<strong>每月送你南崁實價登錄整理</strong>，行情變化不漏接</div>
-        <a class="market-cta-btn" href="https://line.me/ti/p/@019nrmqw" target="_blank">加 LINE 領行情</a>
-      </div>
     </div>`
 }
 
