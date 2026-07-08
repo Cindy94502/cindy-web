@@ -8,7 +8,7 @@ import { resolve } from 'path'
 const PROPS_URL = 'https://raw.githubusercontent.com/Cindy94502/cindy-data/refs/heads/main/properties.json'
 const CONFIG = JSON.parse(readFileSync(new URL('./market-config.json', import.meta.url), 'utf8')).communities
 const CACHE = resolve(process.env.MARKET_CACHE || 'node_modules/.cache/lvr')
-const SEASONS_BACK = 8
+const SEASONS_BACK = 12
 
 function recentSeasons(n) {
   // 民國年季：現在(2026-07) = 115S3；資料延遲，從上一季往回抓

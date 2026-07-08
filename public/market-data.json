@@ -1,4 +1,153 @@
 {
+ "4-9b57f957-47ce-44cb-97c9-5780a2688e73-1": {
+  "community": "卓悅",
+  "deals": [
+   {
+    "date": "113/6",
+    "dateRaw": "1130602",
+    "floor": "九樓",
+    "layout": "2房1廳2衛",
+    "rooms": 2,
+    "ping": 38.3,
+    "totalWan": 930,
+    "unitWan": 20,
+    "hasPark": true,
+    "note": ""
+   },
+   {
+    "date": "113/1",
+    "dateRaw": "1130130",
+    "floor": "三樓",
+    "layout": "3房2廳2衛",
+    "rooms": 3,
+    "ping": 48.3,
+    "totalWan": 1141,
+    "unitWan": 20.2,
+    "hasPark": true,
+    "note": ""
+   },
+   {
+    "date": "112/12",
+    "dateRaw": "1121225",
+    "floor": "三樓",
+    "layout": "3房2廳2衛",
+    "rooms": 3,
+    "ping": 57.3,
+    "totalWan": 1348,
+    "unitWan": 20.4,
+    "hasPark": true,
+    "note": ""
+   },
+   {
+    "date": "112/12",
+    "dateRaw": "1121210",
+    "floor": "十樓",
+    "layout": "2房2廳2衛",
+    "rooms": 2,
+    "ping": 38.3,
+    "totalWan": 940,
+    "unitWan": 20.1,
+    "hasPark": true,
+    "note": ""
+   },
+   {
+    "date": "112/11",
+    "dateRaw": "1121112",
+    "floor": "四樓",
+    "layout": "2房2廳2衛",
+    "rooms": 2,
+    "ping": 38.3,
+    "totalWan": 1050,
+    "unitWan": 23.2,
+    "hasPark": true,
+    "note": ""
+   },
+   {
+    "date": "112/10",
+    "dateRaw": "1121016",
+    "floor": "八樓",
+    "layout": "2房2廳2衛",
+    "rooms": 2,
+    "ping": 38.3,
+    "totalWan": 911,
+    "unitWan": 19.6,
+    "hasPark": true,
+    "note": ""
+   },
+   {
+    "date": "112/10",
+    "dateRaw": "1121015",
+    "floor": "十樓",
+    "layout": "2房2廳2衛",
+    "rooms": 2,
+    "ping": 38,
+    "totalWan": 905,
+    "unitWan": 19.7,
+    "hasPark": true,
+    "note": ""
+   },
+   {
+    "date": "112/10",
+    "dateRaw": "1121014",
+    "floor": "九樓",
+    "layout": "2房2廳2衛",
+    "rooms": 2,
+    "ping": 38.3,
+    "totalWan": 932,
+    "unitWan": 20,
+    "hasPark": true,
+    "note": ""
+   },
+   {
+    "date": "112/10",
+    "dateRaw": "1121014",
+    "floor": "四樓",
+    "layout": "3房2廳2衛",
+    "rooms": 3,
+    "ping": 55,
+    "totalWan": 1486,
+    "unitWan": 23.9,
+    "hasPark": true,
+    "note": ""
+   },
+   {
+    "date": "112/10",
+    "dateRaw": "1121002",
+    "floor": "四樓",
+    "layout": "3房2廳2衛",
+    "rooms": 3,
+    "ping": 50.6,
+    "totalWan": 1285,
+    "unitWan": 21.8,
+    "hasPark": true,
+    "note": ""
+   },
+   {
+    "date": "112/10",
+    "dateRaw": "1121001",
+    "floor": "七樓",
+    "layout": "2房2廳2衛",
+    "rooms": 2,
+    "ping": 38.3,
+    "totalWan": 910,
+    "unitWan": 24.5,
+    "hasPark": true,
+    "note": ""
+   },
+   {
+    "date": "112/10",
+    "dateRaw": "1121001",
+    "floor": "九樓",
+    "layout": "3房2廳2衛",
+    "rooms": 3,
+    "ping": 55,
+    "totalWan": 1375,
+    "unitWan": 22,
+    "hasPark": true,
+    "note": ""
+   }
+  ]
+ },
  "4-9b57f957-47ce-44cb-97c9-5780a2688e73-2": {
   "community": "臻愛巴黎",
   "deals": [
@@ -119,6 +268,30 @@
     "ping": 50.4,
     "totalWan": 1560,
     "unitWan": 30.9,
+    "hasPark": false,
+    "note": ""
+   },
+   {
+    "date": "113/6",
+    "dateRaw": "1130628",
+    "floor": "九樓",
+    "layout": "3房2廳2衛",
+    "rooms": 3,
+    "ping": 41.3,
+    "totalWan": 1300,
+    "unitWan": 31.5,
+    "hasPark": false,
+    "note": "含增建"
+   },
+   {
+    "date": "113/5",
+    "dateRaw": "1130522",
+    "floor": "三樓",
+    "layout": "4房2廳2衛",
+    "rooms": 4,
+    "ping": 52.6,
+    "totalWan": 1680,
+    "unitWan": 32,
     "hasPark": false,
     "note": ""
    }
@@ -448,6 +621,18 @@
     "unitWan": 23.2,
     "hasPark": false,
     "note": ""
+   },
+   {
+    "date": "112/10",
+    "dateRaw": "1121029",
+    "floor": "全",
+    "layout": "4房3廳3衛",
+    "rooms": 4,
+    "ping": 69.3,
+    "totalWan": 1610,
+    "unitWan": 23.2,
+    "hasPark": false,
+    "note": "含增建"
    }
   ]
  },
@@ -463,6 +648,18 @@
     "ping": 44.2,
     "totalWan": 1225,
     "unitWan": 27.7,
+    "hasPark": false,
+    "note": ""
+   },
+   {
+    "date": "113/5",
+    "dateRaw": "1130507",
+    "floor": "十三樓",
+    "layout": "3房2廳2衛",
+    "rooms": 3,
+    "ping": 48.8,
+    "totalWan": 1388,
+    "unitWan": 28.4,
     "hasPark": false,
     "note": ""
    }
@@ -494,6 +691,90 @@
     "unitWan": 31.2,
     "hasPark": false,
     "note": ""
+   },
+   {
+    "date": "113/7",
+    "dateRaw": "1130729",
+    "floor": "三樓",
+    "layout": "3房2廳2衛",
+    "rooms": 3,
+    "ping": 45.1,
+    "totalWan": 1042,
+    "unitWan": 23.1,
+    "hasPark": false,
+    "note": ""
+   },
+   {
+    "date": "113/5",
+    "dateRaw": "1130516",
+    "floor": "二樓",
+    "layout": "3房2廳2衛",
+    "rooms": 3,
+    "ping": 32.7,
+    "totalWan": 800,
+    "unitWan": 24.4,
+    "hasPark": false,
+    "note": ""
+   },
+   {
+    "date": "113/4",
+    "dateRaw": "1130428",
+    "floor": "五樓",
+    "layout": "3房2廳2衛",
+    "rooms": 3,
+    "ping": 44.6,
+    "totalWan": 960,
+    "unitWan": 21.5,
+    "hasPark": false,
+    "note": ""
+   },
+   {
+    "date": "113/4",
+    "dateRaw": "1130405",
+    "floor": "十樓",
+    "layout": "3房2廳1衛",
+    "rooms": 3,
+    "ping": 27.3,
+    "totalWan": 880,
+    "unitWan": 32.2,
+    "hasPark": false,
+    "note": ""
+   },
+   {
+    "date": "112/11",
+    "dateRaw": "1121107",
+    "floor": "二樓",
+    "layout": "3房2廳2衛",
+    "rooms": 3,
+    "ping": 44.6,
+    "totalWan": 920,
+    "unitWan": 20.6,
+    "hasPark": false,
+    "note": "含增建"
+   },
+   {
+    "date": "112/10",
+    "dateRaw": "1121001",
+    "floor": "四樓",
+    "layout": "3房2廳2衛",
+    "rooms": 3,
+    "ping": 43.9,
+    "totalWan": 880,
+    "unitWan": 20.1,
+    "hasPark": false,
+    "note": ""
+   },
+   {
+    "date": "112/9",
+    "dateRaw": "1120922",
+    "floor": "五樓",
+    "layout": "3房2廳1衛",
+    "rooms": 3,
+    "ping": 43.5,
+    "totalWan": 800,
+    "unitWan": 18.4,
+    "hasPark": false,
+    "note": ""
    }
   ]
  },
@@ -511,6 +792,18 @@
     "unitWan": 28.6,
     "hasPark": false,
     "note": ""
+   },
+   {
+    "date": "113/4",
+    "dateRaw": "1130425",
+    "floor": "全",
+    "layout": "4房3廳4衛",
+    "rooms": 4,
+    "ping": 70.4,
+    "totalWan": 2100,
+    "unitWan": 29.8,
+    "hasPark": false,
+    "note": "含增建"
    }
   ]
  },
@@ -564,6 +857,102 @@
     "unitWan": 40.8,
     "hasPark": false,
     "note": ""
+   },
+   {
+    "date": "113/7",
+    "dateRaw": "1130731",
+    "floor": "五樓",
+    "layout": "2房2廳1衛",
+    "rooms": 2,
+    "ping": 26.9,
+    "totalWan": 1200,
+    "unitWan": 44.6,
+    "hasPark": false,
+    "note": ""
+   },
+   {
+    "date": "113/5",
+    "dateRaw": "1130525",
+    "floor": "十樓",
+    "layout": "2房2廳1衛",
+    "rooms": 2,
+    "ping": 36.3,
+    "totalWan": 1395,
+    "unitWan": 38.4,
+    "hasPark": false,
+    "note": ""
+   },
+   {
+    "date": "113/5",
+    "dateRaw": "1130520",
+    "floor": "十四樓",
+    "layout": "3房2廳2衛",
+    "rooms": 3,
+    "ping": 55.5,
+    "totalWan": 1980,
+    "unitWan": 35.7,
+    "hasPark": false,
+    "note": ""
+   },
+   {
+    "date": "113/4",
+    "dateRaw": "1130406",
+    "floor": "十一樓",
+    "layout": "3房2廳2衛",
+    "rooms": 3,
+    "ping": 54.2,
+    "totalWan": 1875,
+    "unitWan": 34.6,
+    "hasPark": false,
+    "note": ""
+   },
+   {
+    "date": "113/3",
+    "dateRaw": "1130305",
+    "floor": "七樓",
+    "layout": "3房2廳2衛",
+    "rooms": 3,
+    "ping": 64.8,
+    "totalWan": 2016,
+    "unitWan": 31.1,
+    "hasPark": false,
+    "note": ""
+   },
+   {
+    "date": "113/2",
+    "dateRaw": "1130218",
+    "floor": "三樓",
+    "layout": "4房2廳2衛",
+    "rooms": 4,
+    "ping": 69.1,
+    "totalWan": 2288,
+    "unitWan": 35.6,
+    "hasPark": true,
+    "note": "含增建"
+   },
+   {
+    "date": "112/12",
+    "dateRaw": "1121218",
+    "floor": "七樓",
+    "layout": "3房2廳2衛",
+    "rooms": 3,
+    "ping": 55,
+    "totalWan": 1788,
+    "unitWan": 32.5,
+    "hasPark": false,
+    "note": ""
+   },
+   {
+    "date": "112/10",
+    "dateRaw": "1121003",
+    "floor": "十五樓",
+    "layout": "3房2廳2衛",
+    "rooms": 3,
+    "ping": 51.9,
+    "totalWan": 1700,
+    "unitWan": 35.6,
+    "hasPark": true,
+    "note": ""
    }
   ]
  },
@@ -615,6 +1004,18 @@
     "ping": 35,
     "totalWan": 970,
     "unitWan": 27.7,
+    "hasPark": false,
+    "note": ""
+   },
+   {
+    "date": "113/6",
+    "dateRaw": "1130613",
+    "floor": "三樓",
+    "layout": "2房2廳2衛",
+    "rooms": 2,
+    "ping": 29.3,
+    "totalWan": 560,
+    "unitWan": 19.1,
     "hasPark": false,
     "note": ""
    }
@@ -891,6 +1292,30 @@
     "unitWan": 33.9,
     "hasPark": false,
     "note": ""
+   },
+   {
+    "date": "113/5",
+    "dateRaw": "1130526",
+    "floor": "九樓",
+    "layout": "4房2廳3衛",
+    "rooms": 4,
+    "ping": 107.7,
+    "totalWan": 3568,
+    "unitWan": 33.1,
+    "hasPark": false,
+    "note": "含增建"
+   },
+   {
+    "date": "113/4",
+    "dateRaw": "1130418",
+    "floor": "二十二樓",
+    "layout": "4房2廳3衛",
+    "rooms": 4,
+    "ping": 108.3,
+    "totalWan": 3480,
+    "unitWan": 32.1,
+    "hasPark": false,
+    "note": ""
    }
   ]
  },
@@ -1081,6 +1506,54 @@
     "unitWan": 29.2,
     "hasPark": false,
     "note": ""
+   },
+   {
+    "date": "113/3",
+    "dateRaw": "1130321",
+    "floor": "十樓",
+    "layout": "3房2廳2衛",
+    "rooms": 3,
+    "ping": 55.6,
+    "totalWan": 1520,
+    "unitWan": 27.3,
+    "hasPark": false,
+    "note": ""
+   },
+   {
+    "date": "113/3",
+    "dateRaw": "1130303",
+    "floor": "九樓",
+    "layout": "3房2廳2衛",
+    "rooms": 3,
+    "ping": 43.5,
+    "totalWan": 1355,
+    "unitWan": 31.2,
+    "hasPark": false,
+    "note": ""
+   },
+   {
+    "date": "112/11",
+    "dateRaw": "1121119",
+    "floor": "四樓",
+    "layout": "4房2廳2衛",
+    "rooms": 4,
+    "ping": 55.3,
+    "totalWan": 1530,
+    "unitWan": 27.7,
+    "hasPark": false,
+    "note": "含增建"
+   },
+   {
+    "date": "112/11",
+    "dateRaw": "1121115",
+    "floor": "三樓",
+    "layout": "4房2廳2衛",
+    "rooms": 4,
+    "ping": 56.5,
+    "totalWan": 1440,
+    "unitWan": 25.5,
+    "hasPark": false,
+    "note": ""
    }
   ]
  },
@@ -1192,6 +1665,42 @@
     "ping": 44.2,
     "totalWan": 1595,
     "unitWan": 36.1,
+    "hasPark": false,
+    "note": ""
+   },
+   {
+    "date": "113/3",
+    "dateRaw": "1130302",
+    "floor": "六樓",
+    "layout": "3房2廳2衛",
+    "rooms": 3,
+    "ping": 44.2,
+    "totalWan": 1420,
+    "unitWan": 32.1,
+    "hasPark": false,
+    "note": ""
+   },
+   {
+    "date": "112/11",
+    "dateRaw": "1121112",
+    "floor": "六樓",
+    "layout": "3房2廳1衛",
+    "rooms": 3,
+    "ping": 32.5,
+    "totalWan": 1022,
+    "unitWan": 31.4,
+    "hasPark": false,
+    "note": ""
+   },
+   {
+    "date": "112/10",
+    "dateRaw": "1121007",
+    "floor": "六樓",
+    "layout": "3房2廳1衛",
+    "rooms": 3,
+    "ping": 33.1,
+    "totalWan": 1020,
+    "unitWan": 30.8,
     "hasPark": false,
     "note": ""
    }
