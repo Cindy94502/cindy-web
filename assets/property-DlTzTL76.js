@@ -57,7 +57,7 @@ import{r as k,a as C,i as I,b as c}from"./shared-B4N8x-DF.js";import{G as L,f as
         <span class="market-pager-info" id="marketPageInfo"></span>
         <button class="market-pager-btn" id="marketNext">下一頁 ${c("ChevronRight",14,2)}</button>
       </div>`:""}
-      <div class="market-source">資料來源：內政部實價登錄，已排除親友間等特殊交易；單價計算比照內政部公式，標「車」者含車位${i?"。底色列為同房型成交":""}</div>
+      <div class="market-source">資料來源：內政部實價登錄，已排除親友間等特殊交易；<br>單價計算比照內政部公式，標「車」者含車位。${i?"<br>底色列為同房型成交資訊":""}</div>
     </div>`}function A(){var l,a;const e=document.getElementById("marketBody");if(!e)return;const i=[...e.querySelectorAll("tr")],r=Math.ceil(i.length/5);if(r<=1)return;let n=0;const s=()=>{i.forEach(t=>{t.style.display=t.dataset.mpage==n?"":"none"}),document.getElementById("marketPageInfo").textContent=`${n+1} / ${r}`,document.getElementById("marketPrev").disabled=n===0,document.getElementById("marketNext").disabled=n===r-1};(l=document.getElementById("marketPrev"))==null||l.addEventListener("click",()=>{n>0&&(n--,s())}),(a=document.getElementById("marketNext"))==null||a.addEventListener("click",()=>{n<r-1&&(n++,s())}),s()}function T(e){return e.length===0?`<div class="gallery-placeholder">${c("Home",80,1,"","var(--sage-dark)")}</div>`:`
     <img class="gallery-main-img" id="galleryMain" src="${e[0]}" alt="物件照片">
     <button class="gallery-arrow prev" id="galleryPrev">${c("ChevronLeft",22,2)}</button>
