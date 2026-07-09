@@ -207,9 +207,9 @@ function initMarketTip() {
     tip.style.visibility = 'hidden'
     tip.style.display = 'block'
     const h = help.getBoundingClientRect()
-    const w = Math.min(320, window.innerWidth * 0.84)
-    // 貼在問號上方置中，超出視窗左右自動收回
-    let left = h.left + h.width / 2 - w / 2
+    const w = Math.min(430, window.innerWidth * 0.92)
+    // 右緣對齊問號、往左展開，避免蓋到右側聯絡卡
+    let left = h.right - w
     left = Math.max(10, Math.min(left, window.innerWidth - w - 10))
     tip.style.left = left + 'px'
     tip.style.transform = 'none'
