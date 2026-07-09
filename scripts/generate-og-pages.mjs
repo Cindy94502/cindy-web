@@ -9,9 +9,8 @@ const FALLBACK_IMG = `${SITE_BASE}/images/welcome.png`
 
 const esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
-const res = await fetch(JSON_URL)
-if (!res.ok) throw new Error(`properties.json 抓取失敗: ${res.status}`)
-const props = await res.json()
+import { fetchJSON } from './fetch-retry.mjs'
+const props = await fetchJSON(JSON_URL)
 
 const outDir = resolve('dist', 'p')
 mkdirSync(outDir, { recursive: true })

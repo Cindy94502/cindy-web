@@ -1,5 +1,6 @@
 // 產生 dist/sitemap.xml 與 dist/robots.txt，涵蓋主要頁面、物件分享頁、部落格文章
 import { writeFileSync } from 'fs'
+import { fetchJSON } from './fetch-retry.mjs'
 import { resolve } from 'path'
 
 const SITE_BASE = 'https://cindy94502.github.io/cindy-web'
@@ -12,13 +13,13 @@ const urls = [
   `${SITE_BASE}/blog.html`,
 ]
 
-const props = await (await fetch(PROPS_URL)).json()
+const props = await fetchJSON(PROPS_URL).catch(() => [])
 for (const p of props) {
   if (p.nodeId) urls.push(`${SITE_BASE}/p/${encodeURIComponent(p.nodeId)}.html`)
 }
 
 try {
-  const posts = await (await fetch(POSTS_URL)).json()
+  const posts = await fetchJSON(POSTS_URL)
   for (const post of posts) {
     if (post.id && post.published !== false) urls.push(`${SITE_BASE}/blog/${encodeURIComponent(post.id)}.html`)
   }

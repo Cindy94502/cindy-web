@@ -2,6 +2,7 @@
 // 資料來源：內政部實價登錄開放資料（桃園市 h_lvr_land_a.csv），近 8 季
 // 比對：路段 + 完工年；過濾親友/特殊關係/債權/毛胚等失真交易
 import { execSync } from 'child_process'
+import { fetchJSON } from './fetch-retry.mjs'
 import { mkdirSync, writeFileSync, readFileSync, existsSync } from 'fs'
 import { resolve } from 'path'
 
@@ -114,7 +115,13 @@ function addrOk(conf, addr) {
   return true
 }
 
-const props = await (await fetch(PROPS_URL)).json()
+let props
+try {
+  props = await fetchJSON(PROPS_URL)
+} catch (e) {
+  console.warn(`properties.json 抓取失敗（${e.message}），沿用既有 market-data.json，不中斷部署`)
+  process.exit(0)
+}
 const output = {}
 for (const p of props) {
   const conf = CONFIG.find(c => (p.title || '').includes(c.keyword))

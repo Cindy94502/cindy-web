@@ -1,13 +1,14 @@
 // 產生 dist/blog/<id>.html：部落格文章的 SEO 靜態版
 // 內容直接寫進 HTML，Google 爬蟲不用跑 JS 就能讀到全文
 import { mkdirSync, writeFileSync } from 'fs'
+import { fetchJSON } from './fetch-retry.mjs'
 import { resolve } from 'path'
 
 const SITE_BASE = 'https://cindy94502.github.io/cindy-web'
 const POSTS_URL = 'https://raw.githubusercontent.com/Cindy94502/cindy-data/main/posts.json'
 const esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
-const posts = await (await fetch(POSTS_URL)).json()
+const posts = await fetchJSON(POSTS_URL).catch(e => { console.warn('posts.json 抓取失敗，略過:', e.message); return [] })
 const outDir = resolve('dist', 'blog')
 mkdirSync(outDir, { recursive: true })
 
