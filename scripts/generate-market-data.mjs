@@ -170,5 +170,11 @@ for (const p of props) {
   if (dealRows.length) output[p.nodeId] = { community: conf.keyword, deals: dealRows }
 }
 
-writeFileSync(resolve('public', 'market-data.json'), JSON.stringify(output, null, 1))
-console.log(`完成：${Object.keys(output).length} 個物件有社區行情，寫入 public/market-data.json`)
+const outFile = resolve('public', 'market-data.json')
+// 內政部主機偶爾整批連不上（例如所有季度都抓取失敗），這種情況下保留前一次的正常資料，不要用空結果覆蓋
+if (allRows.length === 0 && existsSync(outFile)) {
+  console.warn('本次所有季度資料抓取均失敗，保留既有 market-data.json 不覆蓋')
+} else {
+  writeFileSync(outFile, JSON.stringify(output, null, 1))
+  console.log(`完成：${Object.keys(output).length} 個物件有社區行情，寫入 public/market-data.json`)
+}
