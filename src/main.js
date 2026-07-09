@@ -91,7 +91,7 @@ document.getElementById('app').innerHTML = `
       <!-- 右側文字 -->
       <div class="about-text reveal reveal-d2">
         <div class="about-section-label">About Me</div>
-        <h2 class="about-title">HI，我是<strong>Cindy</strong><br>大家可以叫我王小姐~</h2>
+        <h2 class="about-title">HI，我是<strong>薰</strong><br>大家可以叫我Cindy~</h2>
         <div class="about-divider"></div>
         <p class="about-desc">土生土長的南崁人，從小在這裡長大，對這裡的<strong>每條街道、每個生活圈</strong>都很熟悉。是經由爸爸帶領，踏入了房介這行，此後我們父女便攜手並進。</p>
         <p class="about-desc">很多人問我為什麼大學剛畢業就做房仲？我的想法很簡單：<strong>各行各業都值得嘗試，不要自己設限</strong>。年輕是我的本錢，跑得勤、學得快、不油條。</p>
