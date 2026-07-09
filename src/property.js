@@ -195,7 +195,7 @@ function renderMarketBlock(prop) {
         <span class="market-pager-info" id="marketPageInfo"></span>
         <button class="market-pager-btn" id="marketNext">下一頁 ${icon('ChevronRight', 14, 2)}</button>
       </div>` : ''}
-      <div class="market-source">資料來源：內政部實價登錄，已排除親友間等特殊交易；<br>單價計算比照內政部公式，標「車」者含車位。${myRooms ? '<br>底色列為同房型成交資訊' : ''}</div>
+      <div class="market-source">資料來源：內政部實價登錄，已排除親友間等特殊交易；<br>單價計算比照內政部公式，標「車」者含車位。${myRooms ? '<br>底色列為同房型成交資訊' : ''}<br>行情資訊僅供參考，實際成交價格依個案條件而異。</div>
     </div>`
 }
 
@@ -353,6 +353,8 @@ function renderProperty(prop, images, allProps = []) {
         <div class="property-section-title">${icon('FileText', 16, 2)} 物件說明</div>
         <div class="property-desc">${prop.webDescription.replace(/<[^>]*>/g, '').replace(/\\n/g, '<br>')}</div>
         ` : ''}
+
+        <div class="property-disclosure">本公司為本物件之受託銷售經紀業，依不動產經紀業管理條例第 22 條之 1 規定，於此揭露。</div>
 
         <a href="properties.html" style="font-size:13px;color:var(--teal-dark);letter-spacing:2px;display:inline-flex;align-items:center;gap:6px;margin-top:8px">
           ${icon('ArrowLeft', 14, 2)} 回到物件列表
