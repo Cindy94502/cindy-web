@@ -44,6 +44,18 @@ for (const p of props) {
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="${esc(img)}">
+<script type="application/ld+json">
+${JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'RealEstateListing',
+  name: p.title || title,
+  url: selfUrl,
+  image: img,
+  description: desc,
+  ...(p.price ? { offers: { '@type': 'Offer', price: p.price, priceCurrency: 'TWD' } } : {}),
+  provider: { '@type': 'RealEstateAgent', name: '欣益不動產開發有限公司（中信房屋 南崁一極加盟店）', telephone: '+886-968-731-280', areaServed: '桃園市蘆竹區' },
+})}
+</script>
 <script>location.replace(${JSON.stringify(target)})</script>
 </head>
 <body><p>跳轉中… <a href="${esc(target)}">${esc(title)}</a></p></body>
