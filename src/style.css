@@ -279,8 +279,8 @@ nav.scrolled {
   position: relative; overflow: visible;
 }
 .about-inner {
-  max-width: 1100px; margin: 0 auto; padding: 0 60px 80px;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  max-width: 1240px; margin: 0 auto; padding: 0 60px 80px;
+  display: grid; grid-template-columns: 2fr 3fr; gap: 60px; align-items: center;
 }
 .about-photo-simple {
   position: relative;
@@ -312,7 +312,7 @@ nav.scrolled {
 }
 .about-title strong { color: var(--teal-dark); }
 .about-divider { width: 48px; height: 3px; background: linear-gradient(to right, var(--yellow), var(--peach)); border-radius: 2px; margin-bottom: 24px; }
-.about-desc { font-size: 15px; line-height: 2.4; color: var(--brown-mid); font-weight: 300; margin-bottom: 18px; }
+.about-desc { font-size: 15px; line-height: 2.4; color: var(--brown-mid); font-weight: 300; margin-bottom: 18px; text-align: justify; }
 .about-desc strong { color: var(--brown); font-weight: 500; }
 .about-highlight {
   background: var(--pink-light); border-left: 3px solid var(--pink);
