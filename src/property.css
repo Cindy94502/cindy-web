@@ -382,8 +382,9 @@
   position: relative; vertical-align: 1px;
 }
 .market-tip {
-  display: none; position: absolute; z-index: 30;
-  top: 22px; right: -8px; width: min(250px, 72vw);
+  display: none; position: fixed; z-index: 30;
+  left: 50%; transform: translateX(-50%); top: 35%;
+  width: min(320px, 84vw);
   background: #3D2B1F; color: #fff;
   font-size: 12px; font-weight: 400; line-height: 1.7;
   letter-spacing: 0.5px; text-align: left; white-space: normal;
@@ -397,10 +398,7 @@
   .market-table td { padding: 8px 5px; }
   .market-badge { font-size: 9px; padding: 1px 3px; margin-left: 2px; }
   .market-note { font-size: 9.5px; padding: 1px 3px; margin-left: 2px; }
-  .market-tip {
-    position: fixed; left: 20px; right: 20px; top: 38%;
-    width: auto; font-size: 13px;
-  }
+  .market-tip { font-size: 13px; }
 }
 .market-badge {
   display: inline-block; font-size: 10.5px; line-height: 1;
