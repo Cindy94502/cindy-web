@@ -52,6 +52,7 @@ ${JSON.stringify({ '@context': 'https://schema.org', '@type': 'Article', headlin
 </style>
 </head>
 <body>
+<script>location.replace(${JSON.stringify(`${SITE_BASE}/blog-post.html?id=${post.id}`)})</script>
 <div class="wrap">
   <div class="site"><a href="${SITE_BASE}/">Cindy ♡ 南崁在地房產</a></div>
   <h1>${esc(post.title)}</h1>
