@@ -2,10 +2,10 @@ import{r as l,b as a,a as v,i as p}from"./shared-B4N8x-DF.js";import{G as m,f as
     <svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M0,0 L0,20 C80,35 160,8 240,22 C320,36 400,10 480,24 C560,38 640,12 720,26 C800,40 880,8 960,22 C1040,36 1120,14 1200,28 C1280,42 1360,16 1440,20 L1440,0 Z" fill="${s}"/>
     </svg>
-  </div>`}function b(s,t){const o=s.ogImageUrl||"",e=s.buildingCategory==="透天"?"House":"Building2";return`
+  </div>`}function b(s,t){const i=s.ogImageUrl||"",e=s.buildingCategory==="透天"?"House":"Building2";return`
   <a href="property.html?id=${s.nodeId}" class="prop-card reveal reveal-d${t+1}">
     <div class="prop-card-img">
-      ${o?`<img src="${o}" alt="${s.title}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" onerror="this.style.objectFit='contain';this.style.opacity='0.4';this.style.padding='20px';this.src='images/house_small.png'">`:`<div class="prop-card-img-icon">${a(e,48,1,"prop-placeholder-icon")}</div>`}
+      ${i?`<img src="${i}" alt="${s.title}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" onerror="this.style.objectFit='contain';this.style.opacity='0.4';this.style.padding='20px';this.src='images/house_small.png'">`:`<div class="prop-card-img-icon">${a(e,48,1,"prop-placeholder-icon")}</div>`}
       <div class="prop-card-category">${s.buildingCategory||"住宅"}</div>
     </div>
     <div class="prop-card-body">
@@ -76,7 +76,9 @@ import{r as l,b as a,a as v,i as p}from"./shared-B4N8x-DF.js";import{G as m,f as
         <h2 class="about-title">HI，我是<strong>Cindy</strong><br>大家可以叫我王小姐~</h2>
         <div class="about-divider"></div>
         <p class="about-desc">土生土長的南崁人，從小在這裡長大，對這裡的<strong>每條街道、每個生活圈</strong>都很熟悉。是經由爸爸帶領，踏入了房介這行，此後我們父女便攜手並進。</p>
-        <p class="about-desc">我有點慢熱，第一次見面可能會有點拘謹，但熱絡了之後就像<strong>朋友一樣相處</strong>，有什麼問題都可以直接問我。</p>
+        <p class="about-desc">很多人問我為什麼大學剛畢業就做房仲——我的想法很簡單：<strong>各行各業都值得嘗試，不要自己設限</strong>。年輕是我的本錢，跑得勤、學得快、不油條。</p>
+        <p class="about-desc">要說最喜歡南崁什麼？購物真的太方便，台茂、好市多都在生活圈裡。（缺點是常激發我買買買的購物慾，需要克制 😂）也因為在這裡長大，哪個社區安靜、哪條路會塞、哪間早餐店好吃，<strong>直接問我就好，不用查資料</strong>。</p>
+        <p class="about-desc">我有點慢熱，第一次見面可能會有點拘謹，但熱絡了之後就像<strong>朋友一樣相處</strong>，有什麼問題都可以直接問我。買房是大事，慢慢來，我陪你看。</p>
         <div class="about-tags">
           <span class="about-tag tag-sage">${a("MapPin",13,2)} 住南崁將近20 年</span>
           <span class="about-tag tag-peach">${a("Users",13,2)} 父女搭檔</span>
@@ -188,4 +190,4 @@ import{r as l,b as a,a as v,i as p}from"./shared-B4N8x-DF.js";import{G as m,f as
   </section>
 
   ${v()}
-`;p();setTimeout(()=>{var s;(s=document.getElementById("heroStrong"))==null||s.classList.add("hero-title-line-animate")},1400);var d;(d=document.getElementById("scrollHint"))==null||d.addEventListener("click",s=>{s.preventDefault();const t=document.getElementById("about");t&&window.scrollTo({top:t.offsetTop-64,behavior:"smooth"})});const r=document.getElementById("about");r&&new IntersectionObserver(t=>{t.forEach(o=>{var e;o.isIntersecting&&((e=document.querySelector(".about-dad-wrap"))==null||e.classList.add("visible"))})},{threshold:.1}).observe(r);async function h(){try{const t=await(await fetch(m)).json(),o=t.filter(i=>i.title&&i.nodeId).slice(0,3);document.getElementById("homePropsGrid").innerHTML=o.map((i,n)=>b(i,n)).join(""),document.getElementById("propsMoreBtn").innerHTML=`查看全部 ${t.length} 筆物件 ${a("ArrowRight",16,2)}`;const e=new IntersectionObserver(i=>{i.forEach(n=>{n.isIntersecting&&n.target.classList.add("visible")})},{threshold:.1});document.querySelectorAll("#homePropsGrid .reveal").forEach(i=>e.observe(i))}catch{document.getElementById("homePropsGrid").innerHTML='<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--brown-mid)">暫時無法載入物件</div>'}}h();
+`;p();setTimeout(()=>{var s;(s=document.getElementById("heroStrong"))==null||s.classList.add("hero-title-line-animate")},1400);var d;(d=document.getElementById("scrollHint"))==null||d.addEventListener("click",s=>{s.preventDefault();const t=document.getElementById("about");t&&window.scrollTo({top:t.offsetTop-64,behavior:"smooth"})});const r=document.getElementById("about");r&&new IntersectionObserver(t=>{t.forEach(i=>{var e;i.isIntersecting&&((e=document.querySelector(".about-dad-wrap"))==null||e.classList.add("visible"))})},{threshold:.1}).observe(r);async function h(){try{const t=await(await fetch(m)).json(),i=t.filter(o=>o.title&&o.nodeId).slice(0,3);document.getElementById("homePropsGrid").innerHTML=i.map((o,n)=>b(o,n)).join(""),document.getElementById("propsMoreBtn").innerHTML=`查看全部 ${t.length} 筆物件 ${a("ArrowRight",16,2)}`;const e=new IntersectionObserver(o=>{o.forEach(n=>{n.isIntersecting&&n.target.classList.add("visible")})},{threshold:.1});document.querySelectorAll("#homePropsGrid .reveal").forEach(o=>e.observe(o))}catch{document.getElementById("homePropsGrid").innerHTML='<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--brown-mid)">暫時無法載入物件</div>'}}h();
