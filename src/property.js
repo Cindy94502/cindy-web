@@ -354,8 +354,6 @@ function renderProperty(prop, images, allProps = []) {
         <div class="property-desc">${prop.webDescription.replace(/<[^>]*>/g, '').replace(/\\n/g, '<br>')}</div>
         ` : ''}
 
-        <div class="property-disclosure">本公司為本物件之受託銷售經紀業，依不動產經紀業管理條例第 22 條之 1 規定，於此揭露。</div>
-
         <a href="properties.html" style="font-size:13px;color:var(--teal-dark);letter-spacing:2px;display:inline-flex;align-items:center;gap:6px;margin-top:8px">
           ${icon('ArrowLeft', 14, 2)} 回到物件列表
         </a>
