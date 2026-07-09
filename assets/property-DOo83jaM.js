@@ -4,7 +4,7 @@ import{r as k,a as C,i as I,b as c}from"./shared-B4N8x-DF.js";import{G as L,f as
     <div class="property-loading">載入中...</div>
   </div>
   ${C()}
-`;I();async function R(e){if(!e)return[];try{const r=await(await fetch(`https://res.cloudinary.com/ddzync8km/image/list/${e}.json`)).json();return!r.resources||r.resources.length===0?[]:r.resources.sort((n,s)=>(n.display_name||n.public_id).localeCompare(s.display_name||s.public_id,void 0,{numeric:!0})).map(n=>`https://res.cloudinary.com/ddzync8km/image/upload/${n.public_id}.${n.format||"jpg"}`)}catch{return[]}}function S(e){return e?Array.isArray(e)?e:(e.match(/<li>(.*?)<\/li>/g)||[]).map(i=>i.replace(/<\/?li>/g,"").trim()):[]}function h(e){const i=e.ogImageUrl||"";return`
+`;I();async function R(e){if(!e)return[];try{const r=await(await fetch(`https://res.cloudinary.com/ddzync8km/image/list/${e}.json`)).json();return!r.resources||r.resources.length===0?[]:r.resources.sort((n,s)=>(n.display_name||n.public_id).localeCompare(s.display_name||s.public_id,void 0,{numeric:!0})).map(n=>`https://res.cloudinary.com/ddzync8km/image/upload/${n.public_id}.${n.format||"jpg"}`)}catch{return[]}}function S(e){return e?Array.isArray(e)?e:(e.match(/<li>(.*?)<\/li>/g)||[]).map(i=>i.replace(/<\/?li>/g,"").trim()):[]}function p(e){const i=e.ogImageUrl||"";return`
   <a href="property.html?id=${e.nodeId}" class="similar-card">
     <div class="similar-img-wrap">
       ${i?`<img src="${i}" alt="${e.title}" loading="lazy">`:`<div class="similar-img-placeholder">${c("Home",40,1)}</div>`}
@@ -24,7 +24,7 @@ import{r as k,a as C,i as I,b as c}from"./shared-B4N8x-DF.js";import{G as L,f as
       ${e.length>3?`<button class="similar-nav similar-prev" id="similarPrev">${c("ChevronLeft",26,2)}</button>`:""}
       <div class="similar-overflow">
         <div class="similar-grid" id="similarGrid">
-          ${e.map(a=>h(a)).join("")}
+          ${e.map(a=>p(a)).join("")}
         </div>
       </div>
       ${e.length>3?`<button class="similar-nav similar-next" id="similarNext">${c("ChevronRight",26,2)}</button>`:""}
@@ -34,7 +34,7 @@ import{r as k,a as C,i as I,b as c}from"./shared-B4N8x-DF.js";import{G as L,f as
       ${Array.from({length:l}).map((a,t)=>`<span class="similar-dot ${t===0?"active":""}" data-index="${t}"></span>`).join("")}
     </div>`:""}
     `}
-  `,n.style.display="",e.length>3&&p()}function M(e,i){document.querySelector(".similar-section")&&document.querySelectorAll(".clickable-tag").forEach(n=>{n.addEventListener("click",()=>{const s=n.dataset.tag,l=n.classList.contains("tag-active");if(document.querySelectorAll(".clickable-tag").forEach(a=>a.classList.remove("tag-active")),l){const a=i.filter(t=>t.nodeId!==e.nodeId&&t.title&&(t.buildingCategory===e.buildingCategory||t.priceRange===e.priceRange)).slice(0,9).map(t=>({...t,reason:t.buildingCategory===e.buildingCategory&&t.priceRange===e.priceRange?`同為${t.buildingCategory}・${t.priceRange}`:t.buildingCategory===e.buildingCategory?`同為${t.buildingCategory}`:`同價格區間・${t.priceRange}`}));y(a,"也許你也會喜歡","相似物件")}else{n.classList.add("tag-active");const a=i.filter(t=>t.nodeId!==e.nodeId&&t.title&&((t.tags||"").split(",").map(o=>o.trim()).includes(s)||(t.wixParking||"").trim()===s||(t.wixLocation||"").includes(s)||s.includes(t.wixLocation||""))).slice(0,9).map(t=>({...t,reason:`同樣有「${s}」`}));y(a,`選擇了「${s}」`,"相似物件")}})})}async function P(){try{const i=await(await fetch(L)).json(),r=i.find(s=>s.nodeId===E);if(!r){document.querySelector(".property-loading").innerHTML='<p>找不到這個物件，<a href="properties.html" style="color:var(--teal-dark)">回到物件列表</a></p>';return}document.title=`${r.title} | Cindy 王小姐`;const n=await R(r.cloudinaryFolder);r.ogImageUrl&&!n.includes(r.ogImageUrl)&&n.unshift(r.ogImageUrl);try{const s=await fetch("/cindy-web/market-data.json");s.ok&&(d=(await s.json())[r.nodeId]||null)}catch{d=null}j(r,n,i)}catch{document.querySelector(".property-loading").innerHTML="<p>載入失敗，請稍後再試</p>"}}let d=null;function B(e){var s;if(!d||!((s=d.deals)!=null&&s.length))return"";const i=parseInt(e.roomCount)||0,r=d.deals.map((l,a)=>`
+  `,n.style.display="",e.length>3&&h()}function M(e,i){document.querySelector(".similar-section")&&document.querySelectorAll(".clickable-tag").forEach(n=>{n.addEventListener("click",()=>{const s=n.dataset.tag,l=n.classList.contains("tag-active");if(document.querySelectorAll(".clickable-tag").forEach(a=>a.classList.remove("tag-active")),l){const a=i.filter(t=>t.nodeId!==e.nodeId&&t.title&&(t.buildingCategory===e.buildingCategory||t.priceRange===e.priceRange)).slice(0,9).map(t=>({...t,reason:t.buildingCategory===e.buildingCategory&&t.priceRange===e.priceRange?`同為${t.buildingCategory}・${t.priceRange}`:t.buildingCategory===e.buildingCategory?`同為${t.buildingCategory}`:`同價格區間・${t.priceRange}`}));y(a,"也許你也會喜歡","相似物件")}else{n.classList.add("tag-active");const a=i.filter(t=>t.nodeId!==e.nodeId&&t.title&&((t.tags||"").split(",").map(o=>o.trim()).includes(s)||(t.wixParking||"").trim()===s||(t.wixLocation||"").includes(s)||s.includes(t.wixLocation||""))).slice(0,9).map(t=>({...t,reason:`同樣有「${s}」`}));y(a,`選擇了「${s}」`,"相似物件")}})})}async function P(){try{const i=await(await fetch(L)).json(),r=i.find(s=>s.nodeId===E);if(!r){document.querySelector(".property-loading").innerHTML='<p>找不到這個物件，<a href="properties.html" style="color:var(--teal-dark)">回到物件列表</a></p>';return}document.title=`${r.title} | Cindy 王小姐`;const n=await R(r.cloudinaryFolder);r.ogImageUrl&&!n.includes(r.ogImageUrl)&&n.unshift(r.ogImageUrl);try{const s=await fetch("/cindy-web/market-data.json");s.ok&&(d=(await s.json())[r.nodeId]||null)}catch{d=null}j(r,n,i)}catch{document.querySelector(".property-loading").innerHTML="<p>載入失敗，請稍後再試</p>"}}let d=null;function B(e){var s;if(!d||!((s=d.deals)!=null&&s.length))return"";const i=parseInt(e.roomCount)||0,r=d.deals.map((l,a)=>`
     <tr class="${i&&l.rooms===i?"market-row-match":""}" data-mpage="${Math.floor(a/5)}">
       <td>${l.date}</td>
       <td>${l.floor}</td>
@@ -57,7 +57,7 @@ import{r as k,a as C,i as I,b as c}from"./shared-B4N8x-DF.js";import{G as L,f as
         <span class="market-pager-info" id="marketPageInfo"></span>
         <button class="market-pager-btn" id="marketNext">下一頁 ${c("ChevronRight",14,2)}</button>
       </div>`:""}
-      <div class="market-source">資料來源：內政部實價登錄，已排除親友間等特殊交易；<br>單價計算比照內政部公式，標「車」者含車位。${i?"<br>底色列為同房型成交資訊":""}</div>
+      <div class="market-source">資料來源：內政部實價登錄，已排除親友間等特殊交易；<br>單價計算比照內政部公式，標「車」者含車位。${i?"<br>底色列為同房型成交資訊":""}<br>行情資訊僅供參考，實際成交價格依個案條件而異。</div>
     </div>`}function A(){var l,a;const e=document.getElementById("marketBody");if(!e)return;const i=[...e.querySelectorAll("tr")],r=Math.ceil(i.length/5);if(r<=1)return;let n=0;const s=()=>{i.forEach(t=>{t.style.display=t.dataset.mpage==n?"":"none"}),document.getElementById("marketPageInfo").textContent=`${n+1} / ${r}`,document.getElementById("marketPrev").disabled=n===0,document.getElementById("marketNext").disabled=n===r-1};(l=document.getElementById("marketPrev"))==null||l.addEventListener("click",()=>{n>0&&(n--,s())}),(a=document.getElementById("marketNext"))==null||a.addEventListener("click",()=>{n<r-1&&(n++,s())}),s()}function T(e){return e.length===0?`<div class="gallery-placeholder">${c("Home",80,1,"","var(--sage-dark)")}</div>`:`
     <img class="gallery-main-img" id="galleryMain" src="${e[0]}" alt="物件照片">
     <button class="gallery-arrow prev" id="galleryPrev">${c("ChevronLeft",22,2)}</button>
@@ -141,6 +141,8 @@ import{r as k,a as C,i as I,b as c}from"./shared-B4N8x-DF.js";import{G as L,f as
         <div class="property-desc">${e.webDescription.replace(/<[^>]*>/g,"").replace(/\\n/g,"<br>")}</div>
         `:""}
 
+        <div class="property-disclosure">本公司為本物件之受託銷售經紀業，依不動產經紀業管理條例第 22 條之 1 規定，於此揭露。</div>
+
         <a href="properties.html" style="font-size:13px;color:var(--teal-dark);letter-spacing:2px;display:inline-flex;align-items:center;gap:6px;margin-top:8px">
           ${c("ArrowLeft",14,2)} 回到物件列表
         </a>
@@ -192,7 +194,7 @@ import{r as k,a as C,i as I,b as c}from"./shared-B4N8x-DF.js";import{G as L,f as
           ${l.length>3?`<button class="similar-nav similar-prev" id="similarPrev">${c("ChevronLeft",26,2)}</button>`:""}
           <div class="similar-overflow">
             <div class="similar-grid" id="similarGrid">
-              ${l.map(a=>h(a)).join("")}
+              ${l.map(a=>p(a)).join("")}
             </div>
           </div>
           ${l.length>3?`<button class="similar-nav similar-next" id="similarNext">${c("ChevronRight",26,2)}</button>`:""}
@@ -204,7 +206,7 @@ import{r as k,a as C,i as I,b as c}from"./shared-B4N8x-DF.js";import{G as L,f as
       </div>
     </div>`:""}
 
-  `,q(e,i),U(i),_(e),A(),M(e,r),p()}function p(){const e=document.getElementById("similarGrid"),i=document.getElementById("similarPrev"),r=document.getElementById("similarNext"),n=document.querySelectorAll(".similar-dot");if(!e||!i||!r)return;const s=e.querySelectorAll(".similar-card"),l=s.length,a=window.innerWidth<=768?2:3,t=Math.ceil(l/a);let o=0;function m(g){o=Math.max(0,Math.min(g,t-1));const u=parseInt(getComputedStyle(e).columnGap)||40,b=s[0].offsetWidth,$=a*(b+u);e.style.transform=`translateX(-${o*$}px)`,n.forEach((f,w)=>f.classList.toggle("active",w===o)),i.style.opacity=o===0?"0.3":"1",r.style.opacity=o===t-1?"0.3":"1"}i.addEventListener("click",()=>{o>0&&m(o-1)}),r.addEventListener("click",()=>{o<t-1&&m(o+1)}),n.forEach((g,u)=>g.addEventListener("click",()=>m(u))),m(0)}function q(e,i){const r=location.href,n=e.ogImageUrl||i[0]||"",s=(l,a)=>{let t=document.querySelector(`meta[property="${l}"]`);t||(t=document.createElement("meta"),t.setAttribute("property",l),document.head.appendChild(t)),t.setAttribute("content",a)};s("og:title",`${e.title} | Cindy 王小姐`),s("og:description",`💰 售價與詳情請點擊查閱。格局：${e.layout||"—"}，${e.wixLocation||""}精選房源推薦。`),s("og:image",n),s("og:url",r),s("og:type","website")}function _(e){var s,l,a;const i=`https://cindy94502.github.io/cindy-web/p/${encodeURIComponent(e.nodeId)}.html`,r=[e.layout?`格局：${e.layout}`:"",e.buildingSize?`建坪：${e.buildingSize}坪`:"",e.landSize?`土坪：${e.landSize}坪`:""].filter(Boolean).join(`
+  `,q(e,i),U(i),_(e),A(),M(e,r),h()}function h(){const e=document.getElementById("similarGrid"),i=document.getElementById("similarPrev"),r=document.getElementById("similarNext"),n=document.querySelectorAll(".similar-dot");if(!e||!i||!r)return;const s=e.querySelectorAll(".similar-card"),l=s.length,a=window.innerWidth<=768?2:3,t=Math.ceil(l/a);let o=0;function m(g){o=Math.max(0,Math.min(g,t-1));const u=parseInt(getComputedStyle(e).columnGap)||40,b=s[0].offsetWidth,$=a*(b+u);e.style.transform=`translateX(-${o*$}px)`,n.forEach((f,w)=>f.classList.toggle("active",w===o)),i.style.opacity=o===0?"0.3":"1",r.style.opacity=o===t-1?"0.3":"1"}i.addEventListener("click",()=>{o>0&&m(o-1)}),r.addEventListener("click",()=>{o<t-1&&m(o+1)}),n.forEach((g,u)=>g.addEventListener("click",()=>m(u))),m(0)}function q(e,i){const r=location.href,n=e.ogImageUrl||i[0]||"",s=(l,a)=>{let t=document.querySelector(`meta[property="${l}"]`);t||(t=document.createElement("meta"),t.setAttribute("property",l),document.head.appendChild(t)),t.setAttribute("content",a)};s("og:title",`${e.title} | Cindy 王小姐`),s("og:description",`💰 售價與詳情請點擊查閱。格局：${e.layout||"—"}，${e.wixLocation||""}精選房源推薦。`),s("og:image",n),s("og:url",r),s("og:type","website")}function _(e){var s,l,a;const i=`https://cindy94502.github.io/cindy-web/p/${encodeURIComponent(e.nodeId)}.html`,r=[e.layout?`格局：${e.layout}`:"",e.buildingSize?`建坪：${e.buildingSize}坪`:"",e.landSize?`土坪：${e.landSize}坪`:""].filter(Boolean).join(`
 `),n=`${e.title}｜NT${e.price?(e.price/1e4).toFixed(0)+"萬":"洽談"}｜Cindy 王小姐`+(r?`
 `+r:"");(s=document.getElementById("btnCopyLink"))==null||s.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(n+`
 `+i);const t=document.getElementById("btnCopyLink");t.textContent="✓ 已複製！",setTimeout(()=>t.textContent="複製連結",2e3)}catch{alert("請手動複製網址")}}),(l=document.getElementById("btnShareLine"))==null||l.addEventListener("click",()=>{window.open(`https://line.me/R/msg/text/?${encodeURIComponent(n+`
