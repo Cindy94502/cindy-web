@@ -199,6 +199,28 @@ function renderMarketBlock(prop) {
     </div>`
 }
 
+function initMarketTip() {
+  const help = document.querySelector('.market-help')
+  const tip = help?.querySelector('.market-tip')
+  if (!help || !tip) return
+  const place = () => {
+    tip.style.visibility = 'hidden'
+    tip.style.display = 'block'
+    const h = help.getBoundingClientRect()
+    const w = Math.min(320, window.innerWidth * 0.84)
+    // 貼在問號上方置中，超出視窗左右自動收回
+    let left = h.left + h.width / 2 - w / 2
+    left = Math.max(10, Math.min(left, window.innerWidth - w - 10))
+    tip.style.left = left + 'px'
+    tip.style.transform = 'none'
+    tip.style.top = Math.max(10, h.top - tip.offsetHeight - 10) + 'px'
+    tip.style.display = ''
+    tip.style.visibility = ''
+  }
+  help.addEventListener('mouseenter', place)
+  help.addEventListener('focus', place)
+}
+
 function initMarketPager() {
   const body = document.getElementById('marketBody')
   if (!body) return
@@ -425,6 +447,7 @@ function renderProperty(prop, images, allProps = []) {
   initGallery(images)
   initShare(prop)
   initMarketPager()
+  initMarketTip()
   initTagFilter(prop, allProps)
   initSimilarCarousel()
 }
