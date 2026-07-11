@@ -2,6 +2,8 @@ import './style.css'
 import { icon } from './icons.js'
 import { renderNav, renderFooter, initCommon } from './shared.js'
 import { GITHUB_JSON_URL, formatPrice } from './data.js'
+import { districts } from './data-taoyuan.js'
+import { bookPages } from './data-taoyuan-book.js'
 
 function tornDivider(fromColor, toColor) {
   return `<div class="torn-divider" style="background:${toColor}">
@@ -109,7 +111,85 @@ document.getElementById('app').innerHTML = `
     </div>
   </section>
 
+  <!-- ── 認識桃園 ── -->
+  <section id="taoyuan">
+    <div class="taoyuan-inner">
+      <div class="section-header reveal">
+        <div class="section-header-top">
+          <img src="images/house_plants.png" alt="" class="section-house-deco">
+        </div>
+        <div class="section-eyebrow">Taoyuan 2030</div>
+        <h2 class="section-title">跟我一起<strong>認識桃園</strong></h2>
+        <div class="section-underline"></div>
+        <p class="taoyuan-intro">住在這裡快 20 年，桃園接下來要變成什麼樣子，我也很好奇。整理了一支短片，帶你快速看一輪～</p>
+      </div>
+      <div class="taoyuan-video-wrap reveal reveal-d2">
+        <video
+          class="taoyuan-video"
+          src="videos/taoyuan-2030.mp4"
+          poster="videos/taoyuan-2030-poster.jpg"
+          controls
+          muted
+          playsinline
+          preload="metadata">
+        </video>
+      </div>
+      <div class="taoyuan-tags reveal reveal-d2">
+        <span class="taoyuan-tag">🚄 G13捷運明年通車</span>
+        <span class="taoyuan-tag">🏙️ 三心六線</span>
+        <span class="taoyuan-tag">🌳 生活機能升級</span>
+      </div>
+      <p class="taoyuan-caption">更多桃園建設進度與生活圈分析，歡迎加 LINE 跟我聊聊</p>
+      <div class="taoyuan-btn-row reveal reveal-d2">
+        <button class="taoyuan-book-btn" id="taoyuanBookBtn">
+          ${icon('BookOpen', 15, 2)} 圖文版慢慢看
+        </button>
+        <button class="taoyuan-book-btn" id="taoyuanMapBtn">
+          ${icon('MapPin', 15, 2)} 桃園生活機能地圖
+        </button>
+      </div>
+    </div>
+  </section>
+
   ${tornDivider('#FBF8F3', '#F2EDE4')}
+
+  <!-- ── 桃園2030 電子書浮動視窗 ── -->
+  <div class="tbook-overlay" id="tbookOverlay">
+    <div class="tbook-modal">
+      <button class="tbook-close" id="tbookClose" aria-label="關閉">✕</button>
+      <div class="tbook-page" id="tbookPage"></div>
+      <button class="tbook-nav tbook-prev" id="tbookPrev" aria-label="上一頁">${icon('ChevronLeft', 22, 2)}</button>
+      <button class="tbook-nav tbook-next" id="tbookNext" aria-label="下一頁">${icon('ChevronRight', 22, 2)}</button>
+      <div class="tbook-dots" id="tbookDots"></div>
+    </div>
+  </div>
+
+  <!-- ── 桃園地圖 浮動視窗 ── -->
+  <div class="tmap-overlay" id="tmapOverlay">
+    <div class="tmap-modal">
+      <button class="tbook-close" id="tmapClose" aria-label="關閉">✕</button>
+      <div class="section-header">
+        <div class="section-eyebrow">Taoyuan Living Guide</div>
+        <h2 class="section-title">桃園<strong>13區生活機能地圖</strong></h2>
+        <div class="section-underline"></div>
+        <p class="tmap-hint">滑過（手機點一下）看看每個區的生活機能</p>
+      </div>
+      <div class="tmap-wrap">
+        <img src="images/taoyuan-map.png" alt="桃園13區地圖" class="tmap-img" id="tmapImg">
+        ${districts.map((d, i) => `
+        <button class="tmap-hotspot" data-index="${i}" aria-label="${d.name}"
+          style="left:${d.area.x}%; top:${d.area.y}%; width:${d.area.w}%; height:${d.area.h}%;">
+        </button>`).join('')}
+        <div class="tmap-card" id="tmapCard">
+          <div class="tmap-card-name" id="tmapCardName"></div>
+          <div class="tmap-card-facts" id="tmapCardFacts"></div>
+          <div class="tmap-card-info" id="tmapCardCommute"></div>
+          <div class="tmap-card-info" id="tmapCardFit"></div>
+          <div class="tmap-card-note" id="tmapCardNote"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- ── 精選物件 ── -->
   <section id="properties-preview">
@@ -255,3 +335,174 @@ async function loadHomeProps() {
   }
 }
 loadHomeProps()
+
+function initTaoyuanMap() {
+  const card = document.getElementById('tmapCard')
+  const nameEl = document.getElementById('tmapCardName')
+  const factsEl = document.getElementById('tmapCardFacts')
+  const noteEl = document.getElementById('tmapCardNote')
+  const wrap = document.querySelector('.tmap-wrap')
+  if (!wrap) return
+
+  const show = (btn) => {
+    const d = districts[+btn.dataset.index]
+    nameEl.textContent = d.name
+    factsEl.textContent = d.facts
+    const commuteEl = document.getElementById('tmapCardCommute')
+    const fitEl = document.getElementById('tmapCardFit')
+    commuteEl.innerHTML = d.commute ? `${icon('Car', 13, 2, 'tmap-info-icon')} ${d.commute}` : ''
+    commuteEl.style.display = d.commute ? '' : 'none'
+    fitEl.innerHTML = d.fit ? `${icon('Users', 13, 2, 'tmap-info-icon')} ${d.fit}` : ''
+    fitEl.style.display = d.fit ? '' : 'none'
+    noteEl.innerHTML = d.cindyNote ? `${icon('MessageCircle', 13, 2, 'tmap-note-icon')} ${d.cindyNote}` : ''
+    noteEl.style.display = d.cindyNote ? '' : 'none'
+
+    const wrapRect = wrap.getBoundingClientRect()
+    const btnRect = btn.getBoundingClientRect()
+    card.style.display = 'block'
+    const cardW = card.offsetWidth
+    let left = btnRect.left - wrapRect.left + btnRect.width / 2 - cardW / 2
+    left = Math.max(8, Math.min(left, wrapRect.width - cardW - 8))
+    card.style.left = left + 'px'
+    let top = btnRect.top - wrapRect.top - card.offsetHeight - 12
+    if (top < 8) top = btnRect.bottom - wrapRect.top + 12
+    card.style.top = top + 'px'
+    card.classList.add('tmap-card-active')
+  }
+  const hide = () => card.classList.remove('tmap-card-active')
+
+  // 各區熱區矩形互有重疊（區形不規則），改用「游標離哪區中心最近」判定，
+  // 避免 DOM 順序在後的區搶走重疊帶的點擊（例如點新屋出現觀音）
+  const btns = [...document.querySelectorAll('.tmap-hotspot')]
+  const pickDistrict = (e) => {
+    const r = wrap.getBoundingClientRect()
+    const px = (e.clientX - r.left) / r.width * 100
+    const py = (e.clientY - r.top) / r.height * 100
+    let best = null, bestDist = Infinity
+    districts.forEach((d, i) => {
+      const a = d.area
+      if (px < a.x || px > a.x + a.w || py < a.y || py > a.y + a.h) return
+      const dx = (px - (a.x + a.w / 2)) / a.w
+      const dy = (py - (a.y + a.h / 2)) / a.h
+      const dist = dx * dx + dy * dy
+      if (dist < bestDist) { bestDist = dist; best = i }
+    })
+    return best
+  }
+  wrap.addEventListener('mousemove', (e) => {
+    if (e.target.closest('.tmap-card')) return
+    const i = pickDistrict(e)
+    if (i === null) { hide(); return }
+    if (!card.classList.contains('tmap-card-active') || nameEl.textContent !== districts[i].name) show(btns[i])
+  })
+  wrap.addEventListener('click', (e) => {
+    if (e.target.closest('.tmap-card')) return
+    e.stopPropagation()
+    const i = pickDistrict(e)
+    if (i === null) { hide(); return }
+    if (card.classList.contains('tmap-card-active') && nameEl.textContent === districts[i].name) hide()
+    else show(btns[i])
+  })
+  btns.forEach(btn => btn.addEventListener('focus', () => show(btn)))
+  wrap.addEventListener('mouseleave', hide)
+  document.addEventListener('click', (e) => { if (!wrap.contains(e.target)) hide() })
+
+  const openBtn = document.getElementById('taoyuanMapBtn')
+  const mapOverlay = document.getElementById('tmapOverlay')
+  const mapClose = document.getElementById('tmapClose')
+  if (openBtn && mapOverlay) {
+    const openMap = () => { mapOverlay.classList.add('tmap-open'); document.body.style.overflow = 'hidden' }
+    const closeMap = () => { mapOverlay.classList.remove('tmap-open'); document.body.style.overflow = ''; hide() }
+    openBtn.addEventListener('click', openMap)
+    mapClose.addEventListener('click', closeMap)
+    mapOverlay.addEventListener('click', (e) => { if (e.target === mapOverlay) closeMap() })
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mapOverlay.classList.contains('tmap-open')) closeMap()
+    })
+  }
+}
+initTaoyuanMap()
+
+function initTaoyuanBook() {
+  const btn = document.getElementById('taoyuanBookBtn')
+  const overlay = document.getElementById('tbookOverlay')
+  const closeBtn = document.getElementById('tbookClose')
+  const prevBtn = document.getElementById('tbookPrev')
+  const nextBtn = document.getElementById('tbookNext')
+  const pageEl = document.getElementById('tbookPage')
+  const dotsEl = document.getElementById('tbookDots')
+  if (!btn || !overlay) return
+
+  let idx = 0
+
+  dotsEl.innerHTML = bookPages.map((_, i) => `<span class="tbook-dot" data-i="${i}"></span>`).join('')
+  const dots = [...dotsEl.querySelectorAll('.tbook-dot')]
+
+  const render = () => {
+    const p = bookPages[idx]
+    pageEl.innerHTML = p.image ? `
+      <div class="tbook-page-num">${idx + 1} / ${bookPages.length}</div>
+      <div class="tbook-img-wrap tbook-img-wrap-full"><img src="${p.image}" alt="${p.title}" class="tbook-img tbook-img-full" loading="lazy"></div>
+      ${p.extra ? `<p class="tbook-body">${p.extra}</p>` : ''}
+    ` : `
+      <div class="tbook-page-num">${idx + 1} / ${bookPages.length}</div>
+      <h3 class="tbook-title">${p.title}</h3>
+      ${p.subtitle ? `<div class="tbook-subtitle">${p.subtitle}</div>` : ''}
+      ${p.stats ? `<div class="tbook-stats">${p.stats.map(([k, v]) => `
+        <div class="tbook-stat"><div class="tbook-stat-k">${k}</div><div class="tbook-stat-v">${v}</div></div>
+      `).join('')}</div>` : ''}
+      ${p.body ? `<p class="tbook-body">${p.body}</p>` : ''}
+    `
+    dots.forEach((d, i) => d.classList.toggle('tbook-dot-active', i === idx))
+    prevBtn.disabled = idx === 0
+    nextBtn.disabled = idx === bookPages.length - 1
+  }
+
+  const open = () => { idx = 0; render(); overlay.classList.add('tbook-open'); document.body.style.overflow = 'hidden' }
+  const close = () => { overlay.classList.remove('tbook-open'); document.body.style.overflow = '' }
+
+  let flipping = false
+  const go = (n) => {
+    const newIdx = Math.max(0, Math.min(bookPages.length - 1, idx + n))
+    if (newIdx === idx || flipping) return
+    flipping = true
+    const dir = n > 0 ? 'next' : 'prev'
+    pageEl.classList.add(dir === 'next' ? 'tbook-flip-out-next' : 'tbook-flip-out-prev')
+    pageEl.addEventListener('animationend', function onOut() {
+      pageEl.removeEventListener('animationend', onOut)
+      idx = newIdx
+      render()
+      pageEl.classList.remove('tbook-flip-out-next', 'tbook-flip-out-prev')
+      pageEl.classList.add(dir === 'next' ? 'tbook-flip-in-next' : 'tbook-flip-in-prev')
+      pageEl.addEventListener('animationend', function onIn() {
+        pageEl.removeEventListener('animationend', onIn)
+        pageEl.classList.remove('tbook-flip-in-next', 'tbook-flip-in-prev')
+        flipping = false
+      }, { once: true })
+    }, { once: true })
+  }
+
+  btn.addEventListener('click', open)
+  closeBtn.addEventListener('click', close)
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) close() })
+  prevBtn.addEventListener('click', () => go(-1))
+  nextBtn.addEventListener('click', () => go(1))
+  dots.forEach(d => d.addEventListener('click', () => go(+d.dataset.i - idx)))
+  document.addEventListener('keydown', (e) => {
+    if (!overlay.classList.contains('tbook-open')) return
+    if (e.key === 'Escape') close()
+    if (e.key === 'ArrowRight') go(1)
+    if (e.key === 'ArrowLeft') go(-1)
+  })
+
+  // 手機滑動翻頁
+  let touchX = null
+  pageEl.addEventListener('touchstart', (e) => { touchX = e.touches[0].clientX })
+  pageEl.addEventListener('touchend', (e) => {
+    if (touchX == null) return
+    const dx = e.changedTouches[0].clientX - touchX
+    if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1)
+    touchX = null
+  })
+}
+initTaoyuanBook()

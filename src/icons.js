@@ -3,7 +3,7 @@ import {
   User, UserCircle, Users, Monitor, ArrowRight, ArrowLeft,
   ChevronUp, ChevronDown, ChevronLeft, ChevronRight,
   Search, AlertCircle, Car, Star, FileText, KeyRound, Banknote,
-  Share2, Link, Play, ShoppingBag, Heart, TrendingUp
+  Share2, Link, Play, ShoppingBag, Heart, TrendingUp, BookOpen
 } from 'lucide'
 
 const iconMap = {
@@ -11,7 +11,7 @@ const iconMap = {
   User, UserCircle, Users, Monitor, ArrowRight, ArrowLeft,
   ChevronUp, ChevronDown, ChevronLeft, ChevronRight,
   Search, AlertCircle, Car, Star, FileText, KeyRound, Banknote,
-  Share2, Link, Play, ShoppingBag, Heart, TrendingUp
+  Share2, Link, Play, ShoppingBag, Heart, TrendingUp, BookOpen
 }
 
 export function icon(name, size = 20, strokeWidth = 1.5, extraClass = '', color = 'currentColor') {
