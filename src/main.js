@@ -389,7 +389,10 @@ function initTaoyuanMap() {
     })
     return best
   }
-  wrap.addEventListener('mousemove', (e) => {
+  // 用 pointermove 並限定滑鼠：手機點擊會先觸發模擬 mousemove 再觸發 click，
+  // 造成卡片先開後關的閃現，觸控裝置只走 click 的開關邏輯
+  wrap.addEventListener('pointermove', (e) => {
+    if (e.pointerType !== 'mouse') return
     if (e.target.closest('.tmap-card')) return
     const i = pickDistrict(e)
     if (i === null) { hide(); return }
