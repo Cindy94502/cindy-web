@@ -130,7 +130,7 @@ const space=document.getElementById('space'), prog=document.getElementById('prog
 space.style.height=(N*175)+'vh';
 
 SCENES.forEach((sc,i)=>{
-  stage.insertAdjacentHTML('beforeend',`<div class="scene"><video src="${sc.src}" muted playsinline preload="auto"></video></div>`);
+  stage.insertAdjacentHTML('beforeend',`<div class="scene"><video data-src="${sc.src}" muted playsinline preload="auto"></video></div>`);
   panels.insertAdjacentHTML('beforeend',`<div class="panel" style="--sc:${sc.color}"><div class="counter">${String(i+1).padStart(2,'0')} / ${String(N).padStart(2,'0')}</div><div class="eyebrow">${sc.eyebrow}</div><div class="title">${sc.title}</div><div class="desc">${sc.desc}</div></div>`);
   navpills.insertAdjacentHTML('beforeend',`<button data-i="${i}">${sc.nav}</button>`);
   railTrack.insertAdjacentHTML('beforeend',`<div class="rdot" style="background:${sc.color}"></div>`);
@@ -143,10 +143,20 @@ pills.forEach(btn=>btn.addEventListener('click',()=>{const i=+btn.dataset.i;cons
 // 點 Logo → 回到第一幕（遮風避雨）
 document.getElementById('logo').addEventListener('click',e=>{e.preventDefault();scrollTo({top:0,behavior:'smooth'});});
 
+// 只讓目前這一幕前後的影片在記憶體裡（手機同時解碼太多支會定格／爆掉）
+function ensureLoaded(idx){
+  vids.forEach((v,i)=>{
+    const near=Math.abs(i-idx)<=1;
+    if(near && !v.getAttribute('src')){ v.setAttribute('src',v.dataset.src); v.load(); }
+    else if(!near && Math.abs(i-idx)>2 && v.getAttribute('src')){ v.removeAttribute('src'); v.load(); }
+  });
+}
+
 function onScroll(){
   const max=space.offsetHeight-innerHeight;
   const p=clamp(scrollY/max,0,1);
   const seg=p*N;
+  ensureLoaded(Math.min(Math.floor(seg),N-1));
   scenes.forEach((s,i)=>{
     const d=seg-i, local=clamp(d,0,1), v=vids[i];
     if(isFinite(v.duration)){ try{ v.currentTime=local*(v.duration-0.05); }catch(e){} }
@@ -169,9 +179,10 @@ function onScroll(){
 addEventListener('scroll',onScroll,{passive:true});
 addEventListener('resize',onScroll);
 
-vids.forEach(v=>v.load());
+// 起手只載前兩幕，其餘捲到附近才載
+ensureLoaded(0);
 function hideLoad(){loading.classList.add('gone');onScroll();}
-Promise.all(vids.map(v=>v.readyState>=2?Promise.resolve():new Promise(r=>v.addEventListener('loadeddata',r,{once:true})))).then(hideLoad);
+(vids[0].readyState>=2 ? Promise.resolve() : new Promise(r=>vids[0].addEventListener('loadeddata',r,{once:true}))).then(hideLoad);
 setTimeout(hideLoad,2500);
 onScroll();
 </script>
