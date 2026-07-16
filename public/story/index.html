@@ -24,7 +24,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:cent
 .logo{font-family:'Dancing Script',cursive;font-weight:700;font-size:30px;letter-spacing:1px;color:var(--brown);display:flex;align-items:center;gap:8px;white-space:nowrap;text-decoration:none;cursor:pointer;transition:transform .2s;text-shadow:0 1px 12px var(--cream),0 0 24px var(--cream);}
 .logo:hover{transform:scale(1.04);}
 .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--pink);flex-shrink:0;}
-.logo .heart{color:var(--pink);font-size:17px;}
+.logo .heart{color:var(--pink);width:16px;height:16px;flex-shrink:0;}
 .navpills{position:absolute;left:50%;transform:translateX(-50%);display:flex;gap:4px;background:rgba(255,255,255,.62);backdrop-filter:blur(8px);border:1px solid rgba(139,94,60,.12);border-radius:30px;padding:5px;}
 .navpills button{font-family:var(--sans);font-size:13px;color:var(--dim);background:transparent;border:none;padding:8px 15px;border-radius:22px;cursor:pointer;transition:all .3s;white-space:nowrap;}
 .navpills button.on{color:#fff;font-weight:500;}
@@ -69,7 +69,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:cent
 @media(max-width:640px){
   nav{padding:14px 14px;}
   .logo{font-size:23px;gap:5px;}
-  .logo .heart{font-size:13px;}
+  .logo .heart{width:13px;height:13px;}
   .navright{gap:6px;}
   .navghost{font-size:11px;padding:8px 11px;}
   .navcta{font-size:11px;padding:8px 12px;}
@@ -91,7 +91,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:cent
 <div class="veil"></div>
 
 <nav>
-  <a class="logo" id="logo" href="#" aria-label="回到開頭"><span class="dot"></span>Cindy<span class="heart">♥</span></a>
+  <a class="logo" id="logo" href="#" aria-label="回到開頭"><span class="dot"></span>Cindy<svg class="heart" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></svg></a>
   <div class="navpills" id="navpills"></div>
   <div class="navright">
     <a class="navghost" href="https://cindy94502.github.io/cindy-web/properties.html" target="_blank" rel="noopener">看看物件 →</a>
