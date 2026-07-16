@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>家的故事 — Cindy 陪你找家</title>
+<meta property="og:title" content="家，是能為你遮風避雨的地方">
+<meta property="og:description" content="一個關於家的小故事 — Cindy 陪你找家">
+<link rel="icon" type="image/png" href="favicon-round.png">
+<link rel="apple-touch-icon" href="favicon-round.png">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--cream:#fdf8f0;--ink:#2f2620;--teal:#4A8E97;--brown:#3D2B1F;--pink:#ECA3BD;--dim:#8c827a;--hand:'Zen Maru Gothic','Noto Sans TC',sans-serif;--sans:'Zen Maru Gothic','Noto Sans TC',sans-serif;}
+body{background:var(--cream);font-family:var(--sans);color:var(--ink);}
+.stage{position:fixed;inset:0;z-index:1;overflow:hidden;}
+.scene{position:absolute;inset:0;opacity:0;will-change:opacity,transform;}
+.scene video{width:100%;height:100%;object-fit:cover;}
+/* 只在左邊文字後面一小塊柔光（橢圓），其餘場景完全清楚 */
+.veil{position:fixed;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse 34% 52% at 15% 50%,rgba(253,248,240,.88) 0%,rgba(253,248,240,.45) 42%,transparent 72%);}
+
+/* 上排導覽：草寫 Logo 靠左、幕名置中、按鈕靠右 */
+nav{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px clamp(18px,3.5vw,44px);}
+.logo{font-family:'Dancing Script',cursive;font-weight:700;font-size:30px;letter-spacing:1px;color:var(--brown);display:flex;align-items:center;gap:8px;white-space:nowrap;text-decoration:none;cursor:pointer;transition:transform .2s;text-shadow:0 1px 12px var(--cream),0 0 24px var(--cream);}
+.logo:hover{transform:scale(1.04);}
+.logo .dot{width:8px;height:8px;border-radius:50%;background:var(--pink);flex-shrink:0;}
+.logo .heart{color:var(--pink);font-size:17px;}
+.navpills{position:absolute;left:50%;transform:translateX(-50%);display:flex;gap:4px;background:rgba(255,255,255,.62);backdrop-filter:blur(8px);border:1px solid rgba(139,94,60,.12);border-radius:30px;padding:5px;}
+.navpills button{font-family:var(--sans);font-size:13px;color:var(--dim);background:transparent;border:none;padding:8px 15px;border-radius:22px;cursor:pointer;transition:all .3s;white-space:nowrap;}
+.navpills button.on{color:#fff;font-weight:500;}
+.navright{display:flex;align-items:center;gap:8px;}
+.navghost{background:rgba(255,255,255,.7);backdrop-filter:blur(8px);border:1px solid rgba(61,43,31,.18);color:var(--brown);font-size:13px;font-weight:500;padding:10px 18px;border-radius:30px;text-decoration:none;white-space:nowrap;transition:all .2s;}
+.navghost:hover{background:#fff;transform:scale(1.04);}
+.navcta{background:var(--ink);color:#fff;font-size:13px;font-weight:500;padding:11px 20px;border-radius:30px;text-decoration:none;white-space:nowrap;transition:transform .2s;}
+.navcta:hover{transform:scale(1.04);}
+@media(max-width:960px){.navpills{display:none;}}
+
+/* 左側文字（靠左，像 landly）*/
+.panels{position:fixed;left:clamp(18px,3.5vw,56px);top:50%;transform:translateY(-50%);z-index:20;width:min(490px,76vw);height:340px;}
+.panel{position:absolute;left:0;top:50%;transform:translateY(calc(-50% + 16px));opacity:0;transition:opacity .45s ease,transform .45s ease;pointer-events:none;}
+.panel.on{opacity:1;transform:translateY(-50%);pointer-events:auto;}
+.counter{font-family:var(--hand);font-size:14px;color:var(--dim);letter-spacing:.12em;margin-bottom:10px;}
+.eyebrow{font-size:12px;letter-spacing:.28em;color:var(--sc,var(--teal));text-transform:uppercase;margin-bottom:14px;font-weight:500;}
+.title{font-family:var(--hand);font-weight:700;font-size:clamp(27px,4.1vw,45px);line-height:1.4;color:var(--ink);margin-bottom:18px;text-shadow:0 1px 16px var(--cream),0 0 30px var(--cream);}
+.title .hl{color:var(--sc,var(--brown));}
+.desc{font-size:15px;line-height:1.9;color:#5c534b;max-width:26em;text-shadow:0 1px 12px var(--cream);}
+
+/* 右下角探頭小薰（電話按鈕，往上往左移蓋住浮水印）*/
+.peek{position:fixed;right:clamp(30px,5vw,86px);bottom:clamp(18px,3.5vh,46px);z-index:25;width:clamp(170px,22vw,262px);transition:transform .25s ease;filter:drop-shadow(0 6px 16px rgba(0,0,0,.2));}
+.peek:hover{transform:translateY(-8px);}
+.peek img{width:100%;display:block;}
+
+/* 右側捲動時間軸（每一幕自己的顏色）*/
+.rail{position:fixed;right:clamp(14px,2.5vw,40px);top:50%;transform:translateY(-50%);z-index:20;display:flex;flex-direction:column;align-items:center;gap:14px;}
+.rail .lbl{font-size:12px;color:var(--ink);background:rgba(255,255,255,.75);border:1px solid rgba(139,94,60,.14);padding:5px 12px;border-radius:20px;margin-bottom:6px;white-space:nowrap;backdrop-filter:blur(6px);transition:color .3s;}
+.rail .track{display:flex;flex-direction:column;gap:12px;align-items:center;}
+.rail .rdot{width:9px;height:9px;border-radius:50%;transition:all .3s;opacity:.34;}
+.rail .rdot.on{transform:scale(1.5);opacity:1;}
+@media(max-width:560px){.rail{right:12px;}.rail .lbl{display:none;}}
+
+.hint{position:fixed;bottom:24px;left:clamp(18px,3.5vw,56px);z-index:20;font-family:var(--sans);font-size:11px;letter-spacing:.25em;color:var(--dim);transition:opacity .4s;}
+.hint::after{content:'';display:block;width:1px;height:30px;background:linear-gradient(var(--teal),transparent);margin-top:8px;animation:drop 1.8s infinite;}
+@keyframes drop{0%{opacity:0;transform:scaleY(.3);transform-origin:top;}50%{opacity:1;}100%{opacity:0;transform:scaleY(1);transform-origin:top;}}
+.prog{position:fixed;top:0;left:0;height:3px;background:var(--teal);z-index:31;width:0;}
+.loading{position:fixed;inset:0;z-index:60;background:var(--cream);display:flex;align-items:center;justify-content:center;font-family:var(--hand);color:var(--brown);font-size:14px;letter-spacing:.2em;transition:opacity .6s;}
+.loading.gone{opacity:0;pointer-events:none;}
+.space{position:relative;z-index:0;}
+/* 手機優化：兩個按鈕都留著（觀眾主要在手機），字縮小才排得下 */
+@media(max-width:640px){
+  nav{padding:14px 14px;}
+  .logo{font-size:23px;gap:5px;}
+  .logo .heart{font-size:13px;}
+  .navright{gap:6px;}
+  .navghost{font-size:11px;padding:8px 11px;}
+  .navcta{font-size:11px;padding:8px 12px;}
+  .panels{width:min(490px,84vw);height:300px;}
+  .title{line-height:1.45;}
+  .desc{font-size:14px;}
+  .peek{width:clamp(112px,32vw,150px);right:8px;bottom:10px;}
+  .rail{right:9px;gap:9px;}
+  .rail .rdot{width:8px;height:8px;}
+  .hint{font-size:10px;bottom:16px;}
+  /* 手機文字佔的寬比較大，柔光跟著放大才蓋得住 */
+  .veil{background:radial-gradient(ellipse 78% 42% at 32% 47%,rgba(253,248,240,.9) 0%,rgba(253,248,240,.52) 46%,transparent 80%);}
+}
+</style>
+</head>
+<body>
+<div class="loading" id="loading">故事準備中…</div>
+<div class="stage" id="stage"></div>
+<div class="veil"></div>
+
+<nav>
+  <a class="logo" id="logo" href="#" aria-label="回到開頭"><span class="dot"></span>Cindy<span class="heart">♥</span></a>
+  <div class="navpills" id="navpills"></div>
+  <div class="navright">
+    <a class="navghost" href="https://cindy94502.github.io/cindy-web/properties.html" target="_blank" rel="noopener">看看物件 →</a>
+    <a class="navcta" href="https://line.me/ti/p/@019nrmqw" target="_blank" rel="noopener">加 LINE 找家</a>
+  </div>
+</nav>
+
+<div class="panels" id="panels"></div>
+
+<div class="rail">
+  <div class="lbl" id="railLbl">遮風避雨</div>
+  <div class="track" id="railTrack"></div>
+</div>
+
+<a class="peek" href="tel:0963585690" aria-label="電話詢問"><img src="cindy_button.png" alt="電話詢問 Cindy"></a>
+<div class="hint" id="hint">SCROLL 捲動飛進去</div>
+<div class="prog" id="prog"></div>
+<div class="space" id="space"></div>
+
+<script>
+// ═══ 場景設定：以後加影片只要在這裡加一段 ═══
+const SCENES=[
+  {src:'s1.mp4', nav:'遮風避雨', color:'#4A8E97', eyebrow:'A Story of Home', title:'家，是能為你<br><span class="hl">遮風避雨</span>的地方。', desc:'外面下著雨，但總有一個地方，燈是亮的，有人在等你。'},
+  {src:'sA.mp4', nav:'新家', color:'#7FA86B', eyebrow:'新生活的開始', title:'一個家的開始，<br>是有人願意<span class="hl">放下行李</span>。', desc:'搬進來的那一刻，冷冰冰的空房子，就有了溫度。'},
+  {src:'s2.mp4', nav:'等你回來', color:'#E0A03C', eyebrow:'有人在等', title:'亮起的那盞燈，<br>是有人<span class="hl">在等你</span>。', desc:'家最溫暖的樣子，是門一打開，就知道有人在。'},
+  {src:'sB.mp4', nav:'餐桌', color:'#D97E52', eyebrow:'家的核心', title:'是熱熱的飯菜，<br>和一桌子的<span class="hl">笑聲</span>。', desc:'一家人圍著桌子吃飯，那個熱鬧，別的地方給不了。'},
+  {src:'sC.mp4', nav:'夜晚', color:'#7B77A8', eyebrow:'溫度', title:'是睡前的故事，<br>和身邊的<span class="hl">溫度</span>。', desc:'燈還亮著，貓睡著了，時間在這裡慢下來。'},
+  {src:'s3.mp4', nav:'回家', color:'#B4685A', eyebrow:'回家', title:'忙了一整天，<br>回到這裡就<span class="hl">安心</span>了。', desc:'你想要的，是什麼樣的家？簡單而樸素，還是富麗而堂皇？加 LINE，說說你想要的家。'},
+];
+// ═════════════════════════════════════════════
+
+const N=SCENES.length;
+const stage=document.getElementById('stage'), panels=document.getElementById('panels');
+const navpills=document.getElementById('navpills'), railTrack=document.getElementById('railTrack'), railLbl=document.getElementById('railLbl');
+const space=document.getElementById('space'), prog=document.getElementById('prog'), hint=document.getElementById('hint'), loading=document.getElementById('loading');
+space.style.height=(N*175)+'vh';
+
+SCENES.forEach((sc,i)=>{
+  stage.insertAdjacentHTML('beforeend',`<div class="scene"><video src="${sc.src}" muted playsinline preload="auto"></video></div>`);
+  panels.insertAdjacentHTML('beforeend',`<div class="panel" style="--sc:${sc.color}"><div class="counter">${String(i+1).padStart(2,'0')} / ${String(N).padStart(2,'0')}</div><div class="eyebrow">${sc.eyebrow}</div><div class="title">${sc.title}</div><div class="desc">${sc.desc}</div></div>`);
+  navpills.insertAdjacentHTML('beforeend',`<button data-i="${i}">${sc.nav}</button>`);
+  railTrack.insertAdjacentHTML('beforeend',`<div class="rdot" style="background:${sc.color}"></div>`);
+});
+const scenes=[...stage.children], vids=scenes.map(s=>s.querySelector('video')), panelEls=[...panels.children], pills=[...navpills.children], rdots=[...railTrack.children];
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+
+// 點導覽 → 跳到該幕
+pills.forEach(btn=>btn.addEventListener('click',()=>{const i=+btn.dataset.i;const max=space.offsetHeight-innerHeight;scrollTo({top:max*((i+0.5)/N),behavior:'smooth'});}));
+// 點 Logo → 回到第一幕（遮風避雨）
+document.getElementById('logo').addEventListener('click',e=>{e.preventDefault();scrollTo({top:0,behavior:'smooth'});});
+
+function onScroll(){
+  const max=space.offsetHeight-innerHeight;
+  const p=clamp(scrollY/max,0,1);
+  const seg=p*N;
+  scenes.forEach((s,i)=>{
+    const d=seg-i, local=clamp(d,0,1), v=vids[i];
+    if(isFinite(v.duration)){ try{ v.currentTime=local*(v.duration-0.05); }catch(e){} }
+    let op=0;
+    if(d>-0.35&&d<1.35) op=clamp(1-Math.abs(d-0.5)/0.85,0,1);
+    s.style.opacity=op.toFixed(3);
+    s.style.transform=`scale(${(1+local*0.07).toFixed(3)})`;
+  });
+  const bi=Math.min(Math.floor(seg),N-1);
+  const col=SCENES[bi].color;
+  panelEls.forEach((el,i)=>el.classList.toggle('on',i===bi));
+  pills.forEach((el,i)=>{const on=i===bi;el.classList.toggle('on',on);el.style.background=on?SCENES[i].color:'transparent';});
+  rdots.forEach((el,i)=>{const on=i===bi;el.classList.toggle('on',on);el.style.boxShadow=on?`0 0 0 4px ${SCENES[i].color}2e`:'none';});
+  railLbl.textContent=SCENES[bi].nav;
+  railLbl.style.color=col;
+  prog.style.background=col;
+  prog.style.width=(p*100)+'%';
+  hint.style.opacity=p>.04?0:1;
+}
+addEventListener('scroll',onScroll,{passive:true});
+addEventListener('resize',onScroll);
+
+vids.forEach(v=>v.load());
+function hideLoad(){loading.classList.add('gone');onScroll();}
+Promise.all(vids.map(v=>v.readyState>=2?Promise.resolve():new Promise(r=>v.addEventListener('loadeddata',r,{once:true})))).then(hideLoad);
+setTimeout(hideLoad,2500);
+onScroll();
+</script>
+</body>
+</html>
