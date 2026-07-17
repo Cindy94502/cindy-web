@@ -2,6 +2,7 @@ import './style.css'
 import { icon } from './icons.js'
 import { renderNav, renderFooter, initCommon } from './shared.js'
 import { GITHUB_JSON_URL, formatPrice } from './data.js'
+import { initHomeShowcase } from './home-showcase.js'
 import { districts } from './data-taoyuan.js'
 import { bookPages } from './data-taoyuan-book.js'
 
@@ -202,6 +203,7 @@ document.getElementById('app').innerHTML = `
         <h2 class="section-title">幫你找到<strong>最適合的家</strong></h2>
         <div class="section-underline"></div>
       </div>
+      <div class="hsc-container" id="homeShowcase" aria-label="精選物件輪播"></div>
       <div class="props-grid" id="homePropsGrid">
         <div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--brown-mid);letter-spacing:2px">載入中...</div>
       </div>
@@ -323,6 +325,11 @@ async function loadHomeProps() {
     const preview = props.filter(p => p.title && p.nodeId).slice(0, 3)
     document.getElementById('homePropsGrid').innerHTML =
       preview.map((p, i) => propPreviewCard(p, i)).join('')
+    // 桌面版：把精選區升級成會動的展示（手機維持卡片 grid）
+    if (matchMedia('(min-width: 900px)').matches) {
+      const ok = initHomeShowcase(document.getElementById('homeShowcase'), props.filter(p => p.title && p.nodeId))
+      if (ok) document.getElementById('homePropsGrid').style.display = 'none'
+    }
     document.getElementById('propsMoreBtn').innerHTML =
       `查看全部 ${props.length} 筆物件 ${icon('ArrowRight', 16, 2)}`
     const obs = new IntersectionObserver(entries => {

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@typeform/embed": "^6.0.0",
+    "gsap": "^3.15.0",
     "lucide": "^1.18.0"
   }
 }
