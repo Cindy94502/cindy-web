@@ -998,7 +998,7 @@ footer {
     border-radius: 0;
   }
 }
-.hsc-card { position: absolute; left: 0; top: 0; background-position: center; background-size: cover; box-shadow: 0 10px 24px rgba(47, 38, 32, .3); }
+.hsc-card { position: absolute; left: 0; top: 0; background-position: center; background-size: cover; box-shadow: 0 10px 24px rgba(47, 38, 32, .3); cursor: pointer; }
 .hsc-card-label { position: absolute; left: 0; top: 0; color: #fff; padding-left: 14px; text-shadow: 0 1px 8px rgba(0, 0, 0, .55); pointer-events: none; }
 .hsc-label-bar { width: 26px; height: 4px; border-radius: 99px; background: #fff; }
 .hsc-label-loc { margin-top: 5px; font-size: 11px; letter-spacing: .04em; }

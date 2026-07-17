@@ -98,9 +98,12 @@ export function initHomeShowcase(container, props) {
     gsap.set('.hsc-progress-fg', { width: `${(100 / N) * (active + 1)}%` })
   }
 
-  function step() {
+  // target 省略時輪到下一間；點小卡時直接跳到那一間
+  function step(target) {
     return new Promise(resolve => {
-      order.push(order.shift())
+      const oldActive = order[0]
+      const next = (target === undefined || target === oldActive) ? order[1] : target
+      order = [next, ...order.slice(1).filter(i => i !== next), oldActive]
       flip = 1 - flip
       const boxA = detailBoxes[flip], boxB = detailBoxes[1 - flip]
       const [active, ...rest] = order
@@ -144,22 +147,42 @@ export function initHomeShowcase(container, props) {
     })
   }
 
-  async function loop() {
+  // 自動輪播排程（可被點擊打斷）
+  let stepTimer = null, busy = false
+  function schedule() {
     if (!running) return
-    await animate('.hsc-indicator', 2.2, { x: 0 })
-    await animate('.hsc-indicator', 0.7, { x: W, delay: 0.3 })
     gsap.set('.hsc-indicator', { x: -W })
-    if (!running) return
-    await step()
-    loop()
+    gsap.to('.hsc-indicator', { x: 0, duration: 2.2, delay: 0.2, ease })
+    gsap.to('.hsc-indicator', { x: W, duration: 0.7, delay: 2.6, ease })
+    stepTimer = setTimeout(async () => {
+      if (!running) return
+      busy = true
+      await step()
+      busy = false
+      schedule()
+    }, 3400)
   }
-  const animate = (t, d, p) => new Promise(r => gsap.to(t, { ...p, duration: d, onComplete: r }))
+  function halt() {
+    clearTimeout(stepTimer)
+    gsap.killTweensOf('.hsc-indicator')
+  }
+
+  // 點小卡直接跳到那一間
+  stage.addEventListener('click', e => {
+    const el = e.target.closest('.hsc-card')
+    if (!el || busy) return
+    const idx = +el.id.replace('hscCard', '')
+    if (idx === order[0]) return
+    halt()
+    busy = true
+    step(idx).then(() => { busy = false; schedule() })
+  })
 
   // 進入視野才開始跑，離開就暫停（省效能，也避免背景分頁亂跳）
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
-      if (e.isIntersecting && !running) { running = true; loop() }
-      else if (!e.isIntersecting) { running = false }
+      if (e.isIntersecting && !running) { running = true; schedule() }
+      else if (!e.isIntersecting && running) { running = false; halt() }
     })
   }, { threshold: 0.25 })
 
