@@ -90,7 +90,7 @@ export function initHomeShowcase(container, props) {
     gsap.set(label(active), { opacity: 0 })
     rest.forEach((i, idx) => {
       const x = offsetLeft + idx * (cardW + gap)
-      gsap.set(card(i), { x, y: offsetTop, width: cardW, height: cardH, zIndex: 30, borderRadius: 14 })
+      gsap.set(card(i), { x, y: offsetTop, width: cardW, height: cardH, zIndex: 30, borderRadius: 7 })
       gsap.set(label(i), { x, y: offsetTop + cardH - 74, opacity: 1, zIndex: 40 })
       gsap.set(num(i), { x: (idx + 1) * numSize })
     })
@@ -128,7 +128,7 @@ export function initHomeShowcase(container, props) {
         x: 0, y: 0, width: W, height: H, borderRadius: 0, ease,
         onComplete: () => {
           const xNew = offsetLeft + (rest.length - 1) * (cardW + gap)
-          gsap.set(card(prv), { x: xNew, y: offsetTop, width: cardW, height: cardH, zIndex: 30, borderRadius: 14, scale: 1 })
+          gsap.set(card(prv), { x: xNew, y: offsetTop, width: cardW, height: cardH, zIndex: 30, borderRadius: 7, scale: 1 })
           gsap.set(label(prv), { x: xNew, y: offsetTop + cardH - 74, opacity: 1, zIndex: 40 })
           gsap.set(num(prv), { x: rest.length * numSize })
         },
