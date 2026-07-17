@@ -1,4 +1,4 @@
-import{r as Vr,b as $,a as Yr,i as Gr}from"./shared-BnXb3tTI.js";import{f as Xi,G as Xr}from"./data-DQaSi1fH.js";function Ct(o){if(o===void 0)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return o}function Hi(o,t){o.prototype=Object.create(t.prototype),o.prototype.constructor=o,o.__proto__=t}/*!
+import{r as Vr,b as $,a as Yr,i as Gr}from"./shared-0Pgv7kwv.js";import{f as Xi,G as Xr}from"./data-DQaSi1fH.js";function Ct(o){if(o===void 0)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return o}function Hi(o,t){o.prototype=Object.create(t.prototype),o.prototype.constructor=o,o.__proto__=t}/*!
  * GSAP 3.15.0
  * https://gsap.com
  *
@@ -82,7 +82,7 @@ import{r as Vr,b as $,a as Yr,i as Gr}from"./shared-BnXb3tTI.js";import{f as Xi,
           <span>嗨！有任何房地產問題<br>都可以找我聊聊喔！</span>
           <div class="hero-bubble-arrow"></div>
         </div>
-        <img src="images/cindy_character.png" alt="Cindy 王小姐" class="hero-cindy-img">
+        <img src="images/cindy_character.png" alt="Cindy 小薰" class="hero-cindy-img">
       </div>
     </div>
     <a href="#about" class="scroll-hint-wrap" id="scrollHint">

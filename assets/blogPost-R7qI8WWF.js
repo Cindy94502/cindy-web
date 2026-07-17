@@ -1,4 +1,4 @@
-import{r as l,a as n,i as a,b as o}from"./shared-BnXb3tTI.js";/* empty css             */const c="https://raw.githubusercontent.com/Cindy94502/cindy-data/main/posts.json",p=new URLSearchParams(location.search),b=p.get("id"),v={買房筆記:"cat-teal",南崁生活:"cat-sage","Q&A":"cat-yellow",物件介紹:"cat-peach"};document.getElementById("app").innerHTML=`
+import{r as l,a as n,i as a,b as o}from"./shared-0Pgv7kwv.js";/* empty css             */const c="https://raw.githubusercontent.com/Cindy94502/cindy-data/main/posts.json",p=new URLSearchParams(location.search),b=p.get("id"),v={買房筆記:"cat-teal",南崁生活:"cat-sage","Q&A":"cat-yellow",物件介紹:"cat-peach"};document.getElementById("app").innerHTML=`
   ${l()}
   <div id="post-container">
     <div class="post-loading">
@@ -13,7 +13,7 @@ import{r as l,a as n,i as a,b as o}from"./shared-BnXb3tTI.js";/* empty css      
 `;a();async function m(){try{const d=await fetch(c);if(!d.ok)throw new Error("fetch failed");const t=(await d.json()).find(e=>e.id===b);if(!t){document.getElementById("post-container").innerHTML=`<div style="text-align:center;padding:80px 0;color:var(--brown-mid)">
           <p style="letter-spacing:2px;margin-bottom:24px">找不到這篇文章</p>
           <a href="blog.html" style="color:var(--teal-dark);letter-spacing:2px">← 回到筆記列表</a>
-        </div>`;return}const r=v[t.category]||"cat-teal",s=t.date?new Date(t.date).toLocaleDateString("zh-TW",{year:"numeric",month:"long",day:"numeric"}):"";document.title=`${t.title}｜Cindy 王小姐`;const i=t.content?t.content:(t.excerpt||"").split(`
+        </div>`;return}const r=v[t.category]||"cat-teal",s=t.date?new Date(t.date).toLocaleDateString("zh-TW",{year:"numeric",month:"long",day:"numeric"}):"";document.title=`${t.title}｜Cindy 小薰`;const i=t.content?t.content:(t.excerpt||"").split(`
 `).filter(e=>e.trim()).map(e=>`<p>${e}</p>`).join("");document.getElementById("post-container").innerHTML=`
     <div class="post-page">
       <div class="post-header">
@@ -24,7 +24,7 @@ import{r as l,a as n,i as a,b as o}from"./shared-BnXb3tTI.js";/* empty css      
           <div class="post-meta">
             ${o("Calendar",14,1.5)} ${s}
             &nbsp;·&nbsp;
-            ${o("User",14,1.5)} 王小姐 Cindy
+            ${o("User",14,1.5)} 小薰 Cindy
           </div>
         </div>
       </div>
