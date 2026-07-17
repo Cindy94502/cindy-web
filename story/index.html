@@ -36,13 +36,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:cent
 @media(max-width:960px){.navpills{display:none;}}
 
 /* 左側文字（靠左，像 landly）*/
-.panels{position:fixed;left:clamp(18px,3.5vw,56px);top:50%;transform:translateY(-50%);z-index:20;width:min(490px,76vw);height:340px;}
+.panels{position:fixed;left:clamp(18px,3.5vw,56px);top:50%;transform:translateY(-50%);z-index:20;width:min(580px,80vw);height:340px;}
 .panel{position:absolute;left:0;top:50%;transform:translateY(calc(-50% + 16px));opacity:0;transition:opacity .45s ease,transform .45s ease;pointer-events:none;}
 .panel.on{opacity:1;transform:translateY(-50%);pointer-events:auto;}
 .counter{font-family:var(--hand);font-size:14px;color:var(--dim);letter-spacing:.12em;margin-bottom:10px;}
 .eyebrow{font-size:12px;letter-spacing:.28em;color:var(--sc,var(--teal));text-transform:uppercase;margin-bottom:14px;font-weight:500;}
 .title{font-family:var(--hand);font-weight:700;font-size:clamp(27px,4.1vw,45px);line-height:1.4;color:var(--ink);margin-bottom:18px;text-shadow:0 1px 16px var(--cream),0 0 30px var(--cream);}
 .title .hl{color:var(--sc,var(--brown));}
+.title .nowrap{white-space:nowrap;}
 .desc{font-size:15px;line-height:1.9;color:#5c534b;max-width:26em;text-shadow:0 1px 12px var(--cream);}
 
 /* 右下角探頭小薰（電話按鈕，往上往左移蓋住浮水印）*/
@@ -73,8 +74,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:cent
   .navright{gap:6px;}
   .navghost{font-size:11px;padding:8px 11px;}
   .navcta{font-size:11px;padding:8px 12px;}
-  .panels{width:min(490px,84vw);height:300px;}
-  .title{line-height:1.45;}
+  .panels{width:min(490px,86vw);height:300px;}
+  .title{line-height:1.45;font-size:clamp(21px,6.2vw,26px);}
   .desc{font-size:14px;}
   .peek{width:clamp(112px,32vw,150px);right:8px;bottom:10px;}
   .rail{right:9px;gap:9px;}
@@ -119,7 +120,7 @@ const SCENES=[
   {src:'s2.mp4', nav:'等你回來', color:'#E0A03C', eyebrow:'有人在等', title:'亮起的那盞燈，<br>是有人<span class="hl">在等你</span>。', desc:'家最溫暖的樣子，是門一打開，就知道有人在。'},
   {src:'sB.mp4', nav:'餐桌', color:'#D97E52', eyebrow:'家的核心', title:'是熱熱的飯菜，<br>和一桌子的<span class="hl">笑聲</span>。', desc:'一家人圍著桌子吃飯，那個熱鬧，別的地方給不了。'},
   {src:'sC.mp4', nav:'夜晚', color:'#7B77A8', eyebrow:'溫度', title:'是睡前的故事，<br>和身邊的<span class="hl">溫度</span>。', desc:'燈還亮著，貓睡著了，時間在這裡慢下來。'},
-  {src:'s3.mp4', nav:'回家', color:'#B4685A', eyebrow:'回家', title:'你想要的，是什麼樣的家？<br>對我來說，<span class="hl">有親人在的地方</span>，就是家。', desc:'加 LINE，說說你想要的家。'},
+  {src:'s3.mp4', nav:'回家', color:'#B4685A', eyebrow:'回家', title:'<span class="nowrap">你想要的，是什麼樣的家？</span><br>對我來說，<br><span class="nowrap"><span class="hl">有親人在的地方</span>，就是家。</span>', desc:'加 LINE，說說你想要的家。'},
 ];
 // ═════════════════════════════════════════════
 

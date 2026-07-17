@@ -789,41 +789,6 @@
    }
   ]
  },
- "4-a80c40f2-1191-4a84-a5ab-4782e8cfe9ad-20": {
-  "community": "人文學苑",
-  "deals": [
-   {
-    "date": "115/4",
-    "dateRaw": "1150425",
-    "floor": "十一樓",
-    "layout": "3房2廳1衛",
-    "rooms": 3,
-    "ping": 44.2,
-    "totalWan": 1225,
-    "unitWan": 27.7,
-    "unitHasPark": true,
-    "hasPark": true,
-    "parkWan": 0,
-    "parkPing": 0,
-    "note": ""
-   },
-   {
-    "date": "113/5",
-    "dateRaw": "1130507",
-    "floor": "十三樓",
-    "layout": "3房2廳2衛",
-    "rooms": 3,
-    "ping": 48.8,
-    "totalWan": 1388,
-    "unitWan": 28.4,
-    "unitHasPark": true,
-    "hasPark": true,
-    "parkWan": 0,
-    "parkPing": 0,
-    "note": ""
-   }
-  ]
- },
  "4-a80c40f2-1191-4a84-a5ab-4782e8cfe9ad-22": {
   "community": "長榮花園",
   "deals": [
