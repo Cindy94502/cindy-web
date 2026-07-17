@@ -141,7 +141,7 @@ async function loadProperty() {
         `<p>找不到這個物件，<a href="properties.html" style="color:var(--teal-dark)">回到物件列表</a></p>`
       return
     }
-    document.title = `${prop.title} | Cindy 王小姐`
+    document.title = `${prop.title} | Cindy 小薰`
 
     // 同步抓 Cloudinary 所有圖
     const images = await fetchCloudinaryImages(prop.cloudinaryFolder)
@@ -386,7 +386,7 @@ function renderProperty(prop, images, allProps = []) {
           <div class="sidebar-agent">
             <div class="sidebar-agent-avatar"><img src="images/Cindy.png" alt="Cindy" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div>
             <div>
-              <div class="sidebar-agent-name">王小姐</div>
+              <div class="sidebar-agent-name">小薰</div>
               <div class="sidebar-agent-title">中信房屋南崁一極</div>
             </div>
           </div>
@@ -396,7 +396,7 @@ function renderProperty(prop, images, allProps = []) {
               ${icon('MessageCircle', 16, 2)} LINE 我詢問
             </a>
             <a href="tel:0963585690" class="sidebar-btn-tel">
-              ${icon('Phone', 16, 2)} 王小姐 0963-585-690
+              ${icon('Phone', 16, 2)} 小薰 0963-585-690
             </a>
             <a href="tel:0968731280" class="sidebar-btn-tel">
               ${icon('Phone', 16, 2)} 王先生 0968-731-280
@@ -490,7 +490,7 @@ function setOgMeta(prop, images) {
     if (!el) { el = document.createElement('meta'); el.setAttribute('property', property); document.head.appendChild(el) }
     el.setAttribute('content', content)
   }
-  setMeta('og:title', `${prop.title} | Cindy 王小姐`)
+  setMeta('og:title', `${prop.title} | Cindy 小薰`)
   // 這樣 LINE 預覽卡片長相會是：
   // 【大圖】：超可愛的 Cindy 形象名片圖
   // 【大標題】：觀音工業區鼎藏大觀透天 | Cindy 王瑋薰
@@ -508,7 +508,7 @@ function initShare(prop) {
     prop.buildingSize ? `建坪：${prop.buildingSize}坪` : '',
     prop.landSize ? `土坪：${prop.landSize}坪` : '',
   ].filter(Boolean).join('\n')
-  const title = `${prop.title}｜NT${prop.price ? (prop.price/10000).toFixed(0) + '萬' : '洽談'}｜Cindy 王小姐` + (details ? '\n' + details : '')
+  const title = `${prop.title}｜NT${prop.price ? (prop.price/10000).toFixed(0) + '萬' : '洽談'}｜Cindy 小薰` + (details ? '\n' + details : '')
 
   document.getElementById('btnCopyLink')?.addEventListener('click', async () => {
     try {

@@ -72,7 +72,7 @@ document.getElementById('app').innerHTML = `
           <span>嗨！有任何房地產問題<br>都可以找我聊聊喔！</span>
           <div class="hero-bubble-arrow"></div>
         </div>
-        <img src="images/cindy_character.png" alt="Cindy 王小姐" class="hero-cindy-img">
+        <img src="images/cindy_character.png" alt="Cindy 小薰" class="hero-cindy-img">
       </div>
     </div>
     <a href="#about" class="scroll-hint-wrap" id="scrollHint">

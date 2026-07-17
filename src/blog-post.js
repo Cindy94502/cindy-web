@@ -53,7 +53,7 @@ async function loadPost() {
       ? new Date(post.date).toLocaleDateString('zh-TW', { year: 'numeric', month: 'long', day: 'numeric' })
       : ''
 
-    document.title = `${post.title}｜Cindy 王小姐`
+    document.title = `${post.title}｜Cindy 小薰`
 
     const bodyHtml = post.content
       ? post.content
@@ -69,7 +69,7 @@ async function loadPost() {
           <div class="post-meta">
             ${icon('Calendar', 14, 1.5)} ${dateStr}
             &nbsp;·&nbsp;
-            ${icon('User', 14, 1.5)} 王小姐 Cindy
+            ${icon('User', 14, 1.5)} 小薰 Cindy
           </div>
         </div>
       </div>

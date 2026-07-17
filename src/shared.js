@@ -20,7 +20,7 @@ export function renderNav() {
     <button class="menu-overlay-close" id="menuClose" aria-label="關閉">✕</button>
     <div class="menu-overlay-logo">
       <div class="menu-overlay-logo-circle">
-        <img src="images/Cindy.png?v=2" alt="Cindy 王小姐" style="width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 50%;">
+        <img src="images/Cindy.png?v=2" alt="Cindy 小薰" style="width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 50%;">
       </div>
     </div>
     <ul class="menu-overlay-links">
@@ -69,7 +69,7 @@ export function renderNav() {
 export function renderFooter() {
   return `
   <footer>
-    <div class="footer-brand">Cindy <span>王小姐</span></div>
+    <div class="footer-brand">Cindy <span>小薰</span></div>
     <div class="footer-copy">欣益不動產開發有限公司 | 中信房屋 南崁一極加盟店</div>
     <div class="footer-copy">© 2026 欣益不動產開發有限公司</div>
     <div class="footer-copy">營業員：王瑋薰(Cindy) · (112)登字第445910號</div>
