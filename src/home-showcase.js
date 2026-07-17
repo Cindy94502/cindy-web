@@ -6,8 +6,21 @@ import { formatPrice } from './data.js'
 
 const ease = 'sine.inOut'
 
+// 以日期當種子洗牌：同一天順序固定，每天自動換一批
+function dailyShuffle(arr) {
+  const d = new Date()
+  let seed = d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate()
+  const rand = () => { seed = (seed * 9301 + 49297) % 233280; return seed / 233280 }
+  const out = [...arr]
+  for (let i = out.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    [out[i], out[j]] = [out[j], out[i]]
+  }
+  return out
+}
+
 export function initHomeShowcase(container, props) {
-  const items = props.filter(p => p.ogImageUrl && p.nodeId).slice(0, 6)
+  const items = dailyShuffle(props.filter(p => p.ogImageUrl && p.nodeId)).slice(0, 6)
   if (items.length < 3) return false
 
   container.innerHTML = `

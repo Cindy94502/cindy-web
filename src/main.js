@@ -44,6 +44,9 @@ function propPreviewCard(p, index) {
 document.getElementById('app').innerHTML = `
   ${renderNav('index')}
 
+  <!-- ── 精選物件動畫（桌面版開場） ── -->
+  <div class="hsc-container" id="homeShowcase" aria-label="精選物件輪播"></div>
+
   <!-- ── HERO ── -->
   <section id="hero">
     <div class="hero-inner">
@@ -203,7 +206,6 @@ document.getElementById('app').innerHTML = `
         <h2 class="section-title">幫你找到<strong>最適合的家</strong></h2>
         <div class="section-underline"></div>
       </div>
-      <div class="hsc-container" id="homeShowcase" aria-label="精選物件輪播"></div>
       <div class="props-grid" id="homePropsGrid">
         <div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--brown-mid);letter-spacing:2px">載入中...</div>
       </div>
@@ -325,10 +327,9 @@ async function loadHomeProps() {
     const preview = props.filter(p => p.title && p.nodeId).slice(0, 3)
     document.getElementById('homePropsGrid').innerHTML =
       preview.map((p, i) => propPreviewCard(p, i)).join('')
-    // 桌面版：把精選區升級成會動的展示（手機維持卡片 grid）
+    // 桌面版：首頁開場的精選物件動畫（手機不載入，維持原本版面）
     if (matchMedia('(min-width: 900px)').matches) {
-      const ok = initHomeShowcase(document.getElementById('homeShowcase'), props.filter(p => p.title && p.nodeId))
-      if (ok) document.getElementById('homePropsGrid').style.display = 'none'
+      initHomeShowcase(document.getElementById('homeShowcase'), props.filter(p => p.title && p.nodeId))
     }
     document.getElementById('propsMoreBtn').innerHTML =
       `查看全部 ${props.length} 筆物件 ${icon('ArrowRight', 16, 2)}`
