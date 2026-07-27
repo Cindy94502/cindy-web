@@ -73,10 +73,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:cent
 @media(max-width:560px){.rail{right:12px;}.rail .lbl{display:none;}}
 
 /* ── 置入物件卡（最後一幕淡入，蓋在黏土場景上，不換場景）── */
-.pcard{position:fixed;z-index:26;right:clamp(70px,8vw,132px);top:50%;width:min(300px,26vw);
-  opacity:0;pointer-events:none;transform:translateY(-50%) translateY(18px);
+/* --lift：整組往上抬，避開右下角探頭小薰（視窗越矮越容易撞） */
+.pcard{position:fixed;z-index:26;right:clamp(70px,8vw,132px);top:50%;width:min(300px,26vw);--lift:86px;
+  opacity:0;pointer-events:none;transform:translateY(calc(-50% - var(--lift) + 18px));
   transition:opacity .55s ease,transform .55s ease;}
-.pcard.on{opacity:1;pointer-events:auto;transform:translateY(-50%);}
+.pcard.on{opacity:1;pointer-events:auto;transform:translateY(calc(-50% - var(--lift)));}
 .pcard .pmain{display:flex;align-items:stretch;text-decoration:none;color:inherit;
   background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border:1px solid rgba(139,94,60,.16);
   border-radius:14px;overflow:hidden;min-height:88px;
@@ -100,7 +101,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:cent
 .pcard .pmore:hover{background:#fff;}
 /* 手機：改成橫式窄卡貼底，才不會蓋到故事文字 */
 @media(max-width:900px){
-  .pcard{right:auto;left:50%;top:auto;width:min(360px,92vw);
+  .pcard{right:auto;left:50%;top:auto;width:min(360px,92vw);--lift:0px;
     bottom:calc(16px + env(safe-area-inset-bottom,0px));
     transform:translateX(-50%) translateY(18px);}
   .pcard.on{transform:translateX(-50%);}
