@@ -73,8 +73,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:cent
 @media(max-width:560px){.rail{right:12px;}.rail .lbl{display:none;}}
 
 /* ── 置入物件卡（最後一幕淡入，蓋在黏土場景上，不換場景）── */
-/* --lift：整組往上抬，避開右下角探頭小薰（視窗越矮越容易撞） */
-.pcard{position:fixed;z-index:26;right:clamp(70px,8vw,132px);top:50%;width:min(300px,26vw);--lift:86px;
+/* --lift：視窗越矮才越往上抬，避開右下角探頭小薰。
+   高螢幕（≥820px）完全不抬，維持置中；矮螢幕才逐漸上移，最多 90px。 */
+.pcard{position:fixed;z-index:26;right:clamp(70px,8vw,132px);top:50%;width:min(300px,26vw);
+  --lift:clamp(0px, calc((820px - 100vh) * 0.6), 90px);
   opacity:0;pointer-events:none;transform:translateY(calc(-50% - var(--lift) + 18px));
   transition:opacity .55s ease,transform .55s ease;}
 .pcard.on{opacity:1;pointer-events:auto;transform:translateY(calc(-50% - var(--lift)));}
