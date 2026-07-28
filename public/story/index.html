@@ -161,7 +161,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:cent
   <div class="navpills" id="navpills"></div>
   <div class="navright">
     <a class="navghost" href="https://cindy94502.github.io/cindy-web/properties.html" target="_blank" rel="noopener">看看物件 →</a>
-    <a class="navcta" href="https://line.me/ti/p/@019nrmqw" target="_blank" rel="noopener">加 LINE 找家</a>
+    <a class="navcta" href="https://cindy94502.github.io/cindy-web/index.html" target="_blank" rel="noopener">認識小薰 →</a>
   </div>
 </nav>
 
@@ -172,7 +172,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:cent
   <div class="track" id="railTrack"></div>
 </div>
 
-<a class="peek" href="tel:0963585690" aria-label="電話詢問"><img src="cindy_button.png" alt="電話詢問 Cindy"></a>
+<a class="peek" href="https://line.me/ti/p/@019nrmqw" target="_blank" rel="noopener" aria-label="加 LINE 找小薰聊聊"><img src="cindy_button.png" alt="加 LINE 找 Cindy 聊聊"></a>
 <div class="pcard" id="pcard"></div>
 <div class="hint" id="hint">SCROLL 捲動飛進去</div>
 <div class="prog" id="prog"></div>
@@ -192,12 +192,12 @@ const SCENES=[
 
 // ═══ 置入物件卡設定 ═══════════════════════════
 // 第 1 張＝主打（釘住，目前是爸爸的專任約）。
-//   賣掉或約到期 → 把 CARD_PIN 設成 null，三張就全部自動選，不用再改程式。
+//   用「標題關鍵字」比對，不要寫死 nodeId：n8n 每次重新產生 properties.json
+//   時 nodeId 會整批換掉，寫死會變成死連結。價格、房數也都即時從 JSON 讀，
+//   所以降價不用回來改這裡。
+//   賣掉或約到期 → 把 CARD_PIN 設成 null，三張就全部自動選。
 const CARD_PIN = {
-  nodeId: '4-44a396b1-314b-465b-ab00-eb1a4a541563-36',
-  title : 'A10綻優質三房車',
-  price : 14680000,
-  meta  : '3房 · 含車位',
+  match : 'A10綻',                                 // 比對 title，取第一筆符合的
   tag   : '近機捷 A10',
   line  : '走路就到 A10 站，直達台北車站。',       // 桌機版才顯示
   img   : 'https://res.cloudinary.com/ddzync8km/image/upload/w_640,h_560,c_fill,g_auto,q_auto/IMG_6949_dbgmkl_rfekgj.jpg',
@@ -302,11 +302,15 @@ const toCard=(p,tag)=>({
 });
 (async()=>{
   let total=0, cards=[];
-  if(CARD_PIN) cards.push(CARD_PIN);
   try{
     const all=await (await fetch(DATA_URL)).json();
     const pool=all.filter(p=>p.category==='買房'&&p.buildingCategory!=='店面'&&p.roomCount&&p.roomCount!=='套房'&&p.price>0);
     total=pool.length;
+    // 釘住那張：用標題比對，資料一律以 properties.json 為準
+    if(CARD_PIN){
+      const p=pool.find(x=>x.title.includes(CARD_PIN.match));
+      if(p) cards.push({...toCard(p,CARD_PIN.tag), line:CARD_PIN.line||p.wixLocation||'', img:CARD_PIN.img||thumb(p.ogImageUrl)});
+    }
     const used=new Set(cards.map(c=>c.nodeId));
     const cheapestOf=cat=>{
       const g=pool.filter(p=>p.buildingCategory===cat&&!used.has(p.nodeId));
@@ -341,9 +345,9 @@ addEventListener('click',e=>{
   if(a.classList.contains('pmain'))   ga('story_property_click',{scene_index:maxScene+1, item:a.dataset.title||'',
     slot:[...a.parentElement.children].indexOf(a)+1});
   else if(a.classList.contains('pmore'))  ga('story_more_click',{scene_index:maxScene+1});
-  else if(a.classList.contains('navcta')) ga('story_line_click',{scene_index:maxScene+1});
+  else if(a.classList.contains('navcta')) ga('story_home_click',{scene_index:maxScene+1});
   else if(a.classList.contains('navghost'))ga('story_props_click',{scene_index:maxScene+1});
-  else if(a.classList.contains('peek'))   ga('story_tel_click',{scene_index:maxScene+1});
+  else if(a.classList.contains('peek'))   ga('story_line_click',{scene_index:maxScene+1});
 },{passive:true});
 
 // 起手只載前兩幕，其餘捲到附近才載
