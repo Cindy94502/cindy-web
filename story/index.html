@@ -216,17 +216,18 @@ const SITE = 'https://cindy94502.github.io/cindy-web/';
 const N=SCENES.length;
 
 // ═══ 手機載直式小尺寸影片 ═══
-// 原檔是 1280x720 橫式，手機直式用 object-fit:cover 會把左右各裁掉五百多 px，
-// 等於解碼了三倍用不到的畫面。這裡讓手機改抓 Cloudinary 即時轉出的直式版本
-// （540x960，約 0.7MB，原檔 3.7MB），桌機維持原本橫式不動。
+// 原檔 1280x720 橫式，手機直式用 object-fit:cover 會把左右各裁掉五百多 px，
+// 等於解碼了一倍以上用不到的畫面。手機改抓 Cloudinary 轉出的直式版。
+//
+// ki_0.07 是關鍵，不能拿掉：原檔是「每一格都是關鍵影格」，捲動才能瞬間跳到
+// 任意位置。Cloudinary 預設會為了縮小檔案改成長 GOP（150 格只剩 1 個關鍵
+// 影格），那樣每次 seek 都要從頭解，捲起來會非常卡（Android 尤其明顯）。
+//
+// 尺寸寫死不要動態算：每個不同的網址都是一個新的轉檔，第一個請求的人要等
+// Cloudinary 現場轉，動態尺寸會產生一堆變體，每種都要重等一次。
 const isPhone = matchMedia('(max-width:900px)').matches;
-function videoSrc(url){
-  if(!isPhone) return url;
-  // 依裝置像素密度選寬度，最多 540（再大手機也看不出差別，只是白燒解碼）
-  const w = Math.min(540, Math.ceil(Math.min(innerWidth,540) * Math.min(devicePixelRatio||1, 2) / 60) * 60);
-  const h = Math.round(w * 16 / 9);
-  return url.replace('/video/upload/', `/video/upload/w_${w},h_${h},c_fill,q_auto/`);
-}
+const PHONE_TF = 'w_480,h_854,c_fill,ki_0.07,q_60';
+const videoSrc = url => isPhone ? url.replace('/video/upload/', `/video/upload/${PHONE_TF}/`) : url;
 const stage=document.getElementById('stage'), panels=document.getElementById('panels');
 const navpills=document.getElementById('navpills'), railTrack=document.getElementById('railTrack'), railLbl=document.getElementById('railLbl');
 const space=document.getElementById('space'), prog=document.getElementById('prog'), hint=document.getElementById('hint'), loading=document.getElementById('loading');
