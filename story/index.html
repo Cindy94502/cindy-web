@@ -28,7 +28,7 @@
 body{background:var(--cream);font-family:var(--sans);color:var(--ink);}
 .stage{position:fixed;inset:0;z-index:1;overflow:hidden;}
 .scene{position:absolute;inset:0;opacity:0;will-change:opacity,transform;}
-.scene video{width:100%;height:100%;object-fit:cover;}
+.scene video,.scene canvas{width:100%;height:100%;object-fit:cover;display:block;}
 /* 只在左邊文字後面一小塊柔光（橢圓），其餘場景完全清楚 */
 .veil{position:fixed;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse 34% 52% at 15% 50%,rgba(253,248,240,.88) 0%,rgba(253,248,240,.45) 42%,transparent 72%);}
 
@@ -226,20 +226,36 @@ const N=SCENES.length;
 // 尺寸寫死不要動態算：每個不同的網址都是一個新的轉檔，第一個請求的人要等
 // Cloudinary 現場轉，動態尺寸會產生一堆變體，每種都要重等一次。
 const isPhone = matchMedia('(max-width:900px)').matches;
-const PHONE_TF = 'w_480,h_854,c_fill,ki_0.07,q_60';
-const videoSrc = url => isPhone ? url.replace('/video/upload/', `/video/upload/${PHONE_TF}/`) : url;
+
+// 手機：改用「圖片序列」而不是影片。
+//   影片捲動要靠 currentTime 逐格 seek，每次都得經過解碼器排隊，中階 Android
+//   （實測 vivo）會整片凍住，畫面 70% 的時間沒更新。改成預先切好的靜態圖後
+//   降到 47%，而且是可以正常滑的。圖片解碼比影片 seek 便宜一個數量級。
+//   桌機維持影片：480 寬的圖放到大螢幕會糊，而桌機跑影片本來就順。
+const FRAMES = 40, SCENE_DUR = 10;                     // 每幕 10 秒，切 40 格
+const FRAME_TF = 'w_480,h_854,c_fill,q_60,f_webp';     // 直式，單格約 17KB
+function frameUrl(src, k){
+  const [base, tail] = src.split('/video/upload/');
+  const name = tail.replace('story/','').replace('.mp4','');
+  return `${base}/video/upload/so_${(k*SCENE_DUR/FRAMES).toFixed(2)},${FRAME_TF}/story/${name}.webp`;
+}
 const stage=document.getElementById('stage'), panels=document.getElementById('panels');
 const navpills=document.getElementById('navpills'), railTrack=document.getElementById('railTrack'), railLbl=document.getElementById('railLbl');
 const space=document.getElementById('space'), prog=document.getElementById('prog'), hint=document.getElementById('hint'), loading=document.getElementById('loading');
 space.style.height=(N*175)+'vh';
 
 SCENES.forEach((sc,i)=>{
-  stage.insertAdjacentHTML('beforeend',`<div class="scene"><video data-src="${videoSrc(sc.src)}" muted playsinline preload="auto"></video></div>`);
+  stage.insertAdjacentHTML('beforeend', isPhone
+    ? `<div class="scene"><canvas width="480" height="854"></canvas></div>`
+    : `<div class="scene"><video data-src="${sc.src}" muted playsinline preload="auto"></video></div>`);
   panels.insertAdjacentHTML('beforeend',`<div class="panel" style="--sc:${sc.color}"><div class="counter">${String(i+1).padStart(2,'0')} / ${String(N).padStart(2,'0')}</div><div class="eyebrow">${sc.eyebrow}</div><div class="title">${sc.title}</div><div class="desc">${sc.desc}</div></div>`);
   navpills.insertAdjacentHTML('beforeend',`<button data-i="${i}">${sc.nav}</button>`);
   railTrack.insertAdjacentHTML('beforeend',`<div class="rdot" style="background:${sc.color}"></div>`);
 });
 const scenes=[...stage.children], vids=scenes.map(s=>s.querySelector('video')), panelEls=[...panels.children], pills=[...navpills.children], rdots=[...railTrack.children];
+const cvs=scenes.map(s=>s.querySelector('canvas'));      // 手機用，桌機是 null
+const ctxs=cvs.map(c=>c?c.getContext('2d',{alpha:false}):null);
+const seqs=SCENES.map(()=>null);                          // 每幕的 Image 陣列，未載入時是 null
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 
 // 點導覽 → 跳到該幕
@@ -249,6 +265,20 @@ document.getElementById('logo').addEventListener('click',e=>{e.preventDefault();
 
 // 只讓目前這一幕前後的影片在記憶體裡（手機同時解碼太多支會定格／爆掉）
 function ensureLoaded(idx){
+  if(isPhone){
+    // 七幕 × 40 格 = 280 張，不能一次全載。只留目前這幕和前後一幕。
+    SCENES.forEach((sc,i)=>{
+      const near=Math.abs(i-idx)<=1;
+      if(near && !seqs[i]){
+        seqs[i]=Array.from({length:FRAMES},(_,k)=>{ const im=new Image(); im.decoding='async'; im.src=frameUrl(sc.src,k); return im; });
+      } else if(!near && Math.abs(i-idx)>2 && seqs[i]){
+        seqs[i].forEach(im=>{ im.src=''; });      // 放掉記憶體
+        seqs[i]=null;
+        if(cvs[i]) cvs[i]._k=-1;                  // 下次回來要重畫
+      }
+    });
+    return;
+  }
   vids.forEach((v,i)=>{
     const near=Math.abs(i-idx)<=1;
     if(near && !v.getAttribute('src')){ v.setAttribute('src',v.dataset.src); v.load(); }
@@ -262,8 +292,20 @@ function onScroll(){
   const seg=p*N;
   ensureLoaded(Math.min(Math.floor(seg),N-1));
   scenes.forEach((s,i)=>{
-    const d=seg-i, local=clamp(d,0,1), v=vids[i];
-    if(isFinite(v.duration)){ try{ v.currentTime=local*(v.duration-0.05); }catch(e){} }
+    const d=seg-i, local=clamp(d,0,1);
+    if(isPhone){
+      const seq=seqs[i], cv=cvs[i];
+      if(seq && cv){
+        const k=Math.min(FRAMES-1,Math.floor(local*FRAMES));
+        if(cv._k!==k){                                   // 同一格不重畫
+          const im=seq[k];
+          if(im && im.complete && im.naturalWidth){ ctxs[i].drawImage(im,0,0,cv.width,cv.height); cv._k=k; }
+        }
+      }
+    } else {
+      const v=vids[i];
+      if(isFinite(v.duration)){ try{ v.currentTime=local*(v.duration-0.05); }catch(e){} }
+    }
     let op=0;
     if(d>-0.35&&d<1.35) op=clamp(1-Math.abs(d-0.5)/0.85,0,1);
     s.style.opacity=op.toFixed(3);
@@ -374,7 +416,12 @@ addEventListener('click',e=>{
 // 起手只載前兩幕，其餘捲到附近才載
 ensureLoaded(0);
 function hideLoad(){loading.classList.add('gone');onScroll();}
-(vids[0].readyState>=2 ? Promise.resolve() : new Promise(r=>vids[0].addEventListener('loadeddata',r,{once:true}))).then(hideLoad);
+// 手機等第一格圖到位；桌機等第一支影片有畫面。都最多等 2.5 秒就放行。
+const firstReady = isPhone
+  ? (im=>im && im.complete ? Promise.resolve()
+      : new Promise(r=>{ if(!im) return r(); im.addEventListener('load',r,{once:true}); im.addEventListener('error',r,{once:true}); }))(seqs[0]&&seqs[0][0])
+  : (vids[0].readyState>=2 ? Promise.resolve() : new Promise(r=>vids[0].addEventListener('loadeddata',r,{once:true})));
+firstReady.then(hideLoad);
 setTimeout(hideLoad,2500);
 onScroll();
 </script>
