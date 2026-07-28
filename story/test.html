@@ -68,10 +68,11 @@ body{background:var(--cream);font-family:'Zen Maru Gothic','Noto Sans TC',sans-s
 
 <div class="stats">
   <div class="row"><span>目前模式</span><b id="sMode">影片版</b></div>
-  <div class="row"><span>捲動時每秒更新</span><b id="sFps">—</b></div>
-  <div class="row"><span>卡頓次數（停超過 0.2 秒）</span><b id="sStall">0</b></div>
-  <div class="row"><span>最長卡頓</span><b id="sWorst">0 ms</b></div>
-  <div class="hint">上下滑動幾秒鐘，兩個模式各測一次，然後截圖給我。數字越高越順，卡頓次數越少越好。
+  <div class="row"><span>畫面每秒真的更新</span><b id="sFps">—</b></div>
+  <div class="row"><span>畫面凍住次數（超過 0.2 秒）</span><b id="sStall">0</b></div>
+  <div class="row"><span>最久凍住</span><b id="sWorst">0 ms</b></div>
+  <div class="hint">上下滑動五、六秒，兩個模式各測一次，然後截圖給我。
+    這次量的是「螢幕真的換畫面幾次」，數字越高越順。
     <button class="reset" id="bReset">歸零</button></div>
 </div>
 
@@ -80,7 +81,7 @@ body{background:var(--cream);font-family:'Zen Maru Gothic','Noto Sans TC',sans-s
 <script>
 const CLOUD='https://res.cloudinary.com/ddzync8km/video/upload';
 const SCENE='story/s2';        // 04/07「等你回來」＝你爸手機上空白的那一幕
-const DUR=10, FRAMES=40;       // 影片 10 秒，抽 40 格
+const DUR=10, FRAMES=60;       // 影片 10 秒，抽 60 格（每格約 10vh 捲動距離）
 const TF='w_480,h_854,c_fill,q_60,f_webp';
 
 const vid=document.getElementById('vid'), cv=document.getElementById('cv'), ctx=cv.getContext('2d',{alpha:false});
@@ -115,12 +116,39 @@ document.getElementById('bVideo').onclick=()=>setMode('video');
 document.getElementById('bImg').onclick=()=>setMode('img');
 
 // ── 效能量測 ──
-let last=0, stalls=0, worst=0, ticks=0, winStart=0, scrolling=false, scrollEnd=0;
-function reset(){ stalls=0; worst=0; ticks=0; winStart=performance.now(); last=0;
+// 重點：量「螢幕真的更新了幾次」，不是「程式跑了幾次」。
+// 影片模式下 currentTime 設下去會立刻回傳，但解碼器可能沒把畫面交出來，
+// 用程式執行次數會量到假的高分（上一版就是這樣量錯的）。
+let lastPaint=0, stalls=0, worst=0, paints=0, winStart=0, scrolling=false, scrollEnd=0, lastIdx=-1;
+function reset(){ stalls=0; worst=0; paints=0; winStart=performance.now(); lastPaint=0; lastIdx=-1;
   document.getElementById('sStall').textContent='0';
   document.getElementById('sWorst').textContent='0 ms';
   document.getElementById('sFps').textContent='—'; }
 document.getElementById('bReset').onclick=reset;
+
+// 螢幕真的換了一張畫面時呼叫
+function onPaint(){
+  const now=performance.now();
+  if(!scrolling){ lastPaint=now; return; }
+  if(lastPaint){
+    const gap=now-lastPaint;
+    if(gap>200){ stalls++; worst=Math.max(worst,gap);
+      document.getElementById('sStall').textContent=stalls;
+      document.getElementById('sWorst').textContent=Math.round(worst)+' ms'; }
+  }
+  lastPaint=now; paints++;
+  const el=(now-winStart)/1000;
+  if(el>=1){ document.getElementById('sFps').textContent=(paints/el).toFixed(1);
+    paints=0; winStart=now; }
+}
+
+// 影片：requestVideoFrameCallback 只在新畫面真的送到螢幕時才觸發
+const hasRVFC = typeof vid.requestVideoFrameCallback === 'function';
+function pumpRVFC(){
+  if(!hasRVFC) return;
+  vid.requestVideoFrameCallback(()=>{ if(mode==='video') onPaint(); pumpRVFC(); });
+}
+pumpRVFC();
 
 function progress(){
   const max=document.body.scrollHeight-innerHeight;
@@ -131,26 +159,14 @@ function draw(){
   const p=progress();
   if(mode==='video'){
     if(isFinite(vid.duration)) { try{ vid.currentTime=p*(vid.duration-0.05); }catch(e){} }
+    if(!hasRVFC) onPaint();          // 舊瀏覽器沒有 rVFC，只能退回舊算法
   }else{
     const i=Math.min(FRAMES-1,Math.floor(p*FRAMES));
-    const im=imgs[i];
-    if(im && im.complete && im.naturalWidth) ctx.drawImage(im,0,0,cv.width,cv.height);
-  }
-  // 只在捲動中計算效能
-  const now=performance.now();
-  if(scrolling){
-    if(last){
-      const gap=now-last;
-      if(gap>200){ stalls++; worst=Math.max(worst,gap);
-        document.getElementById('sStall').textContent=stalls;
-        document.getElementById('sWorst').textContent=Math.round(worst)+' ms'; }
+    if(i!==lastIdx){                  // 只有真的換圖才算一次更新
+      const im=imgs[i];
+      if(im && im.complete && im.naturalWidth){ ctx.drawImage(im,0,0,cv.width,cv.height); lastIdx=i; onPaint(); }
     }
-    ticks++;
-    const el=(now-winStart)/1000;
-    if(el>=1){ document.getElementById('sFps').textContent=(ticks/el).toFixed(1);
-      ticks=0; winStart=now; }
   }
-  last=now;
 }
 
 let raf=false;
