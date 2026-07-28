@@ -214,13 +214,26 @@ const SITE = 'https://cindy94502.github.io/cindy-web/';
 // ═════════════════════════════════════════════
 
 const N=SCENES.length;
+
+// ═══ 手機載直式小尺寸影片 ═══
+// 原檔是 1280x720 橫式，手機直式用 object-fit:cover 會把左右各裁掉五百多 px，
+// 等於解碼了三倍用不到的畫面。這裡讓手機改抓 Cloudinary 即時轉出的直式版本
+// （540x960，約 0.7MB，原檔 3.7MB），桌機維持原本橫式不動。
+const isPhone = matchMedia('(max-width:900px)').matches;
+function videoSrc(url){
+  if(!isPhone) return url;
+  // 依裝置像素密度選寬度，最多 540（再大手機也看不出差別，只是白燒解碼）
+  const w = Math.min(540, Math.ceil(Math.min(innerWidth,540) * Math.min(devicePixelRatio||1, 2) / 60) * 60);
+  const h = Math.round(w * 16 / 9);
+  return url.replace('/video/upload/', `/video/upload/w_${w},h_${h},c_fill,q_auto/`);
+}
 const stage=document.getElementById('stage'), panels=document.getElementById('panels');
 const navpills=document.getElementById('navpills'), railTrack=document.getElementById('railTrack'), railLbl=document.getElementById('railLbl');
 const space=document.getElementById('space'), prog=document.getElementById('prog'), hint=document.getElementById('hint'), loading=document.getElementById('loading');
 space.style.height=(N*175)+'vh';
 
 SCENES.forEach((sc,i)=>{
-  stage.insertAdjacentHTML('beforeend',`<div class="scene"><video data-src="${sc.src}" muted playsinline preload="auto"></video></div>`);
+  stage.insertAdjacentHTML('beforeend',`<div class="scene"><video data-src="${videoSrc(sc.src)}" muted playsinline preload="auto"></video></div>`);
   panels.insertAdjacentHTML('beforeend',`<div class="panel" style="--sc:${sc.color}"><div class="counter">${String(i+1).padStart(2,'0')} / ${String(N).padStart(2,'0')}</div><div class="eyebrow">${sc.eyebrow}</div><div class="title">${sc.title}</div><div class="desc">${sc.desc}</div></div>`);
   navpills.insertAdjacentHTML('beforeend',`<button data-i="${i}">${sc.nav}</button>`);
   railTrack.insertAdjacentHTML('beforeend',`<div class="rdot" style="background:${sc.color}"></div>`);
@@ -268,9 +281,18 @@ function onScroll(){
   const showCard=seg>=CARD_AT;
   document.getElementById('pcard').classList.toggle('on',showCard);
   document.body.classList.toggle('pcard-on',showCard);
+  if(typeof trackScene==='function') trackScene(bi);   // GA 分幕，沿用這裡算好的 bi
 }
-addEventListener('scroll',onScroll,{passive:true});
-addEventListener('resize',onScroll);
+// 捲動事件在手機上一秒可以觸發 60-120 次，每次都要求影片 seek（解一張全畫格）。
+// 用 rAF 合併：一個畫面更新週期最多跑一次，其餘事件直接丟掉。
+let rafPending=false;
+function onScrollRaf(){
+  if(rafPending) return;
+  rafPending=true;
+  requestAnimationFrame(()=>{ rafPending=false; onScroll(); });
+}
+addEventListener('scroll',onScrollRaf,{passive:true});
+addEventListener('resize',onScrollRaf);
 
 // ═══ 置入物件卡：組卡 + 抓總數 ═══
 const pcard=document.getElementById('pcard');
@@ -334,10 +356,8 @@ function trackScene(i){
   ga('story_scene',{scene_index:i+1, scene_name:SCENES[i].nav, total:N});
   if(i===N-1) ga('story_complete',{total:N});   // 捲到最後一幕＝看完
 }
-addEventListener('scroll',()=>{
-  const max=space.offsetHeight-innerHeight;
-  trackScene(Math.min(Math.floor(clamp(scrollY/max,0,1)*N),N-1));
-},{passive:true});
+// trackScene 由 onScroll 直接呼叫（沿用它算好的幕數），這裡不再另外掛
+// scroll 監聽，避免每次捲動都多讀一次 offsetHeight 觸發強制重排。
 
 // 點擊：物件卡 / 其他物件 / 導覽列兩顆 / 右下角電話
 addEventListener('click',e=>{
