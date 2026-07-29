@@ -163,8 +163,15 @@ async function loadProperty() {
 
 let marketData = null
 
-// 實價登錄區塊開關：資料仍每日產生，確認無誤後改回 true 即可上線
-const SHOW_MARKET = true
+// 實價登錄區塊開關 — 2026-07-29 關閉。
+//
+// 原因：market-data.json 是用 nodeId 當索引，但 nodeId 由 n8n 產生
+// properties.json 時重新編號，物件一增刪就會位移。刪掉佳昕昕境、加入爵仕堡
+// 之後就發現對錯物件了。實價登錄是買方拿來出價的事實資料，掛錯風險太大。
+//
+// 要重新啟用之前，必須先把索引從 nodeId 改成穩定的鍵（例如 communityName
+// 或 market-config 的 keyword），不然同樣的錯位會再發生一次。
+const SHOW_MARKET = false
 
 function renderMarketBlock(prop) {
   if (!SHOW_MARKET) return ''
