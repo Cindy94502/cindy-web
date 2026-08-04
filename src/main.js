@@ -184,8 +184,6 @@ ${SHOW_TAOYUAN ? `
     </div>
   </section>
 
-  ${tornDivider('#FBF8F3', '#F2EDE4')}
-
   <!-- ── 桃園2030 電子書浮動視窗 ── -->
   <div class="tbook-overlay" id="tbookOverlay">
     <div class="tbook-modal">
@@ -224,6 +222,8 @@ ${SHOW_TAOYUAN ? `
     </div>
   </div>
 ` : ''}
+
+  ${tornDivider('#FBF8F3', '#F2EDE4')}
 
   <!-- ── 精選物件 ── -->
   <section id="properties-preview">
