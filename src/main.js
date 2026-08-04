@@ -6,6 +6,12 @@ import { initHomeShowcase } from './home-showcase.js'
 import { districts } from './data-taoyuan.js'
 import { bookPages } from './data-taoyuan-book.js'
 
+// 桃園 2030 區塊開關 — 2026-08-04 關閉。
+// 原因：通車時間、三心六線這類數字會變，寫在網站上錯了是自己的責任；
+//       而且她的物件 92% 在蘆竹、8% 在大園，講整個桃園跟實際守備範圍不符。
+//       這些內容改成帶看時口頭說明。要開回來把 false 改成 true 即可。
+const SHOW_TAOYUAN = false
+
 function tornDivider(fromColor, toColor) {
   return `<div class="torn-divider" style="background:${toColor}">
     <svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
@@ -115,6 +121,29 @@ document.getElementById('app').innerHTML = `
     </div>
   </section>
 
+  <!-- ── 家的故事 ── -->
+  <section id="story">
+    <div class="story-inner">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">A Story of Home</div>
+        <h2 class="section-title">家的<strong>故事</strong></h2>
+        <div class="section-underline"></div>
+        <p class="story-intro">想知道我為什麼做這行？這是我對「家」的想法，捲動就會往下走。</p>
+      </div>
+      <div class="story-embed-frame reveal reveal-d2">
+        <iframe
+          src="story/index.html?embed=1"
+          title="家的故事"
+          loading="lazy"
+          allowfullscreen></iframe>
+      </div>
+      <a class="story-embed-open" href="story/index.html" target="_blank" rel="noopener">
+        ${icon('Monitor', 15, 2)} 用整個螢幕看
+      </a>
+    </div>
+  </section>
+
+${SHOW_TAOYUAN ? `
   <!-- ── 認識桃園 ── -->
   <section id="taoyuan">
     <div class="taoyuan-inner">
@@ -194,6 +223,7 @@ document.getElementById('app').innerHTML = `
       </div>
     </div>
   </div>
+` : ''}
 
   <!-- ── 精選物件 ── -->
   <section id="properties-preview">
@@ -432,7 +462,7 @@ function initTaoyuanMap() {
     })
   }
 }
-initTaoyuanMap()
+if (SHOW_TAOYUAN) initTaoyuanMap()
 
 function initTaoyuanBook() {
   const btn = document.getElementById('taoyuanBookBtn')
@@ -516,4 +546,4 @@ function initTaoyuanBook() {
     touchX = null
   })
 }
-initTaoyuanBook()
+if (SHOW_TAOYUAN) initTaoyuanBook()
