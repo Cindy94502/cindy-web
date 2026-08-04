@@ -101,8 +101,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:cent
   background:rgba(255,255,255,.8);backdrop-filter:blur(6px);border:1px solid rgba(139,94,60,.14);
   border-radius:20px;padding:8px 12px;text-decoration:none;transition:background .2s;}
 .pcard .pmore:hover{background:#fff;}
-/* 手機：改成橫式窄卡貼底，才不會蓋到故事文字 */
-@media(max-width:900px){
+/* 手機、或視窗太矮（含被嵌入在框裡）：改成橫式窄卡貼底，才不會蓋到故事文字與章節列 */
+@media(max-width:900px),(max-height:820px){
   .pcard{right:auto;left:50%;top:auto;width:min(360px,92vw);--lift:0px;
     bottom:calc(16px + env(safe-area-inset-bottom,0px));
     transform:translateX(-50%) translateY(18px);}
@@ -149,7 +149,35 @@ nav{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:cent
   /* 手機文字佔的寬比較大，柔光跟著放大才蓋得住 */
   .veil{background:radial-gradient(ellipse 78% 42% at 32% 47%,rgba(253,248,240,.9) 0%,rgba(253,248,240,.52) 46%,transparent 80%);}
 }
+
+/* 嵌入模式（?embed=1）：導覽列保留，只藏右側兩顆按鈕與浮動 Cindy（外層網站已有） */
+html.embed .navright,
+html.embed .peek{display:none!important;}
+
+/* 寬螢幕但視窗矮（嵌入框／矮筆電）：
+   故事文字靠左，所以卡片貼右下角，三張並排，避開文字。 */
+@media(min-width:901px) and (max-height:820px){
+  .pcard{
+    left:auto; right:clamp(16px,2.5vw,40px);
+    width:min(640px,52vw);
+    transform:translateY(18px);
+  }
+  .pcard.on{transform:none;}
+  .pcard .pstrip{overflow:visible;scroll-snap-type:none;}
+  .pcard .pmain{flex:1 1 0;min-width:0;}
+  .pcard .pimg{width:74px;flex:0 0 74px;}
+  .pcard .pline{display:none;}
+  .pcard .plead{font-size:11px;text-align:right;}
+  .pcard .ptitle{font-size:13px;}
+  .pcard .pprice{font-size:15px;}
+}
 </style>
+<script>
+// 嵌入模式：網址帶 ?embed=1 時隱藏本頁導覽列與浮動按鈕（documentElement 在 head 就存在）
+if (new URLSearchParams(location.search).has('embed')) {
+  document.documentElement.classList.add('embed');
+}
+</script>
 </head>
 <body>
 <div class="loading" id="loading">故事準備中…</div>
@@ -181,13 +209,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:cent
 <script>
 // ═══ 場景設定：以後加影片只要在這裡加一段 ═══
 const SCENES=[
-  {src:'https://res.cloudinary.com/ddzync8km/video/upload/story/s1.mp4', nav:'遮風避雨', color:'#4A8E97', eyebrow:'A Story of Home', title:'家，是能為你<br><span class="hl">遮風避雨</span>的地方。', desc:'外面下著雨，但總有一個地方，燈是亮的，有人在等你。'},
-  {src:'https://res.cloudinary.com/ddzync8km/video/upload/story/sD.mp4', nav:'交鑰匙', color:'#C98A7D', eyebrow:'找到家的路上', title:'找到家的路上，<br>是<span class="hl">有人陪你走</span>過去的。', desc:'那把鑰匙交到手上的那一刻，才是故事真正的開始。'},
-  {src:'https://res.cloudinary.com/ddzync8km/video/upload/story/sA.mp4', nav:'新家', color:'#7FA86B', eyebrow:'新生活的開始', title:'一個家的開始，<br>是有人願意<span class="hl">放下行李</span>。', desc:'搬進來的那一刻，冷冰冰的空房子，就有了溫度。'},
-  {src:'https://res.cloudinary.com/ddzync8km/video/upload/story/s2.mp4', nav:'等你回來', color:'#E0A03C', eyebrow:'有人在等', title:'亮起的那盞燈，<br>是有人<span class="hl">在等你</span>。', desc:'家最溫暖的樣子，是門一打開，就知道有人在。'},
-  {src:'https://res.cloudinary.com/ddzync8km/video/upload/story/sB.mp4', nav:'餐桌', color:'#D97E52', eyebrow:'家的核心', title:'是熱熱的飯菜，<br>和一桌子的<span class="hl">笑聲</span>。', desc:'一家人圍著桌子吃飯，那個熱鬧，別的地方給不了。'},
-  {src:'https://res.cloudinary.com/ddzync8km/video/upload/story/sC.mp4', nav:'夜晚', color:'#7B77A8', eyebrow:'溫度', title:'是睡前的故事，<br>和身邊的<span class="hl">溫度</span>。', desc:'燈還亮著，貓睡著了，時間在這裡慢下來。'},
-  {src:'https://res.cloudinary.com/ddzync8km/video/upload/story/s3.mp4', nav:'回家', color:'#B4685A', eyebrow:'回家', title:'<span class="nowrap">你想要的，是什麼樣的家？</span><br>對我來說，有情感歸屬、<br><span class="nowrap"><span class="hl">有愛的地方</span>，才是家。</span>', desc:'加 LINE，說說你想要的家。'},
+  {src:'https://res.cloudinary.com/ddzync8km/video/upload/c_crop,w_1100,h_720,x_0,y_0,ki_0.07/story/s1.mp4', nav:'遮風避雨', color:'#4A8E97', eyebrow:'A Story of Home', title:'家，是能為你<br><span class="hl">遮風避雨</span>的地方。', desc:'外面下著雨，但總有一個地方，燈是亮的，有人在等你。'},
+  {src:'https://res.cloudinary.com/ddzync8km/video/upload/c_crop,w_1100,h_720,x_0,y_0,ki_0.07/story/sD.mp4', nav:'交鑰匙', color:'#C98A7D', eyebrow:'找到家的路上', title:'找到家的路上，<br>是<span class="hl">有人陪你走</span>過去的。', desc:'那把鑰匙交到手上的那一刻，才是故事真正的開始。'},
+  {src:'https://res.cloudinary.com/ddzync8km/video/upload/c_crop,w_1100,h_720,x_0,y_0,ki_0.07/story/sA.mp4', nav:'新家', color:'#7FA86B', eyebrow:'新生活的開始', title:'一個家的開始，<br>是有人願意<span class="hl">放下行李</span>。', desc:'搬進來的那一刻，冷冰冰的空房子，就有了溫度。'},
+  {src:'https://res.cloudinary.com/ddzync8km/video/upload/c_crop,w_1100,h_720,x_0,y_0,ki_0.07/story/s2.mp4', nav:'等你回來', color:'#E0A03C', eyebrow:'有人在等', title:'亮起的那盞燈，<br>是有人<span class="hl">在等你</span>。', desc:'家最溫暖的樣子，是門一打開，就知道有人在。'},
+  {src:'https://res.cloudinary.com/ddzync8km/video/upload/c_crop,w_1100,h_720,x_0,y_0,ki_0.07/story/sB.mp4', nav:'餐桌', color:'#D97E52', eyebrow:'家的核心', title:'是熱熱的飯菜，<br>和一桌子的<span class="hl">笑聲</span>。', desc:'一家人圍著桌子吃飯，那個熱鬧，別的地方給不了。'},
+  {src:'https://res.cloudinary.com/ddzync8km/video/upload/c_crop,w_1100,h_720,x_0,y_0,ki_0.07/story/sC.mp4', nav:'夜晚', color:'#7B77A8', eyebrow:'溫度', title:'是睡前的故事，<br>和身邊的<span class="hl">溫度</span>。', desc:'燈還亮著，貓睡著了，時間在這裡慢下來。'},
+  {src:'https://res.cloudinary.com/ddzync8km/video/upload/c_crop,w_1100,h_720,x_0,y_0,ki_0.07/story/s3.mp4', nav:'回家', color:'#B4685A', eyebrow:'回家', title:'<span class="nowrap">你想要的，是什麼樣的家？</span><br>對我來說，有情感歸屬、<br><span class="nowrap"><span class="hl">有愛的地方</span>，才是家。</span>', desc:'加 LINE，說說你想要的家。'},
 ];
 
 // ═══ 置入物件卡設定 ═══════════════════════════
@@ -235,8 +263,10 @@ const isPhone = matchMedia('(max-width:900px)').matches;
 const FRAMES = 40, SCENE_DUR = 10;                     // 每幕 10 秒，切 40 格
 const FRAME_TF = 'w_480,h_854,c_fill,q_60,f_webp';     // 直式，單格約 17KB
 function frameUrl(src, k){
-  const [base, tail] = src.split('/video/upload/');
-  const name = tail.replace('story/','').replace('.mp4','');
+  // src 可能帶有轉檔參數（例如去浮水印的 c_crop），只取最後的檔名
+  const [base] = src.split('/video/upload/');
+  const name = src.split('/story/').pop().replace('.mp4','');
+  // 手機版 c_fill 裁成直式時本來就切掉右下角浮水印，不需要再套 c_crop
   return `${base}/video/upload/so_${(k*SCENE_DUR/FRAMES).toFixed(2)},${FRAME_TF}/story/${name}.webp`;
 }
 const stage=document.getElementById('stage'), panels=document.getElementById('panels');
