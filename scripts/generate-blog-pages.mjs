@@ -23,7 +23,7 @@ for (const post of posts) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>${esc(post.title)}｜Cindy 王小姐 南崁在地房產</title>
+<title>${esc(post.title)}｜Cindy 小薰 南崁在地房產</title>
 <meta name="description" content="${esc(post.excerpt || '')}">
 <link rel="canonical" href="${url}">
 <meta property="og:title" content="${esc(post.title)}">
@@ -34,7 +34,7 @@ for (const post of posts) {
 <link rel="icon" type="image/png" href="${SITE_BASE}/images/favicon-round.png">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
 <script type="application/ld+json">
-${JSON.stringify({ '@context': 'https://schema.org', '@type': 'Article', headline: post.title, description: post.excerpt || '', image: cover, datePublished: post.date || '', author: { '@type': 'Person', name: 'Cindy 王小姐', url: SITE_BASE } })}
+${JSON.stringify({ '@context': 'https://schema.org', '@type': 'Article', headline: post.title, description: post.excerpt || '', image: cover, datePublished: post.date || '', author: { '@type': 'Person', name: 'Cindy 小薰', url: SITE_BASE } })}
 </script>
 <style>
   body { margin:0; background:#FBF8F1; color:#3D2B1F; font-family:'Noto Sans TC',sans-serif; line-height:1.9; }

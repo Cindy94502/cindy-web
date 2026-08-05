@@ -18,7 +18,7 @@ mkdirSync(outDir, { recursive: true })
 let count = 0
 for (const p of props) {
   if (!p.nodeId) continue
-  const title = 'Cindy 王小姐｜南崁在地房產'
+  const title = 'Cindy 小薰｜南崁在地房產'
   const desc = (p.highlights || p.features || '南崁在地房仲，陪你找到對的家。').slice(0, 100)
   let img = p.ogImageUrl || p.imageUrl || FALLBACK_IMG
   let imgW = 1024, imgH = 768
