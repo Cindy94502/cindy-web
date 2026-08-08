@@ -515,11 +515,20 @@ function initShare(prop) {
     prop.buildingSize ? `建坪：${prop.buildingSize}坪` : '',
     prop.landSize ? `土坪：${prop.landSize}坪` : '',
   ].filter(Boolean).join('\n')
-  const title = `${prop.title}｜NT${prop.price ? (prop.price/10000).toFixed(0) + '萬' : '洽談'}｜Cindy 小薰` + (details ? '\n' + details : '')
+  // 依經紀業管理條例第 21 條，銷售內容須註明經紀業名稱，署名區不能省
+  const priceTxt = prop.price ? `${Number(prop.price / 10000).toLocaleString('en-US')} 萬` : '價格洽談'
+  const head = `${prop.title}｜${priceTxt}`
+  const body = [details, prop.wixLocation || ''].filter(Boolean).join('\n')
+  const sign = [
+    '欣益不動產開發有限公司',
+    '中信房屋 南崁一極加盟店',
+    'Cindy 小薰　0963-585-690',
+  ].join('\n')
+  const title = [head, body].filter(Boolean).join('\n')
 
   document.getElementById('btnCopyLink')?.addEventListener('click', async () => {
     try {
-      await navigator.clipboard.writeText(title + '\n' + url)
+      await navigator.clipboard.writeText(title + '\n\n' + url + '\n\n' + sign)
       const btn = document.getElementById('btnCopyLink')
       btn.textContent = '✓ 已複製！'
       setTimeout(() => btn.textContent = '複製連結', 2000)
@@ -527,7 +536,7 @@ function initShare(prop) {
   })
 
   document.getElementById('btnShareLine')?.addEventListener('click', () => {
-    window.open(`https://line.me/R/msg/text/?${encodeURIComponent(title + '\n' + url)}`, '_blank')
+    window.open(`https://line.me/R/msg/text/?${encodeURIComponent(title + '\n\n' + url + '\n\n' + sign)}`, '_blank')
   })
 
   document.getElementById('btnShareFb')?.addEventListener('click', () => {

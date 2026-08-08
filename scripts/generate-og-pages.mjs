@@ -9,6 +9,11 @@ const FALLBACK_IMG = `${SITE_BASE}/images/welcome.png`
 
 const esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
+// 去掉 HTML 標籤（webDescription、wixFeatures 存的是富文本）
+const strip = s => String(s ?? '').replace(/<li>/g, '｜').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').replace(/^｜\s*/, '').trim()
+// 15880000 → 「1,588 萬」
+const priceText = n => n ? `${Number(n / 10000).toLocaleString('en-US')} 萬` : '價格洽談'
+
 import { fetchJSON } from './fetch-retry.mjs'
 const props = await fetchJSON(JSON_URL)
 
@@ -18,8 +23,17 @@ mkdirSync(outDir, { recursive: true })
 let count = 0
 for (const p of props) {
   if (!p.nodeId) continue
-  const title = 'Cindy 小薰｜南崁在地房產'
-  const desc = (p.highlights || p.features || '南崁在地房仲，陪你找到對的家。').slice(0, 100)
+  // 卡片標題＝物件名＋價格（像公司格式那樣，一眼看得出是哪一間）
+  const cardTitle = [p.title, priceText(p.price)].filter(Boolean).join('｜')
+  // 瀏覽器分頁／搜尋結果的標題可以長一點，帶上品牌
+  const title = `${cardTitle}｜${p.wixLocation || '南崁'}｜Cindy 小薰 南崁在地房產`
+  // 卡片說明＝規格＋地段＋前兩個賣點
+  const specs = [p.layout, p.buildingCategory, p.wixParking].filter(Boolean).join('・')
+  const sells = strip(p.wixFeatures).split('｜').map(x => x.trim()).filter(Boolean).slice(0, 2).join('、')
+  const desc = [
+    [specs, p.wixLocation].filter(Boolean).join('｜'),
+    sells,
+  ].filter(Boolean).join('。').slice(0, 110) || '南崁在地房仲，陪你找到對的家。'
   let img = p.ogImageUrl || p.imageUrl || FALLBACK_IMG
   let imgW = 1024, imgH = 768
   if (img.includes('res.cloudinary.com') && img.includes('/upload/')) {
@@ -34,7 +48,7 @@ for (const p of props) {
 <head>
 <meta charset="UTF-8">
 <title>${esc(title)}</title>
-<meta property="og:title" content="${esc(title)}">
+<meta property="og:title" content="${esc(cardTitle)}">
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:image" content="${esc(img)}">
 <meta property="og:image:width" content="${imgW}">
@@ -48,17 +62,17 @@ for (const p of props) {
 ${JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'RealEstateListing',
-  name: p.title || title,
+  name: p.title || cardTitle,
   url: selfUrl,
   image: img,
   description: desc,
   ...(p.price ? { offers: { '@type': 'Offer', price: p.price, priceCurrency: 'TWD' } } : {}),
-  provider: { '@type': 'RealEstateAgent', name: '欣益不動產開發有限公司（中信房屋 南崁一極加盟店）', telephone: '+886-968-731-280', areaServed: '桃園市蘆竹區' },
+  provider: { '@type': 'RealEstateAgent', name: '欣益不動產開發有限公司（中信房屋 南崁一極加盟店）', telephone: '+886-963-585-690', areaServed: '桃園市蘆竹區' },
 })}
 </script>
 <script>location.replace(${JSON.stringify(target)})</script>
 </head>
-<body><p>跳轉中… <a href="${esc(target)}">${esc(title)}</a></p></body>
+<body><p>跳轉中… <a href="${esc(target)}">${esc(cardTitle)}</a></p></body>
 </html>`
   writeFileSync(resolve(outDir, `${p.nodeId}.html`), html)
   count++
