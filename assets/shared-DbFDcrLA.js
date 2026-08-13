@@ -1,4 +1,4 @@
-(function(){const c=document.createElement("link").relList;if(c&&c.supports&&c.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))n(e);new MutationObserver(e=>{for(const t of e)if(t.type==="childList")for(const o of t.addedNodes)o.tagName==="LINK"&&o.rel==="modulepreload"&&n(o)}).observe(document,{childList:!0,subtree:!0});function a(e){const t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?t.credentials="include":e.crossOrigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function n(e){if(e.ep)return;e.ep=!0;const t=a(e);fetch(e.href,t)}})();/**
+(function(){const c=document.createElement("link").relList;if(c&&c.supports&&c.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))n(e);new MutationObserver(e=>{for(const a of e)if(a.type==="childList")for(const o of a.addedNodes)o.tagName==="LINK"&&o.rel==="modulepreload"&&n(o)}).observe(document,{childList:!0,subtree:!0});function t(e){const a={};return e.integrity&&(a.integrity=e.integrity),e.referrerPolicy&&(a.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?a.credentials="include":e.crossOrigin==="anonymous"?a.credentials="omit":a.credentials="same-origin",a}function n(e){if(e.ep)return;e.ep=!0;const a=t(e);fetch(e.href,a)}})();/**
  * @license lucide v1.18.0 - ISC
  *
  * This source code is licensed under the ISC license.
@@ -68,7 +68,7 @@
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */const k=[["path",{d:"M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"}]];/**
+ */const H=[["path",{d:"M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"}]];/**
  * @license lucide v1.18.0 - ISC
  *
  * This source code is licensed under the ISC license.
@@ -78,7 +78,7 @@
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */const H=[["path",{d:"M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"}],["circle",{cx:"16.5",cy:"7.5",r:".5",fill:"currentColor"}]];/**
+ */const k=[["path",{d:"M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"}],["circle",{cx:"16.5",cy:"7.5",r:".5",fill:"currentColor"}]];/**
  * @license lucide v1.18.0 - ISC
  *
  * This source code is licensed under the ISC license.
@@ -98,12 +98,12 @@
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */const U=[["rect",{width:"20",height:"14",x:"2",y:"3",rx:"2"}],["line",{x1:"8",x2:"16",y1:"21",y2:"21"}],["line",{x1:"12",x2:"12",y1:"17",y2:"21"}]];/**
+ */const P=[["rect",{width:"20",height:"14",x:"2",y:"3",rx:"2"}],["line",{x1:"8",x2:"16",y1:"21",y2:"21"}],["line",{x1:"12",x2:"12",y1:"17",y2:"21"}]];/**
  * @license lucide v1.18.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */const P=[["path",{d:"M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"}]];/**
+ */const U=[["path",{d:"M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"}]];/**
  * @license lucide v1.18.0 - ISC
  *
  * This source code is licensed under the ISC license.
@@ -143,7 +143,7 @@
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */const _=[["path",{d:"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"}],["path",{d:"M16 3.128a4 4 0 0 1 0 7.744"}],["path",{d:"M22 21v-2a4 4 0 0 0-3-3.87"}],["circle",{cx:"9",cy:"7",r:"4"}]],T={Home:m,Building2:b,House:m,MapPin:S,Phone:P,MessageCircle:I,User:R,UserCircle:$,Users:_,Monitor:U,ArrowRight:y,ArrowLeft:f,ChevronUp:E,ChevronDown:w,ChevronLeft:L,ChevronRight:C,Search:V,AlertCircle:A,Car:x,Star:q,FileText:B,KeyRound:H,Banknote:g,Share2:j,Link:O,Play:N,ShoppingBag:z,Heart:k,TrendingUp:F,BookOpen:M};function u(s,c=20,a=1.5,n="",e="currentColor"){const t=T[s];if(!t)return"";const o=t.map(([h,l])=>{const p=Object.entries(l).map(([v,r])=>`${v}="${r}"`).join(" ");return`<${h} ${p}/>`}).join("");return`<svg xmlns="http://www.w3.org/2000/svg" width="${c}" height="${c}" viewBox="0 0 24 24" fill="none" stroke="${e}" stroke-width="${a}" stroke-linecap="round" stroke-linejoin="round" class="lucide ${n}" aria-hidden="true">${o}</svg>`}const i="/cindy-web/";function D(){return`
+ */const _=[["path",{d:"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"}],["path",{d:"M16 3.128a4 4 0 0 1 0 7.744"}],["path",{d:"M22 21v-2a4 4 0 0 0-3-3.87"}],["circle",{cx:"9",cy:"7",r:"4"}]],T={Home:m,Building2:b,House:m,MapPin:S,Phone:U,MessageCircle:I,User:R,UserCircle:$,Users:_,Monitor:P,ArrowRight:y,ArrowLeft:f,ChevronUp:E,ChevronDown:w,ChevronLeft:L,ChevronRight:C,Search:V,AlertCircle:A,Car:x,Star:q,FileText:B,KeyRound:k,Banknote:g,Share2:j,Link:O,Play:N,ShoppingBag:z,Heart:H,TrendingUp:F,BookOpen:M};function u(s,c=20,t=1.5,n="",e="currentColor"){const a=T[s];if(!a)return"";const o=a.map(([h,l])=>{const p=Object.entries(l).map(([v,r])=>`${v}="${r}"`).join(" ");return`<${h} ${p}/>`}).join("");return`<svg xmlns="http://www.w3.org/2000/svg" width="${c}" height="${c}" viewBox="0 0 24 24" fill="none" stroke="${e}" stroke-width="${t}" stroke-linecap="round" stroke-linejoin="round" class="lucide ${n}" aria-hidden="true">${o}</svg>`}const i="/cindy-web/";function D(){return`
   <nav id="nav">
     <a href="index.html" class="nav-logo">
       <span class="nav-logo-dot"></span>
@@ -152,12 +152,12 @@
     <!-- 桌機：藥丸列置中（同 story 頁的 .navpills），六項順序與側邊欄一致。
          手機隱藏，改用右邊的 MENU 開側邊欄 -->
     <div class="nav-links">
-      <a href="index.html">首頁</a>
-      <a href="index.html#about">關於我</a>
-      <a href="properties.html">精選物件</a>
-      <a href="blog.html">房產筆記</a>
-      <a href="index.html#forms">快速諮詢</a>
-      <a href="index.html#contact">聯絡我</a>
+      <a href="index.html">首頁<span>Home</span></a>
+      <a href="index.html#about">關於我<span>About Me</span></a>
+      <a href="properties.html">精選物件<span>Properties</span></a>
+      <a href="blog.html">房產筆記<span>Blog</span></a>
+      <a href="index.html#forms">快速諮詢<span>Contact Form</span></a>
+      <a href="index.html#contact">聯絡我<span>Contact</span></a>
     </div>
     <div class="nav-right">
       <button class="menu-btn" id="menuBtn" aria-label="選單">
@@ -251,4 +251,4 @@
       <img src="images/btn_line.png" alt="LINE 加入好友">
     </a>
   </div>
-  `}function Y(){const s=document.querySelector("link[rel='icon']")||document.createElement("link");s.rel="icon",s.type="image/png",s.href="/cindy-web/images/favicon-round.png",s.parentNode||document.head.appendChild(s);const c=document.getElementById("nav"),a=document.getElementById("goTop"),n=document.getElementById("menuBtn"),e=document.getElementById("menuOverlay"),t=document.getElementById("menuBackdrop"),o=document.getElementById("menuClose");window.addEventListener("scroll",()=>{c.classList.toggle("scrolled",window.scrollY>80),a==null||a.classList.toggle("show",window.scrollY>400)}),a==null||a.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));function h(){e.classList.add("open"),t.classList.add("open"),n.classList.add("open"),document.body.style.overflow="hidden"}function l(){e.classList.remove("open"),t.classList.remove("open"),n.classList.remove("open"),document.body.style.overflow=""}n==null||n.addEventListener("click",h),o==null||o.addEventListener("click",l),t==null||t.addEventListener("click",l),e==null||e.querySelectorAll("a").forEach(r=>r.addEventListener("click",l));const p=document.querySelectorAll(".reveal"),v=new IntersectionObserver(r=>{r.forEach(d=>{d.isIntersecting?d.target.classList.add("visible"):d.target.classList.contains("reveal-both")&&d.target.classList.remove("visible")})},{threshold:.1});p.forEach(r=>v.observe(r))}export{K as a,u as b,Y as i,D as r};
+  `}function Y(){const s=document.querySelector("link[rel='icon']")||document.createElement("link");s.rel="icon",s.type="image/png",s.href="/cindy-web/images/favicon-round.png",s.parentNode||document.head.appendChild(s);const c=document.getElementById("nav"),t=document.getElementById("goTop"),n=document.getElementById("menuBtn"),e=document.getElementById("menuOverlay"),a=document.getElementById("menuBackdrop"),o=document.getElementById("menuClose");window.addEventListener("scroll",()=>{c.classList.toggle("scrolled",window.scrollY>80),t==null||t.classList.toggle("show",window.scrollY>400)}),t==null||t.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));function h(){e.classList.add("open"),a.classList.add("open"),n.classList.add("open"),document.body.style.overflow="hidden"}function l(){e.classList.remove("open"),a.classList.remove("open"),n.classList.remove("open"),document.body.style.overflow=""}n==null||n.addEventListener("click",h),o==null||o.addEventListener("click",l),a==null||a.addEventListener("click",l),e==null||e.querySelectorAll("a").forEach(r=>r.addEventListener("click",l));const p=document.querySelectorAll(".reveal"),v=new IntersectionObserver(r=>{r.forEach(d=>{d.isIntersecting?d.target.classList.add("visible"):d.target.classList.contains("reveal-both")&&d.target.classList.remove("visible")})},{threshold:.1});p.forEach(r=>v.observe(r))}export{K as a,u as b,Y as i,D as r};
