@@ -20,7 +20,12 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      # 改網站（push）時不抓實價登錄，太慢而且跟這次改的東西無關，
+      # 直接沿用版控裡的 public/market-data.json。
+      # 每天早上 5 點的排程照抓，所以行情最慢隔天早上就會更新回來。
+      # 想立刻更新行情：到 GitHub 的 Actions 頁按 Run workflow（手動觸發也會抓）。
       - name: Generate market data
+        if: github.event_name != 'push'
         run: node scripts/generate-market-data.mjs
 
       - name: Build
