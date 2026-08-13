@@ -1,11 +1,11 @@
-import{r as b,b as t,a as y,i as w}from"./shared-DbFDcrLA.js";import{G as $,c as E,f as B}from"./data-fy7z4F0d.js";function p(e,o){return`<div class="torn-divider" style="background:${o}">
+import{r as b,b as s,a as y,i as w}from"./shared-DbFDcrLA.js";import{G as $,c as E,f as B}from"./data-fy7z4F0d.js";function p(e,o){return`<div class="torn-divider" style="background:${o}">
     <svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M0,0 L0,20 C80,35 160,8 240,22 C320,36 400,10 480,24 C560,38 640,12 720,26 C800,40 880,8 960,22 C1040,36 1120,14 1200,28 C1280,42 1360,16 1440,20 L1440,0 Z" fill="${e}"/>
     </svg>
-  </div>`}function C(e,o){const s=E(e.ogImageUrl,600),i=e.buildingCategory==="透天"?"House":"Building2";return`
+  </div>`}function C(e,o){const t=E(e.ogImageUrl,600),i=e.buildingCategory==="透天"?"House":"Building2";return`
   <a href="property.html?id=${e.nodeId}" class="prop-card reveal reveal-d${o+1}">
     <div class="prop-card-img">
-      ${s?`<img src="${s}" alt="${e.title}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" onerror="this.style.objectFit='contain';this.style.opacity='0.4';this.style.padding='20px';this.src='images/house_small.png'">`:`<div class="prop-card-img-icon">${t(i,48,1,"prop-placeholder-icon")}</div>`}
+      ${t?`<img src="${t}" alt="${e.title}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" onerror="this.style.objectFit='contain';this.style.opacity='0.4';this.style.padding='20px';this.src='images/house_small.png'">`:`<div class="prop-card-img-icon">${s(i,48,1,"prop-placeholder-icon")}</div>`}
       <div class="prop-card-category">${e.buildingCategory||"住宅"}</div>
     </div>
     <div class="prop-card-body">
@@ -16,8 +16,8 @@ import{r as b,b as t,a as y,i as w}from"./shared-DbFDcrLA.js";import{G as $,c as
         <span class="prop-tag">${e.buildingCategory||""}</span>
       </div>
       <div class="prop-card-footer">
-        <span class="prop-location">${t("MapPin",13,2,"prop-loc-icon")} ${e.wixLocation||""}</span>
-        <span class="prop-link">查看詳情 ${t("ArrowRight",13,2)}</span>
+        <span class="prop-location">${s("MapPin",13,2,"prop-loc-icon")} ${e.wixLocation||""}</span>
+        <span class="prop-link">查看詳情 ${s("ArrowRight",13,2)}</span>
       </div>
     </div>
   </a>`}document.getElementById("app").innerHTML=`
@@ -43,8 +43,8 @@ import{r as b,b as t,a as y,i as w}from"./shared-DbFDcrLA.js";import{G as $,c as
           <img src="images/note_ideal.png" alt="理想生活 從家開始">
         </div>
         <div class="hero-btns">
-          <a href="properties.html" class="hero-btn-primary">${t("Home",16,2,"btn-icon")} 看看物件</a>
-          <a href="#about" class="hero-btn-secondary">${t("User",16,2,"btn-icon")} 認識 Cindy</a>
+          <a href="properties.html" class="hero-btn-primary">${s("Home",16,2,"btn-icon")} 看看物件</a>
+          <a href="#about" class="hero-btn-secondary">${s("User",16,2,"btn-icon")} 認識 Cindy</a>
         </div>
       </div>
       <!-- 右側 Cindy 角色 -->
@@ -61,8 +61,8 @@ import{r as b,b as t,a as y,i as w}from"./shared-DbFDcrLA.js";import{G as $,c as
     <a href="#about" class="scroll-hint-wrap" id="scrollHint">
       <span class="scroll-hint-text">SCROLL</span>
       <div class="scroll-arrow-wrap">
-        ${t("ChevronDown",22,1.5,"scroll-arrow-icon")}
-        ${t("ChevronDown",22,1.5,"scroll-arrow-icon scroll-arrow-delay")}
+        ${s("ChevronDown",22,1.5,"scroll-arrow-icon")}
+        ${s("ChevronDown",22,1.5,"scroll-arrow-icon scroll-arrow-delay")}
       </div>
     </a>
   </section>
@@ -87,8 +87,8 @@ import{r as b,b as t,a as y,i as w}from"./shared-DbFDcrLA.js";import{G as $,c as
         <p class="about-desc">要說最喜歡南崁什麼？購物真的太方便，台茂、好市多都在生活圈裡。（缺點是常激發我買買買的購物慾，需要克制）也因為在這裡長大，哪個社區安靜、哪條路會塞、哪間早餐店好吃，<strong>直接問我就好，不用查資料</strong>。</p>
         <p class="about-desc">我有點慢熱，第一次見面可能會有點拘謹，但熱絡了之後就像<strong>朋友一樣相處</strong>，有什麼問題都可以直接問我。買房是大事，慢慢來，我陪你看。</p>
         <div class="about-tags">
-          <span class="about-tag tag-sage">${t("MapPin",13,2)} 住南崁將近20 年</span>
-          <span class="about-tag tag-peach">${t("Users",13,2)} 父女搭檔</span>
+          <span class="about-tag tag-sage">${s("MapPin",13,2)} 住南崁將近20 年</span>
+          <span class="about-tag tag-peach">${s("Users",13,2)} 父女搭檔</span>
         </div>
       </div>
     </div>
@@ -111,7 +111,7 @@ import{r as b,b as t,a as y,i as w}from"./shared-DbFDcrLA.js";import{G as $,c as
           allowfullscreen></iframe>
       </div>
       <a class="story-embed-open" href="story/index.html" target="_blank" rel="noopener">
-        ${t("Monitor",15,2)} 用整個螢幕看
+        ${s("Monitor",15,2)} 用整個螢幕看
       </a>
     </div>
   </section>
@@ -136,7 +136,7 @@ import{r as b,b as t,a as y,i as w}from"./shared-DbFDcrLA.js";import{G as $,c as
       </div>
       <div class="props-more reveal">
         <a href="properties.html" class="props-more-btn" id="propsMoreBtn">
-          查看全部物件 ${t("ArrowRight",16,2)}
+          查看全部物件 ${s("ArrowRight",16,2)}
         </a>
       </div>
     </div>
@@ -155,19 +155,19 @@ import{r as b,b as t,a as y,i as w}from"./shared-DbFDcrLA.js";import{G as $,c as
       </div>
       <div class="forms-grid reveal">
         <button class="form-card form-card-buy" data-tf-popup="HEcOmZt1" data-tf-size="90">
-          <div class="form-card-icon">${t("Home",36,1.5,"form-icon-buy")}</div>
+          <div class="form-card-icon">${s("Home",36,1.5,"form-icon-buy")}</div>
           <div class="form-card-title">我想買房</div>
           <div class="form-card-desc">告訴我預算、坪數、區域需求<br>讓我幫你找到對的家</div>
           <div class="form-card-btn">填寫表單 →</div>
         </button>
         <button class="form-card form-card-rent" data-tf-popup="zlT7vf5X" data-tf-size="90">
-          <div class="form-card-icon">${t("KeyRound",36,1.5,"form-icon-rent")}</div>
+          <div class="form-card-icon">${s("KeyRound",36,1.5,"form-icon-rent")}</div>
           <div class="form-card-title">我想租屋</div>
           <div class="form-card-desc">說明租金預算、格局、入住時間<br>我來幫你媒合合適的房源</div>
           <div class="form-card-btn">填寫表單 →</div>
         </button>
         <button class="form-card form-card-sell" data-tf-popup="cK5kqUM9" data-tf-size="90">
-          <div class="form-card-icon">${t("Banknote",36,1.5,"form-icon-sell")}</div>
+          <div class="form-card-icon">${s("Banknote",36,1.5,"form-icon-sell")}</div>
           <div class="form-card-title">我想賣房</div>
           <div class="form-card-desc">留下物件資訊與聯絡方式<br>讓我為你評估最佳售出策略</div>
           <div class="form-card-btn">填寫表單 →</div>
@@ -186,19 +186,19 @@ import{r as b,b as t,a as y,i as w}from"./shared-DbFDcrLA.js";import{G as $,c as
 
       <div class="contact-info-list reveal">
         <div class="contact-info-row">
-          <span class="contact-info-icon">${t("Phone",18,1.5)}</span>
+          <span class="contact-info-icon">${s("Phone",18,1.5)}</span>
           <span class="contact-info-label">Cindy</span>
           <span class="contact-info-divider">|</span>
           <a href="tel:0963585690" class="contact-info-value">0963-585-690</a>
         </div>
         <div class="contact-info-row">
-          <span class="contact-info-icon">${t("Phone",18,1.5)}</span>
+          <span class="contact-info-icon">${s("Phone",18,1.5)}</span>
           <span class="contact-info-label">王先生</span>
           <span class="contact-info-divider">|</span>
           <a href="tel:0968731280" class="contact-info-value">0968-731-280</a>
         </div>
         <div class="contact-info-row">
-          <span class="contact-info-icon">${t("MessageCircle",18,1.5)}</span>
+          <span class="contact-info-icon">${s("MessageCircle",18,1.5)}</span>
           <span class="contact-info-label">LINE</span>
           <span class="contact-info-divider">|</span>
           <span class="contact-info-value">@019nrmqw</span>
@@ -217,4 +217,4 @@ import{r as b,b as t,a as y,i as w}from"./shared-DbFDcrLA.js";import{G as $,c as
   </section>
 
   ${y()}
-`;w();setTimeout(()=>{var e;(e=document.getElementById("heroStrong"))==null||e.classList.add("hero-title-line-animate")},1400);var g;(g=document.getElementById("scrollHint"))==null||g.addEventListener("click",e=>{e.preventDefault();const o=document.getElementById("about");o&&window.scrollTo({top:o.offsetTop-64,behavior:"smooth"})});{const e=document.getElementById("hero"),o=document.getElementById("heroScrub"),s=document.getElementById("heroScrubVideo"),i=document.getElementById("heroLoopVideo"),a=matchMedia("(min-width: 901px) and (hover: hover) and (pointer: fine)").matches,r=matchMedia("(prefers-reduced-motion: reduce)").matches;if(a&&e&&s){s.src="media/hero-scrub.mp4";const l=37,u=64,h=()=>{const m=o.clientWidth,c=o.clientHeight;if(!s.videoWidth||!m||!c)return;const n=Math.max(m/s.videoWidth,c/s.videoHeight),d=s.videoHeight*n-c,v=d<=0?0:Math.max(0,Math.min(100,(l*n-u)/d*100));o.style.setProperty("--hero-vpos",v.toFixed(1)+"%")};if(s.addEventListener("loadedmetadata",h),window.addEventListener("resize",h),!r){let c=0,n=0,d=!1;const v=()=>{n+=(c-n)*.14,s.readyState>=2&&Math.abs(s.currentTime-n)>.008&&(s.currentTime=n),Math.abs(c-n)>.004?requestAnimationFrame(v):d=!1};e.addEventListener("mousemove",f=>{s.duration&&(c=(1-f.clientX/window.innerWidth)*s.duration,d||(d=!0,requestAnimationFrame(v)))})}}else if(i&&!r){const l=()=>{i.autoplay=!0,i.src="media/hero-loop.mp4",i.addEventListener("loadeddata",()=>i.play().catch(()=>{}),{once:!0}),i.play().catch(()=>{})};document.readyState==="complete"?setTimeout(l,300):window.addEventListener("load",()=>setTimeout(l,300))}}async function L(){try{const o=await(await fetch($)).json(),s=o.filter(a=>a.title&&a.nodeId).slice(0,3);document.getElementById("homePropsGrid").innerHTML=s.map((a,r)=>C(a,r)).join(""),document.getElementById("propsMoreBtn").innerHTML=`查看全部 ${o.length} 筆物件 ${t("ArrowRight",16,2)}`;const i=new IntersectionObserver(a=>{a.forEach(r=>{r.isIntersecting&&r.target.classList.add("visible")})},{threshold:.1});document.querySelectorAll("#homePropsGrid .reveal").forEach(a=>i.observe(a))}catch{document.getElementById("homePropsGrid").innerHTML='<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--brown-mid)">暫時無法載入物件</div>'}}L();
+`;w();setTimeout(()=>{var e;(e=document.getElementById("heroStrong"))==null||e.classList.add("hero-title-line-animate")},1400);var u;(u=document.getElementById("scrollHint"))==null||u.addEventListener("click",e=>{e.preventDefault();const o=document.getElementById("about");o&&window.scrollTo({top:o.offsetTop-64,behavior:"smooth"})});{const e=document.getElementById("hero"),o=document.getElementById("heroScrub"),t=document.getElementById("heroScrubVideo"),i=document.getElementById("heroLoopVideo"),a=matchMedia("(min-width: 901px) and (hover: hover) and (pointer: fine)").matches,r=matchMedia("(prefers-reduced-motion: reduce)").matches;if(a&&e&&t){t.src="media/hero-scrub.mp4";const l=29/384,f=64,g=()=>{const m=o.clientWidth,c=o.clientHeight;if(!t.videoWidth||!m||!c)return;const n=Math.max(m/t.videoWidth,c/t.videoHeight),d=t.videoHeight*n-c,v=t.videoHeight*l,h=d<=0?0:Math.max(0,Math.min(100,(v*n-f)/d*100));o.style.setProperty("--hero-vpos",h.toFixed(1)+"%")};if(t.addEventListener("loadedmetadata",g),window.addEventListener("resize",g),!r){let c=0,n=0,d=!1;const v=()=>{n+=(c-n)*.14,t.readyState>=2&&Math.abs(t.currentTime-n)>.008&&(t.currentTime=n),Math.abs(c-n)>.004?requestAnimationFrame(v):d=!1};e.addEventListener("mousemove",h=>{t.duration&&(c=(1-h.clientX/window.innerWidth)*t.duration,d||(d=!0,requestAnimationFrame(v)))})}}else if(i&&!r){const l=()=>{i.autoplay=!0,i.src="media/hero-loop.mp4",i.addEventListener("loadeddata",()=>i.play().catch(()=>{}),{once:!0}),i.play().catch(()=>{})};document.readyState==="complete"?setTimeout(l,300):window.addEventListener("load",()=>setTimeout(l,300))}}async function H(){try{const o=await(await fetch($)).json(),t=o.filter(a=>a.title&&a.nodeId).slice(0,3);document.getElementById("homePropsGrid").innerHTML=t.map((a,r)=>C(a,r)).join(""),document.getElementById("propsMoreBtn").innerHTML=`查看全部 ${o.length} 筆物件 ${s("ArrowRight",16,2)}`;const i=new IntersectionObserver(a=>{a.forEach(r=>{r.isIntersecting&&r.target.classList.add("visible")})},{threshold:.1});document.querySelectorAll("#homePropsGrid .reveal").forEach(a=>i.observe(a))}catch{document.getElementById("homePropsGrid").innerHTML='<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--brown-mid)">暫時無法載入物件</div>'}}H();
