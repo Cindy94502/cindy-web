@@ -1,4 +1,4 @@
-import{r as $,b as t,a as k,i as b}from"./shared-CRs0bZB6.js";import{C as w,L as E,P as L,G as S,f as C}from"./data-DQaSi1fH.js";const q='<img src="images/house_small.png" alt="" class="filter-deco-img" aria-hidden="true">';function I(e,r){const a=e.ogImageUrl||"";return e.buildingCategory,`
+import{r as $,b as t,a as k,i as b}from"./shared-ClyXLs3X.js";import{C as w,L as E,P as L,G as S,c as C,f as q}from"./data-fy7z4F0d.js";const I='<img src="images/house_small.png" alt="" class="filter-deco-img" aria-hidden="true">';function B(e,r){const a=C(e.ogImageUrl,600);return e.buildingCategory,`
   <a href="property.html?id=${e.nodeId}" class="prop-card-full" 
      data-category="${e.buildingCategory||""}"
      data-room="${e.roomCount||""}"
@@ -9,7 +9,7 @@ import{r as $,b as t,a as k,i as b}from"./shared-CRs0bZB6.js";import{C as w,L as
       <div class="prop-card-category">${e.buildingCategory||e.category||"住宅"}</div>
     </div>
     <div class="prop-card-body">
-      <div class="prop-price">${C(e.price)}</div>
+      <div class="prop-price">${q(e.price)}</div>
       <div class="prop-name">${e.title}</div>
       <div class="prop-desc">${(e.tags||"").split(",").filter(Boolean).slice(0,3).join("・")}</div>
       <div class="prop-info">
@@ -22,7 +22,7 @@ import{r as $,b as t,a as k,i as b}from"./shared-CRs0bZB6.js";import{C as w,L as
         <span class="prop-link">查看詳情 ${t("ArrowRight",13,2)}</span>
       </div>
     </div>
-  </a>`}function B(){return`<div class="prop-skeleton">
+  </a>`}function x(){return`<div class="prop-skeleton">
     <div class="skeleton-img skeleton-pulse"></div>
     <div class="prop-card-body">
       <div class="skeleton-line skeleton-pulse" style="width:40%;height:20px;margin-bottom:8px"></div>
@@ -95,22 +95,22 @@ import{r as $,b as t,a as k,i as b}from"./shared-CRs0bZB6.js";import{C as w,L as
           <span class="filter-select-arrow">${t("ChevronDown",14,2)}</span>
         </div>
       </div>
-      <div class="filter-deco">${q}</div>
+      <div class="filter-deco">${I}</div>
     </div>
   </div>
 
   <div class="props-page-body">
     <div class="props-count">載入中...</div>
     <div class="props-full-grid" id="propsGrid">
-      ${[...Array(6)].map(()=>B()).join("")}
+      ${[...Array(6)].map(()=>x()).join("")}
     </div>
   </div>
 
   ${k()}
-`;b();let v=[];async function x(){try{const e=await fetch(S);if(!e.ok)throw new Error("fetch failed");v=await e.json(),P(v)}catch{document.getElementById("propsGrid").innerHTML=`<div class="props-empty show">
+`;b();let v=[];async function P(){try{const e=await fetch(S);if(!e.ok)throw new Error("fetch failed");v=await e.json(),A(v)}catch{document.getElementById("propsGrid").innerHTML=`<div class="props-empty show">
         ${t("AlertCircle",36,1.5)}
         <p>載入失敗，請稍後再試</p>
-      </div>`,document.querySelector(".props-count").textContent=""}}function P(e){const r=document.getElementById("propsGrid");r.innerHTML=e.length?e.map((s,o)=>I(s)).join("")+`<div class="props-empty" id="propsEmpty">
+      </div>`,document.querySelector(".props-count").textContent=""}}function A(e){const r=document.getElementById("propsGrid");r.innerHTML=e.length?e.map((s,o)=>B(s)).join("")+`<div class="props-empty" id="propsEmpty">
         ${t("Search",40,1.2)}
         <p>這個條件目前沒有物件<br>歡迎直接聯絡我詢問</p>
-      </div>`:`<div class="props-empty show">${t("Search",40)}<p>目前沒有物件</p></div>`,document.querySelector(".props-count").innerHTML=`共 <strong id="propCount">${e.length}</strong> 筆物件`;const a=document.getElementById("heroStatNum");a&&(a.textContent=e.length),document.querySelectorAll(".prop-card-full").forEach((s,o)=>{s.classList.add("reveal",`reveal-d${o%3+1}`)});const i=new IntersectionObserver(s=>{s.forEach(o=>{o.isIntersecting&&o.target.classList.add("visible")})},{threshold:.1});document.querySelectorAll(".reveal").forEach(s=>i.observe(s)),A()}function A(){var r;function e(){var d,p;const a=((d=document.querySelector('input[name="category"]:checked'))==null?void 0:d.value)||"all",i=document.getElementById("filterLayout").value,s=document.getElementById("filterPrice").value,o=(((p=document.getElementById("filterSearch"))==null?void 0:p.value)||"").toLowerCase().trim(),g=document.querySelectorAll(".prop-card-full");let n=0;g.forEach(l=>{const m=a==="all"||l.dataset.category===a,h=i==="all"||l.dataset.room===i,y=s==="all"||l.dataset.price===s,f=!o||(l.dataset.search||"").includes(o),u=m&&h&&y&&f;l.classList.toggle("hidden",!u),u&&n++}),document.getElementById("propCount").textContent=n;const c=document.getElementById("propsEmpty");c&&c.classList.toggle("show",n===0)}document.querySelectorAll('input[name="category"]').forEach(a=>a.addEventListener("change",e)),document.getElementById("filterLayout").addEventListener("change",e),document.getElementById("filterPrice").addEventListener("change",e),(r=document.getElementById("filterSearch"))==null||r.addEventListener("input",e),document.querySelectorAll(".quick-tag").forEach(a=>{a.addEventListener("click",()=>{const i=document.getElementById("filterSearch"),s=a.dataset.keyword;i.value===s?(i.value="",a.classList.remove("active")):(i.value=s,document.querySelectorAll(".quick-tag").forEach(o=>o.classList.remove("active")),a.classList.add("active")),e()})})}x();
+      </div>`:`<div class="props-empty show">${t("Search",40)}<p>目前沒有物件</p></div>`,document.querySelector(".props-count").innerHTML=`共 <strong id="propCount">${e.length}</strong> 筆物件`;const a=document.getElementById("heroStatNum");a&&(a.textContent=e.length),document.querySelectorAll(".prop-card-full").forEach((s,o)=>{s.classList.add("reveal",`reveal-d${o%3+1}`)});const i=new IntersectionObserver(s=>{s.forEach(o=>{o.isIntersecting&&o.target.classList.add("visible")})},{threshold:.1});document.querySelectorAll(".reveal").forEach(s=>i.observe(s)),M()}function M(){var r;function e(){var d,p;const a=((d=document.querySelector('input[name="category"]:checked'))==null?void 0:d.value)||"all",i=document.getElementById("filterLayout").value,s=document.getElementById("filterPrice").value,o=(((p=document.getElementById("filterSearch"))==null?void 0:p.value)||"").toLowerCase().trim(),g=document.querySelectorAll(".prop-card-full");let n=0;g.forEach(l=>{const m=a==="all"||l.dataset.category===a,h=i==="all"||l.dataset.room===i,y=s==="all"||l.dataset.price===s,f=!o||(l.dataset.search||"").includes(o),u=m&&h&&y&&f;l.classList.toggle("hidden",!u),u&&n++}),document.getElementById("propCount").textContent=n;const c=document.getElementById("propsEmpty");c&&c.classList.toggle("show",n===0)}document.querySelectorAll('input[name="category"]').forEach(a=>a.addEventListener("change",e)),document.getElementById("filterLayout").addEventListener("change",e),document.getElementById("filterPrice").addEventListener("change",e),(r=document.getElementById("filterSearch"))==null||r.addEventListener("input",e),document.querySelectorAll(".quick-tag").forEach(a=>{a.addEventListener("click",()=>{const i=document.getElementById("filterSearch"),s=a.dataset.keyword;i.value===s?(i.value="",a.classList.remove("active")):(i.value=s,document.querySelectorAll(".quick-tag").forEach(o=>o.classList.remove("active")),a.classList.add("active")),e()})})}P();
