@@ -13,12 +13,12 @@ export function renderNav() {
     <!-- 桌機：藥丸列置中（同 story 頁的 .navpills），六項順序與側邊欄一致。
          手機隱藏，改用右邊的 MENU 開側邊欄 -->
     <div class="nav-links">
-      <a href="index.html">首頁</a>
-      <a href="index.html#about">關於我</a>
-      <a href="properties.html">精選物件</a>
-      <a href="blog.html">房產筆記</a>
-      <a href="index.html#forms">快速諮詢</a>
-      <a href="index.html#contact">聯絡我</a>
+      <a href="index.html">首頁<span>Home</span></a>
+      <a href="index.html#about">關於我<span>About Me</span></a>
+      <a href="properties.html">精選物件<span>Properties</span></a>
+      <a href="blog.html">房產筆記<span>Blog</span></a>
+      <a href="index.html#forms">快速諮詢<span>Contact Form</span></a>
+      <a href="index.html#contact">聯絡我<span>Contact</span></a>
     </div>
     <div class="nav-right">
       <button class="menu-btn" id="menuBtn" aria-label="選單">
