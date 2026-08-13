@@ -352,10 +352,9 @@ document.getElementById('scrollHint')?.addEventListener('click', e => {
     scrubVid.src = 'media/hero-scrub.mp4'
 
     // 她的頭頂位置，寫成「佔影片高度的比例」而不是絕對像素。
-    // 之前寫死 37（1280×720 量的），換成 704×384 的新片時位置就跑掉了，
-    // 用比例的話換任何解析度都不用改這裡。
-    // 目前這支逐秒量出來頭頂在 y=20～26（384 高），取最低的 26 再留一點餘裕。
-    const HEAD_TOP_FRAC = 29 / 384
+    // 原本寫死 37（用 1280×720 量的），換不同解析度的影片就會失準。
+    // 目前這支是 1280×720，頭頂逐秒量出來在 y=20～31，取最低的 31 再留一點餘裕 = 37。
+    const HEAD_TOP_FRAC = 37 / 720
     const NAV_H = 64   // 固定橫條會蓋住視窗最上面這麼多，頭要留在它下面
     const fitHead = () => {
       const w = scrubWrap.clientWidth, h = scrubWrap.clientHeight
