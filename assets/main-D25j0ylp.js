@@ -1,4 +1,4 @@
-import{r as y,b as s,a as w,i as $}from"./shared-ClyXLs3X.js";import{G as E,c as B,f as C}from"./data-fy7z4F0d.js";function p(e,o){return`<div class="torn-divider" style="background:${o}">
+import{r as y,b as s,a as w,i as $}from"./shared-B7QTijM-.js";import{G as E,c as B,f as C}from"./data-fy7z4F0d.js";function p(e,o){return`<div class="torn-divider" style="background:${o}">
     <svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M0,0 L0,20 C80,35 160,8 240,22 C320,36 400,10 480,24 C560,38 640,12 720,26 C800,40 880,8 960,22 C1040,36 1120,14 1200,28 C1280,42 1360,16 1440,20 L1440,0 Z" fill="${e}"/>
     </svg>
