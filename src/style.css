@@ -31,20 +31,88 @@ body {
 a { text-decoration: none; color: inherit; }
 img { max-width: 100%; display: block; }
 
+/* ── 自訂游標 ─────────────────────────────────────────────
+   圖檔放在 src/images/ 而不是 public/，是為了讓 Vite 幫忙改路徑。
+   放 public/ 的話，打包後 CSS 在 /cindy-web/assets/ 底下，
+   url(images/…) 會被瀏覽器解析成 /cindy-web/assets/images/… 而 404。
+   放 src/ 讓 Vite 處理，順便會因為檔案小於 4 KB 直接內嵌成 data URI，零請求。
+
+   兩張圖都是 Cindy 給的（粉色滑鼠.jpg / 綠色滑鼠.jpg），白底去背來的，不是畫的。
+
+   一定要給 @2x：游標圖是用「CSS 像素」畫的，Retina 螢幕 devicePixelRatio = 2，
+   只給一張 25x32 的話瀏覽器會把它拉成 50x64 個實體像素，看起來就是糊的。
+   image-set 讓瀏覽器自己挑，1x 螢幕拿小的、2x 螢幕拿大的，兩邊都不糊。
+   三行 cursor 是刻意重複的：不支援 image-set 的瀏覽器會丟掉後面兩行，留住第一行。
+
+   熱點（最後那兩個數字）要對準「真正在指的那一點」，用 1x 的座標算：
+   箭頭是筆尖 1,0；食指是指尖 10,0。算錯的話點擊會偏掉。
+   後面一定要留系統關鍵字備援，圖沒載入時才不會變成沒有游標。
+
+   沒有包 @media (hover: hover)：觸控裝置本來就不會畫游標，那道閘門擋不到東西，
+   反而會讓瀏覽器把自己回報成 coarse 的環境整組失效（實測過）。 */
+body {
+  cursor: url(./images/cursor-arrow.png) 1 0, auto;
+  cursor: -webkit-image-set(url(./images/cursor-arrow.png) 1x,
+                            url(./images/cursor-arrow@2x.png) 2x) 1 0, auto;
+  cursor: image-set(url(./images/cursor-arrow.png) 1x,
+                    url(./images/cursor-arrow@2x.png) 2x) 1 0, auto;
+}
+/* 手指只給「真的能點」的東西。
+   原本這裡還用 [class*="-btn"]、[class*="-tag"]、[class*="-card"] 之類的模糊比對，
+   結果把裝飾用的小圓點（.nav-logo-dot）、標籤文字（.about-tag、.property-tag）、
+   規格表（.spec-item）、整張右側聯絡卡（.contact-card-sticky 連同裡面的姓名和價格）
+   全變成手指 —— 游標在不能點的地方變手指，比沒有自訂游標更難懂。
+   實測過，那些模糊比對沒有多抓到任何真的可點元素，全部刪掉。
+
+   前面加 body 是為了提高權重：properties.css / property.css 在 style.css
+   之後載入，裡面有一堆 .quick-tag 之類的 cursor: pointer，同權重會贏過這裡。 */
+body :is(a, button, label, summary, select, [role="button"],
+         input[type="submit"], input[type="button"],
+         input[type="radio"], input[type="checkbox"]),
+/* 這兩個是用 JS 綁 click 的，不是原生可點元素，只能手動列。
+   以後再做這種「長得不像按鈕但可以點」的東西，記得補進來。 */
+body .gallery-thumb,
+body .similar-dot {
+  cursor: url(./images/cursor-hand.png) 10 0, pointer;
+  cursor: -webkit-image-set(url(./images/cursor-hand.png) 1x,
+                            url(./images/cursor-hand@2x.png) 2x) 10 0, pointer;
+  cursor: image-set(url(./images/cursor-hand.png) 1x,
+                    url(./images/cursor-hand@2x.png) 2x) 10 0, pointer;
+}
+/* 可以打字的地方維持文字游標，不然使用者不知道能輸入 */
+body :is(input[type="text"], input[type="tel"], input[type="email"],
+         input[type="search"], textarea) {
+  cursor: text;
+}
+body :disabled, body [aria-disabled="true"] { cursor: default; }
+/* hero 是左右刮動的，游標要說明這件事。
+   原本用系統的 ew-resize，提示夠清楚但那是黑色雙箭頭，跟整站不搭，
+   而且 hero 佔滿第一屏，等於首頁最大一塊看不到自己的游標。
+   改成她的綠箭頭 + 右下三個同色小點：兩件事都顧到。
+   她明確不要雙箭頭，所以提示不用箭頭形狀，靠水平排列的三個點表達方向。
+   備援還是留 ew-resize，圖沒載入時提示不會消失。 */
+body #hero {
+  cursor: url(./images/cursor-scrub.png) 0 0, ew-resize;
+  cursor: -webkit-image-set(url(./images/cursor-scrub.png) 1x,
+                            url(./images/cursor-scrub@2x.png) 2x) 0 0, ew-resize;
+  cursor: image-set(url(./images/cursor-scrub.png) 1x,
+                    url(./images/cursor-scrub@2x.png) 2x) 0 0, ew-resize;
+}
+
 /* ── NAV ── */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  /* 實心橫條，桌機手機都一樣，捲動也不變色。
+     底下的照片和影片從橫條下面才開始。 */
   background: rgba(251, 248, 243, 0.92);
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1.5px dashed rgba(205, 214, 174, 0.5);
   padding: 0 40px; height: 64px;
   display: flex; align-items: center; justify-content: space-between;
   transition: all 0.3s;
 }
-nav.scrolled {
-  background: rgba(205, 214, 174, 0.96);
-  border-bottom-color: var(--sage-dark);
-}
+
 .nav-logo {
   font-family: 'Dancing Script', cursive;
   font-size: 32px; color: var(--brown);
@@ -77,6 +145,56 @@ nav.scrolled {
 .menu-btn.open .menu-btn-lines span:nth-child(1) { width: 24px; transform: translateY(6.5px) rotate(45deg); }
 .menu-btn.open .menu-btn-lines span:nth-child(2) { width: 0; opacity: 0; }
 .menu-btn.open .menu-btn-lines span:nth-child(3) { width: 24px; transform: translateY(-6.5px) rotate(-45deg); }
+
+/* 上排選單。手機隱藏（用 MENU 開側邊欄），桌機做成置中的藥丸列。 */
+.nav-links { display: none; }
+.nav-right { display: flex; align-items: center; gap: 12px; }
+
+/* 桌機沒有橫條，所以每個元素要自己撐住可讀性。
+   這段一定要放在 .menu-btn 本身定義的「後面」：media query 不會增加優先權，
+   放前面會被 .menu-btn 的 background:none / padding:8px 蓋掉。 */
+@media (min-width: 901px) {
+  /* 有實心橫條了，Logo 和連結都不需要自己的底色，單純文字最乾淨 */
+  .menu-btn { display: none; }
+  .nav-links {
+    display: flex; align-items: center; gap: 4px;
+    position: absolute; left: 50%; transform: translateX(-50%);
+  }
+  .nav-links a {
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-size: 14px; letter-spacing: 2px; font-weight: 500;
+    color: var(--brown-mid); text-decoration: none;
+    padding: 9px 18px;
+    white-space: nowrap;
+    position: relative;
+    isolation: isolate;
+    transition: color 0.25s ease;
+  }
+  /* 不規則雙線保留「手繪」感，取代原本 hover 時的綠色底塊。 */
+  .nav-links a::after {
+    content: '';
+    position: absolute; z-index: -1;
+    inset: 1px -4px 0;
+    background: center / 100% 100% no-repeat url("data:image/svg+xml,%3Csvg viewBox='0 0 120 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 25C7 12 25 6 59 6c34 0 54 5 54 18 0 13-21 18-55 18C25 42 8 38 8 25Z' fill='none' stroke='%235a9da6' stroke-width='2.4' stroke-linecap='round'/%3E%3Cpath d='M10 27C9 15 27 8 60 8c31 0 51 5 51 16 0 12-20 16-53 16-30 0-48-4-48-13Z' fill='none' stroke='%235a9da6' stroke-width='1.1' stroke-linecap='round' opacity='.7'/%3E%3C/svg%3E");
+    opacity: 0;
+    transform: scale(.82) rotate(-2deg);
+    transition: opacity 0.2s ease, transform 0.28s cubic-bezier(.2,.85,.35,1.25);
+    pointer-events: none;
+  }
+  .nav-links a:hover {
+    color: var(--brown);
+  }
+  .nav-links a:hover::after,
+  .nav-links a:focus-visible::after {
+    opacity: 1;
+    transform: scale(1) rotate(-2deg);
+  }
+  .nav-links a:focus-visible { outline: none; color: var(--brown); }
+  .nav-links a:focus-visible::before {
+    content: ''; position: absolute; inset: 0; border-radius: 4px;
+    outline: 2px solid var(--teal); outline-offset: 3px;
+  }
+}
 
 /* ── MENU OVERLAY ── */
 .menu-overlay {
@@ -773,6 +891,50 @@ footer {
   filter: drop-shadow(0 8px 24px rgba(61,43,31,0.12));
   animation: fadeUp 0.8s 0.5s both;
 }
+/* ── HERO 影片 ─────────────────────────────────────────────
+   桌機：滿版背景，不自動播，由滑鼠橫向位置決定播到第幾秒。
+   手機：同一個場景的輕量版，做成一張卡自動循環播。
+   兩邊各載各的，不會同時下載。 */
+
+#heroScrub { display: none; position: absolute; inset: 0; z-index: 0; }
+#heroScrubVideo {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  display: block; object-fit: cover;
+  /* --hero-vpos 由 JS 算：讓天空剛好切齊她的頭頂，不浪費也不切到頭 */
+  object-position: 50% var(--hero-vpos, 39%);
+}
+/* 左側壓白，讓深咖啡色的標題在任何一幀上都讀得到（實測對比 9.2） */
+#heroScrub::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(90deg,
+    rgba(255,255,255,0.86) 0%, rgba(255,255,255,0.6) 34%, rgba(255,255,255,0) 58%);
+}
+
+@media (min-width: 901px) {
+  #hero { height: 100vh; min-height: 560px; }
+  /* 影片鋪滿整個 hero。navbar 是固定在「視窗」上的，不是固定在 hero 上，
+     所以這裡不能用 top: 64px 讓開它 —— 那會在 hero 頂端挖出一條永久空帶，
+     捲到中間就露出來。改成讓 JS 在算裁切位置時把橫條高度扣掉。 */
+  #heroScrub { display: block; }
+  #hero::before { opacity: 0.2; }      /* 格線淡化，不要壓在照片上 */
+  .hero-photo-area { display: none; }  /* 影片本身就是主視覺，不用再放角色 */
+}
+
+.hero-video-card { display: none; }
+@media (max-width: 900px) {
+  /* 覆蓋上面「手機不顯示角色區」那條，改成顯示影片卡 */
+  .hero-photo-area { display: block; }
+  .hero-video-card {
+    display: block; width: 100%; aspect-ratio: 16 / 9;
+    border-radius: 20px; overflow: hidden;
+    border: 4px solid rgba(255,255,255,0.9);
+    box-shadow: 0 12px 32px rgba(61,43,31,0.16);
+  }
+  .hero-video-card video {
+    width: 100%; height: 100%; display: block;
+    object-fit: cover; object-position: 50% 0;
+  }
+}
 .hero-subtitle-img {
   margin: 4px 0 28px;
   opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
@@ -990,9 +1152,10 @@ footer {
 @media (min-width: 900px) {
   .hsc-container {
     display: block;
-    position: relative;
+    position: relative; z-index: 0;
     overflow: hidden;
-    margin: 64px 0 0; /* fixed nav 高度 */
+    /* 讓開 fixed 橫條，照片從橫條下面才開始 */
+    margin: 64px 0 0;
     height: calc(100vh - 64px);
     min-height: 560px;
     border-radius: 0;

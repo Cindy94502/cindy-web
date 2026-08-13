@@ -2,7 +2,7 @@ import './style.css'
 import './property.css'
 import { icon } from './icons.js'
 import { renderNav, renderFooter, initCommon } from './shared.js'
-import { GITHUB_JSON_URL, formatPrice } from './data.js'
+import { GITHUB_JSON_URL, formatPrice, cdn } from './data.js'
 
 const params = new URLSearchParams(location.search)
 const nodeId = params.get('id')
@@ -41,7 +41,7 @@ function parseFeatures(wixFeatures) {
 }
 
 function similarCard(p) {
-  const img = p.ogImageUrl || ''
+  const img = cdn(p.ogImageUrl, 400)
   return `
   <a href="property.html?id=${p.nodeId}" class="similar-card">
     <div class="similar-img-wrap">
@@ -251,13 +251,13 @@ function renderGallery(images) {
     return `<div class="gallery-placeholder">${icon('Home', 80, 1, '', 'var(--sage-dark)')}</div>`
   }
   return `
-    <img class="gallery-main-img" id="galleryMain" src="${images[0]}" alt="物件照片">
+    <img class="gallery-main-img" id="galleryMain" src="${cdn(images[0], 1400)}" alt="物件照片">
     <button class="gallery-arrow prev" id="galleryPrev">${icon('ChevronLeft', 22, 2)}</button>
     <button class="gallery-arrow next" id="galleryNext">${icon('ChevronRight', 22, 2)}</button>
     <div class="gallery-thumbs" id="galleryThumbs">
       ${images.map((url, i) => `
         <img class="gallery-thumb ${i === 0 ? 'active' : ''}"
-             src="${url}" alt="縮圖${i + 1}"
+             src="${cdn(url, 200)}" alt="縮圖${i + 1}"
              data-index="${i}" loading="lazy">
       `).join('')}
     </div>
@@ -274,7 +274,7 @@ function initGallery(images) {
     current = (index + images.length) % images.length
     mainImg.style.opacity = '0'
     setTimeout(() => {
-      mainImg.src = images[current]
+      mainImg.src = cdn(images[current], 1400)
       mainImg.style.opacity = '1'
     }, 150)
     thumbs.forEach((t, i) => t.classList.toggle('active', i === current))

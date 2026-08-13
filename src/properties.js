@@ -2,7 +2,7 @@ import './style.css'
 import './properties.css'
 import { icon } from './icons.js'
 import { renderNav, renderFooter, initCommon } from './shared.js'
-import { GITHUB_JSON_URL, PRICE_RANGES, LAYOUTS, CATEGORIES, formatPrice } from './data.js'
+import { GITHUB_JSON_URL, PRICE_RANGES, LAYOUTS, CATEGORIES, formatPrice, cdn } from './data.js'
 
 const tapeColors = ['var(--yellow)', 'var(--pink)', 'var(--teal-light)', 'var(--peach)', 'var(--sage)', 'var(--yellow)']
 
@@ -12,7 +12,7 @@ const houseSvg = `<img src="images/house_small.png" alt="" class="filter-deco-im
 function propCard(p, index) {
   const tape = tapeColors[index % tapeColors.length]
   // 組 Cloudinary 圖片 URL
-  const imgUrl = p.ogImageUrl || ''
+  const imgUrl = cdn(p.ogImageUrl, 600)
   const iconName = p.buildingCategory === '透天' ? 'House' : 'Building2'
 
   return `

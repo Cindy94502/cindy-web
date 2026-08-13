@@ -1,8 +1,7 @@
 import './style.css'
 import { icon } from './icons.js'
 import { renderNav, renderFooter, initCommon } from './shared.js'
-import { GITHUB_JSON_URL, formatPrice } from './data.js'
-import { initHomeShowcase } from './home-showcase.js'
+import { GITHUB_JSON_URL, formatPrice, cdn } from './data.js'
 import { districts } from './data-taoyuan.js'
 import { bookPages } from './data-taoyuan-book.js'
 
@@ -22,7 +21,7 @@ function tornDivider(fromColor, toColor) {
 
 function propPreviewCard(p, index) {
   const tapeColors = ['var(--yellow)', 'var(--pink)', 'var(--teal-light)']
-  const imgUrl = p.ogImageUrl || ''
+  const imgUrl = cdn(p.ogImageUrl, 600)
   const iconName = p.buildingCategory === '透天' ? 'House' : 'Building2'
   return `
   <a href="property.html?id=${p.nodeId}" class="prop-card reveal reveal-d${index + 1}">
@@ -50,11 +49,14 @@ function propPreviewCard(p, index) {
 document.getElementById('app').innerHTML = `
   ${renderNav('index')}
 
-  <!-- ── 精選物件動畫（桌面版開場） ── -->
-  <div class="hsc-container" id="homeShowcase" aria-label="精選物件輪播"></div>
-
   <!-- ── HERO ── -->
   <section id="hero">
+    <!-- 桌機滿版背景影片。不自動播，由滑鼠橫向位置決定播到第幾秒。
+         src 留空，等 JS 確認是桌機才填，手機完全不會下載這 1.7MB。 -->
+    <div id="heroScrub" aria-hidden="true">
+      <video id="heroScrubVideo" poster="media/hero-poster.jpg"
+             muted playsinline preload="auto"></video>
+    </div>
     <div class="hero-inner">
       <!-- 左側文字 -->
       <div class="hero-text">
@@ -73,12 +75,13 @@ document.getElementById('app').innerHTML = `
       </div>
       <!-- 右側 Cindy 角色 -->
       <div class="hero-photo-area">
-        <!-- 新增說話泡泡 -->
-        <div class="hero-bubble">
-          <span>嗨！有任何房地產問題<br>都可以找我聊聊喔！</span>
-          <div class="hero-bubble-arrow"></div>
+        <!-- 手機版：影片做成一張卡，自動循環播。桌機這張卡會隱藏，
+             改成整片滿版背景（見 #heroScrub），由滑鼠橫向刮動控制播放位置。 -->
+        <div class="hero-video-card">
+          <video id="heroLoopVideo" poster="media/hero-poster.jpg"
+                 muted loop playsinline preload="none"
+                 aria-label="小薰在草地上跟你打招呼"></video>
         </div>
-        <img src="images/cindy_character.png" alt="Cindy 小薰" class="hero-cindy-img">
       </div>
     </div>
     <a href="#about" class="scroll-hint-wrap" id="scrollHint">
@@ -337,6 +340,69 @@ document.getElementById('scrollHint')?.addEventListener('click', e => {
   if (target) window.scrollTo({ top: target.offsetTop - 64, behavior: 'smooth' })
 })
 
+// ── HERO 影片 ────────────────────────────────────────────────
+// 桌機：滑鼠橫向刮動影片（最右＝開頭，最左＝結尾）。
+// 手機：沒有滑鼠，改成輕量版自動循環播。
+// 只有一邊會下載，src 都是 JS 才填的。
+{
+  const heroSection = document.getElementById('hero')
+  const scrubWrap = document.getElementById('heroScrub')
+  const scrubVid = document.getElementById('heroScrubVideo')
+  const loopVid = document.getElementById('heroLoopVideo')
+  const isDesktop = matchMedia('(min-width: 901px) and (hover: hover) and (pointer: fine)').matches
+  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  if (isDesktop && heroSection && scrubVid) {
+    scrubVid.src = 'media/hero-scrub.mp4'
+
+    // 她的頭頂在原片的 y=37（1280×720，量出來的）。
+    // 螢幕比 16:9 寬時會多出高度要裁，這裡算出「剛好切到頭頂」的位置。
+    const HEAD_TOP_Y = 37
+    const NAV_H = 64   // 固定橫條會蓋住視窗最上面這麼多，頭要留在它下面
+    const fitHead = () => {
+      const w = scrubWrap.clientWidth, h = scrubWrap.clientHeight
+      if (!scrubVid.videoWidth || !w || !h) return
+      const s = Math.max(w / scrubVid.videoWidth, h / scrubVid.videoHeight)
+      const excess = scrubVid.videoHeight * s - h
+      const pct = excess <= 0 ? 0
+        : Math.max(0, Math.min(100, (HEAD_TOP_Y * s - NAV_H) / excess * 100))
+      scrubWrap.style.setProperty('--hero-vpos', pct.toFixed(1) + '%')
+    }
+    scrubVid.addEventListener('loadedmetadata', fitHead)
+    window.addEventListener('resize', fitHead)
+
+    if (!calm) {
+      // target 是滑鼠指定的時間，cur 每幀往它靠近一點，不會跟著手抖
+      const EASE = 0.14
+      let target = 0, cur = 0, running = false
+      const tick = () => {
+        cur += (target - cur) * EASE
+        if (scrubVid.readyState >= 2 && Math.abs(scrubVid.currentTime - cur) > 0.008) {
+          scrubVid.currentTime = cur
+        }
+        if (Math.abs(target - cur) > 0.004) requestAnimationFrame(tick)
+        else running = false
+      }
+      heroSection.addEventListener('mousemove', e => {
+        if (!scrubVid.duration) return
+        target = (1 - e.clientX / window.innerWidth) * scrubVid.duration
+        if (!running) { running = true; requestAnimationFrame(tick) }
+      })
+    }
+  } else if (loopVid && !calm) {
+    // 手機：等首頁該載的都載完再抓影片，不跟首屏搶頻寬
+    const start = () => {
+      loopVid.autoplay = true
+      loopVid.src = 'media/hero-loop.mp4'
+      // 有些瀏覽器要等資料進來才肯播，所以載好再試一次
+      loopVid.addEventListener('loadeddata', () => loopVid.play().catch(() => {}), { once: true })
+      loopVid.play().catch(() => {})
+    }
+    if (document.readyState === 'complete') setTimeout(start, 300)
+    else window.addEventListener('load', () => setTimeout(start, 300))
+  }
+}
+
 // 父女圖 scroll reveal - 監聽 about 區塊
 const aboutSection = document.getElementById('about')
 if (aboutSection) {
@@ -357,10 +423,6 @@ async function loadHomeProps() {
     const preview = props.filter(p => p.title && p.nodeId).slice(0, 3)
     document.getElementById('homePropsGrid').innerHTML =
       preview.map((p, i) => propPreviewCard(p, i)).join('')
-    // 桌面版：首頁開場的精選物件動畫（手機不載入，維持原本版面）
-    if (matchMedia('(min-width: 900px)').matches) {
-      initHomeShowcase(document.getElementById('homeShowcase'), props.filter(p => p.title && p.nodeId))
-    }
     document.getElementById('propsMoreBtn').innerHTML =
       `查看全部 ${props.length} 筆物件 ${icon('ArrowRight', 16, 2)}`
     const obs = new IntersectionObserver(entries => {

@@ -2,7 +2,7 @@
 // 卡片放大成整個容器背景、文字滑入，每幾秒自動換下一間。
 // 桌面版限定：手機由 main.js 直接沿用原本的卡片 grid。
 import { gsap } from 'gsap'
-import { formatPrice } from './data.js'
+import { formatPrice, cdn } from './data.js'
 
 const ease = 'sine.inOut'
 
@@ -36,7 +36,7 @@ export function initHomeShowcase(container, props) {
   `
   const stage = container.querySelector('.hsc-stage')
   stage.innerHTML =
-    items.map((p, i) => `<div class="hsc-card" id="hscCard${i}" style="background-image:url('${p.ogImageUrl}')"></div>`).join('') +
+    items.map((p, i) => `<div class="hsc-card" id="hscCard${i}" style="background-image:url('${cdn(p.ogImageUrl, 1600)}')"></div>`).join('') +
     items.map((p, i) => `<div class="hsc-card-label" id="hscLabel${i}"><div class="hsc-label-bar"></div><div class="hsc-label-loc">${p.wixLocation || ''}</div><div class="hsc-label-title">${p.title}</div></div>`).join('')
   container.querySelector('.hsc-numbers').innerHTML =
     items.map((_, i) => `<div class="hsc-num" id="hscNum${i}">${i + 1}</div>`).join('')
@@ -203,7 +203,7 @@ export function initHomeShowcase(container, props) {
   }
   first.onload = boot
   first.onerror = boot
-  first.src = items[0].ogImageUrl
+  first.src = cdn(items[0].ogImageUrl, 1600)
   setTimeout(boot, 5000)
 
   let rT

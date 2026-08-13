@@ -1,5 +1,8 @@
 import { icon } from './icons.js'
 
+// 本機開發是 '/'，打包上 GitHub Pages 是 '/cindy-web/'（vite.config 決定）。
+const BASE = import.meta.env.BASE_URL
+
 export function renderNav() {
   return `
   <nav id="nav">
@@ -7,12 +10,24 @@ export function renderNav() {
       <span class="nav-logo-dot"></span>
       Cindy ${icon('Heart', 16, 2, 'nav-logo-heart')}
     </a>
-    <button class="menu-btn" id="menuBtn" aria-label="選單">
-      <span class="menu-btn-text">MENU</span>
-      <div class="menu-btn-lines">
-        <span></span><span></span><span></span>
-      </div>
-    </button>
+    <!-- 桌機：藥丸列置中（同 story 頁的 .navpills），六項順序與側邊欄一致。
+         手機隱藏，改用右邊的 MENU 開側邊欄 -->
+    <div class="nav-links">
+      <a href="index.html">首頁</a>
+      <a href="index.html#about">關於我</a>
+      <a href="properties.html">精選物件</a>
+      <a href="blog.html">房產筆記</a>
+      <a href="index.html#forms">快速諮詢</a>
+      <a href="index.html#contact">聯絡我</a>
+    </div>
+    <div class="nav-right">
+      <button class="menu-btn" id="menuBtn" aria-label="選單">
+        <span class="menu-btn-text">MENU</span>
+        <div class="menu-btn-lines">
+          <span></span><span></span><span></span>
+        </div>
+      </button>
+    </div>
   </nav>
 
   <!-- 右滑選單 -->
@@ -74,13 +89,16 @@ export function renderFooter() {
     <div class="footer-copy">© 2026 欣益不動產開發有限公司</div>
     <div class="footer-copy">營業員：王瑋薰(Cindy) · (112)登字第445910號</div>
     <div class="footer-copy">經紀人：黃惠蓉 · (110)桃市經字第001835號</div>
+    <!-- 路徑用 BASE_URL，不要寫死 /cindy-web/：
+         本機開發時 base 是 /，寫死的話六個連結全部會跑到首頁；
+         將來換網域也只要改 vite.config 一個地方。順序與 nav、側邊欄一致。 -->
     <div class="footer-links">
-      <a href="/cindy-web/">首頁</a>
-      <a href="/cindy-web/#about">關於我</a>
-      <a href="/cindy-web/properties.html">精選物件</a>
-      <a href="/cindy-web/blog.html">房產筆記</a>
-      <a href="/cindy-web/#forms">快速諮詢</a>
-      <a href="/cindy-web/#contact">聯絡我</a>
+      <a href="${BASE}">首頁</a>
+      <a href="${BASE}#about">關於我</a>
+      <a href="${BASE}properties.html">精選物件</a>
+      <a href="${BASE}blog.html">房產筆記</a>
+      <a href="${BASE}#forms">快速諮詢</a>
+      <a href="${BASE}#contact">聯絡我</a>
     </div>
   </footer>
   <button class="go-top" id="goTop" aria-label="回到頂部">
@@ -142,10 +160,14 @@ export function initCommon() {
   backdrop?.addEventListener('click', closeMenu)
   overlay?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu))
 
-  // Scroll reveal
+  // Scroll reveal。預設是「浮上來之後就留著」。
+  // 加了 .reveal-both 的元素會來回：離開視窗時淡出縮回，再進來又浮上。
   const reveals = document.querySelectorAll('.reveal')
   const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible') })
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible')
+      else if (e.target.classList.contains('reveal-both')) e.target.classList.remove('visible')
+    })
   }, { threshold: 0.1 })
   reveals.forEach(el => obs.observe(el))
 }

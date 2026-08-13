@@ -15,3 +15,13 @@ export function getCloudinaryUrl(folder) {
   if (!folder) return ''
   return `https://res.cloudinary.com/ddzync8km/image/upload/${folder}_0.jpg`
 }
+
+// 幫 Cloudinary 圖片加上尺寸與壓縮參數。
+// 資料庫存的是原圖網址（平均 418 KB，最大到 1.1 MB），直接用會很重；
+// 實測同一張 819 KB → 49 KB，卡片只有 300 多 px 寬，肉眼看不出差別。
+// 已經有參數的網址不重複加；非 Cloudinary 的網址原樣回傳。
+export function cdn(url, width = 600) {
+  if (!url || !url.includes('res.cloudinary.com') || !url.includes('/upload/')) return url || ''
+  if (/\/upload\/[a-z]_[^/]*\//.test(url)) return url
+  return url.replace('/upload/', `/upload/w_${width},q_auto,f_auto/`)
+}
