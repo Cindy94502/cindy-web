@@ -118,10 +118,6 @@ document.getElementById('app').innerHTML = `
         </div>
       </div>
     </div>
-    <!-- 父女圖 hover 才出現 -->
-    <div class="about-dad-wrap">
-      <img src="images/cindy_dad.png" alt="父女搭檔" class="about-dad-img">
-    </div>
   </section>
 
   <!-- ── 家的故事 ── -->
@@ -401,19 +397,6 @@ document.getElementById('scrollHint')?.addEventListener('click', e => {
     if (document.readyState === 'complete') setTimeout(start, 300)
     else window.addEventListener('load', () => setTimeout(start, 300))
   }
-}
-
-// 父女圖 scroll reveal - 監聽 about 區塊
-const aboutSection = document.getElementById('about')
-if (aboutSection) {
-  const dadObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        document.querySelector('.about-dad-wrap')?.classList.add('visible')
-      }
-    })
-  }, { threshold: 0.1 })
-  dadObs.observe(aboutSection)
 }
 
 async function loadHomeProps() {
