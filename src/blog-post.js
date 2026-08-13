@@ -1,5 +1,7 @@
-import '/src/style.css'
-import '/src/blog.css'
+// CSS 不在這裡 import：五個頁面的 HTML 都已經用 <link> 依序載入
+// style.css → 頁面專屬 → mobile.css。JS 再 import 一次的話，
+// 開發時 Vite 會把它注入到 <head> 最後面，反而蓋掉 mobile.css，
+// 造成開發環境跟正式站表現不一致（正式站是照 <link> 的順序打包）。
 import { icon } from '/src/icons.js'
 import { renderNav, renderFooter, initCommon } from '/src/shared.js'
 
