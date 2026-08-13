@@ -351,17 +351,20 @@ document.getElementById('scrollHint')?.addEventListener('click', e => {
   if (isDesktop && heroSection && scrubVid) {
     scrubVid.src = 'media/hero-scrub.mp4'
 
-    // 她的頭頂在原片的 y=37（1280×720，量出來的）。
-    // 螢幕比 16:9 寬時會多出高度要裁，這裡算出「剛好切到頭頂」的位置。
-    const HEAD_TOP_Y = 37
+    // 她的頭頂位置，寫成「佔影片高度的比例」而不是絕對像素。
+    // 之前寫死 37（1280×720 量的），換成 704×384 的新片時位置就跑掉了，
+    // 用比例的話換任何解析度都不用改這裡。
+    // 目前這支逐秒量出來頭頂在 y=20～26（384 高），取最低的 26 再留一點餘裕。
+    const HEAD_TOP_FRAC = 29 / 384
     const NAV_H = 64   // 固定橫條會蓋住視窗最上面這麼多，頭要留在它下面
     const fitHead = () => {
       const w = scrubWrap.clientWidth, h = scrubWrap.clientHeight
       if (!scrubVid.videoWidth || !w || !h) return
       const s = Math.max(w / scrubVid.videoWidth, h / scrubVid.videoHeight)
       const excess = scrubVid.videoHeight * s - h
+      const headTopY = scrubVid.videoHeight * HEAD_TOP_FRAC
       const pct = excess <= 0 ? 0
-        : Math.max(0, Math.min(100, (HEAD_TOP_Y * s - NAV_H) / excess * 100))
+        : Math.max(0, Math.min(100, (headTopY * s - NAV_H) / excess * 100))
       scrubWrap.style.setProperty('--hero-vpos', pct.toFixed(1) + '%')
     }
     scrubVid.addEventListener('loadedmetadata', fitHead)
