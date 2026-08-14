@@ -1,27 +1,27 @@
-import{r as B,b as s,a as C,i as L}from"./shared-CZKodk7v.js";import{G as H,c as M,f as F}from"./data-vfwjmF8_.js";function g(e,o){return`<div class="torn-divider" style="background:${o}">
+import{r as C,b as s,a as H,i as M}from"./shared-Fwkuy7Ne.js";import{G as F,c as I,f as x}from"./data-vfwjmF8_.js";function g(t,o){return`<div class="torn-divider" style="background:${o}">
     <svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,0 L0,20 C80,35 160,8 240,22 C320,36 400,10 480,24 C560,38 640,12 720,26 C800,40 880,8 960,22 C1040,36 1120,14 1200,28 C1280,42 1360,16 1440,20 L1440,0 Z" fill="${e}"/>
+      <path d="M0,0 L0,20 C80,35 160,8 240,22 C320,36 400,10 480,24 C560,38 640,12 720,26 C800,40 880,8 960,22 C1040,36 1120,14 1200,28 C1280,42 1360,16 1440,20 L1440,0 Z" fill="${t}"/>
     </svg>
-  </div>`}function I(e,o){const t=M(e.ogImageUrl,600),i=e.buildingCategory==="透天"?"House":"Building2";return`
-  <a href="property.html?id=${e.nodeId}" class="prop-card reveal reveal-d${o+1}">
+  </div>`}function T(t,o){const e=I(t.ogImageUrl,600),a=t.buildingCategory==="透天"?"House":"Building2";return`
+  <a href="property.html?id=${t.nodeId}" class="prop-card reveal reveal-d${o+1}">
     <div class="prop-card-img">
-      ${t?`<img src="${t}" alt="${e.title}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" onerror="this.style.objectFit='contain';this.style.opacity='0.4';this.style.padding='20px';this.src='images/house_small.png'">`:`<div class="prop-card-img-icon">${s(i,48,1,"prop-placeholder-icon")}</div>`}
-      <div class="prop-card-category">${e.buildingCategory||"住宅"}</div>
+      ${e?`<img src="${e}" alt="${t.title}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" onerror="this.style.objectFit='contain';this.style.opacity='0.4';this.style.padding='20px';this.src='images/house_small.png'">`:`<div class="prop-card-img-icon">${s(a,48,1,"prop-placeholder-icon")}</div>`}
+      <div class="prop-card-category">${t.buildingCategory||"住宅"}</div>
     </div>
     <div class="prop-card-body">
-      <div class="prop-price">${F(e.price)}</div>
-      <div class="prop-name">${e.title}</div>
+      <div class="prop-price">${x(t.price)}</div>
+      <div class="prop-name">${t.title}</div>
       <div class="prop-info">
-        <span class="prop-tag">${e.layout||""}</span>
-        <span class="prop-tag">${e.buildingCategory||""}</span>
+        <span class="prop-tag">${t.layout||""}</span>
+        <span class="prop-tag">${t.buildingCategory||""}</span>
       </div>
       <div class="prop-card-footer">
-        <span class="prop-location">${s("MapPin",13,2,"prop-loc-icon")} ${e.wixLocation||""}</span>
+        <span class="prop-location">${s("MapPin",13,2,"prop-loc-icon")} ${t.wixLocation||""}</span>
         <span class="prop-link">查看詳情 ${s("ArrowRight",13,2)}</span>
       </div>
     </div>
   </a>`}document.getElementById("app").innerHTML=`
-  ${B()}
+  ${C()}
 
   <!-- ── HERO ── -->
   <section id="hero">
@@ -216,5 +216,5 @@ import{r as B,b as s,a as C,i as L}from"./shared-CZKodk7v.js";import{G as H,c as
     </div>
   </section>
 
-  ${C()}
-`;L();setTimeout(()=>{var e;(e=document.getElementById("heroStrong"))==null||e.classList.add("hero-title-line-animate")},1400);var $;($=document.getElementById("scrollHint"))==null||$.addEventListener("click",e=>{e.preventDefault();const o=document.getElementById("about");o&&window.scrollTo({top:o.offsetTop-64,behavior:"smooth"})});{const e=document.getElementById("hero"),o=document.getElementById("heroScrub"),t=document.getElementById("heroScrubVideo"),i=document.getElementById("heroLoopVideo"),a=matchMedia("(min-width: 901px) and (hover: hover) and (pointer: fine)").matches,r=matchMedia("(prefers-reduced-motion: reduce)").matches;if(a&&e&&t){t.src="media/hero-scrub.mp4";const m=37/720,E=64,b=()=>{const u=o.clientWidth,n=o.clientHeight;if(!t.videoWidth||!u||!n)return;const d=Math.max(u/t.videoWidth,n/t.videoHeight),c=t.videoHeight*d-n,l=t.videoHeight*m,v=c<=0?0:Math.max(0,Math.min(100,(l*d-E)/c*100));o.style.setProperty("--hero-vpos",v.toFixed(1)+"%")};if(t.addEventListener("loadedmetadata",b),window.addEventListener("resize",b),!r){const n=.08333333333333333;let d=0,c=0,l=!1,v=!1,h=null;const y=p=>{const f=Math.round(p/n)*n;if(!(Math.abs(t.currentTime-f)<n*.5)){if(v){h=f;return}v=!0,t.currentTime=f}};t.addEventListener("seeked",()=>{if(v=!1,h!==null){const p=h;h=null,y(p)}});const w=()=>{c+=(d-c)*.14,t.readyState>=2&&y(c),Math.abs(d-c)>n*.5?requestAnimationFrame(w):l=!1};e.addEventListener("mousemove",p=>{t.duration&&(d=(1-p.clientX/window.innerWidth)*t.duration,l||(l=!0,requestAnimationFrame(w)))})}}else if(i&&!r){const m=()=>{i.autoplay=!0,i.src="media/hero-loop.mp4",i.addEventListener("loadeddata",()=>i.play().catch(()=>{}),{once:!0}),i.play().catch(()=>{})};document.readyState==="complete"?setTimeout(m,300):window.addEventListener("load",()=>setTimeout(m,300))}}async function x(){try{const o=await(await fetch(H)).json(),t=o.filter(a=>a.title&&a.nodeId).slice(0,3);document.getElementById("homePropsGrid").innerHTML=t.map((a,r)=>I(a,r)).join(""),document.getElementById("propsMoreBtn").innerHTML=`查看全部 ${o.length} 筆物件 ${s("ArrowRight",16,2)}`;const i=new IntersectionObserver(a=>{a.forEach(r=>{r.isIntersecting&&r.target.classList.add("visible")})},{threshold:.1});document.querySelectorAll("#homePropsGrid .reveal").forEach(a=>i.observe(a))}catch{document.getElementById("homePropsGrid").innerHTML='<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--brown-mid)">暫時無法載入物件</div>'}}x();
+  ${H()}
+`;M();setTimeout(()=>{var t;(t=document.getElementById("heroStrong"))==null||t.classList.add("hero-title-line-animate")},1400);var L;(L=document.getElementById("scrollHint"))==null||L.addEventListener("click",t=>{t.preventDefault();const o=document.getElementById("about");o&&window.scrollTo({top:o.offsetTop-64,behavior:"smooth"})});{const t=document.getElementById("hero"),o=document.getElementById("heroScrub"),e=document.getElementById("heroScrubVideo"),a=document.getElementById("heroLoopVideo"),i=matchMedia("(min-width: 901px) and (hover: hover) and (pointer: fine)").matches,r=matchMedia("(prefers-reduced-motion: reduce)").matches;if(i&&t&&e){e.src="media/hero-scrub.mp4";const h=37/720,B=64,w=()=>{const f=o.clientWidth,n=o.clientHeight;if(!e.videoWidth||!f||!n)return;const d=Math.max(f/e.videoWidth,n/e.videoHeight),c=e.videoHeight*d-n,l=e.videoHeight*h,v=c<=0?0:Math.max(0,Math.min(100,(l*d-B)/c*100));o.style.setProperty("--hero-vpos",v.toFixed(1)+"%")};if(e.addEventListener("loadedmetadata",w),window.addEventListener("resize",w),!r){const n=.08333333333333333;let d=0,c=0,l=!1,v=!1,u=null;const $=m=>{const y=Math.round(m/n)*n;if(!(Math.abs(e.currentTime-y)<n*.5)){if(v){u=y;return}v=!0,e.currentTime=y}};e.addEventListener("seeked",()=>{if(v=!1,u!==null){const m=u;u=null,$(m)}});const E=()=>{c+=(d-c)*.14,e.readyState>=2&&$(c),Math.abs(d-c)>n*.5?requestAnimationFrame(E):l=!1};let p=!1;const b=()=>{p||!e.duration||!e.buffered.length||e.buffered.end(e.buffered.length-1)<e.duration-.25||(p=!0,o.classList.add("scrub-ready"))};e.addEventListener("progress",b),e.addEventListener("canplaythrough",b),e.addEventListener("loadeddata",b),setTimeout(()=>{p||(p=!0,o.classList.add("scrub-ready"))},2e4),t.addEventListener("mousemove",m=>{!p||!e.duration||(d=(1-m.clientX/window.innerWidth)*e.duration,l||(l=!0,requestAnimationFrame(E)))})}}else if(a&&!r){const h=()=>{a.autoplay=!0,a.src="media/hero-loop.mp4",a.addEventListener("loadeddata",()=>a.play().catch(()=>{}),{once:!0}),a.play().catch(()=>{})};document.readyState==="complete"?setTimeout(h,300):window.addEventListener("load",()=>setTimeout(h,300))}}async function S(){try{const o=await(await fetch(F)).json(),e=o.filter(i=>i.title&&i.nodeId).slice(0,3);document.getElementById("homePropsGrid").innerHTML=e.map((i,r)=>T(i,r)).join(""),document.getElementById("propsMoreBtn").innerHTML=`查看全部 ${o.length} 筆物件 ${s("ArrowRight",16,2)}`;const a=new IntersectionObserver(i=>{i.forEach(r=>{r.isIntersecting&&r.target.classList.add("visible")})},{threshold:.1});document.querySelectorAll("#homePropsGrid .reveal").forEach(i=>a.observe(i))}catch{document.getElementById("homePropsGrid").innerHTML='<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--brown-mid)">暫時無法載入物件</div>'}}S();
