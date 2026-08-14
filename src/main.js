@@ -352,7 +352,13 @@ document.getElementById('scrollHint')?.addEventListener('click', e => {
   const calm = matchMedia('(prefers-reduced-motion: reduce)').matches
 
   if (isDesktop && heroSection && scrubVid) {
-    scrubVid.src = 'media/hero-scrub.mp4'
+    // 等首頁該載的都載完再抓影片，不跟首屏搶頻寬。
+    // 手機那條（下面的 else）本來就這樣做，桌機漏了 —— 結果這支 1.7MB
+    // 從第一秒就跟所有圖片搶頻寬。實測線上 house_plants.png 才 49KB
+    // 卻要 22 秒，note_service.png 要 20.9 秒，就是被它卡住。
+    const loadScrub = () => { scrubVid.src = 'media/hero-scrub.mp4' }
+    if (document.readyState === 'complete') setTimeout(loadScrub, 200)
+    else window.addEventListener('load', () => setTimeout(loadScrub, 200))
 
     // 她的頭頂位置，寫成「佔影片高度的比例」而不是絕對像素。
     // 原本寫死 37（用 1280×720 量的），換不同解析度的影片就會失準。
@@ -420,13 +426,17 @@ document.getElementById('scrollHint')?.addEventListener('click', e => {
       scrubVid.addEventListener('canplaythrough', checkReady)
       scrubVid.addEventListener('loadeddata', checkReady)
       // 保底：瀏覽器有時會自己判斷「載夠了」就停止下載，buffered 永遠到不了
-      // 結尾，那樣刮動會永遠開不了。20 秒後不管有沒有載完都放行 ——
+      // 結尾，那樣刮動會永遠開不了。載入開始後 25 秒不管有沒有載完都放行 ——
       // 頓一下總比整個 hero 是死的好。
-      setTimeout(() => {
-        if (ready) return
-        ready = true
-        scrubWrap.classList.add('scrub-ready')
-      }, 20000)
+      // 計時要從「影片真的開始下載」起算，不是從腳本執行起算：
+      // 影片現在延後到 window.load 之後才抓，從腳本起算會提早燒掉。
+      scrubVid.addEventListener('loadstart', () => {
+        setTimeout(() => {
+          if (ready) return
+          ready = true
+          scrubWrap.classList.add('scrub-ready')
+        }, 25000)
+      }, { once: true })
 
       heroSection.addEventListener('mousemove', e => {
         if (!ready || !scrubVid.duration) return
