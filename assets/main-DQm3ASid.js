@@ -1,15 +1,15 @@
-import{r as C,b as s,a as L,i as H}from"./shared-CZKodk7v.js";import{G as M,c as F,f as I}from"./data-vfwjmF8_.js";function u(e,o){return`<div class="torn-divider" style="background:${o}">
+import{r as B,b as s,a as C,i as M}from"./shared-C5LVJtgJ.js";import{G as F,c as S,f as H}from"./data-vfwjmF8_.js";function h(e,t){return`<div class="torn-divider" style="background:${t}">
     <svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M0,0 L0,20 C80,35 160,8 240,22 C320,36 400,10 480,24 C560,38 640,12 720,26 C800,40 880,8 960,22 C1040,36 1120,14 1200,28 C1280,42 1360,16 1440,20 L1440,0 Z" fill="${e}"/>
     </svg>
-  </div>`}function S(e,o){const t=F(e.ogImageUrl,600),i=e.buildingCategory==="透天"?"House":"Building2";return`
-  <a href="property.html?id=${e.nodeId}" class="prop-card reveal reveal-d${o+1}">
+  </div>`}function x(e,t){const a=S(e.ogImageUrl,600),m=e.buildingCategory==="透天"?"House":"Building2";return`
+  <a href="property.html?id=${e.nodeId}" class="prop-card reveal reveal-d${t+1}">
     <div class="prop-card-img">
-      ${t?`<img src="${t}" alt="${e.title}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" onerror="this.style.objectFit='contain';this.style.opacity='0.4';this.style.padding='20px';this.src='images/house_small.png'">`:`<div class="prop-card-img-icon">${s(i,48,1,"prop-placeholder-icon")}</div>`}
+      ${a?`<img src="${a}" alt="${e.title}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" onerror="this.style.objectFit='contain';this.style.opacity='0.4';this.style.padding='20px';this.src='images/house_small.png'">`:`<div class="prop-card-img-icon">${s(m,48,1,"prop-placeholder-icon")}</div>`}
       <div class="prop-card-category">${e.buildingCategory||"住宅"}</div>
     </div>
     <div class="prop-card-body">
-      <div class="prop-price">${I(e.price)}</div>
+      <div class="prop-price">${H(e.price)}</div>
       <div class="prop-name">${e.title}</div>
       <div class="prop-info">
         <span class="prop-tag">${e.layout||""}</span>
@@ -21,16 +21,17 @@ import{r as C,b as s,a as L,i as H}from"./shared-CZKodk7v.js";import{G as M,c as
       </div>
     </div>
   </a>`}document.getElementById("app").innerHTML=`
-  ${C()}
+  ${B()}
 
   <!-- ── HERO ── -->
   <section id="hero">
-    <!-- 桌機滿版背景影片。不自動播，由滑鼠橫向位置決定播到第幾秒。
-         src 留空，等 JS 確認是桌機才填，手機完全不會下載這 1.7MB。 -->
-    <div id="heroScrub" aria-hidden="true">
-      <video id="heroScrubVideo" poster="media/hero-poster.jpg"
-             muted playsinline preload="auto"></video>
-    </div>
+    <!-- 桌機滿版背景，由滑鼠橫向位置決定顯示第幾幀。
+         用圖片序列不用影片：影片刮動要 seek，跳到還沒下載到的位置就會
+         發 Range 請求並卡住（GitHub Pages 上實測一次 0.7 秒）。
+         圖片序列沒有這個問題 —— 載到第幾張，第幾格就能刮，換圖就是換圖。
+         流量差不多（40 張 WebP 共 1099 KB，影片 1196 KB）。
+         img 由 JS 產生，手機完全不會下載。 -->
+    <div id="heroScrub" aria-hidden="true"></div>
     <div class="hero-inner">
       <!-- 左側文字 -->
       <div class="hero-text">
@@ -67,7 +68,7 @@ import{r as C,b as s,a as L,i as H}from"./shared-CZKodk7v.js";import{G as M,c as
     </a>
   </section>
 
-  ${u("#B2CDCB","#FBF8F3")}
+  ${h("#B2CDCB","#FBF8F3")}
 
   <!-- ── ABOUT ── -->
   <section id="about">
@@ -118,7 +119,7 @@ import{r as C,b as s,a as L,i as H}from"./shared-CZKodk7v.js";import{G as M,c as
 
 
 
-  ${u("#FBF8F3","#F2EDE4")}
+  ${h("#FBF8F3","#F2EDE4")}
 
   <!-- ── 精選物件 ── -->
   <section id="properties-preview">
@@ -142,7 +143,7 @@ import{r as C,b as s,a as L,i as H}from"./shared-CZKodk7v.js";import{G as M,c as
     </div>
   </section>
 
-  ${u("#F2EDE4","#FBF8F3")}
+  ${h("#F2EDE4","#FBF8F3")}
 
   <!-- ── 需求表單 ── -->
   <section id="forms">
@@ -176,7 +177,7 @@ import{r as C,b as s,a as L,i as H}from"./shared-CZKodk7v.js";import{G as M,c as
     </div>
   </section>
 
-  ${u("#FBF8F3","#7CBBC3")}
+  ${h("#FBF8F3","#7CBBC3")}
 
   <!-- ── 聯絡 ── -->
   <section id="contact">
@@ -216,5 +217,5 @@ import{r as C,b as s,a as L,i as H}from"./shared-CZKodk7v.js";import{G as M,c as
     </div>
   </section>
 
-  ${L()}
-`;H();setTimeout(()=>{var e;(e=document.getElementById("heroStrong"))==null||e.classList.add("hero-title-line-animate")},1400);var $;($=document.getElementById("scrollHint"))==null||$.addEventListener("click",e=>{e.preventDefault();const o=document.getElementById("about");o&&window.scrollTo({top:o.offsetTop-64,behavior:"smooth"})});{const e=document.getElementById("hero"),o=document.getElementById("heroScrub"),t=document.getElementById("heroScrubVideo"),i=document.getElementById("heroLoopVideo"),a=matchMedia("(min-width: 901px) and (hover: hover) and (pointer: fine)").matches,r=matchMedia("(prefers-reduced-motion: reduce)").matches;if(a&&e&&t){const l=()=>{t.src="media/hero-scrub.mp4"};document.readyState==="complete"?setTimeout(l,200):window.addEventListener("load",()=>setTimeout(l,200));const E=37/720,B=64,b=()=>{const g=o.clientWidth,n=o.clientHeight;if(!t.videoWidth||!g||!n)return;const d=Math.max(g/t.videoWidth,n/t.videoHeight),c=t.videoHeight*d-n,v=t.videoHeight*E,p=c<=0?0:Math.max(0,Math.min(100,(v*d-B)/c*100));o.style.setProperty("--hero-vpos",p.toFixed(1)+"%")};if(t.addEventListener("loadedmetadata",b),window.addEventListener("resize",b),!r){const n=.16666666666666666;let d=0,c=0,v=!1,p=!1,h=null;const y=m=>{const f=Math.round(m/n)*n;if(!(Math.abs(t.currentTime-f)<n*.5)){if(p){h=f;return}p=!0,t.currentTime=f}};t.addEventListener("seeked",()=>{if(p=!1,h!==null){const m=h;h=null,y(m)}});const w=()=>{c+=(d-c)*.14,t.readyState>=2&&y(c),Math.abs(d-c)>n*.5?requestAnimationFrame(w):v=!1};e.addEventListener("mousemove",m=>{t.duration&&(d=(1-m.clientX/window.innerWidth)*t.duration,v||(v=!0,requestAnimationFrame(w)))})}}else if(i&&!r){const l=()=>{i.autoplay=!0,i.src="media/hero-loop.mp4",i.addEventListener("loadeddata",()=>i.play().catch(()=>{}),{once:!0}),i.play().catch(()=>{})};document.readyState==="complete"?setTimeout(l,300):window.addEventListener("load",()=>setTimeout(l,300))}}async function T(){try{const o=await(await fetch(M)).json(),t=o.filter(a=>a.title&&a.nodeId).slice(0,3);document.getElementById("homePropsGrid").innerHTML=t.map((a,r)=>S(a,r)).join(""),document.getElementById("propsMoreBtn").innerHTML=`查看全部 ${o.length} 筆物件 ${s("ArrowRight",16,2)}`;const i=new IntersectionObserver(a=>{a.forEach(r=>{r.isIntersecting&&r.target.classList.add("visible")})},{threshold:.1});document.querySelectorAll("#homePropsGrid .reveal").forEach(a=>i.observe(a))}catch{document.getElementById("homePropsGrid").innerHTML='<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--brown-mid)">暫時無法載入物件</div>'}}T();
+  ${C()}
+`;M();setTimeout(()=>{var e;(e=document.getElementById("heroStrong"))==null||e.classList.add("hero-title-line-animate")},1400);var w;(w=document.getElementById("scrollHint"))==null||w.addEventListener("click",e=>{e.preventDefault();const t=document.getElementById("about");t&&window.scrollTo({top:t.offsetTop-64,behavior:"smooth"})});{const e=document.getElementById("hero"),t=document.getElementById("heroScrub"),a=document.getElementById("heroLoopVideo"),m=matchMedia("(min-width: 901px) and (hover: hover) and (pointer: fine)").matches,i=matchMedia("(prefers-reduced-motion: reduce)").matches;if(m&&e&&t){const c=[];for(let n=0;n<40;n++){const o=new Image;o.decoding="async",o.alt="",o.className="hero-frame-img",t.appendChild(o),c.push(o)}const f=()=>{c.forEach((n,o)=>{n.addEventListener("load",()=>{},{once:!0}),n.src=`media/frames/${String(o).padStart(2,"0")}.webp`})};document.readyState==="complete"?setTimeout(f,200):window.addEventListener("load",()=>setTimeout(f,200));const $=37/720,E=64,L=960,g=540,u=()=>{const n=t.clientWidth,o=t.clientHeight;if(!n||!o)return;const l=Math.max(n/L,o/g),p=g*l-o,v=p<=0?0:Math.max(0,Math.min(100,(g*$*l-E)/p*100));t.style.setProperty("--hero-vpos",v.toFixed(1)+"%")};if(u(),window.addEventListener("resize",u),i)c[0].addEventListener("load",()=>c[0].classList.add("on"),{once:!0});else{let o=0,l=0,p=!1,v=-1;const b=d=>{d=Math.max(0,Math.min(39,Math.round(d))),d!==v&&c[d].complete&&(v>=0&&c[v].classList.remove("on"),c[d].classList.add("on"),v=d)},y=()=>{l+=(o-l)*.18,b(l),Math.abs(o-l)>.4?requestAnimationFrame(y):p=!1};e.addEventListener("mousemove",d=>{o=(1-d.clientX/window.innerWidth)*39,p||(p=!0,requestAnimationFrame(y))}),c[0].addEventListener("load",()=>b(0),{once:!0})}}else if(a&&!i){const r=()=>{a.autoplay=!0,a.src="media/hero-loop.mp4",a.addEventListener("loadeddata",()=>a.play().catch(()=>{}),{once:!0}),a.play().catch(()=>{})};document.readyState==="complete"?setTimeout(r,300):window.addEventListener("load",()=>setTimeout(r,300))}}async function I(){try{const t=await(await fetch(F)).json(),a=t.filter(i=>i.title&&i.nodeId).slice(0,3);document.getElementById("homePropsGrid").innerHTML=a.map((i,r)=>x(i,r)).join(""),document.getElementById("propsMoreBtn").innerHTML=`查看全部 ${t.length} 筆物件 ${s("ArrowRight",16,2)}`;const m=new IntersectionObserver(i=>{i.forEach(r=>{r.isIntersecting&&r.target.classList.add("visible")})},{threshold:.1});document.querySelectorAll("#homePropsGrid .reveal").forEach(i=>m.observe(i))}catch{document.getElementById("homePropsGrid").innerHTML='<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--brown-mid)">暫時無法載入物件</div>'}}I();
