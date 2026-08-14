@@ -1,4 +1,4 @@
-import{r as $,b as t,a as k,i as b}from"./shared-C5LVJtgJ.js";import{C as w,L as E,P as L,G as S,c as C,f as q}from"./data-vfwjmF8_.js";const I='<img src="images/house_small.png" alt="" class="filter-deco-img" aria-hidden="true">';function B(e,r){const a=C(e.ogImageUrl,600);return e.buildingCategory,`
+import{r as $,b as t,a as k,i as b}from"./shared-C92FQ_gJ.js";import{C as w,L as E,P as L,G as S,c as C,f as q}from"./data-vfwjmF8_.js";const I='<img src="images/house_small.png" alt="" class="filter-deco-img" aria-hidden="true">';function B(e,r){const a=C(e.ogImageUrl,600);return e.buildingCategory,`
   <a href="property.html?id=${e.nodeId}" class="prop-card-full" 
      data-category="${e.buildingCategory||""}"
      data-room="${e.roomCount||""}"
