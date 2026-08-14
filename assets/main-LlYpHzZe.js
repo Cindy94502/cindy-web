@@ -1,27 +1,27 @@
-import{r as H,b as s,a as M,i as T}from"./shared-Fwkuy7Ne.js";import{G as F,c as I,f as S}from"./data-vfwjmF8_.js";function g(t,o){return`<div class="torn-divider" style="background:${o}">
+import{r as C,b as s,a as L,i as H}from"./shared-CZKodk7v.js";import{G as M,c as F,f as I}from"./data-vfwjmF8_.js";function u(e,o){return`<div class="torn-divider" style="background:${o}">
     <svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,0 L0,20 C80,35 160,8 240,22 C320,36 400,10 480,24 C560,38 640,12 720,26 C800,40 880,8 960,22 C1040,36 1120,14 1200,28 C1280,42 1360,16 1440,20 L1440,0 Z" fill="${t}"/>
+      <path d="M0,0 L0,20 C80,35 160,8 240,22 C320,36 400,10 480,24 C560,38 640,12 720,26 C800,40 880,8 960,22 C1040,36 1120,14 1200,28 C1280,42 1360,16 1440,20 L1440,0 Z" fill="${e}"/>
     </svg>
-  </div>`}function x(t,o){const e=I(t.ogImageUrl,600),a=t.buildingCategory==="透天"?"House":"Building2";return`
-  <a href="property.html?id=${t.nodeId}" class="prop-card reveal reveal-d${o+1}">
+  </div>`}function S(e,o){const t=F(e.ogImageUrl,600),i=e.buildingCategory==="透天"?"House":"Building2";return`
+  <a href="property.html?id=${e.nodeId}" class="prop-card reveal reveal-d${o+1}">
     <div class="prop-card-img">
-      ${e?`<img src="${e}" alt="${t.title}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" onerror="this.style.objectFit='contain';this.style.opacity='0.4';this.style.padding='20px';this.src='images/house_small.png'">`:`<div class="prop-card-img-icon">${s(a,48,1,"prop-placeholder-icon")}</div>`}
-      <div class="prop-card-category">${t.buildingCategory||"住宅"}</div>
+      ${t?`<img src="${t}" alt="${e.title}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" onerror="this.style.objectFit='contain';this.style.opacity='0.4';this.style.padding='20px';this.src='images/house_small.png'">`:`<div class="prop-card-img-icon">${s(i,48,1,"prop-placeholder-icon")}</div>`}
+      <div class="prop-card-category">${e.buildingCategory||"住宅"}</div>
     </div>
     <div class="prop-card-body">
-      <div class="prop-price">${S(t.price)}</div>
-      <div class="prop-name">${t.title}</div>
+      <div class="prop-price">${I(e.price)}</div>
+      <div class="prop-name">${e.title}</div>
       <div class="prop-info">
-        <span class="prop-tag">${t.layout||""}</span>
-        <span class="prop-tag">${t.buildingCategory||""}</span>
+        <span class="prop-tag">${e.layout||""}</span>
+        <span class="prop-tag">${e.buildingCategory||""}</span>
       </div>
       <div class="prop-card-footer">
-        <span class="prop-location">${s("MapPin",13,2,"prop-loc-icon")} ${t.wixLocation||""}</span>
+        <span class="prop-location">${s("MapPin",13,2,"prop-loc-icon")} ${e.wixLocation||""}</span>
         <span class="prop-link">查看詳情 ${s("ArrowRight",13,2)}</span>
       </div>
     </div>
   </a>`}document.getElementById("app").innerHTML=`
-  ${H()}
+  ${C()}
 
   <!-- ── HERO ── -->
   <section id="hero">
@@ -67,7 +67,7 @@ import{r as H,b as s,a as M,i as T}from"./shared-Fwkuy7Ne.js";import{G as F,c as
     </a>
   </section>
 
-  ${g("#B2CDCB","#FBF8F3")}
+  ${u("#B2CDCB","#FBF8F3")}
 
   <!-- ── ABOUT ── -->
   <section id="about">
@@ -118,7 +118,7 @@ import{r as H,b as s,a as M,i as T}from"./shared-Fwkuy7Ne.js";import{G as F,c as
 
 
 
-  ${g("#FBF8F3","#F2EDE4")}
+  ${u("#FBF8F3","#F2EDE4")}
 
   <!-- ── 精選物件 ── -->
   <section id="properties-preview">
@@ -142,7 +142,7 @@ import{r as H,b as s,a as M,i as T}from"./shared-Fwkuy7Ne.js";import{G as F,c as
     </div>
   </section>
 
-  ${g("#F2EDE4","#FBF8F3")}
+  ${u("#F2EDE4","#FBF8F3")}
 
   <!-- ── 需求表單 ── -->
   <section id="forms">
@@ -176,7 +176,7 @@ import{r as H,b as s,a as M,i as T}from"./shared-Fwkuy7Ne.js";import{G as F,c as
     </div>
   </section>
 
-  ${g("#FBF8F3","#7CBBC3")}
+  ${u("#FBF8F3","#7CBBC3")}
 
   <!-- ── 聯絡 ── -->
   <section id="contact">
@@ -216,5 +216,5 @@ import{r as H,b as s,a as M,i as T}from"./shared-Fwkuy7Ne.js";import{G as F,c as
     </div>
   </section>
 
-  ${M()}
-`;T();setTimeout(()=>{var t;(t=document.getElementById("heroStrong"))==null||t.classList.add("hero-title-line-animate")},1400);var L;(L=document.getElementById("scrollHint"))==null||L.addEventListener("click",t=>{t.preventDefault();const o=document.getElementById("about");o&&window.scrollTo({top:o.offsetTop-64,behavior:"smooth"})});{const t=document.getElementById("hero"),o=document.getElementById("heroScrub"),e=document.getElementById("heroScrubVideo"),a=document.getElementById("heroLoopVideo"),i=matchMedia("(min-width: 901px) and (hover: hover) and (pointer: fine)").matches,r=matchMedia("(prefers-reduced-motion: reduce)").matches;if(i&&t&&e){const l=()=>{e.src="media/hero-scrub.mp4"};document.readyState==="complete"?setTimeout(l,200):window.addEventListener("load",()=>setTimeout(l,200));const B=37/720,C=64,w=()=>{const f=o.clientWidth,n=o.clientHeight;if(!e.videoWidth||!f||!n)return;const d=Math.max(f/e.videoWidth,n/e.videoHeight),c=e.videoHeight*d-n,v=e.videoHeight*B,p=c<=0?0:Math.max(0,Math.min(100,(v*d-C)/c*100));o.style.setProperty("--hero-vpos",p.toFixed(1)+"%")};if(e.addEventListener("loadedmetadata",w),window.addEventListener("resize",w),!r){const n=.16666666666666666;let d=0,c=0,v=!1,p=!1,h=null;const E=u=>{const y=Math.round(u/n)*n;if(!(Math.abs(e.currentTime-y)<n*.5)){if(p){h=y;return}p=!0,e.currentTime=y}};e.addEventListener("seeked",()=>{if(p=!1,h!==null){const u=h;h=null,E(u)}});const $=()=>{c+=(d-c)*.14,e.readyState>=2&&E(c),Math.abs(d-c)>n*.5?requestAnimationFrame($):v=!1};let m=!1;const b=()=>{m||!e.duration||!e.buffered.length||e.buffered.end(e.buffered.length-1)<e.duration-.25||(m=!0,o.classList.add("scrub-ready"))};e.addEventListener("progress",b),e.addEventListener("canplaythrough",b),e.addEventListener("loadeddata",b),e.addEventListener("loadstart",()=>{setTimeout(()=>{m||(m=!0,o.classList.add("scrub-ready"))},25e3)},{once:!0}),t.addEventListener("mousemove",u=>{!m||!e.duration||(d=(1-u.clientX/window.innerWidth)*e.duration,v||(v=!0,requestAnimationFrame($)))})}}else if(a&&!r){const l=()=>{a.autoplay=!0,a.src="media/hero-loop.mp4",a.addEventListener("loadeddata",()=>a.play().catch(()=>{}),{once:!0}),a.play().catch(()=>{})};document.readyState==="complete"?setTimeout(l,300):window.addEventListener("load",()=>setTimeout(l,300))}}async function A(){try{const o=await(await fetch(F)).json(),e=o.filter(i=>i.title&&i.nodeId).slice(0,3);document.getElementById("homePropsGrid").innerHTML=e.map((i,r)=>x(i,r)).join(""),document.getElementById("propsMoreBtn").innerHTML=`查看全部 ${o.length} 筆物件 ${s("ArrowRight",16,2)}`;const a=new IntersectionObserver(i=>{i.forEach(r=>{r.isIntersecting&&r.target.classList.add("visible")})},{threshold:.1});document.querySelectorAll("#homePropsGrid .reveal").forEach(i=>a.observe(i))}catch{document.getElementById("homePropsGrid").innerHTML='<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--brown-mid)">暫時無法載入物件</div>'}}A();
+  ${L()}
+`;H();setTimeout(()=>{var e;(e=document.getElementById("heroStrong"))==null||e.classList.add("hero-title-line-animate")},1400);var $;($=document.getElementById("scrollHint"))==null||$.addEventListener("click",e=>{e.preventDefault();const o=document.getElementById("about");o&&window.scrollTo({top:o.offsetTop-64,behavior:"smooth"})});{const e=document.getElementById("hero"),o=document.getElementById("heroScrub"),t=document.getElementById("heroScrubVideo"),i=document.getElementById("heroLoopVideo"),a=matchMedia("(min-width: 901px) and (hover: hover) and (pointer: fine)").matches,r=matchMedia("(prefers-reduced-motion: reduce)").matches;if(a&&e&&t){const l=()=>{t.src="media/hero-scrub.mp4"};document.readyState==="complete"?setTimeout(l,200):window.addEventListener("load",()=>setTimeout(l,200));const E=37/720,B=64,b=()=>{const g=o.clientWidth,n=o.clientHeight;if(!t.videoWidth||!g||!n)return;const d=Math.max(g/t.videoWidth,n/t.videoHeight),c=t.videoHeight*d-n,v=t.videoHeight*E,p=c<=0?0:Math.max(0,Math.min(100,(v*d-B)/c*100));o.style.setProperty("--hero-vpos",p.toFixed(1)+"%")};if(t.addEventListener("loadedmetadata",b),window.addEventListener("resize",b),!r){const n=.16666666666666666;let d=0,c=0,v=!1,p=!1,h=null;const y=m=>{const f=Math.round(m/n)*n;if(!(Math.abs(t.currentTime-f)<n*.5)){if(p){h=f;return}p=!0,t.currentTime=f}};t.addEventListener("seeked",()=>{if(p=!1,h!==null){const m=h;h=null,y(m)}});const w=()=>{c+=(d-c)*.14,t.readyState>=2&&y(c),Math.abs(d-c)>n*.5?requestAnimationFrame(w):v=!1};e.addEventListener("mousemove",m=>{t.duration&&(d=(1-m.clientX/window.innerWidth)*t.duration,v||(v=!0,requestAnimationFrame(w)))})}}else if(i&&!r){const l=()=>{i.autoplay=!0,i.src="media/hero-loop.mp4",i.addEventListener("loadeddata",()=>i.play().catch(()=>{}),{once:!0}),i.play().catch(()=>{})};document.readyState==="complete"?setTimeout(l,300):window.addEventListener("load",()=>setTimeout(l,300))}}async function T(){try{const o=await(await fetch(M)).json(),t=o.filter(a=>a.title&&a.nodeId).slice(0,3);document.getElementById("homePropsGrid").innerHTML=t.map((a,r)=>S(a,r)).join(""),document.getElementById("propsMoreBtn").innerHTML=`查看全部 ${o.length} 筆物件 ${s("ArrowRight",16,2)}`;const i=new IntersectionObserver(a=>{a.forEach(r=>{r.isIntersecting&&r.target.classList.add("visible")})},{threshold:.1});document.querySelectorAll("#homePropsGrid .reveal").forEach(a=>i.observe(a))}catch{document.getElementById("homePropsGrid").innerHTML='<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--brown-mid)">暫時無法載入物件</div>'}}T();
