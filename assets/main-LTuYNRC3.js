@@ -1,27 +1,27 @@
-import{r as A,b as t,a as H,i as x}from"./shared-C5LVJtgJ.js";import{G as I,c as R,f as _}from"./data-vfwjmF8_.js";function b(e,o){return`<div class="torn-divider" style="background:${o}">
+import{r as C,b as a,a as L,i as A}from"./shared-C5LVJtgJ.js";import{G as x,c as H,f as I}from"./data-vfwjmF8_.js";function f(t,i){return`<div class="torn-divider" style="background:${i}">
     <svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,0 L0,20 C80,35 160,8 240,22 C320,36 400,10 480,24 C560,38 640,12 720,26 C800,40 880,8 960,22 C1040,36 1120,14 1200,28 C1280,42 1360,16 1440,20 L1440,0 Z" fill="${e}"/>
+      <path d="M0,0 L0,20 C80,35 160,8 240,22 C320,36 400,10 480,24 C560,38 640,12 720,26 C800,40 880,8 960,22 C1040,36 1120,14 1200,28 C1280,42 1360,16 1440,20 L1440,0 Z" fill="${t}"/>
     </svg>
-  </div>`}function P(e,o){const c=R(e.ogImageUrl,600),m=e.buildingCategory==="透天"?"House":"Building2";return`
-  <a href="property.html?id=${e.nodeId}" class="prop-card reveal reveal-d${o+1}">
+  </div>`}function R(t,i){const r=H(t.ogImageUrl,600),p=t.buildingCategory==="透天"?"House":"Building2";return`
+  <a href="property.html?id=${t.nodeId}" class="prop-card reveal reveal-d${i+1}">
     <div class="prop-card-img">
-      ${c?`<img src="${c}" alt="${e.title}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" onerror="this.style.objectFit='contain';this.style.opacity='0.4';this.style.padding='20px';this.src='images/house_small.png'">`:`<div class="prop-card-img-icon">${t(m,48,1,"prop-placeholder-icon")}</div>`}
-      <div class="prop-card-category">${e.buildingCategory||"住宅"}</div>
+      ${r?`<img src="${r}" alt="${t.title}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" onerror="this.style.objectFit='contain';this.style.opacity='0.4';this.style.padding='20px';this.src='images/house_small.png'">`:`<div class="prop-card-img-icon">${a(p,48,1,"prop-placeholder-icon")}</div>`}
+      <div class="prop-card-category">${t.buildingCategory||"住宅"}</div>
     </div>
     <div class="prop-card-body">
-      <div class="prop-price">${_(e.price)}</div>
-      <div class="prop-name">${e.title}</div>
+      <div class="prop-price">${I(t.price)}</div>
+      <div class="prop-name">${t.title}</div>
       <div class="prop-info">
-        <span class="prop-tag">${e.layout||""}</span>
-        <span class="prop-tag">${e.buildingCategory||""}</span>
+        <span class="prop-tag">${t.layout||""}</span>
+        <span class="prop-tag">${t.buildingCategory||""}</span>
       </div>
       <div class="prop-card-footer">
-        <span class="prop-location">${t("MapPin",13,2,"prop-loc-icon")} ${e.wixLocation||""}</span>
-        <span class="prop-link">查看詳情 ${t("ArrowRight",13,2)}</span>
+        <span class="prop-location">${a("MapPin",13,2,"prop-loc-icon")} ${t.wixLocation||""}</span>
+        <span class="prop-link">查看詳情 ${a("ArrowRight",13,2)}</span>
       </div>
     </div>
   </a>`}document.getElementById("app").innerHTML=`
-  ${A()}
+  ${C()}
 
   <!-- ── HERO ── -->
   <section id="hero">
@@ -44,8 +44,8 @@ import{r as A,b as t,a as H,i as x}from"./shared-C5LVJtgJ.js";import{G as I,c as
           <img src="images/note_ideal.png" alt="理想生活 從家開始">
         </div>
         <div class="hero-btns">
-          <a href="properties.html" class="hero-btn-primary">${t("Home",16,2,"btn-icon")} 看看物件</a>
-          <a href="#about" class="hero-btn-secondary">${t("User",16,2,"btn-icon")} 認識 Cindy</a>
+          <a href="properties.html" class="hero-btn-primary">${a("Home",16,2,"btn-icon")} 看看物件</a>
+          <a href="#about" class="hero-btn-secondary">${a("User",16,2,"btn-icon")} 認識 Cindy</a>
         </div>
       </div>
       <!-- 右側 Cindy 角色 -->
@@ -62,13 +62,13 @@ import{r as A,b as t,a as H,i as x}from"./shared-C5LVJtgJ.js";import{G as I,c as
     <a href="#about" class="scroll-hint-wrap" id="scrollHint">
       <span class="scroll-hint-text">SCROLL</span>
       <div class="scroll-arrow-wrap">
-        ${t("ChevronDown",22,1.5,"scroll-arrow-icon")}
-        ${t("ChevronDown",22,1.5,"scroll-arrow-icon scroll-arrow-delay")}
+        ${a("ChevronDown",22,1.5,"scroll-arrow-icon")}
+        ${a("ChevronDown",22,1.5,"scroll-arrow-icon scroll-arrow-delay")}
       </div>
     </a>
   </section>
 
-  ${b("#B2CDCB","#FBF8F3")}
+  ${f("#B2CDCB","#FBF8F3")}
 
   <!-- ── ABOUT ── -->
   <section id="about">
@@ -88,8 +88,8 @@ import{r as A,b as t,a as H,i as x}from"./shared-C5LVJtgJ.js";import{G as I,c as
         <p class="about-desc">要說最喜歡南崁什麼？購物真的太方便，台茂、好市多都在生活圈裡。（缺點是常激發我買買買的購物慾，需要克制）也因為在這裡長大，哪個社區安靜、哪條路會塞、哪間早餐店好吃，<strong>直接問我就好，不用查資料</strong>。</p>
         <p class="about-desc">我有點慢熱，第一次見面可能會有點拘謹，但熱絡了之後就像<strong>朋友一樣相處</strong>，有什麼問題都可以直接問我。買房是大事，慢慢來，我陪你看。</p>
         <div class="about-tags">
-          <span class="about-tag tag-sage">${t("MapPin",13,2)} 住南崁將近20 年</span>
-          <span class="about-tag tag-peach">${t("Users",13,2)} 父女搭檔</span>
+          <span class="about-tag tag-sage">${a("MapPin",13,2)} 住南崁將近20 年</span>
+          <span class="about-tag tag-peach">${a("Users",13,2)} 父女搭檔</span>
         </div>
       </div>
     </div>
@@ -112,14 +112,14 @@ import{r as A,b as t,a as H,i as x}from"./shared-C5LVJtgJ.js";import{G as I,c as
           allowfullscreen></iframe>
       </div>
       <a class="story-embed-open" href="story/index.html" target="_blank" rel="noopener">
-        ${t("Monitor",15,2)} 用整個螢幕看
+        ${a("Monitor",15,2)} 用整個螢幕看
       </a>
     </div>
   </section>
 
 
 
-  ${b("#FBF8F3","#F2EDE4")}
+  ${f("#FBF8F3","#F2EDE4")}
 
   <!-- ── 精選物件 ── -->
   <section id="properties-preview">
@@ -137,13 +137,13 @@ import{r as A,b as t,a as H,i as x}from"./shared-C5LVJtgJ.js";import{G as I,c as
       </div>
       <div class="props-more reveal">
         <a href="properties.html" class="props-more-btn" id="propsMoreBtn">
-          查看全部物件 ${t("ArrowRight",16,2)}
+          查看全部物件 ${a("ArrowRight",16,2)}
         </a>
       </div>
     </div>
   </section>
 
-  ${b("#F2EDE4","#FBF8F3")}
+  ${f("#F2EDE4","#FBF8F3")}
 
   <!-- ── 需求表單 ── -->
   <section id="forms">
@@ -156,19 +156,19 @@ import{r as A,b as t,a as H,i as x}from"./shared-C5LVJtgJ.js";import{G as I,c as
       </div>
       <div class="forms-grid reveal">
         <button class="form-card form-card-buy" data-tf-popup="HEcOmZt1" data-tf-size="90">
-          <div class="form-card-icon">${t("Home",36,1.5,"form-icon-buy")}</div>
+          <div class="form-card-icon">${a("Home",36,1.5,"form-icon-buy")}</div>
           <div class="form-card-title">我想買房</div>
           <div class="form-card-desc">告訴我預算、坪數、區域需求<br>讓我幫你找到對的家</div>
           <div class="form-card-btn">填寫表單 →</div>
         </button>
         <button class="form-card form-card-rent" data-tf-popup="zlT7vf5X" data-tf-size="90">
-          <div class="form-card-icon">${t("KeyRound",36,1.5,"form-icon-rent")}</div>
+          <div class="form-card-icon">${a("KeyRound",36,1.5,"form-icon-rent")}</div>
           <div class="form-card-title">我想租屋</div>
           <div class="form-card-desc">說明租金預算、格局、入住時間<br>我來幫你媒合合適的房源</div>
           <div class="form-card-btn">填寫表單 →</div>
         </button>
         <button class="form-card form-card-sell" data-tf-popup="cK5kqUM9" data-tf-size="90">
-          <div class="form-card-icon">${t("Banknote",36,1.5,"form-icon-sell")}</div>
+          <div class="form-card-icon">${a("Banknote",36,1.5,"form-icon-sell")}</div>
           <div class="form-card-title">我想賣房</div>
           <div class="form-card-desc">留下物件資訊與聯絡方式<br>讓我為你評估最佳售出策略</div>
           <div class="form-card-btn">填寫表單 →</div>
@@ -177,7 +177,7 @@ import{r as A,b as t,a as H,i as x}from"./shared-C5LVJtgJ.js";import{G as I,c as
     </div>
   </section>
 
-  ${b("#FBF8F3","#7CBBC3")}
+  ${f("#FBF8F3","#7CBBC3")}
 
   <!-- ── 聯絡 ── -->
   <section id="contact">
@@ -187,19 +187,19 @@ import{r as A,b as t,a as H,i as x}from"./shared-C5LVJtgJ.js";import{G as I,c as
 
       <div class="contact-info-list reveal">
         <div class="contact-info-row">
-          <span class="contact-info-icon">${t("Phone",18,1.5)}</span>
+          <span class="contact-info-icon">${a("Phone",18,1.5)}</span>
           <span class="contact-info-label">Cindy</span>
           <span class="contact-info-divider">|</span>
           <a href="tel:0963585690" class="contact-info-value">0963-585-690</a>
         </div>
         <div class="contact-info-row">
-          <span class="contact-info-icon">${t("Phone",18,1.5)}</span>
+          <span class="contact-info-icon">${a("Phone",18,1.5)}</span>
           <span class="contact-info-label">王先生</span>
           <span class="contact-info-divider">|</span>
           <a href="tel:0968731280" class="contact-info-value">0968-731-280</a>
         </div>
         <div class="contact-info-row">
-          <span class="contact-info-icon">${t("MessageCircle",18,1.5)}</span>
+          <span class="contact-info-icon">${a("MessageCircle",18,1.5)}</span>
           <span class="contact-info-label">LINE</span>
           <span class="contact-info-divider">|</span>
           <span class="contact-info-value">@019nrmqw</span>
@@ -217,5 +217,5 @@ import{r as A,b as t,a as H,i as x}from"./shared-C5LVJtgJ.js";import{G as I,c as
     </div>
   </section>
 
-  ${H()}
-`;x();setTimeout(()=>{var e;(e=document.getElementById("heroStrong"))==null||e.classList.add("hero-title-line-animate")},1400);var F;(F=document.getElementById("scrollHint"))==null||F.addEventListener("click",e=>{e.preventDefault();const o=document.getElementById("about");o&&window.scrollTo({top:o.offsetTop-64,behavior:"smooth"})});{const e=document.getElementById("hero"),o=document.getElementById("heroScrub"),c=document.getElementById("heroLoopVideo"),m=matchMedia("(min-width: 901px) and (hover: hover) and (pointer: fine)").matches,d=matchMedia("(prefers-reduced-motion: reduce)").matches;if(m&&e&&o){const a=[];for(let i=0;i<40;i++){const s=new Image;s.decoding="async",s.alt="",s.className="hero-frame-img",o.appendChild(s),a.push(s)}const L=()=>{const i=[],s=new Set;for(const l of[8,4,2,1])for(let n=0;n<40;n+=l)s.has(n)||(s.add(n),i.push(n));return i},w=()=>{for(const i of L())a[i].addEventListener("load",()=>{},{once:!0}),a[i].src=`media/frames/${String(i).padStart(2,"0")}.webp`};document.readyState==="complete"?setTimeout(w,200):window.addEventListener("load",()=>setTimeout(w,200));const B=37/720,C=64,S=960,y=540,E=()=>{const i=o.clientWidth,s=o.clientHeight;if(!i||!s)return;const l=Math.max(i/S,s/y),n=y*l-s,v=n<=0?0:Math.max(0,Math.min(100,(y*B*l-C)/n*100));o.style.setProperty("--hero-vpos",v.toFixed(1)+"%")};if(E(),window.addEventListener("resize",E),d)a[0].addEventListener("load",()=>a[0].classList.add("on"),{once:!0});else{let s=0,l=0,n=!1,v=-1;const $=r=>{if(r=Math.max(0,Math.min(39,Math.round(r))),!a[r].complete||!a[r].naturalWidth){let h=-1;for(let f=1;f<40;f++){const g=r-f,u=r+f;if(g>=0&&a[g].complete&&a[g].naturalWidth){h=g;break}if(u<40&&a[u].complete&&a[u].naturalWidth){h=u;break}}if(h<0)return;r=h}r!==v&&(v>=0&&a[v].classList.remove("on"),a[r].classList.add("on"),v=r)},M=()=>{l+=(s-l)*.18,$(l),Math.abs(s-l)>.4?requestAnimationFrame(M):n=!1};e.addEventListener("mousemove",r=>{s=(1-r.clientX/window.innerWidth)*39,n||(n=!0,requestAnimationFrame(M))}),a[0].addEventListener("load",()=>$(0),{once:!0})}}else if(c&&!d){const p=()=>{c.autoplay=!0,c.src="media/hero-loop.mp4",c.addEventListener("loadeddata",()=>c.play().catch(()=>{}),{once:!0}),c.play().catch(()=>{})};document.readyState==="complete"?setTimeout(p,300):window.addEventListener("load",()=>setTimeout(p,300))}}async function T(){try{const o=await(await fetch(I)).json(),c=o.filter(d=>d.title&&d.nodeId).slice(0,3);document.getElementById("homePropsGrid").innerHTML=c.map((d,p)=>P(d,p)).join(""),document.getElementById("propsMoreBtn").innerHTML=`查看全部 ${o.length} 筆物件 ${t("ArrowRight",16,2)}`;const m=new IntersectionObserver(d=>{d.forEach(p=>{p.isIntersecting&&p.target.classList.add("visible")})},{threshold:.1});document.querySelectorAll("#homePropsGrid .reveal").forEach(d=>m.observe(d))}catch{document.getElementById("homePropsGrid").innerHTML='<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--brown-mid)">暫時無法載入物件</div>'}}T();
+  ${L()}
+`;A();setTimeout(()=>{var t;(t=document.getElementById("heroStrong"))==null||t.classList.add("hero-title-line-animate")},1400);var w;(w=document.getElementById("scrollHint"))==null||w.addEventListener("click",t=>{t.preventDefault();const i=document.getElementById("about");i&&window.scrollTo({top:i.offsetTop-64,behavior:"smooth"})});{const t=document.getElementById("hero"),i=document.getElementById("heroScrub"),r=document.getElementById("heroLoopVideo"),p=matchMedia("(min-width: 901px) and (hover: hover) and (pointer: fine)").matches,c=matchMedia("(prefers-reduced-motion: reduce)").matches;if(p&&t&&i){const l=[];for(let e=0;e<40;e++){const s=new Image;s.decoding="async",s.alt="",s.className="hero-frame-img",i.appendChild(s),l.push(s)}const E=()=>{const e=[],s=new Set;for(const o of[8,4,2,1])for(let n=0;n<40;n+=o)s.has(n)||(s.add(n),e.push(n));return e},m=new Array(40).fill(!1);let v=-1,$=1;const u=e=>{if(e=Math.max(0,Math.min(39,Math.round(e))),!m[e]){let s=-1;for(let o=1;o<40;o++){if(e-o>=0&&m[e-o]){s=e-o;break}if(e+o<40&&m[e+o]){s=e+o;break}}if(s<0)return;e=s}e!==v&&(l[e].style.zIndex=++$,l[e].classList.add("on"),v>=0&&l[v].classList.remove("on"),v=e)},b=()=>{for(const e of E())l[e].addEventListener("load",()=>{const s=()=>{m[e]=!0,v<0&&u(e)};l[e].decode?l[e].decode().then(s,s):s()},{once:!0}),l[e].src=`media/frames/${String(e).padStart(2,"0")}.webp`};document.readyState==="complete"?setTimeout(b,200):window.addEventListener("load",()=>setTimeout(b,200));const M=37/720,F=64,S=960,g=540,y=()=>{const e=i.clientWidth,s=i.clientHeight;if(!e||!s)return;const o=Math.max(e/S,s/g),n=g*o-s,h=n<=0?0:Math.max(0,Math.min(100,(g*M*o-F)/n*100));i.style.setProperty("--hero-vpos",h.toFixed(1)+"%")};if(y(),window.addEventListener("resize",y),!c){let s=0,o=0,n=!1;const h=()=>{o+=(s-o)*.18,u(o),Math.abs(s-o)>.4?requestAnimationFrame(h):n=!1};t.addEventListener("mousemove",B=>{s=(1-B.clientX/window.innerWidth)*39,n||(n=!0,requestAnimationFrame(h))})}}else if(r&&!c){const d=()=>{r.autoplay=!0,r.src="media/hero-loop.mp4",r.addEventListener("loadeddata",()=>r.play().catch(()=>{}),{once:!0}),r.play().catch(()=>{})};document.readyState==="complete"?setTimeout(d,300):window.addEventListener("load",()=>setTimeout(d,300))}}async function T(){try{const i=await(await fetch(x)).json(),r=i.filter(c=>c.title&&c.nodeId).slice(0,3);document.getElementById("homePropsGrid").innerHTML=r.map((c,d)=>R(c,d)).join(""),document.getElementById("propsMoreBtn").innerHTML=`查看全部 ${i.length} 筆物件 ${a("ArrowRight",16,2)}`;const p=new IntersectionObserver(c=>{c.forEach(d=>{d.isIntersecting&&d.target.classList.add("visible")})},{threshold:.1});document.querySelectorAll("#homePropsGrid .reveal").forEach(c=>p.observe(c))}catch{document.getElementById("homePropsGrid").innerHTML='<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--brown-mid)">暫時無法載入物件</div>'}}T();
