@@ -939,7 +939,14 @@ footer {
     rgba(255,255,255,0.86) 0%, rgba(255,255,255,0.6) 34%, rgba(255,255,255,0) 58%);
 }
 
-@media (min-width: 901px) {
+/* 條件必須跟 main.js 的 isDesktop 一模一樣：
+     min-width:901px and hover:hover and pointer:fine
+
+   只寫寬度的話，iPad 橫式（1024+ 但沒有精準指標）會出事：
+   CSS 顯示刮動影片層、藏掉手機的影片卡，但 JS 判定不是桌機、
+   從來沒給刮動影片設 src，結果整片只剩一張不會動的封面圖，
+   滑也沒反應。改任何一邊的條件，另一邊一定要跟著改。 */
+@media (min-width: 901px) and (hover: hover) and (pointer: fine) {
   #hero { height: 100vh; min-height: 560px; }
   /* 影片鋪滿整個 hero。navbar 是固定在「視窗」上的，不是固定在 hero 上，
      所以這裡不能用 top: 64px 讓開它 —— 那會在 hero 頂端挖出一條永久空帶，
@@ -950,7 +957,10 @@ footer {
 }
 
 .hero-video-card { display: none; }
-@media (max-width: 900px) {
+/* 這裡是上面那條的補集：只要不是「桌機 + 精準指標」，就走影片卡。
+   窄螢幕（手機）或觸控裝置（平板、觸控筆電）都算，
+   這樣才不會有「兩邊都不顯示」的縫隙 —— iPad 橫式就是掉進那個縫。 */
+@media (max-width: 900px), (hover: none), (pointer: coarse) {
   /* 覆蓋上面「手機不顯示角色區」那條，改成顯示影片卡 */
   .hero-photo-area { display: block; }
   .hero-video-card {
