@@ -2,7 +2,10 @@ export const GITHUB_JSON_URL = 'https://raw.githubusercontent.com/Cindy94502/cin
 
 export const PRICE_RANGES = ['1,000萬以下', '1,000－1,500萬', '1,500－2,000萬', '2,000萬以上', '洽談']
 export const LAYOUTS = ['套房', '2房', '3房', '4房以上']
-export const CATEGORIES = ['電梯大樓', '透天', '店面']
+// 2026-08-13 新增「公寓」：鎮三街那間是 46 年的 5 樓無電梯公寓，
+// 歸到「電梯大樓」是錯的，客戶點進來會覺得被騙。
+// 這裡不加的話，物件頁的類別篩選按鈕就沒有這一項，那間會篩不到。
+export const CATEGORIES = ['電梯大樓', '公寓', '透天', '店面']
 
 // 格式化價格
 export function formatPrice(price) {
