@@ -358,7 +358,9 @@ document.getElementById('scrollHint')?.addEventListener('click', e => {
     // 滑鼠一移就頓住，要整支載完才會順。
     // 換成圖片序列之後沒有 seek 這回事：載到第幾張，第幾格就能刮，
     // 換圖只是換 opacity，不解碼、不打網路。
-    // 40 張 WebP 共 1099 KB，跟原本的影片（1196 KB）差不多。
+    // 40 張 1280x720 WebP q74，共 1707 KB。
+    // 一開始做 960 寬（1099 KB）但滿版顯示要放大 1.5 倍，Cindy 說糊，
+    // 改回跟原片一樣的 1280 寬。
     const FRAMES = 40
     const imgs = []
     for (let i = 0; i < FRAMES; i++) {
@@ -372,12 +374,22 @@ document.getElementById('scrollHint')?.addEventListener('click', e => {
     let loaded = 0
 
     // 等首頁該載的都載完再抓，不跟首屏圖片搶頻寬（手機那條本來就這樣做）。
-    // 先抓第 0 張當底圖，其餘照順序補上 —— 中途進來也有東西可看。
+    //
+    // 載入順序不是 0,1,2,3… 而是先跳著載：0,8,16,24,32 → 4,12,20,28,36 → 其餘。
+    // 這樣前 400KB 到齊時，整段刮動就已經粗略可用（每 8 格有一張），
+    // 剩下的再回頭補細。照順序載的話，載一半就只有前半段能刮。
+    const loadOrder = () => {
+      const order = [], seen = new Set()
+      for (const stride of [8, 4, 2, 1])
+        for (let i = 0; i < FRAMES; i += stride)
+          if (!seen.has(i)) { seen.add(i); order.push(i) }
+      return order
+    }
     const loadFrames = () => {
-      imgs.forEach((im, i) => {
-        im.addEventListener('load', () => { loaded++ }, { once: true })
-        im.src = `media/frames/${String(i).padStart(2, '0')}.webp`
-      })
+      for (const i of loadOrder()) {
+        imgs[i].addEventListener('load', () => { loaded++ }, { once: true })
+        imgs[i].src = `media/frames/${String(i).padStart(2, '0')}.webp`
+      }
     }
     if (document.readyState === 'complete') setTimeout(loadFrames, 200)
     else window.addEventListener('load', () => setTimeout(loadFrames, 200))
@@ -408,8 +420,20 @@ document.getElementById('scrollHint')?.addEventListener('click', e => {
 
       const show = i => {
         i = Math.max(0, Math.min(FRAMES - 1, Math.round(i)))
+        // 這張還沒載到就找最近一張已經載到的。
+        // 直接 return 的話，載入中途刮動會整段沒反應；
+        // 退到鄰近的幀至少畫面會跟著動，載滿之後自然變細。
+        if (!imgs[i].complete || !imgs[i].naturalWidth) {
+          let best = -1
+          for (let d = 1; d < FRAMES; d++) {
+            const a = i - d, b = i + d
+            if (a >= 0 && imgs[a].complete && imgs[a].naturalWidth) { best = a; break }
+            if (b < FRAMES && imgs[b].complete && imgs[b].naturalWidth) { best = b; break }
+          }
+          if (best < 0) return
+          i = best
+        }
         if (i === shown) return                       // 同一張，不用動
-        if (!imgs[i].complete) return                 // 這張還沒到，先維持現況
         if (shown >= 0) imgs[shown].classList.remove('on')
         imgs[i].classList.add('on')
         shown = i
