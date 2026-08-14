@@ -31,6 +31,17 @@ body {
 a { text-decoration: none; color: inherit; }
 img { max-width: 100%; display: block; }
 
+/* ── 反白顏色 ─────────────────────────────────────────────
+   預設的藍色是瀏覽器的，跟整站沒關係。改成黃色像螢光筆畫過，
+   跟便條紙、手繪那套是同一個語彙。
+   文字要一起指定成深咖啡，不然某些瀏覽器會自己挑一個對比色。
+
+   ::selection 和 ::-moz-selection 一定要分成兩條寫。
+   寫在同一條的話，瀏覽器只要不認得其中一個選擇器，
+   整條規則會被丟掉，兩邊都失效。 */
+::selection      { background: #FFD67A; color: #3D2B1F; }
+::-moz-selection { background: #FFD67A; color: #3D2B1F; }
+
 /* ── 自訂游標 ─────────────────────────────────────────────
    圖檔放在 src/images/ 而不是 public/，是為了讓 Vite 幫忙改路徑。
    放 public/ 的話，打包後 CSS 在 /cindy-web/assets/ 底下，
