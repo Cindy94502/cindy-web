@@ -26,7 +26,13 @@
 html { scroll-behavior: smooth; }
 body {
   font-family: 'Zen Maru Gothic', 'Noto Sans TC', sans-serif;
-  color: var(--brown); background: var(--cream); overflow-x: hidden;
+  color: var(--brown); background: var(--cream);
+  /* 用 clip 不用 hidden。
+     在 body 設 overflow-x: hidden 會讓 overflow-y 一起變成 auto，
+     body 就變成一個捲動容器 —— 滑鼠和觸控板沒事，但 iPad 的觸控
+     慣性捲動會卡住，平板橫式整頁滑不動（2026-08-13 實測到的）。
+     clip 一樣切掉水平溢出，但不會產生捲動容器，捲動留在文件本身。 */
+  overflow-x: clip;
 }
 a { text-decoration: none; color: inherit; }
 img { max-width: 100%; display: block; }

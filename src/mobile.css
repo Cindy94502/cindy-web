@@ -9,7 +9,10 @@
   html, body {
     width: 100% !important;
     max-width: 100vw !important;
-    overflow-x: hidden !important; /* 鎖死外殼 */
+    /* clip 不是 hidden：hidden 會讓 overflow-y 一起變 auto，
+       body 變成捲動容器，iOS 觸控慣性捲動就會卡住。
+       clip 一樣鎖死左右晃動，但不影響垂直捲動。 */
+    overflow-x: clip !important;
     position: relative;
     -webkit-text-size-adjust: 100%;
   }
