@@ -404,8 +404,32 @@ document.getElementById('scrollHint')?.addEventListener('click', e => {
         if (Math.abs(target - cur) > STEP * 0.5) requestAnimationFrame(tick)
         else running = false
       }
+      // 影片整支下載完之前不要開放刮動。
+      // 本機沒有網路所以永遠是順的，但 GitHub Pages 上這支 1.7MB 要下載
+      // 44 秒（實測 39 KB/s）。在那之前 seek 到還沒下載到的位置，瀏覽器
+      // 得發一個 Range 請求，每次要 0.7 秒 —— 滑鼠一移就整個頓住。
+      // 沒準備好時就讓它停在 poster，反正 poster 就是第 0 幀，看不出差別。
+      let ready = false
+      const checkReady = () => {
+        if (ready || !scrubVid.duration || !scrubVid.buffered.length) return
+        if (scrubVid.buffered.end(scrubVid.buffered.length - 1) < scrubVid.duration - 0.25) return
+        ready = true
+        scrubWrap.classList.add('scrub-ready')   // 游標要等能刮了才變成刮動提示
+      }
+      scrubVid.addEventListener('progress', checkReady)
+      scrubVid.addEventListener('canplaythrough', checkReady)
+      scrubVid.addEventListener('loadeddata', checkReady)
+      // 保底：瀏覽器有時會自己判斷「載夠了」就停止下載，buffered 永遠到不了
+      // 結尾，那樣刮動會永遠開不了。20 秒後不管有沒有載完都放行 ——
+      // 頓一下總比整個 hero 是死的好。
+      setTimeout(() => {
+        if (ready) return
+        ready = true
+        scrubWrap.classList.add('scrub-ready')
+      }, 20000)
+
       heroSection.addEventListener('mousemove', e => {
-        if (!scrubVid.duration) return
+        if (!ready || !scrubVid.duration) return
         target = (1 - e.clientX / window.innerWidth) * scrubVid.duration
         if (!running) { running = true; requestAnimationFrame(tick) }
       })
