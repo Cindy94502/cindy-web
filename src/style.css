@@ -108,10 +108,7 @@ body :disabled, body [aria-disabled="true"] { cursor: default; }
    改成她的綠箭頭 + 右下三個同色小點：兩件事都顧到。
    她明確不要雙箭頭，所以提示不用箭頭形狀，靠水平排列的三個點表達方向。
    備援還是留 ew-resize，圖沒載入時提示不會消失。 */
-/* 刮動游標只在影片真的可以刮的時候才出現。
-   影片還在下載時給刮動提示，等於承諾一個做不到的互動。 */
-body #hero { cursor: url(./images/cursor-arrow.png) 1 0, auto; }
-body #hero:has(#heroScrub.scrub-ready) {
+body #hero {
   cursor: url(./images/cursor-scrub.png) 0 0, ew-resize;
   cursor: -webkit-image-set(url(./images/cursor-scrub.png) 1x,
                             url(./images/cursor-scrub@2x.png) 2x) 0 0, ew-resize;

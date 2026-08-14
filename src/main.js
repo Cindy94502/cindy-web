@@ -411,36 +411,12 @@ document.getElementById('scrollHint')?.addEventListener('click', e => {
         if (Math.abs(target - cur) > STEP * 0.5) requestAnimationFrame(tick)
         else running = false
       }
-      // 影片整支下載完之前不要開放刮動。
-      // 本機沒有網路所以永遠是順的，但 GitHub Pages 上這支 1.7MB 要下載
-      // 44 秒（實測 39 KB/s）。在那之前 seek 到還沒下載到的位置，瀏覽器
-      // 得發一個 Range 請求，每次要 0.7 秒 —— 滑鼠一移就整個頓住。
-      // 沒準備好時就讓它停在 poster，反正 poster 就是第 0 幀，看不出差別。
-      let ready = false
-      const checkReady = () => {
-        if (ready || !scrubVid.duration || !scrubVid.buffered.length) return
-        if (scrubVid.buffered.end(scrubVid.buffered.length - 1) < scrubVid.duration - 0.25) return
-        ready = true
-        scrubWrap.classList.add('scrub-ready')   // 游標要等能刮了才變成刮動提示
-      }
-      scrubVid.addEventListener('progress', checkReady)
-      scrubVid.addEventListener('canplaythrough', checkReady)
-      scrubVid.addEventListener('loadeddata', checkReady)
-      // 保底：瀏覽器有時會自己判斷「載夠了」就停止下載，buffered 永遠到不了
-      // 結尾，那樣刮動會永遠開不了。載入開始後 25 秒不管有沒有載完都放行 ——
-      // 頓一下總比整個 hero 是死的好。
-      // 計時要從「影片真的開始下載」起算，不是從腳本執行起算：
-      // 影片現在延後到 window.load 之後才抓，從腳本起算會提早燒掉。
-      scrubVid.addEventListener('loadstart', () => {
-        setTimeout(() => {
-          if (ready) return
-          ready = true
-          scrubWrap.classList.add('scrub-ready')
-        }, 25000)
-      }, { once: true })
-
+      // 2026-08-14：這裡曾經加過「整支下載完才開放刮動」的閘門，加上一個
+      // 25 秒的保底計時器。結果是在那之前刮動完全不會動 —— 把「有點頓」
+      // 換成「整個死掉」，比原本更糟。拿掉了。
+      // 有資料就能刮，還沒下載到的地方頂多頓一下，那是可以接受的降級。
       heroSection.addEventListener('mousemove', e => {
-        if (!ready || !scrubVid.duration) return
+        if (!scrubVid.duration) return
         target = (1 - e.clientX / window.innerWidth) * scrubVid.duration
         if (!running) { running = true; requestAnimationFrame(tick) }
       })
