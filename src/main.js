@@ -381,11 +381,12 @@ document.getElementById('scrollHint')?.addEventListener('click', e => {
     if (!calm) {
       // target 是滑鼠指定的時間，cur 每幀往它靠近一點，不會跟著手抖
       const EASE = 0.14
-      // 影片就是 12fps，一幀 0.083 秒。
-      // 原本的門檻是 0.008 秒，比一幀細十倍，等於大部分 seek 都是
-      // seek 到同一張畫面 —— 畫面沒變，成本照付。小幅度移動時
-      // 33 次 seek 只有 6 次真的換了幀。先對齊到幀再決定要不要動。
-      const STEP = 1 / 12
+      // 影片是 6fps，一幀 0.167 秒。這個數字一定要跟影片的幀率一致，
+      // 對不上的話下面的「同一幀就不 seek」會失效。
+      // 換影片時記得一起改（ffprobe -show_entries stream=r_frame_rate）。
+      // 原本的門檻是 0.008 秒，比一幀細二十倍，等於大部分 seek 都是
+      // seek 到同一張畫面 —— 畫面沒變，成本照付。
+      const STEP = 1 / 6
       let target = 0, cur = 0, running = false
       // 前一個 seek 還沒完成就不要發下一個。連續丟 currentTime 會讓
       // 解碼工作在主執行緒上排隊，滑鼠掃過去就會整個卡住。
