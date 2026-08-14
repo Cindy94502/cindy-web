@@ -950,9 +950,11 @@ footer {
   .hero-video-card {
     display: block; width: 100%; aspect-ratio: 16 / 9;
     /* 影片卡原本緊貼著按鈕（間距 0），手機上看起來像黏在一起。
-       hero 文字區的節奏是 24～28px，但這裡是從文字區跨到圖像區，
-       而且卡片有白框加陰影、視覺重量重，所以拉大一階。 */
-    margin-top: 40px;
+       hero 文字區的節奏是 標題→副標 36、副標→按鈕 28，
+       但這裡是從文字區跨到圖像區，而且卡片有白框加陰影、視覺重量重，
+       所以要明顯高一階，40 只比 36 大一點點，看起來還是黏著。
+       56 的下緣在 320px 的窄機種距離 SCROLL 提示還有 38px，不會撞到。 */
+    margin-top: 56px;
     border-radius: 20px; overflow: hidden;
     border: 4px solid rgba(255,255,255,0.9);
     box-shadow: 0 12px 32px rgba(61,43,31,0.16);
