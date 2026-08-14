@@ -375,13 +375,33 @@ document.getElementById('scrollHint')?.addEventListener('click', e => {
     if (!calm) {
       // target 是滑鼠指定的時間，cur 每幀往它靠近一點，不會跟著手抖
       const EASE = 0.14
+      // 影片就是 12fps，一幀 0.083 秒。
+      // 原本的門檻是 0.008 秒，比一幀細十倍，等於大部分 seek 都是
+      // seek 到同一張畫面 —— 畫面沒變，成本照付。小幅度移動時
+      // 33 次 seek 只有 6 次真的換了幀。先對齊到幀再決定要不要動。
+      const STEP = 1 / 12
       let target = 0, cur = 0, running = false
+      // 前一個 seek 還沒完成就不要發下一個。連續丟 currentTime 會讓
+      // 解碼工作在主執行緒上排隊，滑鼠掃過去就會整個卡住。
+      let seeking = false, pending = null
+
+      const seekTo = t => {
+        const frame = Math.round(t / STEP) * STEP
+        if (Math.abs(scrubVid.currentTime - frame) < STEP * 0.5) return  // 同一幀，不用動
+        if (seeking) { pending = frame; return }                          // 排一個，只留最新的
+        seeking = true
+        scrubVid.currentTime = frame
+      }
+      scrubVid.addEventListener('seeked', () => {
+        seeking = false
+        if (pending !== null) { const p = pending; pending = null; seekTo(p) }
+      })
+
       const tick = () => {
         cur += (target - cur) * EASE
-        if (scrubVid.readyState >= 2 && Math.abs(scrubVid.currentTime - cur) > 0.008) {
-          scrubVid.currentTime = cur
-        }
-        if (Math.abs(target - cur) > 0.004) requestAnimationFrame(tick)
+        if (scrubVid.readyState >= 2) seekTo(cur)
+        // 收在半幀就停：再靠近下去畫面也不會變
+        if (Math.abs(target - cur) > STEP * 0.5) requestAnimationFrame(tick)
         else running = false
       }
       heroSection.addEventListener('mousemove', e => {
