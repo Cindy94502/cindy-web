@@ -54,12 +54,13 @@ document.getElementById('app').innerHTML = `
 
   <!-- ── HERO ── -->
   <section id="hero">
-    <!-- 桌機滿版背景影片。不自動播，由滑鼠橫向位置決定播到第幾秒。
-         src 留空，等 JS 確認是桌機才填，手機完全不會下載這 1.7MB。 -->
-    <div id="heroScrub" aria-hidden="true">
-      <video id="heroScrubVideo" poster="media/hero-poster.jpg"
-             muted playsinline preload="auto"></video>
-    </div>
+    <!-- 桌機滿版背景，由滑鼠橫向位置決定顯示第幾幀。
+         用圖片序列不用影片：影片刮動要 seek，跳到還沒下載到的位置就會
+         發 Range 請求並卡住（GitHub Pages 上實測一次 0.7 秒）。
+         圖片序列沒有這個問題 —— 載到第幾張，第幾格就能刮，換圖就是換圖。
+         流量差不多（40 張 WebP 共 1099 KB，影片 1196 KB）。
+         img 由 JS 產生，手機完全不會下載。 -->
+    <div id="heroScrub" aria-hidden="true"></div>
     <div class="hero-inner">
       <!-- 左側文字 -->
       <div class="hero-text">
@@ -346,80 +347,87 @@ document.getElementById('scrollHint')?.addEventListener('click', e => {
 {
   const heroSection = document.getElementById('hero')
   const scrubWrap = document.getElementById('heroScrub')
-  const scrubVid = document.getElementById('heroScrubVideo')
   const loopVid = document.getElementById('heroLoopVideo')
   const isDesktop = matchMedia('(min-width: 901px) and (hover: hover) and (pointer: fine)').matches
   const calm = matchMedia('(prefers-reduced-motion: reduce)').matches
 
-  if (isDesktop && heroSection && scrubVid) {
-    // 等首頁該載的都載完再抓影片，不跟首屏搶頻寬。
-    // 手機那條（下面的 else）本來就這樣做，桌機漏了 —— 結果這支 1.7MB
-    // 從第一秒就跟所有圖片搶頻寬。實測線上 house_plants.png 才 49KB
-    // 卻要 22 秒，note_service.png 要 20.9 秒，就是被它卡住。
-    const loadScrub = () => { scrubVid.src = 'media/hero-scrub.mp4' }
-    if (document.readyState === 'complete') setTimeout(loadScrub, 200)
-    else window.addEventListener('load', () => setTimeout(loadScrub, 200))
+  if (isDesktop && heroSection && scrubWrap) {
+    // ── 圖片序列刮動 ────────────────────────────────────────────
+    // 原本是一支 mp4 加 currentTime 刮動。問題是 seek 到還沒下載到的
+    // 位置時，瀏覽器會發 Range 請求 —— GitHub Pages 上實測一次 0.7 秒，
+    // 滑鼠一移就頓住，要整支載完才會順。
+    // 換成圖片序列之後沒有 seek 這回事：載到第幾張，第幾格就能刮，
+    // 換圖只是換 opacity，不解碼、不打網路。
+    // 40 張 WebP 共 1099 KB，跟原本的影片（1196 KB）差不多。
+    const FRAMES = 40
+    const imgs = []
+    for (let i = 0; i < FRAMES; i++) {
+      const im = new Image()
+      im.decoding = 'async'
+      im.alt = ''
+      im.className = 'hero-frame-img'
+      scrubWrap.appendChild(im)
+      imgs.push(im)
+    }
+    let loaded = 0
 
-    // 她的頭頂位置，寫成「佔影片高度的比例」而不是絕對像素。
-    // 原本寫死 37（用 1280×720 量的），換不同解析度的影片就會失準。
-    // 目前這支是 1280×720，頭頂逐秒量出來在 y=20～31，取最低的 31 再留一點餘裕 = 37。
+    // 等首頁該載的都載完再抓，不跟首屏圖片搶頻寬（手機那條本來就這樣做）。
+    // 先抓第 0 張當底圖，其餘照順序補上 —— 中途進來也有東西可看。
+    const loadFrames = () => {
+      imgs.forEach((im, i) => {
+        im.addEventListener('load', () => { loaded++ }, { once: true })
+        im.src = `media/frames/${String(i).padStart(2, '0')}.webp`
+      })
+    }
+    if (document.readyState === 'complete') setTimeout(loadFrames, 200)
+    else window.addEventListener('load', () => setTimeout(loadFrames, 200))
+
+    // 她的頭頂位置，寫成「佔畫面高度的比例」而不是絕對像素，
+    // 換不同解析度的素材都不用改這裡。
+    // 目前這批是 960x540，頭頂量出來在 y=15~23（等比於原本 1280x720 的 20~31），
+    // 取最低的再留一點餘裕。
     const HEAD_TOP_FRAC = 37 / 720
     const NAV_H = 64   // 固定橫條會蓋住視窗最上面這麼多，頭要留在它下面
+    const SRC_W = 960, SRC_H = 540
     const fitHead = () => {
       const w = scrubWrap.clientWidth, h = scrubWrap.clientHeight
-      if (!scrubVid.videoWidth || !w || !h) return
-      const s = Math.max(w / scrubVid.videoWidth, h / scrubVid.videoHeight)
-      const excess = scrubVid.videoHeight * s - h
-      const headTopY = scrubVid.videoHeight * HEAD_TOP_FRAC
+      if (!w || !h) return
+      const s = Math.max(w / SRC_W, h / SRC_H)
+      const excess = SRC_H * s - h
       const pct = excess <= 0 ? 0
-        : Math.max(0, Math.min(100, (headTopY * s - NAV_H) / excess * 100))
+        : Math.max(0, Math.min(100, (SRC_H * HEAD_TOP_FRAC * s - NAV_H) / excess * 100))
       scrubWrap.style.setProperty('--hero-vpos', pct.toFixed(1) + '%')
     }
-    scrubVid.addEventListener('loadedmetadata', fitHead)
+    fitHead()
     window.addEventListener('resize', fitHead)
 
     if (!calm) {
-      // target 是滑鼠指定的時間，cur 每幀往它靠近一點，不會跟著手抖
-      const EASE = 0.14
-      // 影片是 6fps，一幀 0.167 秒。這個數字一定要跟影片的幀率一致，
-      // 對不上的話下面的「同一幀就不 seek」會失效。
-      // 換影片時記得一起改（ffprobe -show_entries stream=r_frame_rate）。
-      // 原本的門檻是 0.008 秒，比一幀細二十倍，等於大部分 seek 都是
-      // seek 到同一張畫面 —— 畫面沒變，成本照付。
-      const STEP = 1 / 6
-      let target = 0, cur = 0, running = false
-      // 前一個 seek 還沒完成就不要發下一個。連續丟 currentTime 會讓
-      // 解碼工作在主執行緒上排隊，滑鼠掃過去就會整個卡住。
-      let seeking = false, pending = null
+      // target 是滑鼠指定的格數，cur 每幀往它靠近一點，不會跟著手抖
+      const EASE = 0.18
+      let target = 0, cur = 0, running = false, shown = -1
 
-      const seekTo = t => {
-        const frame = Math.round(t / STEP) * STEP
-        if (Math.abs(scrubVid.currentTime - frame) < STEP * 0.5) return  // 同一幀，不用動
-        if (seeking) { pending = frame; return }                          // 排一個，只留最新的
-        seeking = true
-        scrubVid.currentTime = frame
+      const show = i => {
+        i = Math.max(0, Math.min(FRAMES - 1, Math.round(i)))
+        if (i === shown) return                       // 同一張，不用動
+        if (!imgs[i].complete) return                 // 這張還沒到，先維持現況
+        if (shown >= 0) imgs[shown].classList.remove('on')
+        imgs[i].classList.add('on')
+        shown = i
       }
-      scrubVid.addEventListener('seeked', () => {
-        seeking = false
-        if (pending !== null) { const p = pending; pending = null; seekTo(p) }
-      })
-
       const tick = () => {
         cur += (target - cur) * EASE
-        if (scrubVid.readyState >= 2) seekTo(cur)
-        // 收在半幀就停：再靠近下去畫面也不會變
-        if (Math.abs(target - cur) > STEP * 0.5) requestAnimationFrame(tick)
+        show(cur)
+        if (Math.abs(target - cur) > 0.4) requestAnimationFrame(tick)
         else running = false
       }
-      // 2026-08-14：這裡曾經加過「整支下載完才開放刮動」的閘門，加上一個
-      // 25 秒的保底計時器。結果是在那之前刮動完全不會動 —— 把「有點頓」
-      // 換成「整個死掉」，比原本更糟。拿掉了。
-      // 有資料就能刮，還沒下載到的地方頂多頓一下，那是可以接受的降級。
       heroSection.addEventListener('mousemove', e => {
-        if (!scrubVid.duration) return
-        target = (1 - e.clientX / window.innerWidth) * scrubVid.duration
+        target = (1 - e.clientX / window.innerWidth) * (FRAMES - 1)
         if (!running) { running = true; requestAnimationFrame(tick) }
       })
+      // 第一張到了就先顯示，不要停在空白
+      imgs[0].addEventListener('load', () => show(0), { once: true })
+    } else {
+      imgs[0].addEventListener('load', () => imgs[0].classList.add('on'), { once: true })
     }
   } else if (loopVid && !calm) {
     // 手機：等首頁該載的都載完再抓影片，不跟首屏搶頻寬
