@@ -394,7 +394,7 @@ document.getElementById('scrollHint')?.addEventListener('click', e => {
     const decoded = new Array(FRAMES).fill(false)
     // show 要在載入的 callback 裡用，所以宣告在外層（原本放在 if (!calm)
     // 裡面，載入完成時會 ReferenceError）。
-    let shown = -1, zTop = 1
+    let shown = -1
     const show = i => {
       i = Math.max(0, Math.min(FRAMES - 1, Math.round(i)))
       // 這張還沒解碼好就找最近一張好了的。
@@ -412,9 +412,16 @@ document.getElementById('scrollHint')?.addEventListener('click', e => {
       if (i === shown) return                       // 同一張，不用動
       // 順序很重要：先把新的疊到最上面，再關掉舊的。
       // 反過來做的話中間會有一瞬間兩張都是透明的，那就是閃。
-      imgs[i].style.zIndex = ++zTop
+      //
+      // z-index 只用 1 和 2 兩層輪流，不要無限往上加 ——
+      // 加過頭會蓋掉 #heroScrub::after 那層左側壓白（z-index:3），
+      // 深咖啡色的標題壓在明亮照片上就讀不到了。
+      imgs[i].style.zIndex = '2'
       imgs[i].classList.add('on')
-      if (shown >= 0) imgs[shown].classList.remove('on')
+      if (shown >= 0) {
+        imgs[shown].style.zIndex = '1'
+        imgs[shown].classList.remove('on')
+      }
       shown = i
     }
     const loadFrames = () => {
