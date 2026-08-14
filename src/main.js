@@ -387,9 +387,43 @@ document.getElementById('scrollHint')?.addEventListener('click', e => {
           if (!seen.has(i)) { seen.add(i); order.push(i) }
       return order
     }
+    // decoded[i] 才算真的可以顯示。
+    // 只等 load 不夠：opacity:0 的圖瀏覽器不會預先解碼，切到 opacity:1
+    // 的那一刻才解，1280x720 的 WebP 解碼要好幾毫秒，那一幀就是空的 —— 就是閃。
+    // img.decode() 會在背景解好放記憶體，之後顯示就是零成本。
+    const decoded = new Array(FRAMES).fill(false)
+    // show 要在載入的 callback 裡用，所以宣告在外層（原本放在 if (!calm)
+    // 裡面，載入完成時會 ReferenceError）。
+    let shown = -1, zTop = 1
+    const show = i => {
+      i = Math.max(0, Math.min(FRAMES - 1, Math.round(i)))
+      // 這張還沒解碼好就找最近一張好了的。
+      // 直接 return 的話，載入中途刮動會整段沒反應；
+      // 退到鄰近的幀至少畫面會跟著動，載滿之後自然變細。
+      if (!decoded[i]) {
+        let best = -1
+        for (let d = 1; d < FRAMES; d++) {
+          if (i - d >= 0 && decoded[i - d]) { best = i - d; break }
+          if (i + d < FRAMES && decoded[i + d]) { best = i + d; break }
+        }
+        if (best < 0) return
+        i = best
+      }
+      if (i === shown) return                       // 同一張，不用動
+      // 順序很重要：先把新的疊到最上面，再關掉舊的。
+      // 反過來做的話中間會有一瞬間兩張都是透明的，那就是閃。
+      imgs[i].style.zIndex = ++zTop
+      imgs[i].classList.add('on')
+      if (shown >= 0) imgs[shown].classList.remove('on')
+      shown = i
+    }
     const loadFrames = () => {
       for (const i of loadOrder()) {
-        imgs[i].addEventListener('load', () => { loaded++ }, { once: true })
+        imgs[i].addEventListener('load', () => {
+          loaded++
+          const done = () => { decoded[i] = true; if (shown < 0) show(i) }
+          imgs[i].decode ? imgs[i].decode().then(done, done) : done()
+        }, { once: true })
         imgs[i].src = `media/frames/${String(i).padStart(2, '0')}.webp`
       }
     }
@@ -418,28 +452,8 @@ document.getElementById('scrollHint')?.addEventListener('click', e => {
     if (!calm) {
       // target 是滑鼠指定的格數，cur 每幀往它靠近一點，不會跟著手抖
       const EASE = 0.18
-      let target = 0, cur = 0, running = false, shown = -1
+      let target = 0, cur = 0, running = false
 
-      const show = i => {
-        i = Math.max(0, Math.min(FRAMES - 1, Math.round(i)))
-        // 這張還沒載到就找最近一張已經載到的。
-        // 直接 return 的話，載入中途刮動會整段沒反應；
-        // 退到鄰近的幀至少畫面會跟著動，載滿之後自然變細。
-        if (!imgs[i].complete || !imgs[i].naturalWidth) {
-          let best = -1
-          for (let d = 1; d < FRAMES; d++) {
-            const a = i - d, b = i + d
-            if (a >= 0 && imgs[a].complete && imgs[a].naturalWidth) { best = a; break }
-            if (b < FRAMES && imgs[b].complete && imgs[b].naturalWidth) { best = b; break }
-          }
-          if (best < 0) return
-          i = best
-        }
-        if (i === shown) return                       // 同一張，不用動
-        if (shown >= 0) imgs[shown].classList.remove('on')
-        imgs[i].classList.add('on')
-        shown = i
-      }
       const tick = () => {
         cur += (target - cur) * EASE
         show(cur)
@@ -450,11 +464,8 @@ document.getElementById('scrollHint')?.addEventListener('click', e => {
         target = (1 - e.clientX / window.innerWidth) * (FRAMES - 1)
         if (!running) { running = true; requestAnimationFrame(tick) }
       })
-      // 第一張到了就先顯示，不要停在空白
-      imgs[0].addEventListener('load', () => show(0), { once: true })
-    } else {
-      imgs[0].addEventListener('load', () => imgs[0].classList.add('on'), { once: true })
     }
+
   } else if (loopVid && !calm) {
     // 手機：等首頁該載的都載完再抓影片，不跟首屏搶頻寬
     const start = () => {
