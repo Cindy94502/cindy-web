@@ -7,6 +7,7 @@ import { renderNav, renderFooter, initCommon } from './shared.js'
 import { GITHUB_JSON_URL, formatPrice, cdn } from './data.js'
 import { districts } from './data-taoyuan.js'
 import { bookPages } from './data-taoyuan-book.js'
+import { initContactReveal, createScratchReveal } from './contact-reveal.js'
 
 // 桃園 2030 區塊開關 — 2026-08-04 關閉。
 // 原因：通車時間、三心六線這類數字會變，寫在網站上錯了是自己的責任；
@@ -14,10 +15,29 @@ import { bookPages } from './data-taoyuan-book.js'
 //       這些內容改成帶看時口頭說明。要開回來把 false 改成 true 即可。
 const SHOW_TAOYUAN = false
 
+// 聯絡區的刮除效果開關。開著的時候背景會從原本的 teal 換成一家人的圖，
+// 文字也會跟著從白色轉成深棕。要換回原本的樣子把這行改成 false 就好，
+// 版面和文字內容都不會動到。
+const SHOW_CONTACT_REVEAL = true
+
+// hero 的主視覺切換鈕（小薰／找到家）。只在桌機出現 —— hero 的刮動本來就是
+// 桌機限定（min-width:901px + hover + fine pointer），手機的 hero 是一張循環影片卡。
+const SHOW_HERO_REVEAL = true
+
 function tornDivider(fromColor, toColor) {
   return `<div class="torn-divider" style="background:${toColor}">
     <svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M0,0 L0,20 C80,35 160,8 240,22 C320,36 400,10 480,24 C560,38 640,12 720,26 C800,40 880,8 960,22 C1040,36 1120,14 1200,28 C1280,42 1360,16 1440,20 L1440,0 Z" fill="${fromColor}"/>
+    </svg>
+  </div>`
+}
+
+// 跟 tornDivider 同一條路徑，但只畫「撕開的那片紙」疊在照片上，
+// 底下不鋪色塊，所以照片會從撕口露出來。
+function tornEdge(color, side) {
+  return `<div class="contact-torn contact-torn-${side}">
+    <svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,0 L0,20 C80,35 160,8 240,22 C320,36 400,10 480,24 C560,38 640,12 720,26 C800,40 880,8 960,22 C1040,36 1120,14 1200,28 C1280,42 1360,16 1440,20 L1440,0 Z" fill="${color}"/>
     </svg>
   </div>`
 }
@@ -61,6 +81,14 @@ document.getElementById('app').innerHTML = `
          流量差不多（40 張 WebP 共 1099 KB，影片 1196 KB）。
          img 由 JS 產生，手機完全不會下載。 -->
     <div id="heroScrub" aria-hidden="true"></div>
+    ${SHOW_HERO_REVEAL ? `
+    <!-- 第二種主視覺：一家人從空屋刮成家。預設不顯示，也不載圖，
+         使用者按了「找到家」才建立，不然首屏會多背 350 KB。 -->
+    <div id="heroHome" class="hero-home" aria-hidden="true">
+      <img class="hero-home-layer" alt="">
+      <canvas class="hero-home-scratch"></canvas>
+    </div>
+` : ''}
     <div class="hero-inner">
       <!-- 左側文字 -->
       <div class="hero-text">
@@ -88,6 +116,13 @@ document.getElementById('app').innerHTML = `
         </div>
       </div>
     </div>
+    ${SHOW_HERO_REVEAL ? `
+    <!-- 放在 .hero-inner 之後：桌機是絕對定位在右下角，DOM 順序無所謂；
+         手機改成靜態排版，要接在影片卡下面才對，所以必須排在 inner 後面。 -->
+    <div class="hero-mode" role="group" aria-label="切換主視覺">
+      <button type="button" class="hero-mode-btn is-on" data-mode="cindy" aria-pressed="true">Meet me</button>
+      <button type="button" class="hero-mode-btn" data-mode="home" aria-pressed="false">Find home</button>
+    </div>` : ''}
     <a href="#about" class="scroll-hint-wrap" id="scrollHint">
       <span class="scroll-hint-text">SCROLL</span>
       <div class="scroll-arrow-wrap">
@@ -284,13 +319,35 @@ ${SHOW_TAOYUAN ? `
     </div>
   </section>
 
-  ${tornDivider('#FBF8F3', '#7CBBC3')}
+  <!-- 電腦版是 teal 底，所以這條「米色撕向 teal」要留著。
+       手機版底色換成照片了，這條會被 CSS 藏起來（.before-contact）。 -->
+  ${tornDivider('#FBF8F3', '#7CBBC3').replace('torn-divider', 'torn-divider before-contact')}
 
   <!-- ── 聯絡 ── -->
-  <section id="contact">
-    <div class="contact-inner">
+  <section id="contact" class="${SHOW_CONTACT_REVEAL ? 'contact-reveal' : ''}">
+    ${SHOW_CONTACT_REVEAL ? `
+    <div class="contact-media">
+      <img class="contact-layer" alt=""
+           src="images/home-lived.webp"
+           srcset="images/home-lived-sm.webp 900w, images/home-lived.webp 1800w"
+           sizes="100vw" loading="lazy" decoding="async">
+      <canvas class="contact-scratch"></canvas>
+      <div class="contact-reveal-hint"><span>👆</span> 刮刮看</div>
+      <!-- 上下用跟全站一樣的撕紙邊，把照片「撕」進頁面裡。
+           整個網站每個接縫都是撕的，只有這裡是機器切的直線的話會很突兀。 -->
+      ${tornEdge('#FBF8F3', 'top')}
+      ${tornEdge('#7CBBC3', 'bottom')}
+    </div>
+    <!-- 標題壓在圖上（桌機），圖裡那面牆就是為它留白的。
+         手機螢幕窄，這一段會自動掉到圖片下面，見 style.css -->
+    <div class="contact-headline">
       <h2 class="contact-title reveal">有任何問題都可以<br><strong>直接找我聊聊</strong></h2>
       <p class="contact-sub reveal">不管是買房、賣房還是只是想了解南崁行情，隨時歡迎</p>
+    </div>` : ''}
+    <div class="contact-inner">
+      ${SHOW_CONTACT_REVEAL ? '' : `
+      <h2 class="contact-title reveal">有任何問題都可以<br><strong>直接找我聊聊</strong></h2>
+      <p class="contact-sub reveal">不管是買房、賣房還是只是想了解南崁行情，隨時歡迎</p>`}
 
       <div class="contact-info-list reveal">
         <div class="contact-info-row">
@@ -328,6 +385,59 @@ ${SHOW_TAOYUAN ? `
 `
 
 initCommon()
+
+if (SHOW_CONTACT_REVEAL) initContactReveal()
+if (SHOW_HERO_REVEAL) initHeroReveal()
+
+function initHeroReveal() {
+  const hero = document.getElementById('hero')
+  const wrap = document.getElementById('heroHome')
+  const modeBar = hero?.querySelector('.hero-mode')
+  if (!hero || !wrap || !modeBar) return
+
+  let reveal = null   // 第一次切到「找到家」才建立，也才開始載圖
+
+  // 滑到其中一顆，另一顆糊掉。用 JS 加 class 而不是 CSS :has()，
+  // 是為了不用賭舊 Safari 支不支援。
+  modeBar.addEventListener('mouseover', () => modeBar.classList.add('is-hovering'))
+  modeBar.addEventListener('mouseleave', () => modeBar.classList.remove('is-hovering'))
+
+  modeBar.addEventListener('click', (e) => {
+    const btn = e.target.closest('.hero-mode-btn')
+    if (!btn) return
+    const mode = btn.dataset.mode
+    for (const b of modeBar.querySelectorAll('.hero-mode-btn')) {
+      b.classList.toggle('is-on', b === btn)
+      b.setAttribute('aria-pressed', String(b === btn))
+    }
+    hero.classList.toggle('mode-home', mode === 'home')
+    wrap.setAttribute('aria-hidden', String(mode !== 'home'))
+
+    if (mode === 'home') {
+      if (!reveal) {
+        wrap.querySelector('img').src = 'images/home-lived.webp'
+        reveal = createScratchReveal({
+          root: hero,
+          media: wrap,
+          canvas: wrap.querySelector('canvas'),
+          topSrc: () => 'images/home-empty.webp',
+          // 圖是照聯絡區構的（人在左下），但 hero 左邊要留給標題和那層壓白，
+          // 鏡射之後人才會到右邊。
+          flip: true,
+          brush: 95,   // 滿版，55 刮起來太細像鉛筆
+          // 跟小薰那層一樣掛在整個 hero 上，而不是只掛在 canvas。
+          // 掛 canvas 的話，標題、按鈕、浮動聯絡鈕蓋到的地方全變成刮不到的死角。
+          listenOn: hero,
+          enabled: false,   // 切到「找到家」才開，不然小薰模式下也會偷偷刮
+        })
+      }
+      // display 從 none 變 block 之後才量得到尺寸，所以下一幀再算 canvas
+      requestAnimationFrame(() => { reveal?.resize(); reveal?.setActive(true) })
+    } else {
+      reveal?.setActive(false)
+    }
+  })
+}
 
 setTimeout(() => {
   document.getElementById('heroStrong')?.classList.add('hero-title-line-animate')
@@ -468,6 +578,9 @@ document.getElementById('scrollHint')?.addEventListener('click', e => {
         else running = false
       }
       heroSection.addEventListener('mousemove', e => {
+        // 切到「找到家」的時候整個停手。兩個互動都吃 mousemove，
+        // 同時開著的話滑鼠一移會又轉小薰又刮牆，使用者不知道自己在操作什麼。
+        if (heroSection.classList.contains('mode-home')) return
         target = (1 - e.clientX / window.innerWidth) * (FRAMES - 1)
         if (!running) { running = true; requestAnimationFrame(tick) }
       })

@@ -695,6 +695,74 @@ nav {
 
 /* ── CONTACT ── */
 #contact { background: var(--teal); padding: 80px 0; position: relative; overflow: hidden; }
+
+/* ── 刮除版的聯絡區 ──
+   背景換成一家人的圖：上層空屋、刮開露出有家具的家。
+   關掉的話（main.js 的 SHOW_CONTACT_REVEAL = false）下面這些都不會套用，
+   #contact 就是原本的 teal 底白字。 */
+/* ── 頁尾的一家人（刮除揭露）：只在手機出現 ──
+   電腦版的 hero 已經有「Find home」可以看同一張圖了，頁尾再放一次是重複，
+   所以電腦版維持原本的 teal 底白字＋上方的撕紙分隔。
+   手機沒有 hero 切換鈕，頁尾是唯一看得到這張圖的地方，所以保留。 */
+.contact-media, .contact-headline { display: none; }
+.contact-torn { display: none; }
+
+@media (max-width: 900px), (hover: none), (pointer: coarse) {
+  /* 手機：一家人的圖放最上面，下面接回原本的 teal 底白字。
+     兩個都要，不是二選一。 */
+  #contact.contact-reveal { padding: 0 0 56px; }
+  /* 原本的白色格線留著，但要壓在照片下面，不然會蓋在一家人身上 */
+  #contact.contact-reveal .contact-media { z-index: 2; }
+  #contact.contact-reveal .contact-media { display: block; }
+  #contact.contact-reveal .contact-headline { display: block; }
+  #contact.contact-reveal .contact-torn { display: block; }
+  /* 上面那條「米色撕向 teal」的分隔線在手機沒有意義了，底色已經不是 teal，
+     而且照片自己有撕紙邊 */
+  .torn-divider.before-contact { display: none; }
+
+  .contact-media {
+    position: relative; width: 100%; aspect-ratio: 2528 / 1696;
+    overflow: hidden;
+  }
+  .contact-layer, .contact-scratch {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+  }
+  .contact-layer {
+    object-fit: cover; object-position: center;
+    user-select: none; -webkit-user-drag: none; pointer-events: none;
+  }
+  .contact-scratch { touch-action: pan-y; cursor: default; }
+
+  /* 撕紙邊：疊在照片上下，讓照片看起來是被撕進頁面裡的，
+     跟全站其他接縫同一條路徑。 */
+  .contact-torn {
+    position: absolute; left: 0; right: 0; z-index: 2;
+    height: 42px; pointer-events: none; line-height: 0;
+  }
+  .contact-torn svg { width: 100%; height: 100%; display: block; }
+  .contact-torn-top { top: 0; }
+  .contact-torn-bottom { bottom: 0; transform: rotate(180deg); }
+
+  .contact-reveal-hint {
+    position: absolute; z-index: 3; left: 50%; bottom: 16px; transform: translateX(-50%);
+    display: flex; align-items: center; gap: 7px;
+    background: rgba(255,255,255,.9); border-radius: 999px;
+    padding: 6px 15px; font-size: 13px; color: var(--brown-mid);
+    box-shadow: 0 2px 10px rgba(61,43,31,.12);
+    transition: opacity .5s; pointer-events: none; white-space: nowrap;
+  }
+  .contact-reveal-hint.is-gone { opacity: 0; }
+  .contact-reveal-hint span { display: inline-block; animation: contactSwipe 1.8s ease-in-out infinite; }
+
+  /* 文字維持原本的白色（.contact-title / .contact-sub 本來就是白的），
+     只調間距讓它跟上面的照片有呼吸空間 */
+  #contact.contact-reveal .contact-headline { padding: 44px 20px 0; text-align: center; }
+  #contact.contact-reveal .contact-inner { padding-top: 24px; }
+}
+@keyframes contactSwipe { 0%,100% { transform: translateX(-4px) } 50% { transform: translateX(4px) } }
+@media (prefers-reduced-motion: reduce) {
+  .contact-reveal-hint span { animation: none; }
+}
 #contact::before {
   content: ''; position: absolute; inset: 0;
   background-image: linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px);
@@ -925,6 +993,81 @@ footer {
    手機：同一個場景的輕量版，做成一張卡自動循環播。
    兩邊各載各的，不會同時下載。 */
 
+/* ── hero 第二種主視覺：一家人（刮除揭露）── */
+/* 滿版那層只給桌機。顯示規則寫在下面的桌機 media query 裡 ——
+   寫在這裡的話手機也會跟著顯示，JS 就會挑到這一層去初始化，
+   結果畫到一個看不見的容器上，手機怎麼刮都沒反應。 */
+.hero-home { display: none; position: absolute; inset: 0; z-index: 1; }
+#hero.mode-home #heroScrub { display: none; }   /* 兩個主視覺不能同時在 */
+.hero-home-layer, .hero-home-scratch {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+}
+.hero-home-layer {
+  object-fit: cover; object-position: center;
+  user-select: none; -webkit-user-drag: none; pointer-events: none;
+  /* 底層跟著鏡射，要跟 main.js 傳給 createScratchReveal 的 flip:true 一致，
+     兩層方向不一樣的話刮開會看到左右顛倒的房間。 */
+  transform: scaleX(-1);
+}
+/* 不要寫 cursor：讓它繼承 body #hero 那顆 cursor-scrub.png（綠箭頭＋三個點）。
+   寫成 default 的話會把那顆游標蓋掉，找到家模式就沒有「可以滑」的提示了。 */
+.hero-home-scratch { touch-action: pan-y; }
+/* .hero-inner 是一個滿版的透明容器（標題、便條、按鈕都在裡面），
+   它會把滑鼠事件整個吃掉，底下的 canvas 從 y28% 以下就完全刮不到 —— 沙發全在那一區。
+   所以在「找到家」模式讓它穿透，只把真正要點的連結和按鈕還原。 */
+#hero.mode-home .hero-inner { pointer-events: none; }
+#hero.mode-home .hero-inner a,
+#hero.mode-home .hero-inner button { pointer-events: auto; }
+/* 左側壓白，跟 #heroScrub::after 同一份，理由也一樣：
+   深咖啡色的標題要在照片上讀得到。少了這層，「陪你找到家」會壓在媽媽臉上。
+   pointer-events:none 很重要，不然它會擋住底下 canvas 的滑鼠事件，刮不動。 */
+.hero-home::after {
+  content: ''; position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  background: linear-gradient(90deg,
+    rgba(255,255,255,0.86) 0%, rgba(255,255,255,0.6) 34%, rgba(255,255,255,0) 58%);
+}
+
+/* 切換鈕：兩行草寫英文，直向排在右側中段。
+   為什麼是右側中段而不是角落 —— 左下角和右下角都被兩個 fixed 元件佔住了
+   （float-contact 和 go-top，z-index 都是 99，hero 裡的東西蓋不過它們）。 */
+.hero-mode {
+  display: none; position: absolute; right: 40px; top: 50%;
+  transform: translateY(-50%); z-index: 6;
+  flex-direction: column; align-items: flex-end; gap: 22px;
+}
+.hero-mode-btn {
+  position: relative; background: none; border: none; padding: 4px 10px;
+  font-family: 'Dancing Script', cursive; font-size: 32px; line-height: 1.1;
+  color: var(--brown-mid); opacity: .58; letter-spacing: .5px;
+  transition: filter .3s ease, opacity .3s ease, color .3s ease;
+}
+/* 目前這個模式維持清楚，另一個淡一點，不然看不出現在在哪 */
+.hero-mode-btn.is-on { color: var(--brown); opacity: 1; }
+/* 滑到其中一個，另一個糊掉退開 —— 焦點只有一處 */
+.hero-mode.is-hovering .hero-mode-btn:not(:hover) { filter: blur(4px); opacity: .4; }
+.hero-mode-btn:hover {
+  color: #fff; opacity: 1;
+  /* 白字壓在照片上會糊掉，尤其小薰那片草地本來就亮。
+     加一層很淡的深色陰影當底，字才立得起來，但不會看起來像有外框。 */
+  text-shadow: 0 1px 6px rgba(61, 43, 31, .55), 0 0 18px rgba(61, 43, 31, .3);
+}
+/* 虛線框，用 overshoot 的 cubic-bezier 模擬彈簧，從大縮到位 */
+.hero-mode-btn::after {
+  content: ''; position: absolute; inset: -5px -12px;
+  border: 2px dashed var(--brown-light); border-radius: 10px;
+  opacity: 0; transform: scale(1.3); pointer-events: none;
+  transition: opacity .22s ease, transform .3s cubic-bezier(.34, 1.56, .64, 1);
+}
+/* 框跟著字一起變白，不然白字配咖啡色虛線會很不搭 */
+.hero-mode-btn:hover::after {
+  opacity: 1; transform: scale(1.06);
+  border-color: rgba(255, 255, 255, .85);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-mode-btn, .hero-mode-btn::after { transition: none; }
+  .hero-mode.is-hovering .hero-mode-btn:not(:hover) { filter: none; }
+}
+
 #heroScrub { display: none; position: absolute; inset: 0; z-index: 0; }
 /* 圖片序列的每一幀疊在同一個位置，只有帶 .on 的那張看得到。
    用 opacity 不用 display：display 切換會觸發重排，opacity 只動合成層。
@@ -963,6 +1106,11 @@ footer {
   #heroScrub { display: block; }
   #hero::before { opacity: 0.2; }      /* 格線淡化，不要壓在照片上 */
   .hero-photo-area { display: none; }  /* 影片本身就是主視覺，不用再放角色 */
+  /* 切換鈕跟 hero 刮動綁在同一個條件：只有桌機＋精準指標才出現。
+     手機的 hero 是一張影片卡，沒有滿版底圖可以換。 */
+  .hero-mode { display: flex; }
+  /* 滿版的家庭層只在桌機出現 */
+  #hero.mode-home .hero-home { display: block; }
 }
 
 .hero-video-card { display: none; }
@@ -988,6 +1136,8 @@ footer {
     width: 100%; height: 100%; display: block;
     object-fit: cover; object-position: 50% 0;
   }
+  /* 手機也要有切換鈕。不用絕對定位塞在角落 —— 手機的 hero 是由上往下排的，
+     直接接在卡片後面，位置最自然也不會蓋到東西。 */
 }
 .hero-subtitle-img {
   margin: 4px 0 28px;
